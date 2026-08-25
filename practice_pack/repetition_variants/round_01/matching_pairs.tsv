@@ -1,0 +1,9 @@
+prompt	answer
+Pixel candidate	Fragment
+Stores final render buffers	Framebuffer
+Cuts geometry at boundaries	Clipping
+Rejects whole back-facing surfaces	Back-face culling
+Sample in texture space	Texel
+Light-space depth image	Shadow map
+View-dependent highlight	Specular term
+Prefiltered texture level	Mipmap

@@ -1,0 +1,9 @@
+prompt	answer
+Local model coordinate system	Object coordinates
+Camera-relative coordinate system	View coordinates
+Division by homogeneous coordinate	Perspective divide
+Weights over triangle vertices	Barycentric coordinates
+Depth-based visibility buffer	Z-buffer
+Constant background-light approximation	Ambient term
+Matte normal-light reflection	Diffuse term
+Sampled data field for shading	Texture

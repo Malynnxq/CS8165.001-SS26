@@ -1,0 +1,9 @@
+prompt	answer
+Programmable per-vertex stage	Vertex shader
+Programmable per-fragment stage	Fragment shader
+Geometry unit such as triangle	Primitive
+Point plus attributes	Vertex
+World-to-camera transform	View transformation
+Maps toward clip space	Projection matrix
+Offset against self-shadowing	Shadow bias
+Conversion to fragments	Rasterization

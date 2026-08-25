@@ -16,5 +16,6 @@ Files
 - `opengl_software_drills.md` - software/OpenGL checks
 - `interactive_practice_menu.md` - daily practice rotation
 - `roadmap_0_to_100.md` - complete suggested route through all materials
+- `repetition_variants/` - repeated practice sets with the same concepts but different wording
 
 Recommended start: `roadmap_0_to_100.md`.

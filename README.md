@@ -16,6 +16,7 @@ Private backup of the Moodle course export `CS8165.001-SS26_1787682614.zip`.
 - `course_build_audit.json` - machine-readable coverage report for source files, PDF pages, chunks, and validation checks
 - `study_pack/` - exam-preparation pack with chapter guides, formula checklist, visual review guide, exam drill, Anki TSV, study plan, and reusable AI prompts
 - `practice_pack/` - interactive practice pack with cloze texts, matching tables, MC questions, sequencing tasks, math/algorithm drills, diagram prompts, OpenGL drills, and a roadmap from 0 to exam-ready
+- `practice_pack/repetition_variants/` - repeated practice rounds with the same concepts but different wording and task layouts
 - `overprep_pack/` - closed-format overpreparation pack with MC/mock exams, mistake log, concept-confusion pairs, diagram label workbook, OpenGL debugging drills, one-pagers, spaced repetition, and final readiness checklist
 - `scripts/build_course_text.py` - reproducible exporter for rebuilding `course_full_text.txt`
 - `scripts/build_study_pack.py` - reproducible generator for rebuilding `study_pack/`
@@ -62,6 +63,7 @@ Use these for active learning and copy-paste generators:
 - `practice_pack/diagram_graphics_prompts.md` - drawing and visual explanation tasks
 - `practice_pack/opengl_software_drills.md` - OpenGL/software understanding checks
 - `practice_pack/interactive_practice_menu.md` - daily active-recall loop
+- `practice_pack/repetition_variants/` - 3 rounds of repeated cloze, matching, MC, and sequencing variants
 - `practice_pack/roadmap_0_to_100.md` - full route from zero to exam-ready
 
 ## Roadmap From 0 To Exam-Ready
@@ -71,13 +73,14 @@ Use these for active learning and copy-paste generators:
 3. **Core Understanding:** Work through `study_pack/chapter_guides/` from chapter 01 to 10.
 4. **Raw Source Check:** For each chapter, load the matching file from `course_text_parts/03_lectures/`.
 5. **Active Recall:** Use `practice_pack/cloze_source_texts.md`, `practice_pack/matching_pairs.tsv`, and `study_pack/flashcards_anki.tsv`.
-6. **Math/Algorithms:** Work through `study_pack/formulas_and_derivations.md` and `practice_pack/math_algorithm_drills.md`.
-7. **Visuals:** Use `study_pack/visual_review_guide.md` and `practice_pack/diagram_graphics_prompts.md`; open the original PDF pages for diagrams.
-8. **OpenGL/Software:** Use `practice_pack/opengl_software_drills.md` and inspect `course_text_parts/05_opengl_starter_project.txt`.
-9. **Exam Simulation:** Use `study_pack/exam_drill.md`, `practice_pack/multiple_choice.md`, and `practice_pack/sequencing_tasks.md`.
-10. **Closed-Format Overprep:** Use `overprep_pack/mock_exams/`, `overprep_pack/concept_confusion_pairs.md`, and `overprep_pack/closed_format_oral_exam_mode.md`. Prefer selecting, matching, filling, ordering, and labeling over vague open answers.
-11. **Mistake Repair:** Log every wrong answer in `overprep_pack/mistake_log.md` and reset it into the spaced-repetition schedule.
-12. **Final Pass:** Use `overprep_pack/final_readiness_checklist.md`. Revisit every weak spot until you can explain it with definition, pipeline role, diagram, algorithm/formula, OpenGL relation, and typical pitfall.
+6. **Non-Boring Repetition:** Use `practice_pack/repetition_variants/round_01`, then `round_02`, then `round_03`. These repeat the same concepts with changed wording and task surfaces.
+7. **Math/Algorithms:** Work through `study_pack/formulas_and_derivations.md` and `practice_pack/math_algorithm_drills.md`.
+8. **Visuals:** Use `study_pack/visual_review_guide.md` and `practice_pack/diagram_graphics_prompts.md`; open the original PDF pages for diagrams.
+9. **OpenGL/Software:** Use `practice_pack/opengl_software_drills.md` and inspect `course_text_parts/05_opengl_starter_project.txt`.
+10. **Exam Simulation:** Use `study_pack/exam_drill.md`, `practice_pack/multiple_choice.md`, and `practice_pack/sequencing_tasks.md`.
+11. **Closed-Format Overprep:** Use `overprep_pack/mock_exams/`, `overprep_pack/concept_confusion_pairs.md`, and `overprep_pack/closed_format_oral_exam_mode.md`. Prefer selecting, matching, filling, ordering, and labeling over vague open answers.
+12. **Mistake Repair:** Log every wrong answer in `overprep_pack/mistake_log.md` and reset it into the spaced-repetition schedule.
+13. **Final Pass:** Use `overprep_pack/final_readiness_checklist.md`. Revisit every weak spot until you can explain it with definition, pipeline role, diagram, algorithm/formula, OpenGL relation, and typical pitfall.
 
 ## Closed-Format Overprep
 

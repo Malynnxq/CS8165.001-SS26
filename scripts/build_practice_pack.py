@@ -345,23 +345,27 @@ Phase 3 - Active Recall
 -----------------------
 Use `practice_pack/cloze_source_texts.md`, `practice_pack/matching_pairs.tsv`, and `study_pack/flashcards_anki.tsv`. Your goal is fast recall of definitions, pipeline order, and conceptual distinctions.
 
-Phase 4 - Algorithms and Math
+Phase 4 - Repetition Variants
+-----------------------------
+Use `practice_pack/repetition_variants/round_01`, then `round_02`, then `round_03`. These rounds test the same concepts with different wording, so you do not only memorize one phrasing.
+
+Phase 5 - Algorithms and Math
 -----------------------------
 Work through `study_pack/formulas_and_derivations.md` and `practice_pack/math_algorithm_drills.md`. For every formula or algorithm: explain variables, geometric meaning, and pipeline stage.
 
-Phase 5 - Visual Understanding
+Phase 6 - Visual Understanding
 ------------------------------
 Use `study_pack/visual_review_guide.md` and `practice_pack/diagram_graphics_prompts.md`. Draw each diagram yourself and explain it aloud.
 
-Phase 6 - Software/OpenGL
+Phase 7 - Software/OpenGL
 -------------------------
 Use `practice_pack/opengl_software_drills.md` and inspect the starter project in `course_text_parts/05_opengl_starter_project.txt`.
 
-Phase 7 - Exam Simulation
+Phase 8 - Exam Simulation
 -------------------------
 Use `study_pack/exam_drill.md`, `practice_pack/multiple_choice.md`, and `practice_pack/sequencing_tasks.md`. Answer without notes first, then verify with chapter chunks.
 
-Phase 8 - Final Pass
+Phase 9 - Final Pass
 --------------------
 Revisit only weak spots. If you cannot explain a topic with definition, diagram, algorithm, and typical pitfall, it is not finished.
 
@@ -396,9 +400,152 @@ Files
 - `opengl_software_drills.md` - software/OpenGL checks
 - `interactive_practice_menu.md` - daily practice rotation
 - `roadmap_0_to_100.md` - complete suggested route through all materials
+- `repetition_variants/` - repeated practice sets with the same concepts but different wording
 
 Recommended start: `roadmap_0_to_100.md`.
 """
+
+
+VARIANT_CLOZE_TEXTS = {
+    "round_01": [
+        ("Pipeline as a Factory", "Think of the rendering pipeline as a factory line. Vertex data enters first, shader stages transform and enrich it, primitives are formed, rasterization creates fragment candidates, tests decide which candidates survive, and the framebuffer stores the final output. The important distinction is that fragments are not automatically pixels."),
+        ("Transform Chain", "A model normally starts in its own object coordinates. Transformations place it into the world, then into the camera view, then through projection into clip space. After the perspective divide and viewport mapping, the geometry can be related to screen positions. The order of these transformations changes the result."),
+        ("Lighting Terms", "Local lighting is computed from direct interactions between light, material, normal, and view direction. Ambient light is a simple constant contribution, diffuse light depends on the normal-light angle, and specular light creates a view-dependent highlight."),
+        ("Texture Sampling", "Texture mapping uses coordinates on a surface to sample a data field. The result may be a color or another value used by the shader. Filtering reconstructs values between texels, while mipmaps reduce aliasing when many texels project to a small screen area."),
+        ("Shadow Map Idea", "Shadow mapping asks whether a camera fragment is visible from the light. A first pass stores light-space depths in a shadow map. A later pass transforms a fragment into light space and compares its depth with the stored depth."),
+    ],
+    "round_02": [
+        ("Fragments and Tests", "Rasterization does not directly produce final image pixels. It produces fragments, which still have to pass tests such as depth and stencil operations. Only surviving fragments can update framebuffer attachments such as the color or depth buffer."),
+        ("Projection Difference", "Orthographic projection keeps parallel lines parallel and does not shrink far objects. Perspective projection creates depth-dependent size changes and requires homogeneous coordinates. The perspective divide is the step that makes the projected coordinates usable for later viewport mapping."),
+        ("Clipping vs Culling", "Clipping and culling both reduce later work, but they are not the same. Clipping cuts geometry against a boundary and can create new vertices. Culling rejects complete primitives or objects, for example because a face points away from the camera."),
+        ("Visibility", "Visibility determination decides which surfaces are seen from a viewpoint. In z-buffering, each incoming fragment depth is compared to a stored depth value. The fragment survives only if it satisfies the selected depth comparison rule."),
+        ("OpenGL Debugging", "A black or broken render can come from many pipeline stages. Common causes include missing uniforms, wrong shader outputs, disabled depth testing, bad texture coordinates, incorrect projection matrices, or normals in the wrong coordinate system."),
+    ],
+    "round_03": [
+        ("Triangle Work", "A triangle becomes visible through several steps. Its vertices are transformed, the primitive is assembled and clipped if needed, rasterization finds covered sample positions, attributes are interpolated, and depth testing decides whether generated fragments remain visible."),
+        ("Coordinate Spaces", "Object, world, view, clip, normalized device, and screen coordinates describe different stages of the same geometry. Confusing these spaces often leads to wrong matrices, disappearing objects, or lighting calculations in incompatible coordinate systems."),
+        ("Illumination Pitfalls", "Lighting calculations depend on normalized vectors in a consistent coordinate system. The surface normal, light direction, view direction, and material parameters influence the final result. Diffuse and specular terms should not be treated as interchangeable."),
+        ("Aliasing and Mipmaps", "Aliasing appears when high-frequency texture information is sampled too sparsely. Mipmaps store prefiltered texture levels, allowing the renderer to sample a level closer to the projected screen footprint."),
+        ("Shadow Artifacts", "Shadow maps are practical but imperfect. Too little bias can cause self-shadowing artifacts, while too much bias can detach shadows from casters. Resolution and sampling also affect the final appearance."),
+    ],
+}
+
+
+VARIANT_MATCHING = {
+    "round_01": [
+        ("Pixel candidate", "Fragment"),
+        ("Stores final render buffers", "Framebuffer"),
+        ("Cuts geometry at boundaries", "Clipping"),
+        ("Rejects whole back-facing surfaces", "Back-face culling"),
+        ("Sample in texture space", "Texel"),
+        ("Light-space depth image", "Shadow map"),
+        ("View-dependent highlight", "Specular term"),
+        ("Prefiltered texture level", "Mipmap"),
+    ],
+    "round_02": [
+        ("Local model coordinate system", "Object coordinates"),
+        ("Camera-relative coordinate system", "View coordinates"),
+        ("Division by homogeneous coordinate", "Perspective divide"),
+        ("Weights over triangle vertices", "Barycentric coordinates"),
+        ("Depth-based visibility buffer", "Z-buffer"),
+        ("Constant background-light approximation", "Ambient term"),
+        ("Matte normal-light reflection", "Diffuse term"),
+        ("Sampled data field for shading", "Texture"),
+    ],
+    "round_03": [
+        ("Programmable per-vertex stage", "Vertex shader"),
+        ("Programmable per-fragment stage", "Fragment shader"),
+        ("Geometry unit such as triangle", "Primitive"),
+        ("Point plus attributes", "Vertex"),
+        ("World-to-camera transform", "View transformation"),
+        ("Maps toward clip space", "Projection matrix"),
+        ("Offset against self-shadowing", "Shadow bias"),
+        ("Conversion to fragments", "Rasterization"),
+    ],
+}
+
+
+VARIANT_MC = {
+    "round_01": [
+        ("Which statement is true?", ["A fragment is guaranteed visible", "A fragment may still be discarded", "A texel is a vertex", "A framebuffer is a shader"], "B"),
+        ("Which pair is easiest to confuse but different?", ["Clipping and culling", "CPU and keyboard", "PDF and shader", "Git and texture"], "A"),
+        ("What does a projection matrix help produce?", ["Clip/projected coordinates", "Texture filenames", "CMake cache only", "Forum posts"], "A"),
+        ("What does mipmapping address?", ["Texture sampling quality", "Git history", "Lecture dates", "Back-face orientation only"], "A"),
+    ],
+    "round_02": [
+        ("Which data is commonly interpolated during rasterization?", ["Depth or texture coordinates", "Repository URL", "Exam room", "Compiler license"], "A"),
+        ("What is the role of the normal in lighting?", ["Surface orientation for lighting", "Zip compression", "Branch naming", "Framebuffer size only"], "A"),
+        ("What is shadow acne?", ["Self-shadowing artifact", "Texture coordinate system", "Vertex format", "Projection type"], "A"),
+        ("What is a texel?", ["Texture sample", "Triangle edge", "Depth test", "Camera matrix"], "A"),
+    ],
+    "round_03": [
+        ("What should be checked if depth ordering looks wrong?", ["Depth test/buffer", "Only texture wrap mode", "Only README title", "Only fragment color"], "A"),
+        ("What does homogeneous w enable?", ["Translation/projection behavior", "Only file compression", "Only ambient light", "Only shader comments"], "A"),
+        ("Which is view-dependent?", ["Specular highlight", "Diffuse Lambert term only", "Object filename", "CMake version"], "A"),
+        ("Which pass creates the shadow map?", ["Light-view render pass", "Final color-only pass", "Git push", "HTML export"], "A"),
+    ],
+}
+
+
+VARIANT_SEQUENCES = {
+    "round_01": ("Fragment visibility path", ["Rasterization creates fragment", "Fragment shader computes output", "Depth test compares depth", "Surviving fragment updates framebuffer"]),
+    "round_02": ("Coordinate space path", ["Object space", "World space", "View space", "Clip space", "NDC", "Viewport/screen"]),
+    "round_03": ("Lighting calculation ingredients", ["Surface point", "Normal vector", "Light direction", "View direction", "Material parameters", "Ambient/diffuse/specular combination"]),
+}
+
+
+def make_variant_readme() -> str:
+    return """Repetition Variants
+===================
+
+These files repeat the same core concepts with different wording and task layouts. Use them after the base practice files so you train recognition without memorizing only one phrasing.
+
+Suggested use:
+1. Round 01 after first chapter pass.
+2. Round 02 after weak-spot review.
+3. Round 03 before mock exams.
+
+Each round includes cloze-ready texts, matching pairs, MC questions, and sequencing tasks.
+"""
+
+
+def make_variant_cloze(round_id: str) -> str:
+    lines = [heading(f"Cloze Variants {round_id}")]
+    lines.append("Copy sections into a cloze generator. Same concepts, different wording.")
+    for title, text in VARIANT_CLOZE_TEXTS[round_id]:
+        lines.append("")
+        lines.append(heading(title, 2))
+        lines.append(text)
+    return "\n".join(lines)
+
+
+def make_variant_matching(round_id: str) -> str:
+    rows = ["prompt\tanswer"]
+    rows.extend(f"{prompt}\t{answer}" for prompt, answer in VARIANT_MATCHING[round_id])
+    return "\n".join(rows)
+
+
+def make_variant_mc(round_id: str) -> str:
+    lines = [heading(f"Multiple Choice Variants {round_id}")]
+    for idx, (question, answers, correct) in enumerate(VARIANT_MC[round_id], start=1):
+        lines.append("")
+        lines.append(f"{idx}. {question}")
+        for label, answer in zip(["A", "B", "C", "D"], answers):
+            lines.append(f"   {label}. {answer}")
+        lines.append(f"   Answer: {correct}")
+    return "\n".join(lines)
+
+
+def make_variant_sequence(round_id: str) -> str:
+    title, steps = VARIANT_SEQUENCES[round_id]
+    lines = [heading(f"Sequencing Variant {round_id}")]
+    lines.append(f"Task: Restore the correct order for {title}.")
+    lines.append("")
+    for step in reversed(steps):
+        lines.append(f"- {step}")
+    lines.append("")
+    lines.append("Answer: " + " -> ".join(steps))
+    return "\n".join(lines)
 
 
 def main() -> None:
@@ -418,13 +565,20 @@ def main() -> None:
         "opengl_software_drills.md": make_opengl_drills(),
         "interactive_practice_menu.md": make_interactive_menu(),
         "roadmap_0_to_100.md": make_roadmap(),
+        "repetition_variants/README.md": make_variant_readme(),
     }
+    for round_id in ["round_01", "round_02", "round_03"]:
+        files[f"repetition_variants/{round_id}/cloze_texts.md"] = make_variant_cloze(round_id)
+        files[f"repetition_variants/{round_id}/matching_pairs.tsv"] = make_variant_matching(round_id)
+        files[f"repetition_variants/{round_id}/multiple_choice.md"] = make_variant_mc(round_id)
+        files[f"repetition_variants/{round_id}/sequencing.md"] = make_variant_sequence(round_id)
     for name, text in files.items():
         write(OUT / name, text)
     print(f"Wrote {OUT.relative_to(ROOT).as_posix()}")
     print(f"Files: {len(files)}")
     print(f"Matching pairs: {len(MATCHING_PAIRS)}")
     print(f"Cloze texts: {len(CLOZE_TEXTS)}")
+    print("Repetition variant rounds: 3")
 
 
 if __name__ == "__main__":
