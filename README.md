@@ -11,6 +11,8 @@ Private backup of the Moodle course export `CS8165.001-SS26_1787682614.zip`.
 - `course/` - course administration pages such as group selection
 - `examples/` - downloadable starter projects and sample files
 - `assets/` - shared Moodle styling
+- `course_full_text.txt` - complete structured text export for AI-assisted exam preparation
+- `scripts/build_course_text.py` - reproducible exporter for rebuilding `course_full_text.txt`
 
 ## Lecture Slides
 
@@ -26,3 +28,11 @@ Private backup of the Moodle course export `CS8165.001-SS26_1787682614.zip`.
 - `lectures/10-shadows/slides/10-shadows.pdf`
 
 Keep this repository private unless you have permission to publish the course materials.
+
+## Rebuild Full Text Export
+
+Run this from the repository root:
+
+```powershell
+python scripts/build_course_text.py
+```
