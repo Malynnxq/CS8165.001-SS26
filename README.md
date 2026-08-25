@@ -14,7 +14,9 @@ Private backup of the Moodle course export `CS8165.001-SS26_1787682614.zip`.
 - `course_full_text.txt` - complete structured text export for AI-assisted exam preparation, including extracted slide text, page metadata, formula/notation candidates, a chapter index, exercise index, visual slide inventory, and starter-code contents
 - `course_text_parts/` - split text export for AI workflows
 - `course_build_audit.json` - machine-readable coverage report for source files, PDF pages, chunks, and validation checks
+- `study_pack/` - exam-preparation pack with chapter guides, formula checklist, visual review guide, exam drill, Anki TSV, study plan, and reusable AI prompts
 - `scripts/build_course_text.py` - reproducible exporter for rebuilding `course_full_text.txt`
+- `scripts/build_study_pack.py` - reproducible generator for rebuilding `study_pack/`
 
 ## AI Study Files
 
@@ -28,6 +30,19 @@ Use these files depending on the context window:
 - `course_text_parts/INDEX.txt` - list of all generated text chunks
 
 Coverage checks are stored in `course_build_audit.json`.
+
+## Exam Study Pack
+
+Start here:
+
+- `study_pack/README.md`
+- `study_pack/ai_prompts.md`
+- `study_pack/chapter_guides/`
+- `study_pack/exam_drill.md`
+- `study_pack/flashcards_anki.tsv`
+- `study_pack/visual_review_guide.md`
+
+The study pack is derived from the course chunks and does not invent missing old exams, recordings, or official solutions.
 
 ## Lecture Slides
 
@@ -53,3 +68,9 @@ python scripts/build_course_text.py
 ```
 
 This rebuilds `course_full_text.txt`, `course_text_parts/`, and `course_build_audit.json`.
+
+To rebuild the exam study pack:
+
+```powershell
+python scripts/build_study_pack.py
+```
