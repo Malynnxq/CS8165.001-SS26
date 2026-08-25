@@ -11,7 +11,7 @@ Private backup of the Moodle course export `CS8165.001-SS26_1787682614.zip`.
 - `course/` - course administration pages such as group selection
 - `examples/` - downloadable starter projects and sample files
 - `assets/` - shared Moodle styling
-- `course_full_text.txt` - complete structured text export for AI-assisted exam preparation
+- `course_full_text.txt` - complete structured text export for AI-assisted exam preparation, including extracted slide text, page metadata, formula/notation candidates, a chapter index, exercise index, visual slide inventory, and starter-code contents
 - `scripts/build_course_text.py` - reproducible exporter for rebuilding `course_full_text.txt`
 
 ## Lecture Slides
