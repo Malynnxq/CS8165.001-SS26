@@ -1,0 +1,26 @@
+term	definition	chapter
+Vertex	A point with attributes such as position, normal, color, or texture coordinates.	02
+Primitive	A geometric unit assembled from vertices, commonly a triangle.	02
+Fragment	A pixel candidate produced by rasterization before final tests.	02
+Framebuffer	Storage for rendered output and related buffers such as color and depth.	02
+Vertex shader	Programmable stage that processes vertices and often applies transformations.	02
+Fragment shader	Programmable stage that computes per-fragment outputs such as color.	02
+Homogeneous coordinates	Coordinate representation enabling affine transformations and perspective projection.	03
+Affine transformation	Line-preserving transformation such as translation, rotation, scaling, or shear.	03
+View transformation	Transforms world-space coordinates into camera/view space.	04
+Projection matrix	Maps view-space geometry into clip or projection space.	04
+Perspective divide	Division by the homogeneous coordinate that creates perspective effects.	04
+Clipping	Cutting or removing primitive parts outside a clip region.	05
+Culling	Rejecting whole primitives or objects based on tests such as orientation.	05
+Rasterization	Conversion of primitives into fragments on a raster grid.	06
+Barycentric coordinates	Weights relative to triangle vertices used for interpolation.	06
+Z-buffer	Depth buffer method for hidden surface removal.	07
+Back-face culling	Rejecting surfaces facing away from the camera.	07
+Ambient term	Simple constant approximation of background light.	08
+Diffuse term	View-independent reflection based on normal and light direction.	08
+Specular term	View-dependent highlight component.	08
+Texture	Sampled data field used during rendering.	09
+Texel	A single sample in texture space.	09
+Mipmapping	Prefiltered texture levels used to reduce aliasing.	09
+Shadow map	Depth map rendered from the light source.	10
+Shadow bias	Offset used to reduce self-shadowing in shadow mapping.	10
