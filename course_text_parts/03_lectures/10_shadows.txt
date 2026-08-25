@@ -1,0 +1,553 @@
+Kapitel 10: Shadows - Moodle-Seite
+----------------------------------
+Quelle: lectures/10-shadows/index.html
+
+Moodle Lernplattform Universität Ulm - Interaktive Computergrafik 
+Moodle Lernplattform Universität Ulm
+Interaktive Computergrafik 
+CS8165.001-SS26 
+Chap10-Shadows (19.07.26)
+Diese Seite ist Teil des Inhalts, der von Chap10-Shadows (19.07.26) am Dienstag, 25. August 2026, 20:30 heruntergeladen wurde. Beachten Sie, dass einige Inhalte und alle Dateien, die größer als 2 GB sind, nicht heruntergeladen werden. 
+Dateien und Verzeichnisse 
+10-shadows.pdf 
+Diese Datei ist Teil des Inhalts, der am Dienstag, 25. August 2026, 20:30 von Maksym Morozov von Interaktive Computergrafik heruntergeladen wurde.
+
+Externe Links:
+- Moodle Lernplattform Universität Ulm: https://moodle.uni-ulm.de
+- Chap10-Shadows (19.07.26): https://moodle.uni-ulm.de/mod/resource/view.php?id=1040150
+- Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
+
+Kapitel 10: Shadows - Folien
+----------------------------
+Quelle: lectures/10-shadows/slides/10-shadows.pdf
+
+[Seite 1]
+Seiten-Metadaten: Bilder=2, Rechtecke=2, Kurven=0, Linien=0
+Interactive Computer Graphics
+Chapter 10 - Shadows
+Summer Term 2026
+Timo Ropinski
+Visual Computing Group
+Institute of Media Informatics
+[Seite 2]
+Seiten-Metadaten: Bilder=3, Rechtecke=4, Kurven=0, Linien=0
+Shadow Perception 1/3
+▪ Visual perception of an environment is influenced by shadows
+• Object object relationships
+• Object space relationships
+▪ Improved depth perception is made possible by shadows
+▪ Shadows provide appealing visual effects
+Interactive Computer Graphics 09/07/2026 2
+[Seite 3]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+Shadow Perception 2/3
+Interactive Computer Graphics 09/07/2026 3
+[Seite 4]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Shadow Perception 3/3
+▪ KerstenD. Knill, D. C., Mamassian, P. and BülthoffⅠ. Illusory motion from shadows, Nature, 379 (31),
+1996.
+Interactive Computer Graphics 09/07/2026 4
+[Seite 5]
+Seiten-Metadaten: Bilder=1, Rechtecke=2, Kurven=0, Linien=0
+Shadow Atmosphere
+[Seite 6]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+▪ Shadows createa certain atmosphere
+▪ The Lighthouse (2019)
+Interactive Computer Graphics 09/07/2026 5
+[Seite 7]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+Chapter 10 - Shadows
+Shadow Atmosphere
+▪ Shadows createa certain atmosphere
+▪ The Lighthouse (2019)
+▪ Kill Bill: Volume 1 (2003)
+Interactive Computer Graphics 09/07/2026 6
+[Seite 8]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Overview
+10.1 Definitions
+10.2 Ground Plane Shadows
+10.3 Light Maps
+10.4 Shadow Volumes
+10.5 Shadow Maps
+References
+Interactive Computer Graphics 09/07/2026 7
+[Seite 9]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+10.1 Definitions
+About shadow-receiving and shadow-casting scene objects
+Visual Computing Group
+Institute of Media Informatics
+[Seite 10]
+Seiten-Metadaten: Bilder=4, Rechtecke=4, Kurven=0, Linien=0
+Classification of scene objects
+▪ Distinction between
+• Shadow-casting scene objects(Occluder)
+• Shadow-receiving scene objects (Receiver)
+▪ Classify shadow-casting and shadow-receiving objects in a preprocess?
+• Self-shadowing results from same object casting and receiving shadows
+Interactive Computer Graphics 09/07/2026 9
+[Seite 11]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+Umbra and Penumbra
+▪ Point light sources
+• Result in hard shadows
+• High intensity contrast between shadowed andnon-shadowed region
+▪ Area light sources
+• Result in soft shadows
+• Core shadow (umbra): area completely occluded wrt. light source
+• Penumbra (Penumbra): area only partially occludedwrt. light source
+▪ Size of shadow region depends on
+• Area of light source
+• Distance of light source to scene object
+Interactive Computer Graphics 09/07/2026 10
+[Seite 12]
+Seiten-Metadaten: Bilder=4, Rechtecke=4, Kurven=0, Linien=0
+Hard and Soft Shadows
+Interactive Computer Graphics 09/07/2026 11
+[Seite 13]
+Seiten-Metadaten: Bilder=1, Rechtecke=2, Kurven=0, Linien=0
+Description of Shadows
+[Seite 14]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+▪ Shadows can be described differently
+▪ Shadows can be modeled as
+• Separate objects
+• Surfaces not seen when lookinginto scene from light source
+• Volumetric regions with reduced lighting
+Interactive Computer Graphics 09/07/2026 12
+[Seite 15]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Chapter 10 - Shadows
+Observations 1/2
+▪ Possible shadow generation approaches
+• Shadows as surfaces: exploit hidden-surface algorithms
+• Shadows as projection: create shadows from A to Bby projecting A onto B from light source
+▪ Static vs. dynamic scenes
+• Shadows are static in scenes with static lighting and scene objects (shadow computation
+possible as preprocess)
+• Shadows are dynamic in scenes with dynamic lighting and/ordynamic scene objects(shadows
+must be computed per frame)
+Interactive Computer Graphics 09/07/2026 13
+[Seite 16]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Observations 2/2
+▪ Shadow shape can be obtained by projection
+• Trivial for projection on flat surfaces
+• Algorithmically very complex for projection in general case
+▪ Shadow intensity
+• Shadows attenuate the incoming light used in illumination model
+▪ Correct shadows can only be computed with global illumination models
+▪ Empirical approaches for shadow computation are widely used
+Interactive Computer Graphics 09/07/2026 14
+[Seite 17]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Shadow Calculation Methods
+▪ Ground plane shadows
+• Static shadow polygons
+• Dynamic shadow polygons
+▪ Projected shadows
+▪ Light maps
+▪ Shadow volumes
+▪ Shadow maps
+▪ Interactive Computer GraphicsChapter 10 – Shadows
+▪ 27/06/2026
+Interactive Computer Graphics 09/07/2026 15
+[Seite 18]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+10.2 Ground Plane Shadows
+Static and dynamic shadow polygons
+Visual Computing Group
+Institute of Media Informatics
+[Seite 19]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Static Shadow Polygons
+▪ Render dark polygons to represent shadow regions
+• Cast ray from light source through center of shadow-casting objects
+• Position dark polygon where ray intersects shadow-receiving object
+▪ Disadvantages
+• Static shapes cannot represent geometry of dynamic scene objects
+• Single intersection of ray and shadow-receiver can’t capture soft shadows
+• Incorrect parts of the shadow may be drawn
+Interactive Computer Graphics 09/07/2026 17
+[Seite 20]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Render Static Shadow Polygons 1/2
+▪ Depth value identical with thatof shadow-receiving polygon(care must be taken wrt. z-buffer
+fighting)
+▪ Depth value smaller than that of shadow-receiving polygon(shadow can be too large)
+Interactive Computer Graphics 09/07/2026 18
+[Seite 21]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Render Static Shadow Polygons 2/2
+▪ Disable depth test
+• Cast ray to determine shadow visibility
+• Show entire shadow polygon
+▪ Shadow too large and possibly in wrong places
+▪ Test corners for shadow visibility
+• Sufficient for planar polygons
+Interactive Computer Graphics 09/07/2026 19
+[Seite 22]
+Seiten-Metadaten: Bilder=3, Rechtecke=4, Kurven=0, Linien=0
+Static Shadow Polygons
+▪ Good for car racing games (static scene geometry)
+▪ With fast movements and proximity of casters and receivers,wrong shadows are often not detected
+as such
+Interactive Computer Graphics 09/07/2026 20
+[Seite 23]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+Dynamic Shadow Polygons
+▪ Project shadow-casting scene objects onto shadow-receiving objectby modifying shape
+▪ Accurate procedure for semi-transparent shadows,but only if shadows do not overlap
+▪ Restrictions
+• Only planar polygons on shadow-receivingscene objects possible
+• No self-shadowing possible
+Interactive Computer Graphics 09/07/2026 21
+[Seite 24]
+Seiten-Metadaten: Bilder=2, Rechtecke=9, Kurven=0, Linien=0
+Shadow Projection
+S L
+▪ Shadow point (= vertex of the shadow polygon) lies on a line between light source and vertex
+P
+of shadow-casting scene object
+S = P − α ⋅ L
+z
+S z = 0 α =
+P
+▪ is located on base area with S with
+z
+L
+z z
+x = x − x y = y − y
+P P
+• s P L and s p L
+z z
+L L
+▪ In matrix form
+x y
+L L
+[x y 01] = [10 − 001 − 000000001][x y z 1]
+S S P P P
+z z
+L L
+Interactive Computer Graphics 09/07/2026 22
+[Seite 25]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Rendering Dynamic Shadow Polygons
+M
+▪ Matrix transforms object into its shadow polygon
+▪ Render scene object with shadows
+• Render scene object
+M
+• Multiply current model-view -matrix with
+• Render scene object in shadow color with b lending
+▪ Possible extensions
+M
+• Lift shadow polygons slightly to avoid z-fighting (integrate b ias in )
+Interactive Computer Graphics 09/07/2026 23
+[Seite 26]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+10.3 Light Maps
+Structured lighting with textures
+Visual Computing Group
+Institute of Media Informatics
+[Seite 27]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Light Maps
+▪ Static shadows can be precomputed and stored in light maps
+▪ When precomputing light maps, shadows are calculated offline(e.g. with ray tracing)
+▪ Soft shadows in lightmaps
+• Interpolation of the lightmap creates soft shadow approximations
+• Light source sampling results in better results,sending multiple rays to different points of the
+light source(additional filtering improves image quality)
+Interactive Computer Graphics 09/07/2026 25
+[Seite 28]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Soft Shadows with Light Maps 1/2
+Interactive Computer Graphics 09/07/2026 26
+[Seite 29]
+Seiten-Metadaten: Bilder=4, Rechtecke=4, Kurven=0, Linien=0
+Soft Shadows with Light Maps 2/2
+Interactive Computer Graphics 09/07/2026 27
+[Seite 30]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+10.4 Shadow Volumes
+Representation of shadows by geometry enclosing them
+Visual Computing Group
+Institute of Media Informatics
+[Seite 31]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Shadow Volumes
+▪ Shadows are considered as volume in space
+▪ Originally developed by Crow in 1977
+▪ Extension by Brotman and Badler in 1984
+▪ Heidmann introduced the technology for efficientrendering of shadow volumes in 1991
+Interactive Computer Graphics 09/07/2026 29
+[Seite 32]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Initial Considerations
+▪ Shadow volume shape depends on shape and positionof light source and shadow-caster
+▪ All points inside shadow volume are shadowed
+▪ Shadow volume generation
+• Find silhouettes of shadow-casterregarding light source
+• Extrudes silhouettes in light ray directionto create polygons
+• Connect resulting polygons to obtain shadow volume
+Interactive Computer Graphics 09/07/2026 30
+[Seite 33]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Shadow Volume Geometry
+Interactive Computer Graphics 09/07/2026 31
+[Seite 34]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Shadow Volume Realization
+▪ Silhouettes edges can be found by analyzing normals
+• Silhouette edge lies between front and back face (as seen from light source)
+V
+▪ Silhouette edges are stored as vertex list containing vertices
+▪ For convex shadow-casters
+L V
+• Add new (infinitely far-away) vertices for each line between and
+• Clip shadow volume against view volume
+Interactive Computer Graphics 09/07/2026 32
+[Seite 35]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Shadow Volume Properties 1/2
+▪ All points inside shadow volume are shadowed
+▪ Shadowing can be determined for each view ray by intersection tests
+• Assumption: Camera not in shadow volume
+s
+• At each intersection with front-face shadow polygon, intersection counter cnt is incremented
+s
+• At each intersection with back-face shadow polygon, intersection counter cnt is decremented
+s = 0
+• Positions on view rays with cnt are illuminated, all others are shadowed
+▪ Only intersections before point to be rendered need to be considered
+Interactive Computer Graphics 09/07/2026 33
+[Seite 36]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Shadow Volume Properties 2/2
+Interactive Computer Graphics 09/07/2026 34
+[Seite 37]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Stencil Shadow Volume
+▪ Generation of shadow volumes per frame
+• Works well for scenes with few moving objects
+• Expensive for complex shadow volumes
+• Improvement by simplifying shadow-casting geometries
+▪ Four rendering passes required
+• Render scene exclusively with ambient lighting
+• Render front-face shadow polygons and increment stencil buffer
+• Render back-face shadow polygons and decrement stencil buffer
+• Render parts of scene that are not in shadow (stencil buffer equals 0)
+▪ However, some details have to be considered!
+Interactive Computer Graphics 09/07/2026 35
+[Seite 38]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Implementation
+▪ Determine visible scene objects
+• Render scene without writing in color buffer
+▪ Represent shadow volume in stencil buffer
+• Initialize stencil buffer with 0
+• Render front-face shadow polygons and increment stencil buffer by 1
+• Render back-face shadow polygons and decrement stencil buffer by 1
+• => Shadowed image regions are marked by >0 in stencil buffer
+▪ Render shadowed parts of shadow-receiving scene objects
+• Render only where stencil value >0
+▪ Render non-shadowed parts of shadow-receiving scene objects
+• Render only where stencil value =0
+Interactive Computer Graphics 09/07/2026 36
+[Seite 39]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Special Case: COP in the shadows
+▪ When COP lies in a shadow volume, the situation can be unclear
+• Near - or far -plane can intersect shadow volume
+▪ Possible solutions
+s = 0
+• Test COP against all shadow volumes cnt
+• Clip shadow volume against view volume and perform capping
+Interactive Computer Graphics 09/07/2026 37
+[Seite 40]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Shadow Volume Example
+Interactive Computer Graphics 09/07/2026 38
+[Seite 41]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Shadow Volume Conclusions
+▪ Advantages
+• Shadow-casting and shadow-receiving objects can have arbitrary shapes
+• Applicable for multiple light sources
+• Level-of-detail adaptable through approximated geometries
+• Shadow volumes for static pairs of objects and lights can be precalculated
+• Self-shadowing possible
+▪ Disadvantages
+• Many new polygons need to be rendered
+• Long thin triangles are very expensive in rasterization
+• Bit depth of the stencil buffer may not be sufficient for very complex scenes (buffer overflow)
+• Scene objects must be closed (no holes)
+Interactive Computer Graphics 09/07/2026 39
+[Seite 42]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+10.5 Shadow Maps
+Depth test from the point of view of the light source
+Visual Computing Group
+Institute of Media Informatics
+[Seite 43]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+Shadow Mapping
+▪ Based on z-Buffer (contains depth relative to the light source)
+▪ First used within Pixar’s Renderman
+Interactive Computer Graphics 09/07/2026 41
+[Seite 44]
+Seiten-Metadaten: Bilder=1, Rechtecke=2, Kurven=0, Linien=0
+Projected Shadows
+▪ depth texture
+▪ Rendering algorithm
+• Render shadow-casting objectsas seen from the light source into depth texture
+• Project depth texture using projective texturingwhen rendering shadow-receiving objects
+▪ Characteristics of the process
+• Works for arbitrarily shaped scene objects
+• Shadow-casting and shadow-receivingscene objects can be separated
+• Self-shadowing becomes possible
+[Seite 45]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Interactive Computer Graphics 09/07/2026 42
+[Seite 46]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Chapter 10 - Shadows
+Depth Comparison
+V
+▪ For each vertex in world coordinates determine associated depth value in shadow map
+V
+• Transform into camera’s eye space
+V
+• Use light source’s 4x4 transformation matrix to transform into light’s clip space
+• Compare depth value with associated depth value in shadow map
+Interactive Computer Graphics 09/07/2026 43
+[Seite 47]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Coordinate Systems
+Interactive Computer Graphics 09/07/2026 44
+[Seite 48]
+Seiten-Metadaten: Bilder=0, Rechtecke=6, Kurven=0, Linien=0
+Pseudo Code
+// generate shadow map w.r.t light source
+generateShadowMap();
+// render scene from COP
+for all rasterized fragments do {
+Transform fragment xyz into lights coordinate system
+A = depthmap(x,y)
+B = z-value of fragments xyz
+if (A < B)
+fragment is shadowed
+else
+fragment is lit
+}
+}
+Interactive Computer Graphics 09/07/2026 45
+[Seite 49]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Properties
+▪ Shadow maps are static when scene and lighting are static
+▪ Shadow quality depends on shadow map resolution
+▪ Shadow mapping has three main problems
+• View volume problem
+• Bias problem
+• Aliasing problem
+Interactive Computer Graphics 09/07/2026 46
+[Seite 50]
+Seiten-Metadaten: Bilder=3, Rechtecke=4, Kurven=0, Linien=0
+View Volume Problem
+▪ When vertex lies outside light source’s view volume,required depth information is missing
+▪ Possible remedies
+• Use cubic shadow map (similar to cubic environment map)
+• Use only spotlights
+Interactive Computer Graphics 09/07/2026 47
+[Seite 51]
+Seiten-Metadaten: Bilder=2, Rechtecke=6, Kurven=0, Linien=0
+Bias Problem 1/2
+Incorrect self-shadowing occurs for
+all fragments with ShadowMap(x',y') ≈ z’
+Can be corrected by
+increasing depth precision of z-buffer
+applying z-bias
+Interactive Computer Graphics 09/07/2026 48
+[Seite 52]
+Seiten-Metadaten: Bilder=1, Rechtecke=6, Kurven=0, Linien=0
+Bias Problem 2/2
+It is difficult to choose a good z-bias
+ShadowMap(x',y') + bias ?
+▪ good
+▪ too low
+▪ too high
+Interactive Computer Graphics 09/07/2026 49
+[Seite 53]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Aliasing Problem 1/3
+▪ Aliasing occurs when shadow map is undersampled(i.e., a texel in shadow map covers several
+pixels)
+▪ Particularly bad when camera and light source are facing each other
+Interactive Computer Graphics 09/07/2026 50
+[Seite 54]
+Seiten-Metadaten: Bilder=0, Rechtecke=2, Kurven=0, Linien=0
+Aliasing Problem 2/3
+▪ Filter (= weighted average formation over neighbors) of a depth valuedoes not make sense
+▪ Percentage Closest Filtering (PCF)
+• Filter results of shadow tests (weighted average of comparison results)
+• Bias selection is made even more difficult
+▪ Choosing the filter kernel
+• 5x5 regions generate antialiazed shadows
+• Larger filter regions can be usedto simulate soft shadows
+[Seite 55]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Interactive Computer Graphics 09/07/2026 51
+[Seite 56]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Chapter 10 - Shadows
+Aliasing Problem 3/3
+▪ Averaging Filter
+▪ Percentage Closest Filtering
+Interactive Computer Graphics 09/07/2026 52
+[Seite 57]
+Seiten-Metadaten: Bilder=0, Rechtecke=2, Kurven=0, Linien=0
+Chapter Summary
+[Seite 58]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+▪ Shadows in Visual Perception
+• Enhance depth perception and object relationships
+• Create appealing visual effects and atmosphere
+▪ Shadow Definitions and Types
+• Shadow-casting (Occluder) vs. shadow-receiving (Receiver) objects
+• Self-shadowing: Same object casts and receives shadow
+• Hard shadows (umbra) from point lights, soft shadows (penumbra) from area lights
+▪ Shadow Calculation Methods
+• Techniques include ground plane shadows, light maps, shadow volumes, and shadow maps
+• Ground Plane Shadows
+• Static and dynamic shadow polygons
+• Challenges with representing dynamic scenes and soft shadows
+▪ Light Maps
+• Precomputed static shadows with interpolation for soft shadows
+▪ Shadow Volumes
+• Geometrically enclosed shadows
+Interactive Computer Graphics 09/07/2026 53
+• Efficient rendering with stencil buffer techniques
+[Seite 59]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+Chapter 10 - Shadows
+References
+Literature and other sources used in this chapter
+Visual Computing Group
+Institute of Media Informatics
+[Seite 60]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+References
+▪ Text Books
+• T. Akenine-Möller, E. Haines: Real-Time Rendering, Addison-Wesley. (Chapter 6: Shadowing)
+• P. Shirley, M. AshikhminS. Marschner: Fundamentals of Computer Graphics (3rd ed. Edition), AK
+Peters 2009. (Chapter 10.7: Shadow Maps)
+▪ Research Publications
+• Crow, F., Shadows Algorithms for Computers Graphics, SIGGRAPH 1977.
+• Lance Williams: Casting curved shadows on curved surfaces, SIGGRAPH 1978.
+Interactive Computer Graphics 09/07/2026 55
+Chapter 10 - Shadows

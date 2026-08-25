@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import html
+import json
 import re
+import shutil
 import zipfile
 from collections import Counter
 from html.parser import HTMLParser
@@ -12,7 +14,12 @@ import pdfplumber
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "course_full_text.txt"
+CHUNKS_DIR = ROOT / "course_text_parts"
+AUDIT_OUTPUT = ROOT / "course_build_audit.json"
+MAX_SLICE_BYTES = 75_000
 PDF_ANALYSIS: list[dict[str, object]] = []
+TEXT_PARTS: list[tuple[str, str]] = []
+TEXT_SLICES: list[tuple[str, str]] = []
 
 LECTURES = [
     ("01", "Introduction", ROOT / "lectures" / "01-introduction"),
@@ -79,6 +86,11 @@ COURSE_TERMS = [
     "viewport",
     "z-buffer",
 ]
+
+GENERATED_PATHS = {
+    "course_full_text.txt",
+    "course_build_audit.json",
+}
 
 
 class MoodleHTMLTextParser(HTMLParser):
@@ -185,6 +197,42 @@ def heading(title: str, level: int = 1) -> str:
     return f"{title}\n{line}"
 
 
+def slugify(value: str) -> str:
+    value = value.lower().replace("++", "pp")
+    value = re.sub(r"[^a-z0-9]+", "-", value)
+    return value.strip("-")
+
+
+def lines_to_text(lines: list[str]) -> str:
+    return "\n".join(lines).replace("\r\n", "\n").strip() + "\n"
+
+
+def split_text_by_size(text: str, max_bytes: int = MAX_SLICE_BYTES) -> list[tuple[str, str]]:
+    slices: list[tuple[str, str]] = []
+    current: list[str] = []
+    current_bytes = 0
+    for line in text.splitlines(keepends=True):
+        line_bytes = len(line.encode("utf-8"))
+        if current and current_bytes + line_bytes > max_bytes:
+            part_text = "".join(current)
+            slices.append((f"98_size_limited_full_text_slices/full_text_part_{len(slices) + 1:03d}.txt", part_text))
+            current = []
+            current_bytes = 0
+        current.append(line)
+        current_bytes += line_bytes
+    if current:
+        part_text = "".join(current)
+        slices.append((f"98_size_limited_full_text_slices/full_text_part_{len(slices) + 1:03d}.txt", part_text))
+    return slices
+
+
+def extend_with_part(all_lines: list[str], part_path: str, part_lines: list[str]) -> None:
+    text = lines_to_text(part_lines)
+    TEXT_PARTS.append((part_path, text))
+    all_lines.extend(part_lines)
+    all_lines.append("")
+
+
 def read_html(path: Path) -> tuple[str, list[tuple[str, str]]]:
     parser = MoodleHTMLTextParser()
     parser.feed(path.read_text(encoding="utf-8", errors="replace"))
@@ -211,12 +259,16 @@ def append_source_manifest(lines: list[str]) -> None:
     lines.append(heading("Quellen-Dateiliste", 2))
     lines.append("Diese Dateien wurden als Kursquellen beruecksichtigt:")
     lines.append("")
-    excluded = {"course_full_text.txt"}
     for path in sorted(ROOT.rglob("*")):
         if not path.is_file():
             continue
         rel = path.relative_to(ROOT).as_posix()
-        if rel in excluded or rel.startswith(".git/") or rel.startswith("scripts/"):
+        if (
+            rel in GENERATED_PATHS
+            or rel.startswith(".git/")
+            or rel.startswith("scripts/")
+            or rel.startswith("course_text_parts/")
+        ):
             continue
         size = path.stat().st_size
         lines.append(f"- {rel} ({size} bytes)")
@@ -503,17 +555,146 @@ def append_exam_preparation_addendum(lines: list[str]) -> None:
         lines.append("")
 
 
+def source_files() -> list[Path]:
+    files: list[Path] = []
+    for path in sorted(ROOT.rglob("*")):
+        if not path.is_file():
+            continue
+        rel = path.relative_to(ROOT).as_posix()
+        if (
+            rel in GENERATED_PATHS
+            or rel.startswith(".git/")
+            or rel.startswith("scripts/")
+            or rel.startswith("course_text_parts/")
+        ):
+            continue
+        files.append(path)
+    return files
+
+
+def pdf_page_counts() -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for entry in PDF_ANALYSIS:
+        source = str(entry["source"])
+        counts[source] = counts.get(source, 0) + 1
+    return counts
+
+
+def zip_manifest(zip_path: Path) -> list[dict[str, object]]:
+    with zipfile.ZipFile(zip_path) as archive:
+        return [
+            {"path": info.filename, "size": info.file_size, "text_extracted": zip_member_is_text(info.filename)}
+            for info in archive.infolist()
+            if not info.is_dir()
+        ]
+
+
+def build_audit(full_text: str) -> dict[str, object]:
+    sources = source_files()
+    html_files = [path for path in sources if path.suffix.lower() == ".html"]
+    pdf_files = [path for path in sources if path.suffix.lower() == ".pdf"]
+    zip_files = [path for path in sources if path.suffix.lower() == ".zip"]
+    css_files = [path for path in sources if path.suffix.lower() == ".css"]
+    source_rels = [path.relative_to(ROOT).as_posix() for path in sources]
+    output_paths = [
+        "course_full_text.txt",
+        *[f"course_text_parts/{path}" for path, _ in TEXT_PARTS],
+        *[f"course_text_parts/{path}" for path, _ in TEXT_SLICES],
+    ]
+    recombined_slices = "".join(text for _, text in TEXT_SLICES)
+    checks = {
+        "all_lecture_chunks_present": all(
+            any(path == f"03_lectures/{number}_{slugify(title)}.txt" for path, _ in TEXT_PARTS)
+            for number, title, _ in LECTURES
+        ),
+        "all_assignment_chunks_present": all(
+            any(path == f"04_assignments/{number}_{slugify(title)}.txt" for path, _ in TEXT_PARTS)
+            for number, title, _ in ASSIGNMENTS
+        ),
+        "all_pdf_pages_have_metadata": full_text.count("\nSeiten-Metadaten: ") == full_text.count("\n[Seite "),
+        "no_pdf_page_without_extractable_text": "Kein extrahierbarer Text" not in full_text,
+        "size_limited_slices_recombine_to_full_text": recombined_slices == full_text,
+        "size_limited_slices_under_max_bytes": all(
+            len(text.encode("utf-8")) <= MAX_SLICE_BYTES for _, text in TEXT_SLICES
+        ),
+    }
+    return {
+        "summary": {
+            "source_file_count": len(sources),
+            "html_file_count": len(html_files),
+            "pdf_file_count": len(pdf_files),
+            "pdf_page_count": len(PDF_ANALYSIS),
+            "zip_file_count": len(zip_files),
+            "css_file_count": len(css_files),
+            "chunk_file_count": len(TEXT_PARTS),
+            "size_limited_slice_count": len(TEXT_SLICES),
+            "max_slice_bytes": MAX_SLICE_BYTES,
+            "full_text_bytes": len(full_text.encode("utf-8")),
+            "full_text_lines": full_text.count("\n"),
+            "full_text_words": len(re.findall(r"\S+", full_text)),
+        },
+        "checks": checks,
+        "source_files": source_rels,
+        "pdf_page_counts": pdf_page_counts(),
+        "zip_manifests": {
+            path.relative_to(ROOT).as_posix(): zip_manifest(path)
+            for path in zip_files
+        },
+        "outputs": output_paths,
+    }
+
+
+def write_outputs(full_text: str) -> dict[str, object]:
+    OUTPUT.write_text(full_text, encoding="utf-8", newline="\n")
+    TEXT_SLICES.clear()
+    TEXT_SLICES.extend(split_text_by_size(full_text))
+    if CHUNKS_DIR.exists():
+        shutil.rmtree(CHUNKS_DIR)
+    CHUNKS_DIR.mkdir(parents=True, exist_ok=True)
+    index_lines = [
+        heading("CS8165.001 SS26 - Text Chunks"),
+        "Empfohlene Nutzung: zuerst 00_START_HERE.txt laden, danach den passenden Kapitel- oder Uebungs-Chunk.",
+        "Die Datei ../course_full_text.txt enthaelt dieselben Kursinformationen in einer grossen Datei.",
+        "Der Ordner 98_size_limited_full_text_slices/ enthaelt fortlaufende kleine Teile, die zusammen exakt die grosse Datei ergeben.",
+        "",
+        "Chunk-Dateien:",
+    ]
+    for part_path, part_text in TEXT_PARTS:
+        target = CHUNKS_DIR / part_path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(part_text, encoding="utf-8", newline="\n")
+        rel = target.relative_to(CHUNKS_DIR).as_posix()
+        part_lines = part_text.count("\n")
+        part_words = len(re.findall(r"\S+", part_text))
+        index_lines.append(f"- {rel}: {part_lines} Zeilen, {part_words} Woerter")
+    index_lines.append("")
+    index_lines.append("Fortlaufende size-limited Slices:")
+    for part_path, part_text in TEXT_SLICES:
+        target = CHUNKS_DIR / part_path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(part_text, encoding="utf-8", newline="\n")
+        rel = target.relative_to(CHUNKS_DIR).as_posix()
+        index_lines.append(f"- {rel}: {len(part_text.encode('utf-8'))} bytes")
+    (CHUNKS_DIR / "INDEX.txt").write_text(lines_to_text(index_lines), encoding="utf-8", newline="\n")
+    audit = build_audit(full_text)
+    audit["outputs"].append("course_text_parts/INDEX.txt")
+    AUDIT_OUTPUT.write_text(json.dumps(audit, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+    return audit
+
+
 def build() -> str:
     PDF_ANALYSIS.clear()
+    TEXT_PARTS.clear()
     lines: list[str] = []
-    lines.append(heading("CS8165.001 SS26 - Interaktive Computergrafik"))
-    lines.append("Volltextsammlung aus dem Moodle-Kursexport.")
-    lines.append("Zweck: strukturierte Vorbereitung mit KI-Unterstuetzung.")
-    lines.append("")
-    lines.append("Hinweis: PDF-Text wurde automatisch extrahiert. Bildbasierte Diagramme, Formeln oder Grafiken koennen in reinem Text nur teilweise erfasst sein.")
-    lines.append("")
-    lines.append(heading("Inhaltsverzeichnis", 2))
-    lines.extend(
+    start_lines: list[str] = []
+    start_lines.append(heading("CS8165.001 SS26 - Interaktive Computergrafik"))
+    start_lines.append("Volltextsammlung aus dem Moodle-Kursexport.")
+    start_lines.append("Zweck: strukturierte Vorbereitung mit KI-Unterstuetzung.")
+    start_lines.append("")
+    start_lines.append("Hinweis: PDF-Text wurde automatisch extrahiert. Bildbasierte Diagramme, Formeln oder Grafiken koennen in reinem Text nur teilweise erfasst sein.")
+    start_lines.append("")
+    start_lines.append(heading("Inhaltsverzeichnis", 2))
+    start_lines.extend(
         [
             "1. Kursuebersicht",
             "2. Organisatorisches",
@@ -524,60 +705,62 @@ def build() -> str:
             "7. Assets",
         ]
     )
-    lines.append("")
-    append_source_manifest(lines)
+    start_lines.append("")
+    append_source_manifest(start_lines)
+    extend_with_part(lines, "00_START_HERE.txt", start_lines)
 
-    append_html_section(lines, "Kursuebersicht", ROOT / "index.html", 2)
+    course_lines: list[str] = []
+    append_html_section(course_lines, "Kursuebersicht", ROOT / "index.html", 2)
+    extend_with_part(lines, "01_course_overview.txt", course_lines)
 
-    lines.append(heading("Organisatorisches", 2))
-    append_html_section(lines, "Ankuendigungen", ROOT / "forums" / "announcements" / "index.html", 3)
-    append_html_section(lines, "Students Forum", ROOT / "forums" / "students-forum" / "index.html", 3)
-    append_html_section(lines, "Group Selection for Exercises", ROOT / "course" / "group-selection" / "index.html", 3)
+    org_lines: list[str] = []
+    org_lines.append(heading("Organisatorisches", 2))
+    append_html_section(org_lines, "Ankuendigungen", ROOT / "forums" / "announcements" / "index.html", 3)
+    append_html_section(org_lines, "Students Forum", ROOT / "forums" / "students-forum" / "index.html", 3)
+    append_html_section(org_lines, "Group Selection for Exercises", ROOT / "course" / "group-selection" / "index.html", 3)
+    extend_with_part(lines, "02_organization.txt", org_lines)
 
-    lines.append(heading("Vorlesungen und Folien", 2))
-    lectures = [
-        ("01", "Introduction", ROOT / "lectures" / "01-introduction"),
-        ("02", "Rendering Pipeline", ROOT / "lectures" / "02-rendering-pipeline"),
-        ("03", "Geometric Transformations", ROOT / "lectures" / "03-geometric-transformations"),
-        ("04", "Geometric Projection", ROOT / "lectures" / "04-geometric-projection"),
-        ("05", "Clipping", ROOT / "lectures" / "05-clipping"),
-        ("06", "Rasterization", ROOT / "lectures" / "06-rasterization"),
-        ("07", "Visibility Determination", ROOT / "lectures" / "07-visibility-determination"),
-        ("08", "Local Illumination", ROOT / "lectures" / "08-local-illumination"),
-        ("09", "Texturing", ROOT / "lectures" / "09-texturing"),
-        ("10", "Shadows", ROOT / "lectures" / "10-shadows"),
-    ]
-    for number, title, folder in lectures:
-        append_lecture(lines, number, title, folder)
+    lectures_intro = [heading("Vorlesungen und Folien", 2)]
+    extend_with_part(lines, "03_lectures/00_lectures_index.txt", lectures_intro)
+    for number, title, folder in LECTURES:
+        lecture_lines: list[str] = []
+        append_lecture(lecture_lines, number, title, folder)
+        extend_with_part(lines, f"03_lectures/{number}_{slugify(title)}.txt", lecture_lines)
 
-    lines.append(heading("Uebungen", 2))
-    assignments = [
-        ("00", "Introduction to C++", ROOT / "assignments" / "00-introduction-to-cpp" / "index.html"),
-        ("01", "Rendering Pipeline", ROOT / "assignments" / "01-rendering-pipeline" / "index.html"),
-        ("02", "Primitive Types / Shaders", ROOT / "assignments" / "02-primitive-types-shaders" / "index.html"),
-        ("03", "Geometric Transformations", ROOT / "assignments" / "03-geometric-transformations" / "index.html"),
-        ("04", "Projections and Clipping", ROOT / "assignments" / "04-projections-and-clipping" / "index.html"),
-        ("05", "Rasterization", ROOT / "assignments" / "05-rasterization" / "index.html"),
-        ("Bonus", "Rendering Contest", ROOT / "assignments" / "bonus-rendering-contest" / "index.html"),
-    ]
-    for number, title, path in assignments:
-        append_html_section(lines, f"Uebung {number}: {title}", path, 3)
+    assignments_intro = [heading("Uebungen", 2)]
+    extend_with_part(lines, "04_assignments/00_assignments_index.txt", assignments_intro)
+    for number, title, path in ASSIGNMENTS:
+        assignment_lines: list[str] = []
+        append_html_section(assignment_lines, f"Uebung {number}: {title}", path, 3)
+        extend_with_part(lines, f"04_assignments/{number}_{slugify(title)}.txt", assignment_lines)
 
-    append_zip_contents(lines, ROOT / "examples" / "opengl-rotating-cube.zip")
-    append_exam_preparation_addendum(lines)
-    append_text_asset(lines, "Assets: Moodle CSS", ROOT / "assets" / "moodle.css")
+    opengl_lines: list[str] = []
+    append_zip_contents(opengl_lines, ROOT / "examples" / "opengl-rotating-cube.zip")
+    extend_with_part(lines, "05_opengl_starter_project.txt", opengl_lines)
 
-    return "\n".join(lines).replace("\r\n", "\n").strip() + "\n"
+    exam_lines: list[str] = []
+    append_exam_preparation_addendum(exam_lines)
+    extend_with_part(lines, "06_exam_preparation_addendum.txt", exam_lines)
+
+    asset_lines: list[str] = []
+    append_text_asset(asset_lines, "Assets: Moodle CSS", ROOT / "assets" / "moodle.css")
+    extend_with_part(lines, "07_assets_moodle_css.txt", asset_lines)
+
+    return lines_to_text(lines)
 
 
 def main() -> None:
     text = build()
-    OUTPUT.write_text(text, encoding="utf-8", newline="\n")
+    audit = write_outputs(text)
     line_count = text.count("\n")
     word_count = len(re.findall(r"\S+", text))
     print(f"Wrote {OUTPUT.relative_to(ROOT).as_posix()}")
+    print(f"Wrote {CHUNKS_DIR.relative_to(ROOT).as_posix()}/")
+    print(f"Wrote {AUDIT_OUTPUT.relative_to(ROOT).as_posix()}")
     print(f"Lines: {line_count}")
     print(f"Words: {word_count}")
+    print(f"Chunks: {audit['summary']['chunk_file_count']}")
+    print(f"PDF pages: {audit['summary']['pdf_page_count']}")
 
 
 if __name__ == "__main__":

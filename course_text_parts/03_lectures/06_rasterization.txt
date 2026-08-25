@@ -1,0 +1,1067 @@
+Kapitel 06: Rasterization - Moodle-Seite
+----------------------------------------
+Quelle: lectures/06-rasterization/index.html
+
+Moodle Lernplattform Universität Ulm - Interaktive Computergrafik 
+Moodle Lernplattform Universität Ulm
+Interaktive Computergrafik 
+CS8165.001-SS26 
+Chap06 - Rasterization (27.05.26)
+Diese Seite ist Teil des Inhalts, der von Chap06 - Rasterization (27.05.26) am Dienstag, 25. August 2026, 20:30 heruntergeladen wurde. Beachten Sie, dass einige Inhalte und alle Dateien, die größer als 2 GB sind, nicht heruntergeladen werden. 
+Dateien und Verzeichnisse 
+06-rasterization.pdf 
+Diese Datei ist Teil des Inhalts, der am Dienstag, 25. August 2026, 20:30 von Maksym Morozov von Interaktive Computergrafik heruntergeladen wurde.
+
+Externe Links:
+- Moodle Lernplattform Universität Ulm: https://moodle.uni-ulm.de
+- Chap06 - Rasterization (27.05.26): https://moodle.uni-ulm.de/mod/resource/view.php?id=1027884
+- Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
+
+Kapitel 06: Rasterization - Folien
+----------------------------------
+Quelle: lectures/06-rasterization/slides/06-rasterization.pdf
+
+[Seite 1]
+Seiten-Metadaten: Bilder=2, Rechtecke=2, Kurven=0, Linien=0
+Interactive Computer Graphics
+Chapter 5 – Rasterization
+Summer Term 2026
+Timo Ropinski
+Visual Computing Group
+Institute of Media Informatics
+[Seite 2]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=369, Linien=25
+Rasterization 1/2
+ Pixels ...
+(cid:127) ... are picture elements A Pixel Is NotA Little Square,
+A Pixel Is NotA Little Square,
+(cid:127) ... are the smallest elements of a raster image
+A Pixel Is NotA Little Square!
+(cid:127) ... do not overlap and cover the entire picture
+Technical Memo, Alvy Ray Smith (1995)
+ Advantages
+(cid:127) Easy to save
+(cid:127) Easy to handle (e.g. for image processing)
+ Disadvantage
+(cid:127) High storage space requirement
+(cid:127) Transformation can lead to artifacts
+Interactive Computer Graphics
+27/05/2026 2
+Chapter 6 – Rasterization
+[Seite 3]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=408, Linien=25
+Rasterization 2/2
+ Pixel-based displays require discretization of primitives into pixels
+ Discretization is done by rasterization algorithms
+ Rasterization is time-critical
+(cid:127) Avoid expensive operations
+(cid:127) Optimize for hardware implementation
+(cid:127) Focus on triangles primitives
+(other polygons can be tessellated)
+ Rasterization is quality critical
+(cid:127) Goodness of approximation important
+Interactive Computer Graphics
+27/05/2026 3
+Chapter 6 – Rasterization
+[Seite 4]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Chapter Outline
+6.1 Line Rasterization
+6.2 Triangle Edge Rasterization
+6.3 Region Filling
+6.4 Scanline-Based Triangle Rasterization
+6.5 Block-Based Triangle Rasterization
+References
+Interactive Computer Graphics
+27/05/2026 4
+Chapter 6 – Rasterization
+[Seite 5]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+6.1 Line Rasterization
+Drawing a one pixel thick line
+Visual Computing Group
+Institute of Media Informatics
+[Seite 6]
+Seiten-Metadaten: Bilder=6, Rechtecke=3, Kurven=0, Linien=1
+Line Rasterization
+ Given two 2D endpoints in integer coordinates,
+determine pixels depicting 1-pixel wide line segment between endpoints
+ Trivial cases
+(cid:127) Horizontal line segments
+(cid:127) Vertical line segments
+(cid:127) Diagonal line segments
+ Non-trivial cases
+(cid:127) General case
+Interactive Computer Graphics
+27/05/2026 6
+Chapter 6 – Rasterization
+[Seite 7]
+Seiten-Metadaten: Bilder=1, Rechtecke=7, Kurven=0, Linien=1
+Quality Criteria
+ For all line segments with a slope |𝑚| ≤ 1,
+one pixel should be drawn per column
+ For all line segments with a slope |𝑚| ≥ 1,
+one pixel per line should be drawn
+|𝑚| > 1
+ All line segments should have uniform
+width regardless of slope and length
+|𝑚| < 1
+Interactive Computer Graphics
+27/05/2026 7
+Chapter 6 – Rasterization
+[Seite 8]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Naïve Algorithm 1/2
+ Utilization of the Cartesian normal form of the straight line equation
+𝑦 = 𝑚 · 𝑥 + 𝐵
+ Assumptions (without restriction of generality)
+(cid:127) Line segments lie between (𝑥 , 𝑦 ) and (𝑥 , 𝑦 )
+0 0 1 1
+(cid:127) Lines are drawn from left to right 𝑥 < 𝑥
+0 1
+void drawLine(int x0, int y0, int x1, int y1) {
+float dx = x1 - x0; // Calculate change in x
+float dy = y1 - y0; // Calculate change in y
+float m = dy / dx; // Calculate slope of the line
+float B = y0 - m * x0; // Calculate y-intercept of the line
+for (int x = x0; x <= x1; x++) { // Loop from start x to end x
+writePixel(x, round(m * x + B)); // Draw pixel at (x, y)
+}
+}
+Interactive Computer Graphics
+27/05/2026 8
+Chapter 6 – Rasterization
+[Seite 9]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=20, Linien=1
+Naïve Algorithm 2/2
+ Downsides
+(cid:127) Does not work for 𝑥 = 𝑥
+0 1
+(cid:127) Does not work for |𝑚| > 1, since gaps arise
+(solution: swap the roles of 𝑥 and 𝑦 for |𝑚| > 1)
+(cid:127) In each iteration, a multiplication 𝑚 · 𝑥 is performed
+(high computational effort)
+(cid:127) Using floating-point calculations (additional type conversions necessary)
+(cid:127) Rounding prevents reversibility
+(reversibility: reversing endpoints draws same pixels in reverse order)
+(cid:127) When drawing and then deleting a line, pixels may be left over
+(cid:127) Line width might change when drawing opposing edges
+Interactive Computer Graphics
+27/05/2026 9
+Chapter 6 – Rasterization
+[Seite 10]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Digital Difference Analyzer (DDA) 1/3
+ Reuse the last computed 𝑦 to avoid multiplications in the loop
+𝑥 → 𝑥 + 1 ⇒ (𝑥, 𝑦) → (𝑥 + 1, 𝑦 + 𝑚)
+void drawLine(int x0, int y0, int x1, int y1) {
+float m = float(y1 - y0) / float(x1 - x0); // Calculate the slope
+float y = y0; // Start y at y0
+for (int x = x0; x <= x1; x++) { // Loop from x0 to x1 and increment x
+writePixel(x, round(y)); // Draw pixel at (x, rounded y)
+y += m; // Increment y by slope per step in x
+}
+}
+Interactive Computer Graphics
+27/05/2026 10
+Chapter 6 – Rasterization
+[Seite 11]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Digital Difference Analyzer (DDA) 2/3
+ Algorithm can be extended to relax endpoint order
+void drawLine(int x0, int y0, int x1, int y1) {
+int sx = (x0 < x1 ? 1 : -1); // Determine x direction
+float sm = sx * float(y1 - y0) / float(x1 - x0); // Calculate slope multiplied by step
+float y = y0; // Start y at y0
+for (int x = x0; x != x1 + sx; x += sx) { // Loop from x0 to x1 with step sx
+writePixel(x, round(y)); // Draw pixel at (x, rounded y)
+y += sm; // Increment y by slope*step per x-step
+}
+}
+Interactive Computer Graphics
+27/05/2026 11
+Chapter 6 – Rasterization
+[Seite 12]
+Seiten-Metadaten: Bilder=0, Rechtecke=9, Kurven=22, Linien=1
+Digital Difference Analyzer (DDA) 3/3
+ Downsides
+(cid:127) Does not work for 𝑥 = 𝑥
+0 1
+(cid:127) Does not work for |𝑚| > 1, since gaps arise
+(solution: swap the roles of 𝑥 and 𝑦 for |𝑚| > 1)
+(cid:127) In each iteration, a multiplication 𝑚 · 𝑥 is performed
+(high computational effort)
+(cid:127) Using floating-point calculations (additional type conversions necessary)
+(cid:127) Rounding prevents reversibility
+(reversibility: reversing endpoints draws same pixels in reverse order)
+(cid:127) When drawing and then deleting a line, pixels may be left over
+(cid:127) Line width might change when drawing opposing edges
+Interactive Computer Graphics
+27/05/2026 12
+Chapter 6 – Rasterization
+[Seite 13]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=34, Linien=12
+Midpoint-Line Algorithm 1/2
+ Assumption 1: 0 ≤ 𝑚 ≤ 1
+(without loss of generality, as otherwise mirroring on axes/diagonals)
+ Lower left end point 𝑃 = (𝑥 , 𝑦 ),
+0 0 0
+upper right end point 𝑃 = (𝑥 , 𝑦 )
+1 1 1
+ 𝑃 = (𝑥 , 𝑦 ) is last drawn pixel
+𝑝 𝑝 𝑝
+ After 𝑃 one of the following
+𝑝
+two pixels has to be chosen
+(cid:127) 𝐸 = (𝑥 + 1, 𝑦 )
+𝑝 𝑝
+𝑁𝐸
+(cid:127) 𝑁𝐸 = (𝑥 + 1, 𝑦 + 1)
+𝑝 𝑝
+𝑀
+𝐸
+𝑃
+Interactive Computer Graphics
+27/05/2026 13
+Chapter 6 – Rasterization
+Extrahierte Tabellen:
+[Tabelle 1]
+𝑁𝐸 |  |  | 
+𝐸 | 𝑀 |  | 
+[Seite 14]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=10, Linien=8
+Midpoint-Line Algorithm 2/2
+ Observation
+(cid:127) 𝐸 is closer to the line if 𝑀 is above the line
+(cid:127) 𝑁𝐸 is closer to the line if 𝑀 is below the line
+(cid:127) Vertical distance between pixel to chose
+and the actual line segment is always < 0.5
+ Goal: find an efficient calculation rule NE
+to determine if 𝑀 is above or below line segment
+M
+P E
+Interactive Computer Graphics
+27/05/2026 14
+Chapter 6 – Rasterization
+Extrahierte Tabellen:
+[Tabelle 1]
+P E | M
+[Seite 15]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=8, Linien=1
+Implicit Function
+ Line equation usually given as explicit function 𝑓(𝑥)
+𝑑𝑦
+𝑓 𝑥 = 𝑦 = 𝑚 ⋅ 𝑥 + 𝐵 = ⋅ 𝑥 + 𝐵, with 𝑑𝑥 = 𝑥 − 𝑥 and 𝑑𝑦 = 𝑦 − 𝑦
+1 𝑜 1 𝑜
+𝑑𝑥
+ Line equation can also be written as implicit function 𝐹(𝑥, 𝑦)
+𝐹 𝑥, 𝑦 = 𝑎 ⋅ 𝑥 + 𝑏 ⋅ 𝑦 + 𝑐 = 0
+⇔ 𝐹(𝑥, 𝑦) = 𝑑𝑦 ⋅ 𝑥 − 𝑑𝑥 ⋅ 𝑦 + 𝐵 ⋅ 𝑑𝑥 = 0
+⇒ 𝑎 = 𝑑𝑦, 𝑏 = −𝑑𝑥, 𝑐 = 𝐵 · 𝑑𝑥, 𝑎 > 0 for 𝑦 > 𝑦
+1 𝑜
+ 𝐹(𝑥, 𝑦) has the following properties
+> 0 𝑢𝑛𝑑𝑒𝑟 𝑙𝑖𝑛𝑒
+𝐹 𝑥, 𝑦 (cid:4688)= 0 𝑜𝑛 𝑙𝑖𝑛𝑒
+< 0 𝑎𝑏𝑜𝑣𝑒 𝑙𝑖𝑛𝑒
+1
+ Pixel selection done based on value of 𝐹 at 𝑀: 𝐹 𝑀 = 𝐹(𝑥 + 1, 𝑦 + )
+𝑝 𝑝
+2
+Interactive Computer Graphics
+27/05/2026 15
+Chapter 6 – Rasterization
+[Seite 16]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=2, Linien=1
+Decision Variable 𝑑
+ Sign of 𝐹(𝑀) is sufficient to decide which point is chosen
+1
+ Define decision variable 𝑑 as 𝑑 = 𝐹 𝑀 = 𝐹(𝑥 + 1, 𝑦 + )
+𝑝 𝑝
+2
+(cid:127) If 𝑑 > 0, select 𝑁𝐸 (𝑀 below the line)
+(cid:127) If 𝑑 < 0, select 𝐸 (𝑀 above the line)
+(cid:127) If 𝑑 = 0, consistently choose either 𝑁𝐸 or 𝐸
+ Update decision variable 𝑑
+(cid:127) Depending on choice of 𝑁𝐸 or 𝐸 and value of 𝑑 for the selected pixel,
+𝑑 is calculated for the next grid line (𝑥 + 2) from the current 𝑑
+𝑝
+Interactive Computer Graphics
+27/05/2026 16
+Chapter 6 – Rasterization
+[Seite 17]
+Seiten-Metadaten: Bilder=0, Rechtecke=7, Kurven=12, Linien=1
+Update of 𝑑 for 𝐸
+ Previous decision variable was given by
+1 1
+𝑑 = 𝐹 𝑥 + 1, 𝑦 + = 𝑎 ⋅ 𝑥 + 1 + 𝑏 ⋅ 𝑦 + + 𝑐
+𝑜𝑙𝑑 𝑝 𝑝 𝑝 𝑝
+2 2
+ 𝑀 is incremented by 1 in the 𝑥-direction, resulting in
+1 1
+𝑑 = 𝐹 𝑥 + 2, 𝑦 + = 𝑎 ⋅ 𝑥 + 2 + 𝑏 ⋅ 𝑦 + + 𝑐
+𝑛𝑒𝑤 𝑝 𝑝 𝑝 𝑝
+2 2
+ Incremental difference between 𝑑 and 𝑑
+𝑛𝑒𝑤 𝑜𝑙𝑑
+𝑑 = 𝑑 + 𝑎
+𝑛𝑒𝑤 𝑜𝑙𝑑
+Δ𝐸: = 𝑎 = 𝑑𝑦
+ Calculate decision variable when choosing 𝐸 incremental
+𝑑 = 𝑑 + Δ𝐸
+𝑛𝑒𝑤 𝑜𝑙𝑑
+Interactive Computer Graphics
+27/05/2026 17
+Chapter 6 – Rasterization
+[Seite 18]
+Seiten-Metadaten: Bilder=0, Rechtecke=7, Kurven=12, Linien=1
+Update of 𝑑 for 𝑁𝐸
+ Previous decision variable was given by
+1 1
+𝑑 = 𝐹 𝑥 + 1, 𝑦 + = 𝑎 ⋅ 𝑥 + 1 + 𝑏 ⋅ 𝑦 + + 𝑐
+𝑜𝑙𝑑 𝑝 𝑝 𝑝 𝑝
+2 2
+ 𝑀 is incremented by 1 in the 𝑥- and 𝑦-direction, resulting in
+3 3
+𝑑 = 𝐹 𝑥 + 2, 𝑦 + = 𝑎 ⋅ 𝑥 + 2 + 𝑏 ⋅ 𝑦 + + 𝑐
+𝑛𝑒𝑤 𝑝 𝑝 𝑝 𝑝
+2 2
+ Incremental difference between 𝑑 and 𝑑
+𝑛𝑒𝑤 𝑜𝑙𝑑
+𝑑 = 𝑑 + 𝑎 + 𝑏
+𝑛𝑒𝑤 𝑜𝑙𝑑
+Δ𝑁𝐸: = 𝑎 + 𝑏 = 𝑑𝑦 − 𝑑𝑥
+ Calculate decision variable when choosing 𝑁𝐸 incremental
+𝑑 = 𝑑 + Δ𝑁𝐸
+𝑛𝑒𝑤 𝑜𝑙𝑑
+Interactive Computer Graphics
+27/05/2026 18
+Chapter 6 – Rasterization
+[Seite 19]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Proceeding
+ In each step, the algorithm selects between two pixels 𝑁𝐸 and 𝐸
+based on sign of decision variable 𝑑
+ Depending on the choice, decision variable is updated
+by adding difference Δ𝑁𝐸 or Δ𝐸
+Interactive Computer Graphics
+27/05/2026 19
+Chapter 6 – Rasterization
+[Seite 20]
+Seiten-Metadaten: Bilder=0, Rechtecke=10, Kurven=12, Linien=1
+Initializing 𝑑
+1
+ First midpoint 𝑀 is located at (𝑥 + 1, 𝑦 + )
+0 0
+2
+1 1 𝑏
+𝐹 𝑥 + 1, 𝑦 + = 𝑎 ⋅ 𝑥 + 1 + 𝑏 ⋅ 𝑦 + + 𝑐 = 𝑎 ⋅ 𝑥 + 𝑏 ⋅ 𝑦 + 𝑐 + 𝑎 +
+0 0 0 0 0 0
+2 2 2
+𝑏
+= 𝐹 𝑥 , 𝑦 + 𝑎 +
+0 0
+2
+ As (𝑥 , 𝑦 ) lies on line F 𝑥 , 𝑦 = 0 holds, and
+0 0 0 0
+𝑏 𝑑𝑥
+𝑑 = a + = 𝑑𝑦 −
+𝑠𝑡𝑎𝑟𝑡
+2 2
+ To eliminate fraction in 𝑑 it is multiplied by 2
+𝑠𝑡𝑎𝑟𝑡
+𝑑 = 2 ⋅ a + b = 2 ⋅ 𝑑𝑦 − 𝑑𝑥
+𝑠𝑡𝑎𝑟𝑡
+ Thus, decision variable 𝑑, all constants and the increments Δ𝐸 and Δ𝑁𝐸
+must also be multiplied by 2, which does not affect sign of 𝑑
+𝐹 𝑥, 𝑦 = 2 ⋅ (𝑎 ⋅ 𝑥 + 𝑏 ⋅ 𝑦 + 𝑐) = 0
+Interactive Computer Graphics
+27/05/2026 20
+Chapter 6 – Rasterization
+[Seite 21]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=2, Linien=1
+Using 𝑑
+ Midpoint line algorithms uses 𝑑 as follows
+𝑑 = 2 · 𝑑𝑦 – 𝑑𝑥
+𝑠𝑡𝑎𝑟𝑡
+Δ𝑁𝐸 = 2 · 𝑑𝑦 – 𝑑𝑥
+Δ𝐸 = 2 · 𝑑𝑦
+(cid:127) When 𝐸 is chosen (𝑑 ≤ 0): 𝑑 = 𝑑 + 2 · 𝑑𝑦
+𝑜𝑙𝑑 𝑛𝑒𝑤 𝑜𝑙𝑑
+(cid:127) When 𝑁𝐸 is chosen (𝑑 > 0): 𝑑 = 𝑑 + 2 · (𝑑𝑦 – 𝑑𝑥)
+𝑜𝑙𝑑 𝑛𝑒𝑤 𝑜𝑙𝑑
+Interactive Computer Graphics
+27/05/2026 21
+Chapter 6 – Rasterization
+[Seite 22]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Pseudo Code – Simple Version
+void midPointLine(int x0, int y0, int x1, int y1) {
+int dx = x1 - x0; // Calculate delta x
+int dy = y1 - y0; // Calculate delta y
+int d = 2 * dy - dx; // Initial decision variable
+int dE = 2 * dy; // Increment used for move to E
+int dNE = 2 * (dy - dx); // Increment used for move to NE
+int x = x0, y = y0; // Start position
+writePixel(x, y); // Plot the first pixel
+while (x < x1) { // Loop through from x0 to x1
+if (d <= 0) { // Decision is East
+d += dE; x++;
+} else { // Decision is North East
+d += dNE; x++; y++;
+}
+writePixel(x, y); // Plot each computed pixel
+}
+}
+Interactive Computer Graphics
+27/05/2026 22
+Chapter 6 – Rasterization
+[Seite 23]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=94, Linien=15
+Example
+ Draw line from (5, 8) to (9, 11)
+(cid:127) Order of values for 𝑑
+12
+(cid:127) 2, 0, 6, 4
+(cid:127) Order of chosen pixels
+11
+(cid:127) NE, E, NE, NE
+10
+9
+8
+7
+4 5 6 7 8 9 10
+Interactive Computer Graphics
+27/05/2026 23
+Chapter 6 – Rasterization
+[Seite 24]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Evaluation
+ Necessary arithmetic operations
+(cid:127) As only integer values are used, only integer operations are necessary
+(cid:127) Additions/subtractions only and multiplication by 2
+(left shift by 1 bit position)
+(cid:127) No multiplications in the loop
+ Reversibility
+(cid:127) Order of endpoints can be made reversible
+(cid:127) Line from 𝑃 to 𝑃 has the same pixels as line from 𝑃 to 𝑃
+0 1 1 0
+⇒ when drawing from right to left select SW pixels for 𝑑 = 0
+Interactive Computer Graphics
+27/05/2026 24
+Chapter 6 – Rasterization
+[Seite 25]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Pseudo Code - Reversible
+void drawLine(int x0, int y0, int x1, int y1) {
+int dx = abs(x1 - x0); // Calculate absolute delta x
+int sx = (x0 < x1 ? 1 : -1); // Set step x based on direction
+int dy = abs(y1 - y0); // Calculate absolute delta y
+int sy = (y0 < y1 ? 1 : -1); // Set step y based on direction
+int d = 2 * dy - dx; // Initial decision variable
+int dE = 2 * dy; // Increment for move East or West
+int dNE = 2 * (dy - dx); // Increment for move NE or SW
+int x = x0, y = y0; // Start positions
+writePixel(x, y); // Plot the first pixel
+while (x != x1) { // Loop until target x reached
+if ((d < 0) || ((d == 0) && (sx == 1))) { // Decide East or West
+d += dE; x += sx;
+} else { // Decide North-East or South-West
+d += dNE; x += sx; y += sy;
+}
+writePixel(x, y); // Plot each computed pixel
+}
+}
+Interactive Computer Graphics
+27/05/2026 25
+Chapter 6 – Rasterization
+[Seite 26]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+6.2 Triangle Edge Rasterization
+Drawing a one pixel thick triangle edge
+Visual Computing Group
+Institute of Media Informatics
+Interactive Computer Graphics
+27/05/2026 26
+Chapter 6 – Rasterization
+[Seite 27]
+Seiten-Metadaten: Bilder=3, Rechtecke=3, Kurven=371, Linien=25
+Triangle Edges 1/2
+ Using midpoint line algorithm for triangle edge rasterization
+(cid:127) Provides pixels closest to triangle edge
+(cid:127) Does not consider if pixel lies inside or outside triangle
+⇒ Edge pixels can penetrate into interior of adjacent triangles
+Interactive Computer Graphics
+27/05/2026 27
+Chapter 6 – Rasterization
+[Seite 28]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=1
+Triangle Edges 2/2
+ Midpoint line algorithm must consider inside vs. outside pixels
+(cid:127) Adaptation of the midpoint line algorithm
+(cid:127) Restriction to pixels strictly inside triangle
+(cid:127) Must be applied to line rasterization also for consistency reasons
+ Definition of triangle inside:
+edge pixel belongs to inside if:
+edge half-plane lies below / right of edge
+(cid:127) see Top-Left Rule
+(cid:127) “top || left”, “top & left”, “left & left”
+Interactive Computer Graphics
+27/05/2026 28
+Chapter 6 – Rasterization
+[Seite 29]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Edge Rasterization 1/3
+ Triangle edge rasterization can exploit edge coherence
+(cid:127) Two edges of triangle intersect a scanline
+(cid:127) Same edges intersected by scanline 𝑖 likely also intersect scanline 𝑖 + 1
+ Due to coherence, intersections can be calculated incrementally
+(cid:127) For each increase of 𝑦 → 𝑦 + 1
+𝑥 can be computed through edge slope 𝐴: 𝑥 = 𝑥 + 1/𝐴
+void leftEdgeScan(int x0, int y0, int x1, int y1) { // y0 < y1
+float x = x0; // Start x at x0
+float dxdy = (x1 - x0) / (y1 - y0); // Calculate dx/dy = 1/A
+for (int y = y0; y < y1; y++) { // Loop from y0 to y1
+writePixel(ceil(x), y); // Plot pixel at (ceil(x), y)
+x += dxdy; // Increment x by dx/dy
+}
+}
+Interactive Computer Graphics
+27/05/2026 29
+Chapter 6 – Rasterization
+[Seite 30]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Edge Rasterization 2/3
+ Integer arithmetic can be used for (left) edges with slopes > 1
+(cid:127) Consider 𝑑𝑥𝑑𝑦 = (𝑥𝑚𝑎𝑥 − 𝑥𝑚𝑖𝑛)/(𝑦𝑚𝑎𝑥 − 𝑦𝑚𝑖𝑛)
+(cid:127) 𝑥 is only changed by 𝑑𝑥𝑑𝑦
+⇒ 𝑥 can be represented as a fraction with denominator (𝑦𝑚𝑎𝑥 − 𝑦𝑚𝑖𝑛)
+(cid:127) Let 𝑎 be the integer part
+𝑑: = 𝑦𝑚𝑎𝑥 − 𝑦𝑚𝑖𝑛 the denominator, and
+𝑛: = 𝑥𝑚𝑎𝑥 − 𝑥𝑚𝑖𝑛 the numerator of 𝑑𝑥𝑑𝑦
+⇒ 𝑥 = (𝑎 · 𝑑 + 𝑏)/𝑑 = 𝑎 · 𝑑/𝑑 + 𝑏/𝑑 = 𝑎 + 𝑏/𝑑 with 𝑏 < 𝑑
+(cid:127) When incrementing 𝑥 by 𝑑𝑥𝑑𝑦, counter 𝑏 is always incremented by 𝑛
+(cid:127) If 𝑏/𝑑 > 1 (i.e., 𝑏 > 𝑑)
+(cid:127) 𝑎 is incremented by 1
+(cid:127) counter 𝑏 is decreased by 𝑑
+Interactive Computer Graphics
+27/05/2026 30
+Chapter 6 – Rasterization
+[Seite 31]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Edge Rasterization 3/3
+void leftEdgeScan(int x0, int y0, int x1, int y1) { // slope > 1
+int d = y1 - y0; // denominator (Nenner)
+int n = x1 - x0; // numerator (Zähler)
+int a = x0; // integer part of x
+int b = d; // fraction part of x plus d
+for (int y = y0; y < y1; y++) { // Loop from y0 to y1
+writePixel(a, y); // Plot pixel at (a, y)
+b += n; // Increment b by numerator to handle x = x + 1/A
+if (b >= d) { // Check if b exceeds or equals denominator
+a++; // Increment integer part of x
+b -= d; // Adjust fraction part back by denominator
+}
+}
+}
+Interactive Computer Graphics
+27/05/2026 31
+Chapter 6 – Rasterization
+[Seite 32]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+6.3 Region Filling
+Homogeneous coloring of regions
+Visual Computing Group
+Institute of Media Informatics
+[Seite 33]
+Seiten-Metadaten: Bilder=0, Rechtecke=12, Kurven=46, Linien=13
+Region Types 1/2
+ 4-connected
+(cid:127) All pixels of region can be reached by following movements
+(cid:127) Left, right, bottom, top
+ 8-connected
+(cid:127) All pixels of region can be reached by following movements
+(cid:127) Left, right, bottom, top
+(cid:127) Left-bottom, left-top, right-top, right-bottom
+ 4-connected regions are also 8-connected
+Interactive Computer Graphics
+27/05/2026 33
+Chapter 6 – Rasterization
+[Seite 34]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=210, Linien=37
+Region Types 2/2
+ Examples
+4-connected 8-connected 8-connected
+Interactive Computer Graphics
+27/05/2026 34
+Chapter 6 – Rasterization
+[Seite 35]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=218, Linien=25
+Region Spezification
+ Color-based
+(cid:127) Starting at pixel 𝑃, determine largest contiguous region
+which pixels have a specific color
+(cid:127) Color assignment done by flood fill algorithms
+ Border-based
+(cid:127) Starting at pixel 𝑃, determine the largest contiguous region
+which pixels have a color different from the border color
+(cid:127) Color assignment done by boundary fill algorithms
+Interactive Computer Graphics
+27/05/2026 35
+Chapter 6 – Rasterization
+[Seite 36]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Flood Fill Algorithm
+void floodFill4(int x, int y, Color oldC, Color newC) {
+if ((x < 0) || (x >= width)) return; // Return if x is out of bounds
+if ((y < 0) || (y >= height)) return; // Return if y is out of bounds
+if (oldC == readPixel(x, y)) { // Check if the current color matches oldC
+writePixel(x, y, newC); // Change the color of the pixel
+floodFill4(x, y-1, oldC, newC); // Recursively fill up
+floodFill4(x, y+1, oldC, newC); // Recursively fill down
+floodFill4(x+1, y, oldC, newC); // Recursively fill right
+floodFill4(x-1, y, oldC, newC); // Recursively fill left
+}
+}
+Interactive Computer Graphics
+27/05/2026 36
+Chapter 6 – Rasterization
+[Seite 37]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Boundary Fill Algorithm
+void boundaryFill4(int x, int y, Color oldC, Color newC) {
+if ((x < 0) || (x >= width)) return; // Return if x is out of bounds
+if ((y < 0) || (y >= height)) return; // Return if y is out of bounds
+Color c = readPixel(x, y);
+if (c == oldC) return; // Return if pixel is a boundary pixel
+if (c == newC) return; // Return if pixel has been processed
+writePixel(x, y, newC); // Change the color of the pixel
+boundaryFill4(x, y-1, oldC, newC); // Recursively fill up
+boundaryFill4(x, y+1, oldC, newC); // Recursively fill down
+boundaryFill4(x+1, y, oldC, newC); // Recursively fill right
+boundaryFill4(x-1, y, oldC, newC); // Recursively fill left
+}
+Interactive Computer Graphics
+27/05/2026 37
+Chapter 6 – Rasterization
+[Seite 38]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=1
+Fill Algorithms
+ High number of recursions can lead to stack overflow
+ Use smarter data structures, i.e., queues and stacks
+Queue Stack
+Interactive Computer Graphics
+27/05/2026 38
+Chapter 6 – Rasterization
+[Seite 39]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+6.4 Scanline-Based Triangle Rasterization
+Segment-based rasterization of the simplest type of polygon
+Visual Computing Group
+Institute of Media Informatics
+[Seite 40]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=8, Linien=1
+Triangle Rasterization
+ Triangle rasterization
+(cid:127) Rasterize filled triangles is main task in real-time rendering
+(cid:127) Realization through graphics hardware desired
+(cid:127) General polygons split into triangles through tessellation
+V
+2
+ Rasterization requires three steps
+(cid:127) Determine triangle edges
+(cid:127) Fill triangle’s interior
+V
+1
+(cid:127) Interpolate information over triangle
+(e.g., colors, z-values)
+V
+0
+Interactive Computer Graphics
+27/05/2026 40
+Chapter 6 – Rasterization
+[Seite 41]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=25, Linien=22
+Scanline-Based Rasterization
+ Rasterization through scanline conversion exploits spatial coherence
+(cid:127) Pixels of a scanline are colored similarly
+(cid:127) Adjacent scanlines span similar pixels
+(cid:127) Adjacent scanlines are colored similarly
+V
+2
+ Scanline segments can be calculated
+through modified midpoint line algorithm
+(cid:127) Rasterize triangle edges
+V
+to obtain edge pixels 1
+(cid:127) Generate pixels of scanlines
+between each pair of edge pixels
+V
+0
+Interactive Computer Graphics
+27/05/2026 41
+Chapter 6 – Rasterization
+[Seite 42]
+Seiten-Metadaten: Bilder=0, Rechtecke=6, Kurven=23, Linien=1
+Algorithm Overview
+ Observation: triangle can be split into top an bottom half
+(cid:127) For each half two edge pixels and one segment exist
+(cid:127) Segments differ only slightly, depending on edge slope
+V
+2
+ Procedure
+E
+(cid:127) Sort triangle vertices based on 𝑦-coordinate
+12
+⇒ ( 𝑥 , 𝑦 , 𝑥 , 𝑦 , 𝑥 , 𝑦 ) with 𝑦 ≤ 𝑦 ≤ 𝑦
+0 0 1 1 2 2 0 1 2 E Top Half
+02
+(cid:127) Rasterize lower half between 𝐸 and 𝐸
+01 02
+V
+(cid:127) Rasterize upper half between 𝐸 and 𝐸 Bottom Half 1
+02 12
+E
+01
+V
+0
+Interactive Computer Graphics
+27/05/2026 42
+Chapter 6 – Rasterization
+[Seite 43]
+Seiten-Metadaten: Bilder=0, Rechtecke=6, Kurven=17, Linien=1
+Slope Calculation
+ Calculate slope for each triangle edge: 1/𝐴 = 𝑑𝑥/𝑑𝑦
+(cid:127) Δ = (𝑥 − 𝑥 )/(𝑦 − 𝑦 )
+02 2 0 2 0
+(cid:127) Δ = (𝑥 − 𝑥 )/(𝑦 − 𝑦 )
+01 1 0 1 0
+(cid:127) Δ = (𝑥 − 𝑥 )/(𝑦 − 𝑦 )
+12 2 1 2 1
+V
+2
+E
+ Calculate number of scanlines
+12
+for each triangle half
+E Top Half
+02
+(cid:127) 𝑁 = 𝑦 − 𝑦
+𝑡𝑜𝑝 2 1
+V
+(cid:127) 𝑁 = 𝑦 − 𝑦 Bottom Half 1
+𝑏𝑜𝑡𝑡𝑜𝑚 1 0
+E
+01
+V
+0
+Interactive Computer Graphics
+27/05/2026 43
+Chapter 6 – Rasterization
+[Seite 44]
+Seiten-Metadaten: Bilder=0, Rechtecke=6, Kurven=4, Linien=2
+Pseudo Code
+void processTriangle(int x0, int y0, float delta02, float delta01, int Nbottom, int Ntop) {
+float XLeft = x0; // Start position for left x
+float XRight = x0; // Start position for right x
+int Y = y0; // Start position for y
+float DeltaLeft = delta02; // Delta for left x for bottom half
+float DeltaRight = delta01; // Delta for right x for bottom half
+for (int i = 0; i < Nbottom; i++) { // Loop for bottom half of the triangle
+processSegment(Y, round(XLeft), round(XRight)); // Process current segment
+XLeft += DeltaLeft; // Increment left x by delta left
+XRight += DeltaRight; // Increment right x by delta right
+Y += 1; // Increment y
+}
+DeltaRight = delta12; // Delta for right x for top half
+for (int i = 0; i <= Ntop; i++) { // Loop for top half of the triangle
+processSegment(Y, round(XLeft), round(XRight)); // Process current segment
+XLeft += DeltaLeft; // Increment left x by delta left
+XRight += DeltaRight; // Increment right x by delta right
+Y += 1; // Increment y
+Assumption: main axis is left
+}
+Otherwise: switch left and right
+}
+Interactive Computer Graphics
+27/05/2026 44
+Chapter 6 – Rasterization
+Extrahierte Tabellen:
+[Tabelle 1]
+Assumption: main axis is left Otherwise: switch left and right | 
+[Seite 45]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=25, Linien=1
+Segment Rasterization
+V
+2
+ Each segment generates fragments
+ Rendering pipeline processes generated fragments
+(𝑥 , 𝑦 )
+(e.g., depth testing, alpha blending) 𝑟𝑖𝑔ℎ𝑡 𝑠
+(𝑥 , 𝑦 )
+𝑙𝑒𝑓𝑡 𝑠
+V
+1
+V
+0
+void processSegment(int y_s, int x_left, int x_right) {
+for (int x = x_left; x < x_right; x++) { // Loop from x_left to x_right
+processFragment(x, y_s); // Process each fragment at (x, y_s)
+}
+}
+Interactive Computer Graphics
+27/05/2026 45
+Chapter 6 – Rasterization
+[Seite 46]
+Seiten-Metadaten: Bilder=1, Rechtecke=6, Kurven=49, Linien=1
+Vertex Attribute Interpolation
+V
+2
+ During rasterization vertex attributes (e.g., color, depth)
+must be interpolated over triangle
+(𝑥 , 𝑦 , 𝑧 )
+𝑟𝑖𝑔ℎ𝑡 𝑠 𝑟𝑖𝑔ℎ𝑡
+ Bilinear interpolation can be used
+(𝑥 , 𝑦 , 𝑧 )
+1. Interpolate attributes along both edges 𝑙𝑒𝑓𝑡 𝑠 𝑙𝑒𝑓𝑡
+V
+1
+(𝑦 −𝑦 )
+(cid:127) 𝑧 = 𝑧 + 𝑠 0 ⋅ (𝑧 − 𝑧 )
+𝑙𝑒𝑓𝑡 0 2 0
+(𝑦 −𝑦 )
+2 0
+(𝑦 −𝑦 )
+(cid:127) 𝑧 = 𝑧 + 𝑠 1 ⋅ (𝑧 − 𝑧 )
+𝑟𝑖𝑔ℎ𝑡 1 2 1
+(𝑦 −𝑦 )
+2 1 V
+0
+2. Interpolate attributes along segment
+(𝑥 −𝑥 )
+𝑐𝑒𝑛𝑡𝑒𝑟 𝑙𝑒𝑓𝑡
+(cid:127) 𝑧 = 𝑧 + ⋅ (𝑧 − 𝑧 )
+𝑐𝑒𝑛𝑡𝑒𝑟 𝑙𝑒𝑓𝑡 𝑟𝑖𝑔ℎ𝑡 𝑙𝑒𝑓𝑡
+(𝑥 −𝑥 )
+𝑟𝑖𝑔ℎ𝑡 𝑙𝑒𝑓𝑡
+Interactive Computer Graphics
+27/05/2026 46
+Chapter 6 – Rasterization
+[Seite 47]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=4, Linien=1
+Incremental Interpolation 1/3
+ Spatial coherence allows for an incremental attribute interpolation
+ Example: consider triangle’s plane equation for calculating 𝑧 increments
+(cid:127) 𝐴𝑥 + 𝐵𝑦 + 𝐶𝑧 + 𝐷 = 0
+(cid:127) With plane coefficients 𝐴, 𝐵, 𝐶: 𝐴, 𝐵, 𝐶 = 𝑉 − 𝑉 × (𝑉 − 𝑉 )
+2 0 1 2
+(cid:127) Resolve for 𝑧: 𝑧 = (−𝐴𝑥 − 𝐵𝑦 − 𝐷)/𝐶
+(cid:127) Calculate 𝑑𝑧𝑑𝑥 as change of 𝑧 in case of horizontal change by +1
+(cid:127) Consider 𝑧 → 𝑧 at 𝑥 → 𝑥 where 𝑥 = 𝑥 + 1:
+𝑖 𝑖+1 𝑖 𝑖+1 𝑖+1 𝑖
+((−𝐴𝑥 − 𝐵𝑦 − 𝐷)/𝐶) − ((−𝐴𝑥 − 𝐵𝑦 − 𝐷)/𝐶)) = −𝐴/𝐶 =: 𝑑𝑧𝑑𝑥
+𝑖 𝑖+1
+(cid:127) Calculate 𝑑𝑧𝑑y as change of 𝑧 in case of vertical change by +1
+(cid:127) Consider 𝑧 → 𝑧 at y → y where 𝑦 = 𝑦 + 1:
+𝑖 𝑖+1 𝑖 𝑖+1 𝑖+1 𝑖
+((−𝐴𝑥 − 𝐵𝑦 − 𝐷)/𝐶) − ((−𝐴x − 𝐵𝑦 − 𝐷)/𝐶)) = −𝐵/𝐶 =: 𝑑𝑧𝑑𝑦
+𝑖 𝑖+1
+Interactive Computer Graphics
+27/05/2026 47
+Chapter 6 – Rasterization
+[Seite 48]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=2, Linien=1
+Incremental Interpolation 2/3
+ Increments 𝑑𝑧𝑑𝑥 and 𝑑𝑧𝑑𝑦 are used to incrementally modify given 𝑧 value,
+i.e., when moving from (𝑥, 𝑦) to (𝑥 + 1, 𝑦) or (𝑥, 𝑦 + 1)
+ Case 1: next fragment in scanline (horizontal change by +1)
+(cid:127) 𝑥 → 𝑥 ⇒ 𝑧 ≔ 𝑧 + 𝑑𝑧𝑑𝑥
+𝑖 𝑖+1 𝑖
+ Case 2: first fragment on next scanline
+(cid:127) 𝑥 → 𝑥 ∧ y → y ⇒ 𝑧 ≔ 𝑧 + 𝑑𝑧𝑑𝑦 − 𝑥 − 𝑥 ⋅ 𝑑𝑧𝑑𝑥
+𝑖 0 𝑖 𝑖+1 𝑖 𝑖 0
+ 𝑑𝑧𝑑𝑥 and 𝑑𝑧𝑑𝑦 can be precomputed for both triangle halves
+Interactive Computer Graphics
+27/05/2026 48
+Chapter 6 – Rasterization
+[Seite 49]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Incremental Interpolation 3/3
+ All vertex attributes can be interpolated incrementally analogous to depth
+(cid:127) Colors (𝑟, 𝑔, 𝑏, 𝑎)
+(cid:127) Texture coordinates (𝑢, 𝑣)
+(cid:127) …
+ For each attribute 𝜃 define
+(cid:127) 𝑑𝜃𝑑𝑥
+(cid:127) 𝑑𝜃𝑑𝑦
+(cid:127) With 𝜃 ∈ {𝑧, 𝑟, 𝑔, 𝑏, 𝑎, 𝑛 , 𝑛 , 𝑛 , 𝑢, 𝑣, … }
+𝑥 𝑦 𝑧
+ 𝑑𝜃𝑑𝑥 and 𝑑𝜃𝑑𝑦 can be precomputed for both triangle halves
+Interactive Computer Graphics
+27/05/2026 49
+Chapter 6 – Rasterization
+[Seite 50]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+6.5 Tile-Based Triangle Rasterization
+Parallel tile-based triangle rasterization
+Visual Computing Group
+Institute of Media Informatics
+[Seite 51]
+Seiten-Metadaten: Bilder=0, Rechtecke=1023, Kurven=8, Linien=1
+Tile-Based Triangle Rasterization
+ Modern GPUs have a block-wise structure,
+where one processor is responsible for one screen tile of adjacent pixels
+ Segment-based triangled rasterization is difficult to parallelize
+ Tile-based rasterization is a better fit with modern GPUs
+V
+2
+ Advantage
+(cid:127) Different tiles can be rasterized independently
+ Drawback
+(cid:127) Vertex attribute interpolation can only reuse
+V
+1
+information from within the same tile
+V
+0
+Interactive Computer Graphics
+27/05/2026 51
+Chapter 6 – Rasterization
+Extrahierte Tabellen:
+[Tabelle 1]
+ |  |  |  |  |  |  |  | V
+[Seite 52]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=39, Linien=2
+Edge-Based Triangle Representation 1/2
+ Edge-based area representation is possible through implicit edge functions
+ Implicit edge function can be defined based on two edge vertices
+𝑉 = (𝑥 , 𝑦 ) and 𝑉 = (𝑥 , 𝑦 )
+0 0 0 1 1 1
+ For a given coordinate (𝑥, 𝑦), the implicit edge function is defined as
+E 𝑥, 𝑦 = 𝑦 − 𝑦 ⋅ 𝑥 − 𝑥 − 𝑥 ⋅ 𝑦 + 𝐵 ⋅ 𝑥 − 𝑥
+1 0 1 0 01 1 0
+with 𝐵 = 𝑦 − 𝑚 ⋅ 𝑥 and 𝑚 = (𝑦 − 𝑦 )/(𝑥 − 𝑥 )
+01 0 01 0 01 1 0 1 0
+𝑉 = (𝑥 , 𝑦 )
+1 1 1
+ E(𝑥, 𝑦) has the following properties
+> 0: x, y is right of edge
+E 𝑥, 𝑦 (cid:3422) = 0: x, y is on the edge
+< 0: x, y is left of edge
+𝑉 = (𝑥 , 𝑦 )
+0 0 0
+Interactive Computer Graphics
+27/05/2026 52
+Chapter 6 – Rasterization
+[Seite 53]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=38, Linien=1
+Edge-Based Triangle Representation 2/2
+ To represent a triangle, three implicit edge functions are combined
+(cid:127) 𝐸 𝑥, 𝑦 = 𝑦 − 𝑦 ⋅ 𝑥 − 𝑥 − 𝑥 ⋅ 𝑦 + 𝐵 ⋅ 𝑥 − 𝑥
+01 1 0 1 0 01 1 0
+(cid:127) 𝐸 𝑥, 𝑦 = 𝑦 − 𝑦 ⋅ 𝑥 − 𝑥 − 𝑥 ⋅ 𝑦 + 𝐵 ⋅ 𝑥 − 𝑥
+12 2 1 2 1 12 2 1
+(cid:127) 𝐸 𝑥, 𝑦 = 𝑦 − 𝑦 ⋅ 𝑥 − 𝑥 − 𝑥 ⋅ 𝑦 + 𝐵 ⋅ 𝑥 − 𝑥
+20 0 2 0 2 20 0 2
+V
+ A given pixel at location (𝑥, 𝑦) is inside the triangle if 2
+𝐸 𝑥, 𝑦 < 0 ∧ 𝐸 𝑥, 𝑦 < 0 ∧ 𝐸 𝑥, 𝑦 < 0
+01 12 20
+ Formulation can be evaluated in parallel at many positions
+V
+1
+ Formulation can be extended to arbitrary convex polygons
+by using as many implicit edge functions as edges exist
+V
+0
+Interactive Computer Graphics
+27/05/2026 53
+Chapter 6 – Rasterization
+[Seite 54]
+Seiten-Metadaten: Bilder=45, Rechtecke=1068, Kurven=8, Linien=1
+Rasterization Procedure
+1. Determine tiles which are (partially) covering triangle
+(e.g., easiest approximation would be bounding box)
+2. For each covering tile
+(cid:127) For each pixel
+V
+(cid:127) If all implicit edge functions evaluate to < 0 2
+(cid:127) Interpolate vertex attributes
+(cid:127) Draw pixel
+V
+1
+V
+0
+Interactive Computer Graphics
+27/05/2026 54
+Chapter 6 – Rasterization
+Extrahierte Tabellen:
+[Tabelle 1]
+ |  |  |  |  |  |  |  | V
+[Seite 55]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Chapter Summary
+ Pixel-based displays require the rasterization of primitives
+(cid:127) Rasterization fidelity is critical for image quality
+(cid:127) Rasterization is time-critical and should be optimized for hardware
+ Focus on triangles due to speed and ease of tessellation of other polygons
+ Segment-based triangle rasterization avoids overlap
+between adjacent triangles
+(cid:127) Midpoint scheme can be used to rasterize triangle edges
+ Block-based triangle rasterization allows for parallel processing
+on graphics hardware
+Interactive Computer Graphics
+27/05/2026 55
+Chapter 6 – Rasterization
+[Seite 56]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+References
+Literature and other sources used in this chapter
+Visual Computing Group
+Institute of Media Informatics
+[Seite 57]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+References
+ Text Books
+(cid:127) Foley J., van Dam, A., Feiner, S. (2013). Computer Graphics: Principles and
+Practice, Addison-Wesley.
+ Research Publications
+(cid:127) Bresenham, J. E. (1998). Algorithm for computer control of a digital plotter.
+In Seminal graphics: pioneering efforts that shaped the field (pp. 1-6).
+(cid:127) Pineda, J. (1988, June). A parallel algorithm for polygon rasterization. In
+Proceedings of the 15th annual conference on Computer graphics and
+interactive techniques (pp. 17-20).
+Interactive Computer Graphics
+27/05/2026 57
+Chapter 6 – Rasterization
+[Seite 58]
+Seiten-Metadaten: Bilder=3, Rechtecke=4, Kurven=1, Linien=1
+Slide for Future: Sustainability in CG (@ EG25)
+also @ IEEE VR
+Interactive Computer Graphics
+27/05/2026 58
+Chapter 1 – Introduction
+[Seite 59]
+Seiten-Metadaten: Bilder=5, Rechtecke=3, Kurven=1, Linien=1
+Slide for Future: Sustainability in CG (@ EG25)
+Unoptimized Optimized Unoptimized Optimized
+Inverse Simulation of Radiative Thermal Transport
+Christian Freude, Lukas Lipp, Matthias Zezulka, Florian Rist, Michael Wimmer, David Hahn
+Interactive Computer Graphics
+27/05/2026 59
+Chapter 1 – Introduction
+[Seite 60]
+Seiten-Metadaten: Bilder=6, Rechtecke=3, Kurven=1, Linien=1
+Slide for Future: Sustainability in CG (@ EG25)
+Optimizing Free-Form Grid Shells with Reclaimed Elements under Inventory Constraints
+Andrea Favilli, Francesco Laccone, Paolo Cignoni, Luigi Malomo, Daniela Giorgi
+Interactive Computer Graphics
+27/05/2026 60
+Chapter 1 – Introduction
+[Seite 61]
+Seiten-Metadaten: Bilder=3, Rechtecke=3, Kurven=1, Linien=1
+Slide for Future: Sustainability in CG (@ EG25)
+Stress-Aligned Hexahedral Lattice Structures
+Dennis Bukenberger, Junpeng Wang, Jun Wu, Rüdiger Westermann
+Interactive Computer Graphics
+27/05/2026 61
+Chapter 1 – Introduction

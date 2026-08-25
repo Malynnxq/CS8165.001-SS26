@@ -1,0 +1,55 @@
+CS8165.001 SS26 - Interaktive Computergrafik
+============================================
+Volltextsammlung aus dem Moodle-Kursexport.
+Zweck: strukturierte Vorbereitung mit KI-Unterstuetzung.
+
+Hinweis: PDF-Text wurde automatisch extrahiert. Bildbasierte Diagramme, Formeln oder Grafiken koennen in reinem Text nur teilweise erfasst sein.
+
+Inhaltsverzeichnis
+------------------
+1. Kursuebersicht
+2. Organisatorisches
+3. Vorlesungen und Folien
+4. Uebungen
+5. OpenGL Starter Project
+6. Pruefungsvorbereitungs-Anhang
+7. Assets
+
+Quellen-Dateiliste
+------------------
+Diese Dateien wurden als Kursquellen beruecksichtigt:
+
+- assets/moodle.css (776917 bytes)
+- assignments/00-introduction-to-cpp/index.html (2556 bytes)
+- assignments/01-rendering-pipeline/index.html (1811 bytes)
+- assignments/02-primitive-types-shaders/index.html (1825 bytes)
+- assignments/03-geometric-transformations/index.html (1825 bytes)
+- assignments/04-projections-and-clipping/index.html (1823 bytes)
+- assignments/05-rasterization/index.html (1801 bytes)
+- assignments/bonus-rendering-contest/index.html (1813 bytes)
+- course/group-selection/index.html (2016 bytes)
+- examples/opengl-rotating-cube.zip (85922 bytes)
+- forums/announcements/index.html (1872 bytes)
+- forums/students-forum/index.html (1914 bytes)
+- index.html (9178 bytes)
+- lectures/01-introduction/index.html (2086 bytes)
+- lectures/01-introduction/slides/01-introduction.pdf (3963017 bytes)
+- lectures/02-rendering-pipeline/index.html (2116 bytes)
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf (653137 bytes)
+- lectures/03-geometric-transformations/index.html (2151 bytes)
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf (290732 bytes)
+- lectures/04-geometric-projection/index.html (2126 bytes)
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf (14884080 bytes)
+- lectures/05-clipping/index.html (2066 bytes)
+- lectures/05-clipping/slides/05-clipping.pdf (854497 bytes)
+- lectures/06-rasterization/index.html (2091 bytes)
+- lectures/06-rasterization/slides/06-rasterization.pdf (869928 bytes)
+- lectures/07-visibility-determination/index.html (2146 bytes)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf (876154 bytes)
+- lectures/08-local-illumination/index.html (2116 bytes)
+- lectures/08-local-illumination/slides/08-local-illumination.pdf (1697922 bytes)
+- lectures/09-texturing/index.html (2067 bytes)
+- lectures/09-texturing/slides/09-texturing.pdf (31911937 bytes)
+- lectures/10-shadows/index.html (2057 bytes)
+- lectures/10-shadows/slides/10-shadows.pdf (18655957 bytes)
+- README.md (1680 bytes)

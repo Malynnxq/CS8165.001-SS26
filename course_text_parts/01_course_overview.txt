@@ -1,0 +1,100 @@
+Kursuebersicht
+--------------
+Quelle: index.html
+
+Moodle Lernplattform Universität Ulm - Interaktive Computergrafik 
+Moodle Lernplattform Universität Ulm
+Interaktive Computergrafik 
+CS8165.001-SS26 
+Diese Datei ist Teil des Inhalts, der von Interaktive Computergrafik heruntergeladen wurde.
+General 
+The lecture covers the fundamental concepts of interactive 3D computer graphics, as used in video games and 3D modeling. Central to this is the rendering pipeline, which serves as the conceptual foundation for modern image synthesis systems. The algorithms discussed are initially dealt with theoretically in the lectures before a selection is practically implemented in the exercises. The practical implementation is carried out in C/C++ in combination with the graphics standard OpenGL. An introduction to C/C++ will be provided at the beginning of the exercises. The following topics are covered in the lecture: 
+Graphics programming in OpenGL 
+Geometric transformations and projections 
+Lighting calculations 
+Clipping algorithms 
+Rasterization and texturing 
+Geometric modeling 
+Exam Dates: 
+Main: 11:00 am on 4th August 2026 
+Retake: 11:00 am on 29th September 2026 
+Both in H20 & H22, respectively. 
+Ankündigungen (Forum) 
+Students Forum (Forum) 
+Group Selection for Exercises (Gruppenwahl) 
+Lecture Slides 
+Lecture slides will be published here before the lectures. To be able to spot updates after the lecture, upload dates are added. 
+Chap01 - Introduction (15.04.26) (Datei) 
+Chap02 - Rendering Pipeline (30.04.26) (Datei) 
+Chap03 - Geometric Transformations (28.04.26) (Datei) 
+Chap04 - Geometric Projection (12.05.26) (Datei) 
+Chap05 - Clipping (19.05.26) (Datei) 
+Chap06 - Rasterization (27.05.26) (Datei) 
+Chap07 - Visibility Determination (09.06.26) (Datei) 
+Chap08 - Local Illumination (23.06.26) (Datei) 
+Chap09-Texturing (19.07.26) (Datei) 
+Chap10-Shadows (19.07.26) (Datei) 
+Exercises 
+Exercises are to be completed in groups. 
+An exercise is considered passed if 50% of the possible points are achieved. 
+Grade Bonus
+All exercises (5 sheets) must be passed. 
+Each group needs to present their solution at least once (all group members must be present). 
+Bonus Sheet: Rendering Contest
+Can be used to make up for one non-passed sheet 
+Can be used to make up for presentation 
+Introduction to C++ (Aufgabe) 
+Exercise 1: Rendering Pipeline (Aufgabe) 
+Exercise 2: Primitive Types / Shaders (Aufgabe) 
+Exercise 3: Geometric Transformations (Aufgabe) 
+Exercise 4: Projections and Clipping (Aufgabe) 
+Exercise 5: Rasterization (Aufgabe) 
+Rendering Contest (Bonus Sheet) (Aufgabe) 
+OpenGL Setup 
+At the beginning of the semester, students should prepare their computers, such that they can develop and execute OpenGL applications in C/C++. To do so, please follow the instructions below: 
+Install Visual Studio Code and the two extensions C/C++ and CMake Tools ( code.visualstudio.com/docs/languages/cpp ). 
+Install CMake ( cmake.org ). 
+Download OpenGL starter project ( opengl-rotatingcube.zip ) which contains a VS Code-ready project structure. 
+Unzip OpenGL starter project to a folder which you open in VS Code . 
+Run the following commands in the VS Code Command Palette (open with Ctrl+Shift+P on Windows/Linux or Cmd+Shift+P on macOS):
+CMake: Configure 
+CMake: Build 
+CMake: Debug 
+If successful an OpenGL Window with a rotating cube should appear. In case you have problems with this setup, please post in the forum or ask during the labs. 
+Further Resources 
+The following resources should provide you with a good starting point for learning and implementing modern OpenGL and C++ concepts. 
+You can find a reference to C/C++ at https://en.cppreference.com/w/ . This site provides information about classes, functions, etc., from the Standard Library. 
+Furthermore, the following libraries are useful: 
+http://glm.g-truc.net/0.9.5/index.html - GLM 
+You can also find interesting information and tutorials here: 
+https://open.gl/ 
+http://learnopengl.com/ 
+http://ogldev.atspace.co.uk/ 
+http://docs.gl 
+Here are also some tutorials with interactive elements on GLSL: 
+https://thebookofshaders.com/ 
+http://hughsk.io/fragment-foundry 
+To implement shaders online you can use the following editors: 
+https://shdr.bkcore.com/ 
+https://shaderfrog.com/app/editor 
+Tutorial on homogeneous coordinates and projection: 
+https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/ 
+Diese Datei ist Teil des Inhalts, der am Dienstag, 25. August 2026, 20:30 von Maksym Morozov von Interaktive Computergrafik heruntergeladen wurde.
+
+Externe Links:
+- Moodle Lernplattform Universität Ulm: https://moodle.uni-ulm.de
+- Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
+- code.visualstudio.com/docs/languages/cpp: https://code.visualstudio.com/docs/languages/cpp
+- cmake.org: https://cmake.org/
+- https://en.cppreference.com/w/: https://en.cppreference.com/w/
+- http://glm.g-truc.net/0.9.5/index.html: http://glm.g-truc.net/0.9.5/index.html
+- https://open.gl/: https://open.gl/
+- http://learnopengl.com/: http://learnopengl.com/
+- http://ogldev.atspace.co.uk/: http://ogldev.atspace.co.uk/
+- http://docs.gl: http://docs.gl/
+- https://thebookofshaders.com/: https://thebookofshaders.com/
+- http://hughsk.io/fragment-foundry: http://hughsk.io/fragment-foundry
+- https://shdr.bkcore.com/: https://shdr.bkcore.com/
+- https://shaderfrog.com/app/editor: https://shaderfrog.com/app/editor
+- https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/: https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/
+- Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076

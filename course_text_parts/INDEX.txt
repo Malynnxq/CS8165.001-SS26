@@ -1,0 +1,61 @@
+CS8165.001 SS26 - Text Chunks
+=============================
+Empfohlene Nutzung: zuerst 00_START_HERE.txt laden, danach den passenden Kapitel- oder Uebungs-Chunk.
+Die Datei ../course_full_text.txt enthaelt dieselben Kursinformationen in einer grossen Datei.
+Der Ordner 98_size_limited_full_text_slices/ enthaelt fortlaufende kleine Teile, die zusammen exakt die grosse Datei ergeben.
+
+Chunk-Dateien:
+- 00_START_HERE.txt: 55 Zeilen, 197 Woerter
+- 01_course_overview.txt: 100 Zeilen, 659 Woerter
+- 02_organization.txt: 58 Zeilen, 323 Woerter
+- 03_lectures/00_lectures_index.txt: 2 Zeilen, 4 Woerter
+- 03_lectures/01_introduction.txt: 630 Zeilen, 2914 Woerter
+- 03_lectures/02_rendering-pipeline.txt: 1438 Zeilen, 6675 Woerter
+- 03_lectures/03_geometric-transformations.txt: 1008 Zeilen, 5229 Woerter
+- 03_lectures/04_geometric-projection.txt: 968 Zeilen, 4503 Woerter
+- 03_lectures/05_clipping.txt: 950 Zeilen, 5189 Woerter
+- 03_lectures/06_rasterization.txt: 1067 Zeilen, 6054 Woerter
+- 03_lectures/07_visibility-determination.txt: 1123 Zeilen, 6232 Woerter
+- 03_lectures/08_local-illumination.txt: 975 Zeilen, 4114 Woerter
+- 03_lectures/09_texturing.txt: 1979 Zeilen, 10011 Woerter
+- 03_lectures/10_shadows.txt: 553 Zeilen, 2890 Woerter
+- 04_assignments/00_assignments_index.txt: 2 Zeilen, 2 Woerter
+- 04_assignments/00_introduction-to-cpp.txt: 26 Zeilen, 185 Woerter
+- 04_assignments/01_rendering-pipeline.txt: 16 Zeilen, 101 Woerter
+- 04_assignments/02_primitive-types-shaders.txt: 16 Zeilen, 109 Woerter
+- 04_assignments/03_geometric-transformations.txt: 16 Zeilen, 101 Woerter
+- 04_assignments/04_projections-and-clipping.txt: 16 Zeilen, 105 Woerter
+- 04_assignments/05_rasterization.txt: 16 Zeilen, 97 Woerter
+- 04_assignments/Bonus_rendering-contest.txt: 16 Zeilen, 101 Woerter
+- 05_opengl_starter_project.txt: 12018 Zeilen, 44938 Woerter
+- 06_exam_preparation_addendum.txt: 1943 Zeilen, 20068 Woerter
+- 07_assets_moodle_css.txt: 39450 Zeilen, 77060 Woerter
+
+Fortlaufende size-limited Slices:
+- 98_size_limited_full_text_slices/full_text_part_001.txt: 74958 bytes
+- 98_size_limited_full_text_slices/full_text_part_002.txt: 74941 bytes
+- 98_size_limited_full_text_slices/full_text_part_003.txt: 74999 bytes
+- 98_size_limited_full_text_slices/full_text_part_004.txt: 74961 bytes
+- 98_size_limited_full_text_slices/full_text_part_005.txt: 74958 bytes
+- 98_size_limited_full_text_slices/full_text_part_006.txt: 74963 bytes
+- 98_size_limited_full_text_slices/full_text_part_007.txt: 74975 bytes
+- 98_size_limited_full_text_slices/full_text_part_008.txt: 74983 bytes
+- 98_size_limited_full_text_slices/full_text_part_009.txt: 74924 bytes
+- 98_size_limited_full_text_slices/full_text_part_010.txt: 74933 bytes
+- 98_size_limited_full_text_slices/full_text_part_011.txt: 74973 bytes
+- 98_size_limited_full_text_slices/full_text_part_012.txt: 74996 bytes
+- 98_size_limited_full_text_slices/full_text_part_013.txt: 74953 bytes
+- 98_size_limited_full_text_slices/full_text_part_014.txt: 74821 bytes
+- 98_size_limited_full_text_slices/full_text_part_015.txt: 74904 bytes
+- 98_size_limited_full_text_slices/full_text_part_016.txt: 74975 bytes
+- 98_size_limited_full_text_slices/full_text_part_017.txt: 74974 bytes
+- 98_size_limited_full_text_slices/full_text_part_018.txt: 74996 bytes
+- 98_size_limited_full_text_slices/full_text_part_019.txt: 74992 bytes
+- 98_size_limited_full_text_slices/full_text_part_020.txt: 74982 bytes
+- 98_size_limited_full_text_slices/full_text_part_021.txt: 74974 bytes
+- 98_size_limited_full_text_slices/full_text_part_022.txt: 74984 bytes
+- 98_size_limited_full_text_slices/full_text_part_023.txt: 74949 bytes
+- 98_size_limited_full_text_slices/full_text_part_024.txt: 74988 bytes
+- 98_size_limited_full_text_slices/full_text_part_025.txt: 74999 bytes
+- 98_size_limited_full_text_slices/full_text_part_026.txt: 74972 bytes
+- 98_size_limited_full_text_slices/full_text_part_027.txt: 63410 bytes

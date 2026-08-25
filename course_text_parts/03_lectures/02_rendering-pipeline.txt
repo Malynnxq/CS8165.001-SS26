@@ -1,0 +1,1438 @@
+Kapitel 02: Rendering Pipeline - Moodle-Seite
+---------------------------------------------
+Quelle: lectures/02-rendering-pipeline/index.html
+
+Moodle Lernplattform Universität Ulm - Interaktive Computergrafik 
+Moodle Lernplattform Universität Ulm
+Interaktive Computergrafik 
+CS8165.001-SS26 
+Chap02 - Rendering Pipeline (30.04.26)
+Diese Seite ist Teil des Inhalts, der von Chap02 - Rendering Pipeline (30.04.26) am Dienstag, 25. August 2026, 20:30 heruntergeladen wurde. Beachten Sie, dass einige Inhalte und alle Dateien, die größer als 2 GB sind, nicht heruntergeladen werden. 
+Dateien und Verzeichnisse 
+02-rendering-pipeline.pdf 
+Diese Datei ist Teil des Inhalts, der am Dienstag, 25. August 2026, 20:30 von Maksym Morozov von Interaktive Computergrafik heruntergeladen wurde.
+
+Externe Links:
+- Moodle Lernplattform Universität Ulm: https://moodle.uni-ulm.de
+- Chap02 - Rendering Pipeline (30.04.26): https://moodle.uni-ulm.de/mod/resource/view.php?id=1015651
+- Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
+
+Kapitel 02: Rendering Pipeline - Folien
+---------------------------------------
+Quelle: lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf
+
+[Seite 1]
+Seiten-Metadaten: Bilder=2, Rechtecke=2, Kurven=0, Linien=0
+Interactive Computer Graphics
+Chapter 2 – The Rendering Pipeline
+Summer Term 2026
+Timo Ropinski
+Visual Computing Group
+Institute of Media Informatics
+[Seite 2]
+Seiten-Metadaten: Bilder=1, Rechtecke=14, Kurven=38, Linien=21
+Object-based Rendering
+ Image generation done through rasterization
+(cid:127) Scene objects formed by 3D models (primitives)
+are transformed through successive coordinate systems
+(cid:127) Primitives are rasterized into fragments, which are pixel predecessors
+(cid:127) A subset of the fragments becomes pixels
+Vertices Primitives Fragments Pixels
+Interactive Computer Graphics
+30/04/2026 2
+Chapter 2 – The Rendering Pipeline
+[Seite 3]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Chapter Outline
+2.1 Rendering Process
+2.2 OpenGL Overview
+2.3 OpenGL Rendering
+2.4 OpenGL Rendering Pipeline
+2.5 Fragment Tests and Operations
+2.6 Framebuffer
+2.7 Pixel-based Rendering
+References
+Interactive Computer Graphics
+30/04/2026 3
+Chapter 2 – The Rendering Pipeline
+[Seite 4]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+2.1 Rendering Process
+From 3D models over fragments to pixels
+Visual Computing Group
+Institute of Media Informatics
+[Seite 5]
+Seiten-Metadaten: Bilder=0, Rechtecke=22, Kurven=16, Linien=1
+Geometry-based Rendering 1/2
+CPU Application GPU Rendering Display Hardware
+Rendering
+3D Model Framebuffer
+Process
+Video
+Controller
+Application
+User Interaction
+Interactive Computer Graphics
+30/04/2026 5
+Chapter 2 – The Rendering Pipeline
+[Seite 6]
+Seiten-Metadaten: Bilder=0, Rechtecke=12, Kurven=3, Linien=1
+Geometry-based Rendering 2/2
+ The rendering process is realized through the rendering pipeline
+(cid:127) Renders 3D models to 2D images
+ Conceptually, the rendering pipeline consists of two GPU stages
+(cid:127) Geometry stage – processes geometric primitives
+(cid:127) Rasterization stage – processes fragments and pixels
+Rendering Pipeline
+Geometry Rasterization
+Application Framebuffer
+Stage Stage
+Interactive Computer Graphics
+30/04/2026 6
+Chapter 2 – The Rendering Pipeline
+[Seite 7]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Application Stage
+ Specification of the model elements and the scene
+as well as interaction capabilities
+(cid:127) Scene modeling: arrangement and attribution of the scene objects
+(cid:127) Calculation of animation paths
+(cid:127) Collision detection
+(cid:127) Selection of visible objects (occlusion culling)
+ Mostly out of scope of this lecture course
+Interactive Computer Graphics
+30/04/2026 7
+Chapter 2 – The Rendering Pipeline
+[Seite 8]
+Seiten-Metadaten: Bilder=0, Rechtecke=15, Kurven=33, Linien=2
+𝑦
+𝑦
+Geometry Stage
+𝑥 𝑥
+ Geometric 3D transformation
+Model Coordinate System World Coordinate System
+(cid:127) Alignment of individual scene objects in the overall scene
+(cid:127) Basic transformations: translation, scaling, rotation
+ Primitive assembly and tessellation
+(cid:127) Composition of vertices to primitives
+(cid:127) Generation of additional triangles via tessellation
+ Geometric projection (projection)
+(cid:127) 3D to 2D (e.g., perspective projection or orthogonal projection)
+ Clipping
+(cid:127) Removal of primitives outside of canvas
+ Contains programmable substages
+Interactive Computer Graphics
+30/04/2026 8
+Chapter 2 – The Rendering Pipeline
+[Seite 9]
+Seiten-Metadaten: Bilder=1, Rechtecke=14, Kurven=28, Linien=21
+Rasterization Stage
+ Conversion of primitives into fragments (rasterization)
+(cid:127) Discretization takes place in relation to a target grid
+(cid:127) Rasterization algorithms optimized for certain primitives
+(e.g., lines, triangles)
+ After rasterization per-fragment tests are performed
+(cid:127) Fragments undergo various tests (e.g., depth, transparency, masking)
+(cid:127) Fragments are copied to the framebuffer if they pass all tests
+(cid:127) Fragments can be blended with the current pixel values
+Interactive Computer Graphics
+30/04/2026 9
+Chapter 2 – The Rendering Pipeline
+[Seite 10]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+2.2 OpenGL Overview
+Library for real-time computer graphics
+Visual Computing Group
+Institute of Media Informatics
+[Seite 11]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+OpenGL History
+ Unified graphics software interface was missing
+as knowledge channeled into proprietary software packages
+(cid:127) HP's starbase
+(cid:127) SGI's Graphics Library (GL)
+ Some standardization efforts existed
+(cid:127) PHIGS
+(cid:127) GKS
+ Origin of OpenGL
+(cid:127) SGI's GL paired with hardware
+(cid:127) OpenGL specification driven by Mark Segal & Kurt Akeley
+[http://www.computinghistory.org.uk/det/11262/SGI-O2/]
+Interactive Computer Graphics
+30/04/2026 11
+Chapter 2 – The Rendering Pipeline
+[Seite 12]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+OpenGL
+ OpenGL (Open Graphics Library)
+(cid:127) Platform independent 2D and 3D graphics API
+(cid:127) API specification is provided by the Khronos Group
+ Technical implementation
+(cid:127) Rendering pipeline consisting of static and programmable pipeline stages
+(cid:127) Typically implemented as an ANSI C API
+(but with other bindings, such as Java)
+(cid:127) Programmable pipeline stages are programmed in GLSL
+(OpenGL Shading Language)
+ Implementation is hardware-dependent
+and therefore integrated in the graphics driver
+ Meanwhile Khronos also released low-level API Vulkan
+Interactive Computer Graphics
+30/04/2026 12
+Chapter 2 – The Rendering Pipeline
+[Seite 13]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+OpenGL vs. Vulkan
+ How about Vulkan?
+(cid:127) More modern than OpenGL
+(cid:127) Designed for high performance and low-level GPU control
+(cid:127) Better suited for complex, large-scale rendering engines
+ Vulkan also harder to learn and requires more setup/code
+ OpenGL is still great for learning the graphics basics first
+ Vulkan becomes important once we want more control and efficiency
+Takeaway: learn OpenGL for fundamentals, know Vulkan for current practice
+Interactive Computer Graphics
+30/04/2026 13
+Chapter 2 – The Rendering Pipeline
+[Seite 14]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+OpenGL Libraries
+ Different tastes of OpenGL
+(cid:127) OpenGL
+(cid:127) OpenGL ES - limited version for embedded systems
+(cid:127) WebGL - Javascript connection for Web Development
+(functionality similar to OpenGL ES)
+ GUI integration
+(cid:127) Can be done through platform-specific integration
+(Windows: WGL, X11: GLX, Mac OS X: Cocoa)
+(cid:127) Platform-independent solutions also exist (GLUT, freeGLUT, GLFW)
+ Popular auxiliary libraries
+(cid:127) GLU (OpenGL Utility Library) - collection of utility functions
+(cid:127) GLEW (GL Extension Wrangler) - management of extensions
+(cid:127) GLM library for vector and matrix operations
+Interactive Computer Graphics
+30/04/2026 14
+Chapter 2 – The Rendering Pipeline
+[Seite 15]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+OpenGL Functionality
+ Functional API
+(cid:127) Objects, scenes and images are described by a sequence of commands
+(functional approach, low-level)
+(cid:127) Contrast: scene or object description (declarative approach, high-level)
+ OpenGL context
+(cid:127) Sum of all rendering attributes with current characteristics
+(cid:127) Acts as a state machine, whereby the current state can be changed
+by OpenGL function calls
+(cid:127) Primitives are rendered depending on the current state
+Interactive Computer Graphics
+30/04/2026 15
+Chapter 2 – The Rendering Pipeline
+[Seite 16]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+OpenGL Context
+ Context is created and modified by the application,
+and contains all the state variables of the OpenGL engine
+ Any number of contexts per application possible,
+but at most one active context per application
+(cid:127) Context is generally tied to an output window
+(cid:127) Requires management of the active OpenGL context
+ Specification of global graphical attributes is independent of rendering
+primitives
+Interactive Computer Graphics
+30/04/2026 16
+Chapter 2 – The Rendering Pipeline
+[Seite 17]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+OpenGL Rendering Process
+ Initiation from the developer's perspective
+(cid:127) Creation of the output window
+(cid:127) Creation of the context
+(cid:127) Specification of the scene geometry
+(cid:127) Uploading of the scene geometry to the GPU
+(cid:127) Rendering of the scene geometry
+Interactive Computer Graphics
+30/04/2026 17
+Chapter 2 – The Rendering Pipeline
+[Seite 18]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Window Creation with GLFW 1/2
+#include <GLFW/glfw3.h>
+#include <stdlib.h>
+#include <stdio.h>
+static void error_callback(int error, const char* description) {
+fputs(description, stderr);
+}
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+glfwSetWindowShouldClose(window, GL_TRUE);
+}
+Interactive Computer Graphics
+30/04/2026 18
+Chapter 2 – The Rendering Pipeline
+[Seite 19]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Window Creation with GLFW 2/2
+int main(void){
+GLFWwindow* window;
+glfwSetErrorCallback(error_callback);
+if (!glfwInit()) exit(EXIT_FAILURE);
+window = glfwCreateWindow(640, 480, "Simple example", NULL, NULL);
+if (!window) {
+glfwTerminate();
+exit(EXIT_FAILURE);
+}
+glfwMakeContextCurrent(window);
+glfwSetKeyCallback(window, key_callback);
+while (!glfwWindowShouldClose(window)) {
+renderScene();
+glfwSwapBuffers(window);
+glfwPollEvents();
+}
+glfwDestroyWindow(window);
+glfwTerminate();
+exit(EXIT_SUCCESS);
+}
+Interactive Computer Graphics
+30/04/2026 19
+Chapter 2 – The Rendering Pipeline
+[Seite 20]
+Seiten-Metadaten: Bilder=0, Rechtecke=43, Kurven=0, Linien=17
+OpenGL Naming Conventions
+ Function-Prefix "gl"
+(cid:127) glClear, ...
+ Constant-Prefix "GL"
+(cid:127) GL_POLYGON, GL_LINES, ...
+ Parameter types are explicitly encoded in function names
+Suffix Data Type C-Data Type OpenGL typedef
+b 8-bit Integer signed char GLbyte
+s 16-bit Integer short GLshort
+i 32-bit Integer int / long GLint, Glsizei
+f 32-bit Floating-Point float GLfloat, GLclamf
+d 64-bit Floating-Point double GLdouble, GLclampd
+ub 8-bit unsigned Integer unsigned char GLubyte, GLboolean
+us 16-bit unsigned Integer unsigned short GLushort
+ui 32-bit unsigned Integer unsigned int / long GLuint, GLenum, GLbitfield
+v Pointer * -
+Interactive Computer Graphics
+30/04/2026 20
+Chapter 2 – The Rendering Pipeline
+Extrahierte Tabellen:
+[Tabelle 1]
+Suffix | Data Type | C-Data Type | OpenGL typedef
+b | 8-bit Integer | signed char | GLbyte
+s | 16-bit Integer | short | GLshort
+i | 32-bit Integer | int / long | GLint, Glsizei
+f | 32-bit Floating-Point | float | GLfloat, GLclamf
+d | 64-bit Floating-Point | double | GLdouble, GLclampd
+ub | 8-bit unsigned Integer | unsigned char | GLubyte, GLboolean
+us | 16-bit unsigned Integer | unsigned short | GLushort
+ui | 32-bit unsigned Integer | unsigned int / long | GLuint, GLenum, GLbitfield
+v | Pointer | * | -
+[Seite 21]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+2.3 OpenGL Rendering
+Transfer of 3D models to the GPU
+Visual Computing Group
+Institute of Media Informatics
+[Seite 22]
+Seiten-Metadaten: Bilder=1, Rechtecke=5, Kurven=0, Linien=1
+OpenGL Rendering (until V2.1)
+ Rendering is done through Immediate Mode
+void renderScene() {
+glColor3f(0.0f, 1.0f, 0.0f); // drawing color becomes green
+glBegin(GL_POLYGON); // begin primitive
+glVertex2f(-0.5f,-0.5f); // 1. vertex
+glVertex2f(-0.5f, 0.5f); // 2. vertex
+glVertex2f( 0.5f, 0.5f); // 3. vertex
+glVertex2f( 0.5f,-0.5f); // 4. vertex
+glEnd(); // end primitive
+glFlush(); // synchronize pipeline
+}
+ Disadvantages
+(cid:127) Transfer geometry from the CPU to the GPU on every call
+(cid:127) Transmission takes much longer than the actual drawing process
+Interactive Computer Graphics
+30/04/2026 22
+Chapter 2 – The Rendering Pipeline
+[Seite 23]
+Seiten-Metadaten: Bilder=0, Rechtecke=10, Kurven=0, Linien=1
+OpenGL Rendering (since V3.0)
+ Using Vertex Array Objects (VAOs)
+(cid:127) Vertex specification in CPU memory
+(cid:127) Vertex data transfer from CPU to GPU
+(cid:127) Memory layout description of the vertex data
+(cid:127) Number of vertices, number of components (x, y, z, ...)
+(cid:127) Base type (float, double, ...)
+(cid:127) ...
+(cid:127) VAO Drawing
+Vertex Array Object
+(cid:127) GPU memory release
+Vertex Buffer Object 0
+ VAO acts as a container for the geometry data stored
+in one or more Vertex Buffer Objects (VBOs) Vertex Buffer Object 1
+Interactive Computer Graphics
+30/04/2026 23
+Chapter 2 – The Rendering Pipeline
+[Seite 24]
+Seiten-Metadaten: Bilder=0, Rechtecke=7, Kurven=0, Linien=1
+1. Vertex Specification
+ Vertex data is specified as a C array
+// vertices of two triangles
+GLfloat vertices[6][2] = { // 6 vertices with two components each (x,y)
+{0.0, 1.0}, {1.0, 1.0}, {1.0, 0.0}, // 1. triangle
+{0.5, 0.5}, {1.0, 0.3}, {0.7, 1.0} // 2. triangle
+};
+ In OpenGL an ID must be generated for each VAO and VBO
+ Active VAO and VBO are selected by ID
+GLint vaoID;
+glGenVertexArrays(1, &vaoID);
+glBindVertexArray(vaoID);
+GLint vboID;
+glGenBuffer(1, &vboID);
+glBindBuffer(vboID);
+Interactive Computer Graphics
+30/04/2026 24
+Chapter 2 – The Rendering Pipeline
+[Seite 25]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+2. Vertex Data Transfer
+ VBO allocation and data transfer via
+ glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
+(cid:127) data – address in main memory (i.e., vertices or &vertices[0])
+(cid:127) size – size of data in number of bytes
+(i.e. sizeof(vertices) or numVertices*sizeof(GLfloat)*2)
+(cid:127) GL_STATIC_DRAW: Buffer is generated once and used several times
+(alternative: GL_DYNAMIC_DRAW)
+ In the case of data == NULL, only the memory on the GPU is reserved,
+but there is no data transfer
+Interactive Computer Graphics
+30/04/2026 25
+Chapter 2 – The Rendering Pipeline
+[Seite 26]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+3. Memory Layout Description
+ Memory layout is described by the following function
+ glVertexAttribPointer(attribIndex, size, type, normalized, stride, offset);
+(cid:127) attribIndex – attribute number (0 for position, later more ...)
+(cid:127) size – number of components per vertex (2 for xy, 3 for xyz)
+(cid:127) type – base type (typically GL_FLOAT or GL_DOUBLE)
+(cid:127) normalized – normalize integer values w hen converting to floating-point numbers
+to [-1,1] (signed) or [0,1] (unsigned)
+(cid:127) stride – gap between data in memory (0: data directly adjacent to each other)
+(cid:127) offset – is added to the start address specified with glBufferData
+(can often be simply set to 0)
+ First, attributes must be activated
+ glEnableVertexAttribArray(attribIndex);
+ The coordinates of the vertices are assigned to the attribute index 0,
+but there is also the possibility to assign further attributes
+(e.g., colors, normals, ...)
+Interactive Computer Graphics
+30/04/2026 26
+Chapter 2 – The Rendering Pipeline
+[Seite 27]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+4. VAO Drawing 1/2
+ Drawing is done with the command
+ glDrawArrays(mode, first, count);
+(cid:127) mode – specifies the primitive type (e.g., GL_TRIANGLES or GL_LINES)
+ From all vertices, the next count vertices are drawn from index first
+ Actual vertex data no longer needs to be specified
+Interactive Computer Graphics
+30/04/2026 27
+Chapter 2 – The Rendering Pipeline
+[Seite 28]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=18, Linien=15
+4. VAO Drawing 2/2
+ There is a small number of primitive types
+(cid:127) Points
+(cid:127) Lines, Line Strips, Line Loops
+(cid:127) Triangles, Triangle Strips, Triangle Fans, Patches
+v2 v2 v2
+v0 v0 v0
+v1 v1 v1
+v3 v3 v3
+v5 v4 v5 v4 v5 v4
+GL_LINES GL_LINE_STRIP GL_LINE_LOOP
+ For Geometry shaders: with adjacency (discussed later)
+Interactive Computer Graphics
+30/04/2026 28
+Chapter 2 – The Rendering Pipeline
+[Seite 29]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+5. GPU Memory Release
+ After usage VAO and VBO should be deleted from GPU memory
+ glDeleteBuffers(…);
+ glDeleteVertexArrays(…);
+Interactive Computer Graphics
+30/04/2026 29
+Chapter 2 – The Rendering Pipeline
+[Seite 30]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Rendering Initialization 1/2
+static void init_render_scene(void) {
+static const GLfloat vertices[6][2] = {
+{0.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f}, /* 1st triangle */
+{0.5f, 0.5f}, {1.0f, 0.3f}, {0.7f, 1.0f} /* 2nd triangle */
+};
+static const char* vs_src =
+"#version 330 core\n"
+"layout (location = 0) in vec2 aPos;\n"
+"void main(void) {\n"
+" gl_Position = vec4(aPos, 0.0, 1.0);\n"
+"}\n";
+static const char* fs_src =
+"#version 330 core\n"
+"out vec4 FragColor;\n"
+"void main(void) {\n"
+" FragColor = vec4(1.0, 1.0, 1.0, 1.0);\n"
+"}\n";
+...
+Interactive Computer Graphics
+30/04/2026 30
+Chapter 2 – The Rendering Pipeline
+[Seite 31]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Rendering Initialization 2/2
+program = create_program(vs_src, fs_src);
+glGenVertexArrays(1, &vao);
+glGenBuffers(1, &vbo);
+glBindVertexArray(vao);
+glBindBuffer(GL_ARRAY_BUFFER, vbo);
+glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), (void*)0);
+glEnableVertexAttribArray(0);
+glBindBuffer(GL_ARRAY_BUFFER, 0);
+glBindVertexArray(0);
+}
+Interactive Computer Graphics
+30/04/2026 31
+Chapter 2 – The Rendering Pipeline
+[Seite 32]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Rendering
+static void render_scene(void) {
+glClear(GL_COLOR_BUFFER_BIT);
+glUseProgram(program);
+glBindVertexArray(vao);
+glDrawArrays(GL_TRIANGLES, 0, 6);
+glBindVertexArray(0);
+}
+static void cleanup_render_scene(void) {
+if (vbo) glDeleteBuffers(1, &vbo);
+if (vao) glDeleteVertexArrays(1, &vao);
+if (program) glDeleteProgram(program);
+}
+Interactive Computer Graphics
+30/04/2026 32
+Chapter 2 – The Rendering Pipeline
+[Seite 33]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=4, Linien=1
+Additional Attributes
+ Additional attributes are necessary for drawing
+(cid:127) Color, normals, texture coordinates, ...
+ There are two ways to assign these attributes to the vertex data
+(cid:127) Attributes are bound to the same VAO in separate VBO
+(cid:127) Attributes are stored interleaved with vertex data,
+whereby stride and offset are used to separate
+X0,Y0,Z0,R0,G0,B0,X1,Y1,Z1,R1,G1,B1,X2,Y2,Z2,R2,G2,B2,...
+offset
+stride
+Interactive Computer Graphics
+30/04/2026 33
+Chapter 2 – The Rendering Pipeline
+[Seite 34]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+2.4 OpenGL Rendering Pipeline
+Programmable and static stages
+Visual Computing Group
+Institute of Media Informatics
+[Seite 35]
+Seiten-Metadaten: Bilder=3, Rechtecke=22, Kurven=43, Linien=23
+The Rendering Pipeline 1/2
+Scene Description Raster Image
+Geometry Fragment
+Rasterization
+Processing Processing
+Vertices Primitives Fragments Pixels
+Interactive Computer Graphics
+30/04/2026 35
+Chapter 2 – The Rendering Pipeline
+[Seite 36]
+Seiten-Metadaten: Bilder=0, Rechtecke=87, Kurven=22, Linien=1
+The Rendering Pipeline 2/2
+ Sequence of fixed and programmable stages Programmable
+Vertex Processing
+ Process is influenced by context and scene objects
+Context Fixed Function
+ Programmable levels are programmed
+Vertex Postprocessing
+via shaders in GLSL
+Fixed Function
+Rasterization
+Programmable
+Objects Fragment Processing
+Fragment Tests
+and Operations
+Interactive Computer Graphics
+30/04/2026 36
+Chapter 2 – The Rendering Pipeline
+Extrahierte Tabellen:
+[Tabelle 1]
+Context
+Objects
+[Seite 37]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Shader Programming – History 1/2
+ There is special graphics hardware (dedicated)
+and general graphics hardware (general purpose)
+ Special graphics hardware
+(cid:127) Volume Rendering: VolumePro
+(cid:127) Game consoles: Custom NVIDIA chips in XBox
+(cid:127) Graphics chips for mobile devices
+ General graphics hardware
+(cid:127) SGI's InfiniteReality
+(cid:127) UNC's PixelFlow
+(cid:127) NVIDIA's GeForce and AMD's Radeon series
+Interactive Computer Graphics
+30/04/2026 37
+Chapter 2 – The Rendering Pipeline
+[Seite 38]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Shader Programming – History 2/2
+ Various vendor-dependent extensions are introduced
+to provide extensibility for general graphics hardware
+(cid:127) Texture shaders and register combiners allowed modification
+through the application of textures
+ Applicability is very limited by the possibilities of graphics hardware
+ General programming language for developing shaders was needed
+Interactive Computer Graphics
+30/04/2026 38
+Chapter 2 – The Rendering Pipeline
+[Seite 39]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Assembler Shader
+ First OpenGL extensions support shader programming in assembler code
+!! ARBvp1.0
+ATTRIB iPos = vertex.position ;
+ATTRIB iNormal = vertex.normal ;
+...
+OUTPUT oPos = result.position ;
+OUTPUT oColor = result.color ;
+# Transform the vertex to clip coordinates
+DP4 oPos.x, mvp [0], iPos ;
+DP4 oPos.y, mvp [1], iPos ;
+DP4 oPos.z, mvp [2], iPos ;
+DP4 oPos.w, mvp [3], iPos ;
+# Assign color contributions
+...
+MOV oColor.w, diffuseCol.w;
+END
+Interactive Computer Graphics
+30/04/2026 39
+Chapter 2 – The Rendering Pipeline
+[Seite 40]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+High-Level Shading Languages 1/2
+ Assembler code is hard to read and hard to maintain
+ High-level languages f or shading are specified in C-like syntax
+ Source code is translated by the compiler into appropriate ASM statements
+ Using shaders after initial binding automatically when rendering geometry
+ Interface to OpenGL by passing appropriate variables or changing the OpenGL
+state (e.g., binding textures)
+Interactive Computer Graphics
+30/04/2026 40
+Chapter 2 – The Rendering Pipeline
+[Seite 41]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+High-Level Shading Languages 2/2
+ Existing high level languages f or shader development
+(cid:127) CG - C for Graphics by NVIDIA
+(cid:127) CG was introduced in 2003 by NVIDIA as a platform independent solution
+(in practice rather semi-platform independent)
+(cid:127) HLSL - High Level Shading Language from Microsoft
+(cid:127) Microsoft introduced HLSL as an extension to DirectX in 2003
+(fragment shaders are called pixel shaders)
+(cid:127) GLSL - OpenGL Shading Language
+(cid:127) GLSL has been supported since 2005 (initially as an OpenGL extension)
+ GLSL syntax similar to C
+(cid:127) Vector and matrix base types exist
+vec4 v1; // same as ‘float v1[4]’ in C
+ivec3 v2; // same as ‘int v2[3]’ in C
+vec4 v3 = v1.xzzy; // swizzling of components
+Interactive Computer Graphics
+30/04/2026 41
+Chapter 2 – The Rendering Pipeline
+[Seite 42]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Shader Types
+ Pipeline concept has been kept in place
+and shaders are responsible for different stages
+ First, geometry level programming was done by vertex shaders
+(cid:127) Vertex shaders allow modifiability of vertex transformations and lighting
+ After that, there was an extension for image-based algorithms by fragment
+shaders
+(cid:127) Fragment shaders allow programmability of texture applications
+ This was followed by geometry shaders
+(cid:127) Generation of new geometry (later chapter)
+ Afterwards tesselation shaders were introduced that influence the
+triangulation of primitives
+Interactive Computer Graphics
+30/04/2026 42
+Chapter 2 – The Rendering Pipeline
+[Seite 43]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=10, Linien=1
+Vertex Shader Concepts
+ Vertex shaders enable the programmable modification of processed geometry
+ Possibilities of a vertex shader
+Programmable
+(cid:127) Geometric transformation of vertices and normals
+Vertex Processing
+(cid:127) Lighting calculation
+Fixed Function
+(cid:127) Texture coordinate generation
+Vertex Postprocessing
+(cid:127) Texture coordinate transformation
+Fixed Function
+(cid:127) Normalization of normals Rasterization
+(cid:127) Custom clipping planes
+Programmable
+(cid:127) ... Fragment Processing
+Fragment Tests
+and Operations
+Interactive Computer Graphics
+30/04/2026 43
+Chapter 2 – The Rendering Pipeline
+[Seite 44]
+Seiten-Metadaten: Bilder=3, Rechtecke=3, Kurven=0, Linien=1
+Vertex Shader Examples 1/2
+Interactive Computer Graphics
+30/04/2026 44
+Chapter 2 – The Rendering Pipeline
+[Seite 45]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Vertex Shader Examples 2/2
+ Morphing
+ Shadow volume calculation for shadow effects
+[ID Software‘s Doom III]
+Interactive Computer Graphics
+30/04/2026 45
+Chapter 2 – The Rendering Pipeline
+[Seite 46]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Vertex Shader Coordinate Systems 1/2
+ Vertex shaders are executed for each vertex
+ Vertex shaders calculate coordinates in clipping coordinates as output
+ Vertex shaders can not
+(cid:127) Access adjacent vertices
+(cid:127) Change the number of vertices (i.e., generate or discard vertices)
+ Output is always the final coordinate of the vertex
+gl_Position = vec4(pos.x, pos.y, pos.z, pos.w);
+Interactive Computer Graphics
+30/04/2026 46
+Chapter 2 – The Rendering Pipeline
+[Seite 47]
+Seiten-Metadaten: Bilder=13, Rechtecke=3, Kurven=24, Linien=1
+Vertex Shader Coordinate Systems 2/2
+Local Space World Space View Space Clip Space Screen Space
+Viewport
+𝑀 𝑀 𝑀
+𝑚𝑜𝑑𝑒𝑙 𝑣𝑖𝑒𝑤 𝑝𝑟𝑜𝑗𝑒𝑐𝑡 Transform
+Interactive Computer Graphics
+30/04/2026 47
+Chapter 2 – The Rendering Pipeline
+[Seite 48]
+Seiten-Metadaten: Bilder=7, Rechtecke=3, Kurven=24, Linien=1
+Local Space
+ Coordinates of your object relative to its local origin
+(cid:127) 3D vertex positions
+Interactive Computer Graphics
+30/04/2026 48
+Chapter 2 – The Rendering Pipeline
+[Seite 49]
+Seiten-Metadaten: Bilder=6, Rechtecke=3, Kurven=28, Linien=1
+World Space
+ Coordinates in respect of a larger world
+ Relative to some global origin of the world
+ Together with many other objects
+Interactive Computer Graphics
+30/04/2026 49
+Chapter 2 – The Rendering Pipeline
+[Seite 50]
+Seiten-Metadaten: Bilder=6, Rechtecke=3, Kurven=28, Linien=1
+View Space
+ Coordinates as seen from the camera
+Interactive Computer Graphics
+30/04/2026 50
+Chapter 2 – The Rendering Pipeline
+[Seite 51]
+Seiten-Metadaten: Bilder=6, Rechtecke=3, Kurven=28, Linien=1
+Clip Space
+ Clip coordinates range from -1 to 1
+ Projection (Orthographic, Perspective)
+Interactive Computer Graphics
+30/04/2026 51
+Chapter 2 – The Rendering Pipeline
+[Seite 52]
+Seiten-Metadaten: Bilder=5, Rechtecke=3, Kurven=28, Linien=1
+Screen Space
+ Transform to image coordinates with glViewport
+ Results are sent to the rasterizer
+Interactive Computer Graphics
+30/04/2026 52
+Chapter 2 – The Rendering Pipeline
+[Seite 53]
+Seiten-Metadaten: Bilder=13, Rechtecke=3, Kurven=24, Linien=1
+Coordinate Systems
+Local Space World Space View Space Clip Space Screen Space
+Viewport
+𝑀 𝑀 𝑀
+𝑚𝑜𝑑𝑒𝑙 𝑣𝑖𝑒𝑤 𝑝𝑟𝑜𝑗𝑒𝑐𝑡 Transform
+Interactive Computer Graphics
+30/04/2026 53
+Chapter 2 – The Rendering Pipeline
+[Seite 54]
+Seiten-Metadaten: Bilder=0, Rechtecke=7, Kurven=0, Linien=1
+Vertex Shader Variables
+ Input types
+(cid:127) Uniforms: read only in VS (& FS) // Intrinsic vertex attributes
+out gl_PerVertex {
+(cid:127) For example: light position or light color
+vec4 gl_Position;
+(cid:127) Attributes: Only accessible in the VS float gl_PointSize;
+float gl_ClipDistance[];
+(cid:127) For example: vertex position or normal
+};
+(cid:127) Varyings: Data transfer from the VS to the FS
+(cid:127) Read access in FS, read and write access in VS // Custom vertex attributes
+out VertexData {
+ Output types
+vec2 texCoord;
+} VertexOut;
+(cid:127) Attributes for each vertex can be written
+…
+VertexOut.texCoord = vec2(…);
+Interactive Computer Graphics
+30/04/2026 54
+Chapter 2 – The Rendering Pipeline
+[Seite 55]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=10, Linien=1
+Fixed Function Vertex Postprocessing
+ Clipping
+(cid:127) Discard invisible geometries
+Programmable
+ Perspective Division
+Vertex Processing
+(cid:127) Transformation into normalized device coordinates
+Fixed Function
+(NDC)
+Vertex Postprocessing
+ Viewport Transformation
+Fixed Function
+(cid:127) Transformation into screen coordinates Rasterization
+(cid:127) Scaling of depth values ( see later)
+Programmable
+Fragment Processing
+Fragment Tests
+and Operations
+Interactive Computer Graphics
+30/04/2026 55
+Chapter 2 – The Rendering Pipeline
+[Seite 56]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=34, Linien=21
+Fixed Function Rasterization
+ Geometry is converted to raster coordinates
+Programmable
+Vertex Processing
+Fixed Function
+Primitives Fragments Vertex Postprocessing
+ Efficient algorithms necessary Fixed Function
+Rasterization
+ Specializes in algorithms for
+Programmable
+different types of primitives
+Fragment Processing
+(cid:127) Line, triangle, ...
+Fragment Tests
+and Operations
+Interactive Computer Graphics
+30/04/2026 56
+Chapter 2 – The Rendering Pipeline
+[Seite 57]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=10, Linien=1
+Fragment Shader Concept 1/2
+ Fragment shaders set the color of a pixel
+ Possibilities of a fragment shader
+Programmable
+(cid:127) Glare of textures
+Vertex Processing
+(cid:127) Fog calculation
+Fixed Function
+(cid:127) Discarding fragments
+Vertex Postprocessing
+(cid:127) Additional depth tests
+Fixed Function
+(cid:127) Additional alpha tests Rasterization
+(cid:127) Bump and environment mapping
+Programmable
+(cid:127) ... Fragment Processing
+Fragment Tests
+and Operations
+Interactive Computer Graphics
+30/04/2026 57
+Chapter 2 – The Rendering Pipeline
+[Seite 58]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Fragment Shader Concept 2/2
+ Fragment shaders are executed for fragments (= pixel predecessors)
+ Fragment shaders calculate the color and depth value of the current fragment
+ No information about adjacent fragments available
+ The number of fragments can be changed
+(cid:127) Fragment shaders can not generate fragments
+(cid:127) Fragment shaders can discard fragments
+ Output is always the final color of the fragment along with the depth
+FragData0 = vec4(1.0, 0.0, 0.0, 1.0);
+gl_FragDepth = 0.5;
+Interactive Computer Graphics
+30/04/2026 58
+Chapter 2 – The Rendering Pipeline
+[Seite 59]
+Seiten-Metadaten: Bilder=0, Rechtecke=7, Kurven=0, Linien=1
+Shader Example
+layout (std140) uniform Matrices { Vertex Shader
+mat4 projModelViewMatrix;
+mat3 normalMatrix; /** Fragment Shader
+}; * Set fragment color to red.
+*/
+in vec3 position;
+in vec3 normal; out vec4 colorOut;
+in vec2 texCoord;
+void main() {
+out VertexData { colorOut = vec4(1.0, // R
+vec2 texCoord; 0.0, // G
+vec3 normal; 0.0, // B
+} VertexOut; 1.0); // A
+gl_FragDepth = 0.5;
+void main() { }
+VertexOut.texCoord = texCoord;
+VertexOut.normal = normalize(normalMatrix * normal);
+gl_Position = projModelViewMatrix * vec4(position, 1.0);
+}
+Interactive Computer Graphics
+30/04/2026 59
+Chapter 2 – The Rendering Pipeline
+Extrahierte Tabellen:
+[Tabelle 1]
+/** * Set f */ out vec4 void mai color gl_Fr } | Fragment Shader ragment color to red. colorOut; n() { Out = vec4(1.0, // R 0.0, // G 0.0, // B 1.0); // A agDepth = 0.5;
+[Seite 60]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+GLSL Shader Functions
+ Trigonometry functions
+(cid:127) radians, degrees, sin, cos, tan, asin, acos, atan
+ Power calculations
+(cid:127) pow, exp2, log2, sqrt, inversesqrt
+ General
+(cid:127) abs, sign, floor, ceil, fract, mod, min, max, clamp, mix,
+step, smoothstep
+ Vector and matrix operations
+(cid:127) length, distance, dot, cross, normalize, ftransform,
+faceforward, reflect, matrixCompMult
+ And many more!
+Interactive Computer Graphics
+30/04/2026 60
+Chapter 2 – The Rendering Pipeline
+[Seite 61]
+Seiten-Metadaten: Bilder=0, Rechtecke=39, Kurven=12, Linien=1
+Shader Usage
+ One or multiple shaders are attached to a shader program
+Vertex Shader
+glCreateShader glCreateProgram
+Fragment Shader
+glShaderSource glAttachShader glCreateShader
+glCompileShader glAttachShader glShaderSource
+glLinkProgram glCompileShader
+glUseProgram
+Interactive Computer Graphics
+30/04/2026 61
+Chapter 2 – The Rendering Pipeline
+Extrahierte Tabellen:
+[Tabelle 1]
+Vertex Shader glCreateShader glShaderSource glCompileShader |  | 
+ | glCompileShader | 
+[Tabelle 2]
+Fragment Shader glCreateShader glShaderSource glCompileShader | 
+ | glCompileShader
+[Seite 62]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Binding Shaders
+v = glCreateShader(GL_VERTEX_SHADER); // vertex shader
+char* vs = readTextFile(”vertex-shader.vert");
+const char* vv = vs;
+glShaderSource(v, 1, &vv, NULL);
+free(vs);
+glCompileShader(v);
+f = glCreateShader(GL_FRAGMENT_SHADER); // fragment shader
+char* fs = readTextFile(”fragment-shader.frag");
+const char* ff = fs;
+glShaderSource(f, 1, &ff, NULL);
+free(fs);
+glCompileShader(f);
+p = glCreateProgram(); // create shader program
+glAttachShader(p, v);
+glAttachShader(p, f);
+glLinkProgram(p);
+glUseProgram(p);
+Interactive Computer Graphics
+30/04/2026 62
+Chapter 2 – The Rendering Pipeline
+[Seite 63]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Setting Uniforms
+ Uniforms are used to communicate between CPU and GPU
+ Data is bound to uniform locations
+(cid:127) Must be updated after each linking process
+GLint loc0 = glGetUniformLocation(p, ”isoValue_");
+glUniform1f(loc0, 0.45f);
+float intensities[2] = {0.33f, 0.51f};
+GLint loc1 = glGetUniformLocation(p, ”intensities_");
+glUniform1fv(loc1, 2, intensities);
+double vertices[12] = {0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0};
+GLint loc2 = glGetUniformLocation(p, ”vertices_");
+glUniform3dv(loc2, 4, vertices);
+Interactive Computer Graphics
+30/04/2026 63
+Chapter 2 – The Rendering Pipeline
+[Seite 64]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Shader Performance
+ Guidelines for efficient shaders
+(cid:127) Since fragment shaders are executed for a large number of fragments,
+they should contain as few instructions as possible
+(cid:127) There should be as little as possible a change of the active shaders,
+because they have their own state and, accordingly, the pipeline may need
+to be emptied
+(cid:127) With frequent changes, the behavior of a shader should be changed via
+uniforms instead of replacing the shader
+Interactive Computer Graphics
+30/04/2026 64
+Chapter 2 – The Rendering Pipeline
+[Seite 65]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=3, Linien=1
+Shader Development Environments 1/2
+ FX Composer, NVPerfHUD (NVIDIA)
+(cid:127) HLSL Shader IDE with performance analytics
+www.developer.nvidia.com/page/tools.html
+ RenderMonkey (ATI)
+(cid:127) HLSL, GLSL Shader IDE with performance analytics
+www.ati.com/developer/tools.html
+ EffectEdit (Microsoft)
+(cid:127) Interactive HLSL Renderer
+http://msdn.microsoft.com/
+Interactive Computer Graphics
+30/04/2026 65
+Chapter 2 – The Rendering Pipeline
+[Seite 66]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=1, Linien=1
+Shader Development Environments 2/2
+ Shdr online GLSL editor: https://shdr.bkcore.com/
+Interactive Computer Graphics
+30/04/2026 66
+Chapter 2 – The Rendering Pipeline
+[Seite 67]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+2.5 Fragment Tests and Operations
+Towards the finishing line to the pixel
+Visual Computing Group
+Institute of Media Informatics
+[Seite 68]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=10, Linien=1
+Fragment Tests and Operations 1/2
+ After fragments have been generated, they must go through the per-fragment
+tests and operations
+Programmable
+(cid:127) Only if all these tests are successful,
+Vertex Processing
+a fragment will end up in the framebuffer
+and become a pixel
+Fixed Function
+Vertex Postprocessing
+Fixed Function
+Rasterization
+Programmable
+Fragment Processing
+Fragment Tests
+and Operations
+Interactive Computer Graphics
+30/04/2026 68
+Chapter 2 – The Rendering Pipeline
+[Seite 69]
+Seiten-Metadaten: Bilder=0, Rechtecke=6, Kurven=23, Linien=1
+Fragment Tests and Operations 2/2
+Fragment Pixel Ownership Scissor Alpha
+Data Test Test Test
+Depth Stencil
+Framebuffer Dithering Blending
+Test Test
+Operations
+Interactive Computer Graphics
+30/04/2026 69
+Chapter 2 – The Rendering Pipeline
+[Seite 70]
+Seiten-Metadaten: Bilder=0, Rechtecke=7, Kurven=0, Linien=1
+Alpha Test
+ If framebuffer is an RGBA buffer, the alpha test can be performed
+ The test must first be activated
+glEnable(GL_ALPHA_TEST);
+ The comparison function indicates which fragments survive the test
+glAlphaFunc(func, value);
+(cid:127) func – accepts the following values
+G L_NEVER, GL_LESS, GL_EQUAL, GL_GREATER, ...
+(cid:127) value – reference value to compare with
+Interactive Computer Graphics
+30/04/2026 70
+Chapter 2 – The Rendering Pipeline
+[Seite 71]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Stencil Test
+ Stencil Buffer
+(cid:127) Is a frame buffer component
+(cid:127) Is (indirectly) filled by drawing operations
+(cid:127) No special stencil drawing operations
+ Stencil operation
+(cid:127) Modification of the stencil buffer
+ Stencil function
+(cid:127) Execution with every drawing operation
+ Stenciling is today mostly replaced with programmable shaders together with
+framebuffer objects
+Interactive Computer Graphics
+30/04/2026 71
+Chapter 2 – The Rendering Pipeline
+[Seite 72]
+Seiten-Metadaten: Bilder=0, Rechtecke=7, Kurven=0, Linien=1
+Depth Test
+ If the framebuffer has a depth buffer, the depth test can be performed
+ The test must first be activated
+glEnable(GL_DEPTH_TEST);
+ The comparison is made with the depth value already in the buffer
+ The comparison function indicates which fragments survive the test
+glDepthFunc(func);
+(cid:127) func – accepts the following values
+GL_NEVER, GL_LESS, GL_EQUAL, GL_GREATER, ...
+Interactive Computer Graphics
+30/04/2026 72
+Chapter 2 – The Rendering Pipeline
+[Seite 73]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Image Composition and Mixture
+ Alpha values o f the pixels
+(cid:127) control the combination of pixel values
+(cid:127) are specified as color components of color pixels
+(cid:127) 𝑃 = [𝑅, 𝐺, 𝐵, 𝐴], 𝑤𝑖𝑡ℎ 𝑅, 𝐺, 𝐵, 𝐴 ∈ [0,1]
+ Applications are manifold
+(cid:127) Semi-transparent surfaces
+(cid:127) Digital image combinations
+(cid:127) Drawing and painting techniques
+ Example: modeling transparency (alpha≈opacity)
+(cid:127) 𝐴 = 0.0 completely transparent
+(cid:127) 𝐴 = 0.2 80% transparent (i.e., 20% opaque)
+(cid:127) 𝐴 = 1.0 0% transparent (i.e., 100% opaque)
+Interactive Computer Graphics
+30/04/2026 73
+Chapter 2 – The Rendering Pipeline
+[Seite 74]
+Seiten-Metadaten: Bilder=1, Rechtecke=75, Kurven=0, Linien=1
+Blending Application
+ Example application for transparency: drawing with semi-transparent brush
+Interactive Computer Graphics
+30/04/2026 74
+Chapter 2 – The Rendering Pipeline
+[Seite 75]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Blending Process 1/2
+ Blending is an operation called per fragment
+(cid:127) Fragments are modified after rasterization,
+but before writing to the framebuffer with a blending function
+(cid:127) Combination of a source fragment to be written with the destination pixel
+in the frame buffer by using a blending function
+ To use blending, two steps are applied
+(cid:127) Determination of blending factors
+(cid:127) Calculation of the pixel value from source fragment and destination pixel
+Interactive Computer Graphics
+30/04/2026 75
+Chapter 2 – The Rendering Pipeline
+[Seite 76]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Blending Process 2/2
+ Source factor: 𝐹
+𝑠
+ Destination factor: 𝐹
+𝑑
+ Source fragment: [𝑃 , 𝑃 , 𝑃 , 𝑃 ]
+𝑠,𝑟 𝑠,𝑔 𝑠,𝑏 𝑠,𝑎
+ Destination pixel: [𝑃 , 𝑃 , 𝑃 , 𝑃 ]
+𝑑,𝑟 𝑑,𝑔 𝑑,𝑏 𝑑,𝑎
+ Blended pixel: [𝐹 · 𝑃 + 𝐹 · 𝑃 ,
+𝑠 𝑠,𝑟 𝑑 𝑑,𝑟
+𝐹 · 𝑃 + 𝐹 · 𝑃 ,
+𝑠 𝑠,𝑔 𝑑 𝑑,𝑔
+𝐹 · 𝑃 + 𝐹 · 𝑃 ,
+𝑠 𝑠,𝑏 𝑑 𝑑,𝑏
+𝐹 · 𝑃 + 𝐹 · 𝑃 ]
+𝑠 𝑠,𝑎 𝑑 𝑑,𝑎
+Interactive Computer Graphics
+30/04/2026 76
+Chapter 2 – The Rendering Pipeline
+[Seite 77]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Applying Blending
+ Switch on (or switch off) blending
+(cid:127) glEnable(GL_BLEND);
+(cid:127) glDisable(GL_BLEND);
+ Defining Blending Factors
+(cid:127) glBlendFunc(srcFac, destFac);
+ Blending factors in OpenGL
+(cid:127) GL_ONE
+(cid:127) GL_ZERO
+(cid:127) GL_SRC_ALPHA
+(cid:127) GL_ONE_MINUS_SRC_ALPHA
+(cid:127) GL_DST_ALPHA
+(cid:127) GL_ONE_MINUS_DST_ALPHA
+(cid:127) ...
+Interactive Computer Graphics
+30/04/2026 77
+Chapter 2 – The Rendering Pipeline
+[Seite 78]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=4, Linien=1
+Blending Examples
+ Example 1: Copy source pixels and overwrite destination pixels
+(cid:127) glBlendFunc(GL_ONE, GL_ZERO);
+(cid:127) 𝑃 = [𝑃 , 𝑃 , 𝑃 , 𝑃 ]
+𝑏𝑙𝑒𝑛𝑑 𝑠,𝑟 𝑠,𝑔 𝑠,𝑏 𝑠,𝑎
+ Example 2: Alpha-based mixing of source pixels and destination pixels
+(cid:127) glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+(cid:127) 𝑃 = [𝑃 · 𝑃 + (1 − 𝑃 ) · 𝑃 ,
+𝑏𝑙𝑒𝑛𝑑 𝑠,𝑎 𝑠,𝑟 𝑠,𝑎 𝑑,𝑟
+𝑃 · 𝑃 + 1 − 𝑃 · 𝑃 ,
+𝑠,𝑎 𝑠,𝑔 𝑠,𝑎 𝑑,𝑔
+𝑃 · 𝑃 + 1 − 𝑃 · 𝑃 ,
+𝑠,𝑎 𝑠,𝑏 𝑠,𝑎 𝑑,𝑏
+𝑃 · 𝑃 + (1 − 𝑃 ) · 𝑃 ]
+𝑠,𝑎 𝑠,𝑎 𝑠,𝑎 𝑑,𝑎
+Interactive Computer Graphics
+30/04/2026 78
+Chapter 2 – The Rendering Pipeline
+[Seite 79]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+2.6 Framebuffer
+Contains everything that is (in)visible on the screen
+Visual Computing Group
+Institute of Media Informatics
+[Seite 80]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Viewport
+ Rectangular area in pixel grid, set explicitly
+ Rendering operations are limited to this area
+ All primitives that are completely or partially outside
+are clipped at the viewport area (clipping)
+Interactive Computer Graphics
+30/04/2026 80
+Chapter 2 – The Rendering Pipeline
+[Seite 81]
+Seiten-Metadaten: Bilder=0, Rechtecke=8, Kurven=20, Linien=6
+Framebuffer
+ Context-bound raster with a resolution and structure
+specified by the application
+ Physical realization on the GPU
+ Logical subdivision
+(cid:127) Color memory
+(cid:127) Image mask memory (stencil buffer)
+(cid:127) Depth buffer
+(cid:127) ...
+Interactive Computer Graphics
+30/04/2026 81
+Chapter 2 – The Rendering Pipeline
+[Seite 82]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+OpenGL Framebuffers 1/3
+ Typical OpenGL framebuffer configuration
+8bit Stencil Buffer
+32bit Depth Buffer
+8
+8
+= 32bit Color Buffer
+8
+8
+Interactive Computer Graphics
+30/04/2026 82
+Chapter 2 – The Rendering Pipeline
+[Seite 83]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+OpenGL Framebuffers 2/3
+ All buffers of a frame buffer have the same grid size
+ Number of bitplanes per buffer can be configured individually
+ Individual buffers are directly supported by the hardware
+ Buffer identifier
+(cid:127) GL_COLOR_BUFFER_BIT
+(cid:127) GL_DEPTH_BUFFER_BIT
+(cid:127) GL_STENCIL_BUFFER_BIT
+(cid:127) GL_ACCUM_BUFFER_BIT
+Interactive Computer Graphics
+30/04/2026 83
+Chapter 2 – The Rendering Pipeline
+[Seite 84]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+OpenGL Framebuffers 3/3
+ Delete a buffer
+glClear(GLbitfield mask);
+ Set the initialization color for the color buffer
+glClearColor(1.0,1.0,1.0,1.0);
+glClear(GL_COLOR_BUFFER_BIT);
+Interactive Computer Graphics
+30/04/2026 84
+Chapter 2 – The Rendering Pipeline
+[Seite 85]
+Seiten-Metadaten: Bilder=0, Rechtecke=29, Kurven=42, Linien=7
+Double Buffering
+ Use of two color buffers to avoid flicker effects
+(cid:127) Image buildup takes place in the background (back buffer)
+(cid:127) Visible image is independent of this (front buffer)
+Rendering
+Process
+Interactive Computer Graphics
+30/04/2026 85
+Chapter 2 – The Rendering Pipeline
+[Seite 86]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+2.7 Pixel-based Rendering
+Direct pixel processing without involving 3D models
+Visual Computing Group
+Institute of Media Informatics
+[Seite 87]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Pixel-based Rendering Operations
+ Generally
+(cid:127) Read and write operations for various image data formats,
+usually as an external library (e.g., DevIl)
+(cid:127) Conversions between image data types
+ In OpenGL done with framebuffer objects
+(cid:127) glDrawPixels() – write pixel array from main memory to framebuffer
+(cid:127) glReadPixels() – read pixel array from framebuffer to main memory (slow!)
+(cid:127) glCopyPixels() – copy pixel array within the frame buffer
+Interactive Computer Graphics
+30/04/2026 87
+Chapter 2 – The Rendering Pipeline
+[Seite 88]
+Seiten-Metadaten: Bilder=0, Rechtecke=28, Kurven=34, Linien=6
+Image Operations
+ Rendering image data with OpenGL
+Copy Pixel Data
+Draw/Read
+Pixel
+Geometry
+Stage Rasterization
+Framebuffer
+Application Stage
+Stage
+GLU
+Context
+Context
+Changes OpenGL
+Interactive Computer Graphics
+30/04/2026 88
+Chapter 2 – The Rendering Pipeline
+Extrahierte Tabellen:
+[Tabelle 1]
+Application Stage
+[Tabelle 2]
+ |  |  |  | amebuffer |  |  |  | 
+ |  |  |  | amebuffer |  |  |  | 
+ |  |  |  | amebuffer |  |  |  | 
+Framebuffer |  | Framebuffer | ramebuffer | amebuffer |  |  |  | 
+[Seite 89]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Write Pixels into Framebuffer
+ glDrawPixels(x, y, width, height, format, type, pixels);
+ Example
+// 64x64 array with rgb components
+GLubyte img[64][64][3];
+void draw() {
+glClear(GL_COLOR_BUFFER_BIT);
+glRasterPos2i(0,0);
+glDrawPixels(16, 16, // position
+64, 64, // width and height
+GL_RGB, // pixel format
+GL_UNSIGNED_BYTE, // pixel data type
+img // pixel array to be copied
+);
+glFlush();
+}
+Interactive Computer Graphics
+30/04/2026 89
+Chapter 2 – The Rendering Pipeline
+[Seite 90]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Read Pixels from Framebuffer
+ glReadPixels(x, y, width, height, format, type, pixels);
+ Example
+GLubyte* img = 0;
+int width, height; // canvas size
+void snapshot() {
+img = new GLubyte[width*height*3]; // allocation
+glReadPixels(0, 0, // position
+width, height, // width and height
+GL_RGB, // pixel format
+GL_UNSIGNED_BYTE, // pixel data type
+img // destination array);
+}
+Interactive Computer Graphics
+30/04/2026 90
+Chapter 2 – The Rendering Pipeline
+[Seite 91]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Formats & Data Types
+ Format information for pixel array operations
+(cid:127) GL_RGB – red-green-blue values of the frame buffer (FB)
+(cid:127) GL_RED – red values o f the FB
+(cid:127) GL_ALPHA – transparency values of the FB
+(cid:127) GL_RGBA – red-Green-Blue-Alpha values of the FB
+(cid:127) GL_LUMINANCE – brightness values of the FB
+(cid:127) ...
+ Data types for pixel array operations
+(cid:127) GL_UNSIGNED_BYTE – a pixel component is represented as an 8-bit value
+(cid:127) GL_UNSIGNED_INT – a pixel component is represented as a 32-bit integer value
+ Example: glReadPixels with
+(cid:127) Format = GL_RGBA and
+(cid:127) Data type = GL_UNSIGNED_INT
+=> 4 components (RGBA) per pixel are read in each one integer (4x4=16 bytes needed)
+Interactive Computer Graphics
+30/04/2026 91
+Chapter 2 – The Rendering Pipeline
+[Seite 92]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Chapter Summary
+ Rendering pipeline consist of geometry stage and rasterization stage
+ Geometric primitives (mostly triangles) are transformed through different
+coordinate systems in the geometry stage
+ Rasterization results in fragments, which are pixel predecessors
+ Fragments have to endure a sequence of tests in the rasterization stage, in
+order to be promoted to pixels
+Interactive Computer Graphics
+30/04/2026 92
+Chapter 2 – The Rendering Pipeline
+[Seite 93]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+References
+Literature and other sources used in this chapter
+Visual Computing Group
+Institute of Media Informatics
+[Seite 94]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+References
+ Text Books
+(cid:127) D. Shreiner, G. Sellers, J. Kessenich, B. Licea-Kane: OpenGL Programming
+Guide: The Official Guide to Learning OpenGL
+(8th Edition), Addison-Wesley 2013.
+(cid:127) P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer
+Graphics (4th Edition), AK Peters 2016. (Chapters 1, 3 & 21)
+Interactive Computer Graphics
+30/04/2026 94
+Chapter 2 – The Rendering Pipeline

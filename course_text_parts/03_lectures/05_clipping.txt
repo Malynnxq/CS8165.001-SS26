@@ -1,0 +1,950 @@
+Kapitel 05: Clipping - Moodle-Seite
+-----------------------------------
+Quelle: lectures/05-clipping/index.html
+
+Moodle Lernplattform Universität Ulm - Interaktive Computergrafik 
+Moodle Lernplattform Universität Ulm
+Interaktive Computergrafik 
+CS8165.001-SS26 
+Chap05 - Clipping (19.05.26)
+Diese Seite ist Teil des Inhalts, der von Chap05 - Clipping (19.05.26) am Dienstag, 25. August 2026, 20:30 heruntergeladen wurde. Beachten Sie, dass einige Inhalte und alle Dateien, die größer als 2 GB sind, nicht heruntergeladen werden. 
+Dateien und Verzeichnisse 
+05-clipping.pdf 
+Diese Datei ist Teil des Inhalts, der am Dienstag, 25. August 2026, 20:30 von Maksym Morozov von Interaktive Computergrafik heruntergeladen wurde.
+
+Externe Links:
+- Moodle Lernplattform Universität Ulm: https://moodle.uni-ulm.de
+- Chap05 - Clipping (19.05.26): https://moodle.uni-ulm.de/mod/resource/view.php?id=1026743
+- Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
+
+Kapitel 05: Clipping - Folien
+-----------------------------
+Quelle: lectures/05-clipping/slides/05-clipping.pdf
+
+[Seite 1]
+Seiten-Metadaten: Bilder=2, Rechtecke=2, Kurven=0, Linien=0
+Interactive Computer Graphics
+Chapter 5 – Clipping
+Summer Term 2026
+Timo Ropinski
+Visual Computing Group
+Institute of Media Informatics
+[Seite 2]
+Seiten-Metadaten: Bilder=0, Rechtecke=9, Kurven=2, Linien=9
+Clipping Projected Geometry 1/2
+ Now that the geometry has been transformed to its representation on the
+screen, parts outside screen must be clipped away
+(cid:127) Clipping ensures that following costly computations
+(e.g., rasterization, illumination, shading) are only applied to visible parts
+ Since clipping is performed for all geometry, algorithms are highly optimized
+Interactive Computer Graphics
+19/05/2026 2
+Chapter 5 – Clipping
+[Seite 3]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Clipping Projected Geometry 2/2
+ Analytical clipping
+(cid:127) Clipping before raster conversion, clipped primitives are raster-converted
+(cid:127) Compute time savings if clipped primitive is much smaller than unclipped
+(cid:127) OpenGL: clipping against canonical view volume
+ Pixel-based clipping
+(cid:127) Clipping during or after raster conversion
+(cid:127) Only pixels in the clip region are used
+(cid:127) Works with any given clip regions
+(cid:127) OpenGL: possible with fragment shaders, stencil buffer or scissoring
+Interactive Computer Graphics
+19/05/2026 3
+Chapter 5 – Clipping
+[Seite 4]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Chapter Outline
+5.1 Cohen-Sutherland Line Clipping
+5.2 Cyrus-Beck Line Clipping
+5.3 Sutherland-Hodgman Polygon Clipping
+5.4 Weiler-Atherton Polygon Clipping
+5.5 Greiner-Hormann Polygon Clipping
+References
+Interactive Computer Graphics
+19/05/2026 4
+Chapter 5 – Clipping
+[Seite 5]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+5.1 Cohen-Sutherland Line Clipping
+Clip lines against rectangle
+Visual Computing Group
+Institute of Media Informatics
+[Seite 6]
+Seiten-Metadaten: Bilder=0, Rechtecke=85, Kurven=147, Linien=1
+Brute-Force Line Clipping 1/2
+ Check each edge of the rectangle for intersection with line
+(cid:127) Intersection calculation for the line defined by the edge, and the line
+(cid:127) If intersection lies within edge and within line, clipping necessary
+𝑅
+Interactive Computer Graphics
+19/05/2026 6
+Chapter 5 – Clipping
+[Seite 7]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=15, Linien=1
+Brute-Force Line Clipping 2/2
+ Using the parameter representation for lines
+𝑥 𝑥 − 𝑥
+0 1 0
+𝑝 𝑡 = 𝑝 + 𝑡 ⋅ 𝑝 − 𝑝 = + 𝑡 ⋅ , 𝑝
+0 1 0 𝑦 𝑦 − 𝑦 1
+0 1 0
+whereby line segment 𝑠 is defined as all points
+𝑝 𝑡 : 0 ≤ 𝑡 ≤ 1
+𝑝
+0
+ Intersection calculation
+(cid:127) Parameter representation for 𝑠 and for an edge 𝑒 of 𝑅
+(cid:127) Calculation of the intersection given by 𝑡 and 𝑡
+𝑒 𝑠
+(cid:127) 0 ≤ 𝑡 ≤ 1 and 0 ≤ 𝑡 ≤ 1 ⇒ intersection lies in both segments
+𝑒 𝑠
+and is therefore clip intersection
+ Disadvantage: considerable computational effort, inefficient in practice
+Interactive Computer Graphics
+19/05/2026 7
+Chapter 5 – Clipping
+[Seite 8]
+Seiten-Metadaten: Bilder=0, Rechtecke=9, Kurven=12, Linien=1
+Endpoint Analysis 1/2
+ Idea: Use end point analysis to create new lines
+(cid:127) Clipping against a rectangle yields a line
+(cid:127) Clipping against a convex polygon results in a line
+ Endpoint analysis
+(cid:127) Line segment 𝑠 = (𝑝 , 𝑝 ), 𝑝 = (𝑥 , 𝑦 ) and 𝑝 = (𝑥 , 𝑦 )
+0 1 0 0 0 1 1 1
+(cid:127) If 𝑝 ∈ 𝑅 xor 𝑝 ∈ 𝑅
+0 1
+⇒ Clipping necessary
+(cid:127) If 𝑝 ∈ 𝑅 ∧ 𝑝 ∈ 𝑅⇒ 𝑠 ⊂ 𝑅 𝑅
+0 1
+⇒ Clipping not necessary
+(cid:127) If 𝑝 ∉ 𝑅 ∧ 𝑝 ∉ 𝑅
+0 1
+⇒ Clipping may be necessary
+Interactive Computer Graphics
+19/05/2026 8
+Chapter 5 – Clipping
+Extrahierte Tabellen:
+[Tabelle 1]
+(cid:127) If 𝑝 ∈ 𝑅 xor 𝑝 ∈ 𝑅 0 1 ⇒ Clipping necessary
+(cid:127) If 𝑝 ∈ 𝑅 ∧ 𝑝 ∈ 𝑅⇒ 𝑠 ⊂ 𝑅 0 1 ⇒ Clipping not necessary
+(cid:127) If 𝑝 ∉ 𝑅 ∧ 𝑝 ∉ 𝑅 0 1 ⇒ Clipping may be necessary
+[Seite 9]
+Seiten-Metadaten: Bilder=0, Rechtecke=254, Kurven=12, Linien=1
+Endpoint Analysis 2/2
+ Clipping lines against a clip rectangle by reduction to endpoint analysis
+(cid:127) If both endpoints are to the right of 𝑥 and to the left of 𝑥
+𝑚𝑖𝑛 𝑚𝑎𝑥
+and above 𝑦 and below 𝑦 , they are inside
+𝑚𝑖𝑛 𝑚𝑎𝑥
+(cid:127) If both endpoints are to the left of 𝑥 or to the right of 𝑥
+𝑚𝑖𝑛 𝑚𝑎𝑥
+or below 𝑦 or above 𝑦 , they are outside
+𝑚𝑖𝑛 𝑚𝑎𝑥
+(cid:127) Otherwise, the line segment must be split at a clip edge
+𝑦
+𝑚𝑎𝑥 𝑅
+𝑦
+𝑚𝑖𝑛
+𝑥 𝑥
+𝑚𝑖𝑛 𝑚𝑎𝑥
+Interactive Computer Graphics
+19/05/2026 9
+Chapter 5 – Clipping
+Extrahierte Tabellen:
+[Tabelle 1]
+(cid:127) If both endpoints are to the right of 𝑥 and to the left of 𝑥 𝑚𝑖𝑛 𝑚𝑎𝑥 and above 𝑦 and below 𝑦 , they are inside 𝑚𝑖𝑛 𝑚𝑎𝑥
+(cid:127) If both endpoints are to the left of 𝑥 or to the right of 𝑥 𝑚𝑖𝑛 𝑚𝑎𝑥 or below 𝑦 or above 𝑦 , they are outside 𝑚𝑖𝑛 𝑚𝑎𝑥
+[Seite 10]
+Seiten-Metadaten: Bilder=0, Rechtecke=6, Kurven=0, Linien=5
+Binary Coding of Half-Planes 1/3
+ Classification of the plane in nine regions
+(cid:127) Classify a point by one bit each
+for belonging to each of the 4 half-planes
+1001 1000 1010
+(cid:127) 4-bit outcode
+(cid:127) Bit 0: 𝑥 < 𝑥
+𝑚𝑖𝑛
+0001 0000 0010
+(cid:127) Bit 1: 𝑥 > 𝑥
+𝑚𝑎𝑥
+(cid:127) Bit 2: 𝑦 < 𝑦
+𝑚𝑖𝑛
+0101 0100 0110
+(cid:127) Bit 3: 𝑦 > 𝑦
+𝑚𝑎𝑥
+Interactive Computer Graphics
+19/05/2026 10
+Chapter 5 – Clipping
+[Seite 11]
+Seiten-Metadaten: Bilder=0, Rechtecke=7, Kurven=0, Linien=5
+Binary Coding of Half-Planes 2/3
+ Endpoint classification
+(cid:127) Line segment 𝑠 = (𝑝 , 𝑝 )
+0 1
+(cid:127) Outcodes:
+1001 1000 1010
+(cid:127) oc0 = 𝑜𝑢𝑡𝑐𝑜𝑑𝑒(𝑝 ), oc1 = 𝑜𝑢𝑡𝑐𝑜𝑑𝑒(𝑝 )
+0 1
+(cid:127) oc0 == 0 && oc1 == 0 ⇒ 𝑠 within 𝑅
+0001 0000 0010
+(cid:127) Both endpoints are inside
+(cid:127) (oc0 & oc1) != 0 ⇒ 𝑠 outside of 𝑅
+0101 0100 0110
+(cid:127) Endpoints lie in the exterior
+of a common half-plane
+(cid:127) Endpoints divide an "outside bit"
+Interactive Computer Graphics
+19/05/2026 11
+Chapter 5 – Clipping
+[Seite 12]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Binary Coding of Half-Planes 3/3
+ Clipping, if (oc0 & oc1) = 0:
+(cid:127) Choose an order for clipping (e.g., top, bottom, right, left)
+(cid:127) Select clip edge that is crossed by the line
+(cid:127) Check done on basis of bit codes, which differ in at least 1 bit
+(cid:127) Clip 𝑠 at this clip edge
+(cid:127) Calculate intersection with clip edge,
+which fixes either 𝑥 or 𝑦 that can be put into the equation
+(cid:127) Example: Intersection with top edge
+(cid:127) 𝑝. 𝑦 = 𝑦
+𝑚𝑎𝑥
+(cid:127) 𝑝. 𝑥 = 𝑥 + (𝑥 − 𝑥 ) · (𝑦 − 𝑦 )/(𝑦 − 𝑦 )
+0 1 0 𝑚𝑎𝑥 0 1 0
+(cid:127) Line is divided into two segments, from which one is outside and discarded
+(cid:127) Iterate with newly generated line
+Interactive Computer Graphics
+19/05/2026 12
+Chapter 5 – Clipping
+[Seite 13]
+Seiten-Metadaten: Bilder=0, Rechtecke=7, Kurven=0, Linien=1
+Pseudo Code
+void cohensutherlandLineClipper(Line s, Rectangle r) {
+int oc0 = outcode(s.p0, r);
+int oc1 = outcode(s.p1, r);
+bool done = false;
+while (!done) { int outcode(Point p, Rectangle r) {
+if (oc0 == 0 && oc1 == 0) { int c = 0;
+drawLine(s); done = true; if (p.y > r.max().y())
+} else if (oc0 & oc1 != 0) { c |= 8;
+done = true; else if (p.y < r.min().y())
+} else { c |= 4;
+if (top edge intersected) { if (p.x > r.max().x())
+calculate intersection with top edge c |= 2;
+replace and reclassify endpoint else if (p.x < r.min().x())
+} c |= 1;
+else if (bottom edge intersected) { ... } return c;
+else if (right edge intersected) { ... } }
+else if (left edge intersected) { ... }
+}
+}
+}
+Interactive Computer Graphics
+19/05/2026 13
+Chapter 5 – Clipping
+[Seite 14]
+Seiten-Metadaten: Bilder=0, Rechtecke=251, Kurven=12, Linien=1
+Example
+1001 1000 1010
+𝑅
+0001 0000 0010
+0101 0100 0110
+Interactive Computer Graphics
+19/05/2026 14
+Chapter 5 – Clipping
+[Seite 15]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Evaluation
+ Occasionally performs several (unnecessary) clip operations on a line as test
+and clippings are done in a fixed edge order
+ Especially efficient when
+(cid:127) almost all lines are outside
+(cid:127) almost all lines are inside
+ Can be generalized to the three-dimensional case
+Interactive Computer Graphics
+19/05/2026 15
+Chapter 5 – Clipping
+[Seite 16]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+5.2 Cyrus-Beck Line Clipping
+Clip lines against convex polygon
+Visual Computing Group
+Institute of Media Informatics
+[Seite 17]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Cyrus-Beck Line Clipping
+ Introduced in 1978 by Cyrus and Beck
+(cid:127) Algorithm for clipping lines against a convex polygon in the plane
+(cid:127) Expandable to clipping lines against a convex polyhedron in space
+(cid:127) Fundamentally different approach than Cohen-Sutherland
+ Further development in 1984 by Liang and Barsky
+(cid:127) Optimization of Cyrus-Beck for axis-parallel, rectangular clip regions
+ Main idea
+(cid:127) Exploit parametric representation
+(cid:127) First calculation of the parameter values o f the intersection points,
+then only calculation of the intersection point coordinates
+(cid:127) Avoid repeated clip coordinate calculation
+Interactive Computer Graphics
+19/05/2026 17
+Chapter 5 – Clipping
+[Seite 18]
+Seiten-Metadaten: Bilder=0, Rechtecke=333, Kurven=70, Linien=1
+Parametric Line Representation
+ Parametric line representation written as follows
+𝑝 𝑡 = 𝑝 + 𝑡 ⋅ 𝑝 − 𝑝 , 0 ≤ 𝑡 ≤ 1
+0 1 0
+ Proceeding
+(cid:127) Find the 4 𝑡's for the 4 clip edges
+(cid:127) Decide which of these form clip intersections
+(cid:127) Calculate these intersections (maximum 2)
+𝑅
+Interactive Computer Graphics
+19/05/2026 18
+Chapter 5 – Clipping
+[Seite 19]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=14, Linien=1
+Intersection Point Calculation 1/2
+ Consider edge 𝐸 and its outward pointing edge normal 𝑁
+ Through dot product 𝑁 ⋅ (𝑝(𝑡) − 𝑝 ) it can be decided
+𝐸
+in which half-space a line point 𝑝(𝑡) lies
+𝐸
+𝑝 𝑁  (𝑝(𝑡) – 𝑝 ) < 0
+𝐸 𝐸
+𝑝
+1
+𝑁  (𝑝(𝑡) – 𝑝 ) > 0
+𝐸
+𝑝
+0
+𝑁
+Interactive Computer Graphics
+19/05/2026 19
+Chapter 5 – Clipping
+[Seite 20]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=12, Linien=1
+Intersection Point Calculation 2/2
+ Determine intersection by calculating 𝑡 for
+𝑁 ⋅ 𝑝 𝑡 − 𝑝 = 0
+𝐸
+ Substitution of 𝑝 𝑡 and regrouping gives
+𝑁 ⋅ 𝑝 − 𝑝
+0 𝐸
+𝑡 =
+𝑁 ⋅ 𝑝 − 𝑝
+1 0
+ Solution exists only if denominator not zero, i.e., 𝑁 ⋅ 𝑝 − 𝑝 ≠ 0
+1 0
+(cid:127) Line must not be degenerated
+(cid:127) Line must not be parallel to the edge
+ Application for the 4 edges ⇒ 4 values f or 𝑡
+ Elimination of 𝑡-values t hat are not in the range [0, 1]
+Interactive Computer Graphics
+19/05/2026 20
+Chapter 5 – Clipping
+[Seite 21]
+Seiten-Metadaten: Bilder=0, Rechtecke=374, Kurven=36, Linien=1
+Determine Relevant t-Values
+ Classification of intersection points as potentially entering (PE)
+or potentially leaving (PL) with respect to interior of half-plane edge
+𝑝
+𝑝
+1
+1
+𝑝
+1
+𝑠 𝑃𝐸
+2
+𝑃𝐿 𝑃𝐿 𝑃𝐿
+𝑝 𝑠
+0 1
+𝑃𝐸
+𝑝 𝑃𝐿
+0
+𝑠
+3
+𝑃𝐸
+𝑃𝐸
+𝑁 ⋅ 𝑝 − 𝑝 > 0 ⇒ PL
+1 0
+𝑁 ⋅ 𝑝 − 𝑝 < 0 ⇒ PE
+𝑝 1 0
+0
+Interactive Computer Graphics
+19/05/2026 21
+Chapter 5 – Clipping
+[Seite 22]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Pseudo Code
+void cyrusBeckLineClipper(Line s, Rectangle r) {
+precalculate N for edges of r and select P
+i E
+D = s.p1 - s.p0
+if (s.p0 == s.p1) {
+degenerated line, clip as point;
+} else {
+t = 0; t = 1;
+E L
+for each candidate intersection with a clip edge {
+if (N  D != 0) { // only for non-parallel lines...
+i
+calculate t;
+use sign of N  D to categorize as PE or PL
+i
+if (PE) t = max(t , t);
+E E
+else if (PL) t = min(t , t);
+L L
+}
+}
+if (t < t ) { drawline(P(t ),P(t )); }
+E L E L
+else { ignore line; }
+}
+}
+Interactive Computer Graphics
+19/05/2026 22
+Chapter 5 – Clipping
+[Seite 23]
+Seiten-Metadaten: Bilder=0, Rechtecke=28, Kurven=9, Linien=13
+Axis-Parallel Clipping Region
+ When clipping region is axis parallel and given by [𝑥 , 𝑥 ] × [𝑦 , 𝑦 ],
+𝑚𝑖𝑛 𝑚𝑎𝑥 𝑚𝑖𝑛 𝑚𝑎𝑥
+following values occur
+𝑁 ⋅ 𝑝 − 𝑝
+0 𝐸
+Clip Edge 𝐸 Normal 𝑁 𝑝 𝑝 − 𝑝 𝑡 =
+𝐸 0 𝐸
+𝑁 ⋅ 𝑝 − 𝑝
+1 0
+−(𝑥 − 𝑥 )
+0 𝑚𝑖𝑛
+𝑥 = 𝑥 (−1,0) (𝑥 , 𝑦) (𝑥 – 𝑥 , 𝑦 – 𝑦)
+𝑚𝑖𝑛 𝑚𝑖𝑛 0 𝑚𝑖𝑛 0 (𝑥 − 𝑥 )
+1 0
+−(𝑥 − 𝑥 )
+0 𝑚𝑎𝑥
+𝑥 = 𝑥 (1,0) (𝑥 , 𝑦) (𝑥 – 𝑥 , 𝑦 – 𝑦)
+𝑚𝑎𝑥 𝑚𝑎𝑥 0 𝑚𝑎𝑥 0 (𝑥 − 𝑥 )
+1 0
+−(𝑦 − 𝑦 )
+0 𝑚𝑖𝑛
+𝑦 = 𝑦 (0, −1) (𝑥, 𝑦 ) (𝑥 – 𝑥, 𝑦 – 𝑦 )
+𝑚𝑖𝑛 𝑚𝑖𝑛 0 0 𝑚𝑖𝑛 (𝑦 − 𝑦 )
+1 0
+−(𝑦 − 𝑦 )
+0 𝑚𝑎𝑥
+𝑦 = 𝑦 (0,1) (𝑥, 𝑦 ) (𝑥 – 𝑥, 𝑦 – 𝑦 )
+𝑚𝑎𝑥 𝑚𝑎𝑥 0 0 𝑚𝑎𝑥 (𝑦 − 𝑦 )
+1 0
+Interactive Computer Graphics
+19/05/2026 23
+Chapter 5 – Clipping
+Extrahierte Tabellen:
+[Tabelle 1]
+Clip Edge 𝐸 | Normal𝑁 | 𝑝 𝐸 | 𝑝 − 𝑝 0 𝐸 | 𝑁 ⋅ 𝑝 − 𝑝 0 𝐸 𝑡 = 𝑁 ⋅ 𝑝 − 𝑝 1 0
+𝑥 = 𝑥 𝑚𝑖𝑛 | (−1,0) | (𝑥 ,𝑦) 𝑚𝑖𝑛 | (𝑥 – 𝑥 ,𝑦 – 𝑦) 0 𝑚𝑖𝑛 0 | −(𝑥 − 𝑥 ) 0 𝑚𝑖𝑛 (𝑥 − 𝑥 ) 1 0
+𝑥 = 𝑥 𝑚𝑎𝑥 | (1,0) | (𝑥 ,𝑦) 𝑚𝑎𝑥 | (𝑥 – 𝑥 ,𝑦 – 𝑦) 0 𝑚𝑎𝑥 0 | −(𝑥 − 𝑥 ) 0 𝑚𝑎𝑥 (𝑥 − 𝑥 ) 1 0
+𝑦 = 𝑦 𝑚𝑖𝑛 | (0,−1) | (𝑥,𝑦 ) 𝑚𝑖𝑛 | (𝑥 – 𝑥,𝑦 – 𝑦 ) 0 0 𝑚𝑖𝑛 | −(𝑦 − 𝑦 ) 0 𝑚𝑖𝑛 (𝑦 − 𝑦 ) 1 0
+𝑦 = 𝑦 𝑚𝑎𝑥 | (0,1) | (𝑥,𝑦 ) 𝑚𝑎𝑥 | (𝑥 – 𝑥,𝑦 – 𝑦 ) 0 0 𝑚𝑎𝑥 | −(𝑦 − 𝑦 ) 0 𝑚𝑎𝑥 (𝑦 − 𝑦 ) 1 0
+[Seite 24]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Comparison with Cohen-Sutherland
+ Algorithm of Cohen-Sutherland
+(cid:127) Sometimes performs useless clip operations,
+as clipping and testing are done in a fixed order
+(cid:127) Efficient when outcode tests can be performed inexpensively (e.g., by bitwise
+operations) and the majority of line segments are trivially accepted or rejected
+(cid:127) Especially efficient for large clip rectangles, when almost all lines are inside, and
+small clip rectangles when almost all lines are outside
+(cid:127) Generalizable to 3D
+ Algorithm of Cyrus-Beck / Liang-Barsky
+(cid:127) Beneficial if many lines really need to be clipped, because calculating the
+coordinates of the clip intersections is delayed as long as possible and the
+necessary tests are performed using the parameter values
+(cid:127) Generalizable to convex clip-polygons and 3D
+Interactive Computer Graphics
+19/05/2026 24
+Chapter 5 – Clipping
+[Seite 25]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+5.3 Sutherland-Hodgman Polygon Clipping
+A pipelined version of the scalar product algorithm extended to clip polygons
+Visual Computing Group
+Institute of Media Informatics
+[Seite 26]
+Seiten-Metadaten: Bilder=0, Rechtecke=11, Kurven=12, Linien=1
+Sutherland-Hodgman Polygon Clipping 1/2
+ Background
+(cid:127) General polygon clipping (arbitrary polygon against convex polygon)
+(cid:127) Originally developed for visibility detection
+(apply before rasterization to eliminate non-visible polygon pieces)
+ Polygon clipping is more complex than line clipping
+(cid:127) Clipped polygons must be closed
+(cid:127) A polygon can be split into several components by clipping
+Interactive Computer Graphics
+19/05/2026 26
+Chapter 5 – Clipping
+[Seite 27]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Sutherland-Hodgman Polygon Clipping 2/2
+ Iterative algorithm paradigm
+(cid:127) Clipping a polygon takes place against a half-plane
+(cid:127) Clipping is performed sequentially for each edge of the clipping region
+ Input
+(cid:127) Convex clipping region
+(cid:127) Polygon: convex or non-convex
+ Output
+(cid:127) One or several partial polygons
+inside clip region
+Interactive Computer Graphics
+19/05/2026 27
+Chapter 5 – Clipping
+[Seite 28]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=38, Linien=5
+Four Cases
+ Depending on which case occurs, following points added to output list
+(cid:127) Case 1: 𝑝
+(cid:127) Case 2: Intersection point 𝑖
+(cid:127) Case 3: --
+(cid:127) Case 4: Intersection point 𝑖 and 𝑝
+Inside Outside Inside Outside Inside Outside Inside Outside
+𝑠
+𝑝
+𝑖
+𝑝
+𝑠
+𝑝 𝑠
+𝑖 𝑝 𝑠
+Case 1 Case 2 Case 3 Case 4
+Interactive Computer Graphics
+19/05/2026 28
+Chapter 5 – Clipping
+[Seite 29]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Proceeding
+ Polygon to be clipped is defined by
+(cid:127) Vertices: [𝑣 , 𝑣 , … , 𝑣 ]
+1 2 𝑛
+(cid:127) Contour: [𝑣 , 𝑣 , … , 𝑣 , 𝑣 ]
+1 2 𝑛 1
+(cid:127) Edges: [𝑣 , 𝑣 ] and [𝑣 , 𝑣 ]
+𝑖 𝑖+1 𝑛 1
+ Vertex sequence (contour) is clipped in each pass against the half-plane
+ Output of a run is again a sequence of vertices
+Interactive Computer Graphics
+19/05/2026 29
+Chapter 5 – Clipping
+[Seite 30]
+Seiten-Metadaten: Bilder=3, Rechtecke=20, Kurven=11, Linien=1
+Pipeline Version
+ Speed c an be optimized through pipeline version
+(cid:127) Input: sequence of polygon vertices processed by "Pipeline of Clippers"
+ Passing on to the next level once a new vertex has been identified
+ No cache is needed during clipping
+(cid:127) Suitable for implementation by hardware
+{𝑣 , 𝑣 , … } Right Bottom Left Top {𝑣 , 𝑣 , … }
+1 2 1 2
+Interactive Computer Graphics
+19/05/2026 30
+Chapter 5 – Clipping
+[Seite 31]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Pseudo Code
+public VertexList shClipper(VertexList inputVertices, Edge clipE) {
+VertexList outputVertices; // output list of vertices
+int N = inputVertices.size(); // number of vertices to be processed
+Vertex s = inputVertices.get(N-1); // get last vertex
+for (int j = 0; j < N; j++) {
+Vertex p = inputVertices.get( j );
+if (inside(p, clipE)) {
+if (inside(s, clipE)) { // case 1
+outputVertices.add( p );
+} else { // case 4
+outputVertices.add( intersect(s, p, clipE) );
+outputVertices.add( p );
+}
+} else if (inside(s, clipE)) { // case 2
+outputVertices.add( intersect(s, p, clipE) );
+}
+s = p;
+}
+return outputVertices;
+}
+Interactive Computer Graphics
+19/05/2026 31
+Chapter 5 – Clipping
+[Seite 32]
+Seiten-Metadaten: Bilder=0, Rechtecke=11, Kurven=4, Linien=1
+Inside Test
+ Inside test for rectangular clip regions
+boolean inside(Vertex v, Edge e) { // e is edge of a clip rectangle
+if (e.v1.x > e.v0.x) // bottom
+if (v.y >= e.v0.y) return true;
+else if (e.v1.x < e.v0.x) // top
+if (v.y <= e.v0.y) return true;
+else if (e.v1.y > e.v0.y) // right
+if (v.x <= e.v1.x) return true;
+else if (e.v1.y < e.v0.y) // left
+if (v.x >= e.v0.x) return true;
+return false;
+}
+ General: is the point to the left of the directed edge?
+(cid:127) Check sign of dot product of clip edge normal and point’s position vector
+(cid:127) Direction: from the starting point to the end point
+(cid:127) Polygon vertices are arranged counterclockwise
+Interactive Computer Graphics
+19/05/2026 32
+Chapter 5 – Clipping
+[Seite 33]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Intersection Computation
+ For rectangular clip regions
+Vertex intersect(Vertex p, Vertex s, Edge e) {
+Vertex i;
+if (e.v0.y == e.v1.y) { // horizontal edge
+i.y = e.v0.y;
+i.x = p.x + (e.v0.y - p.y) * (s.x - p.x) / (s.y - p.y);
+} else { // vertical edge
+i.x = e.v0.x;
+i.y = p.y + (e.v0.x - p.x) * (s.y - p.y) / (s.x - p.x);
+}
+return i;
+}
+Interactive Computer Graphics
+19/05/2026 33
+Chapter 5 – Clipping
+[Seite 34]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+5.4 Weiler-Atherton Polygon Clipping
+Clip arbitrary polygons against arbitrary clip polygons
+Visual Computing Group
+Institute of Media Informatics
+[Seite 35]
+Seiten-Metadaten: Bilder=0, Rechtecke=13, Kurven=9, Linien=1
+Weiler-Atherton Polygon Clipping
+ Basic idea: edges of the clip polygon 𝐴 and the polygon 𝐵 to be clipped
+divide the plane into disjoint regions
+𝐴
+ Following four region types are distinguished
+1. Only-in-A (light blue)
+𝐵
+2. Only-in-B (gray)
+3. In-A-and-B (dark blue)
+4. Neither-in-A-nor-in-B (white)
+ Clipped polygon consists of all regions that belong to type 3,
+i.e., are completely in 𝐴 and 𝐵 (dark blue)
+ To obtain clipped polygon, algorithm determines a set of closed polylines in
+the plane that are just the edges of these regions
+Interactive Computer Graphics
+19/05/2026 35
+Chapter 5 – Clipping
+Extrahierte Tabellen:
+[Tabelle 1]
+ | 𝐴 | 
+𝐵 |  | 
+[Tabelle 2]
+ Following four region types are distinguished 1. Only-in-A (light blue) 2. Only-in-B (gray) 3. In-A-and-B (dark blue) 4. Neither-in-A-nor-in-B (white)
+ Clipped polygon consists of all regions that belong to type 3, i.e., are completely in 𝐴 and 𝐵 (dark blue)
+ To obtain clipped polygon, algorithm determines a set of closed polylines in the plane that are just the edges of these regions
+[Seite 36]
+Seiten-Metadaten: Bilder=5, Rechtecke=7, Kurven=0, Linien=1
+Example Run
+ Proceeding best illustrated by example run
+ Given case: two partially overlapping polygons
+(cid:127) Insert all intersections of 𝐴 and 𝐵
+(cid:127) Double all edge segments, and label each segment
+according to the adjacent region
+(only selection of labels depicted in figure)
+(cid:127) Form regions enclosing contours from all segments
+(cid:127) Associate the labels of the segments of a region to find the region 𝐴𝐵
+Interactive Computer Graphics
+19/05/2026 36
+Chapter 5 – Clipping
+Extrahierte Tabellen:
+[Tabelle 1]
+(cid:127) Insert all intersections of 𝐴 and 𝐵
+(cid:127) Double all edge segments, and label each segment according to the adjacent region (only selection of labels depicted in figure)
+(cid:127) Form regions enclosing contours from all segments
+(cid:127) Associate the labels of the segments of a region to find the region 𝐴𝐵
+[Seite 37]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=6, Linien=10
+Intersection Types
+ There are two intersection types that are distinguished
+ Transversal intersections
+(cid:127) Two edges of the two polygons intersect at one point
+(cid:127) Procedure: intersection is inserted in vertex list of both polygons
+ Segment overlaps (non-transversal)
+(cid:127) Two edges of polygons overlap completely or partially
+(cid:127) Procedure: Each corner point on section segment
+is inserted in the other polygon
+Interactive Computer Graphics
+19/05/2026 37
+Chapter 5 – Clipping
+[Seite 38]
+Seiten-Metadaten: Bilder=3, Rechtecke=3, Kurven=1, Linien=1
+Contour Processing
+ In order to find the regions-enclosing contours,
+one must eliminate overlaps of the contours
+ Transversal intersections
+(cid:127) Take the contour edges of 𝐴
+and insert the contour edges of 𝐵 one after the other
+(cid:127) Procedure: modify doubly linked list, and use end point comparison to
+check on which side the contour edges must be inserted
+ Different treatment of non-transversal transitions necessary
+Interactive Computer Graphics
+19/05/2026 38
+Chapter 5 – Clipping
+[Seite 39]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Evaluation
+ Extension to multiple polygons
+(cid:127) Efficiently possible through iterative application
+(cid:127) Alternatively, intersection points can be generated
+for all polygons in in the first step
+ Conclusion
+(cid:127) Efficient clipping of arbitrary polygons
+(cid:127) Role of the polygons is interchangeable
+(cid:127) Complex implementation!
+Interactive Computer Graphics
+19/05/2026 39
+Chapter 5 – Clipping
+[Seite 40]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+5.5 Greiner-Hormann Polygon Clipping
+Exploitation of the winding number to clip arbitrary polygons
+Visual Computing Group
+Institute of Media Informatics
+[Seite 41]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Greiner-Hormann
+ Basic Idea: clipped region is made up of all edges of 𝑆 that lie in 𝐶,
+combined with all edges of 𝐶 that lie in 𝑆
+[Greiner & Hormann, TOG 1998]
+Interactive Computer Graphics
+19/05/2026 41
+Chapter 5 – Clipping
+[Seite 42]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Chalk Wagon Metaphor
+ Using a chalk wagon metaphor
+(cid:127) Drive along all edges of 𝐴 with a chalk wagon
+that is only open when the current position is within 𝐵
+(cid:127) Drive along all edges of 𝐵 with a chalk wagon
+that is only open when the current position is within 𝐴
+(cid:127) Join all drawn edges to the clipped polygon
+Interactive Computer Graphics
+19/05/2026 42
+Chapter 5 – Clipping
+[Seite 43]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Contour Detection
+ The edges of polygon 𝐴 within polygon 𝐵 can thus be found as follows
+(cid:127) Insert in 𝐴 all intersection points with 𝐵
+(cid:127) Start at any vertex 𝑣 of 𝐴
+(cid:127) If 𝑣 is within 𝐵, the edge flag is turned on, otherwise not
+(cid:127) Traverse edges of 𝐴 and invert edge marker flag when intersecting with 𝐵
+ Thereafter, the procedure is analogous to the reversed roles of 𝐴 and 𝐵,
+and the results are merged
+Interactive Computer Graphics
+19/05/2026 43
+Chapter 5 – Clipping
+[Seite 44]
+Seiten-Metadaten: Bilder=5, Rechtecke=3, Kurven=0, Linien=1
+Set Operations
+[Greiner & Hormann, TOG 1998]
+Interactive Computer Graphics
+19/05/2026 44
+Chapter 5 – Clipping
+[Seite 45]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=4, Linien=1
+Data Structure 1/2
+ Polygons exist as a closed, double-linked list
+𝑃 , 𝑃 , 𝑃 , … , 𝑃 = 𝑃
+0 1 2 𝑛 0
+ The following segments are included
+𝑃 𝑃 , 𝑃 𝑃 , … , 𝑃 𝑃 = 𝑃 𝑃
+0 1 1 2 𝑛−1 𝑛 𝑛−1 0
+ Used data structure for vertices
+typedef struct vertex {
+int x, y;
+struct vertex *next;
+struct vertex *prev;
+struct vertex *nextPoly; // relevant for several unconnected regions
+bool intersect; // is current point intersection point?
+struct vertex *neighbor; // associated intersection point in other polygon
+bool entry; // is current point entry point?
+float alpha; // interpolation factor of intersection point
+bool visited; // has this point been already visited?
+} vertex;
+Interactive Computer Graphics
+19/05/2026 45
+Chapter 5 – Clipping
+[Seite 46]
+Seiten-Metadaten: Bilder=4, Rechtecke=3, Kurven=0, Linien=1
+Data Structure 2/2
+[Greiner & Hormann, TOG 1998]
+Interactive Computer Graphics
+19/05/2026 46
+Chapter 5 – Clipping
+[Seite 47]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Proceeding
+ Create data structure
+(cid:127) Create doubly linked list with node data structure
+(cid:127) Add the intersections with the corresponding alpha values to the list
+(cid:127) Traverse the polygon to find entry and exit points
+(use winding number rule)
+ Generate the clipping result
+(cid:127) Traverse data structure and create new polygon
+with newPolygon and newVertex
+Interactive Computer Graphics
+19/05/2026 47
+Chapter 5 – Clipping
+[Seite 48]
+Seiten-Metadaten: Bilder=4, Rechtecke=5, Kurven=0, Linien=1
+Pseudo Code
+while unprocessed intersections in subject polygon
+current = first unprocessed intersecting
+point of subject polygon
+newPolygon()
+newVertex(current)
+repeat
+if current->entry
+repeat
+current = current->next
+newVertex(current)
+until current->intersect
+else
+repeat
+current = current->prev
+newVertex(current)
+until current->intersect
+end if
+current = current->neighbor
+until PolygonClosed
+end while
+[Greiner & Hormann, TOG 1998]
+Interactive Computer Graphics
+19/05/2026 48
+Chapter 5 – Clipping
+[Seite 49]
+Seiten-Metadaten: Bilder=8, Rechtecke=4, Kurven=2, Linien=1
+Winding Number 1/3
+ Winding number of a point 𝐴 and a closed curve 𝛾
+indicates the number of times a ray that traverses the entire curve from 𝐴
+winds around 𝐴
+1
+𝜔 𝛾, 𝐴 = (cid:3505) 𝑑𝜑
+2𝜋
+(cid:127) Counterclockwise: +1
+(cid:127) Clockwise: -1
+ 𝐴 lies in 𝛾 if and only if odd number of winds
+[Greiner & Hormann, TOG 1998]
+Interactive Computer Graphics
+19/05/2026 49
+Chapter 5 – Clipping
+[Seite 50]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Winding Number 2/3
+ The winding number of a point 𝐴 has the following useful properties
+1. If 𝐴 or the curve 𝛾 is continuously changed so that 𝐴 maintains a
+positive distance to 𝛾, the winding number will not change
+For curve 𝛾, the winding number is constant in each region formed by 𝛾
+2. When 𝐴 moves and 𝛾 crosses once, winding number changes by exactly 1
+[Greiner & Hormann, TOG 1998]
+Interactive Computer Graphics
+19/05/2026 50
+Chapter 5 – Clipping
+[Seite 51]
+Seiten-Metadaten: Bilder=5, Rechtecke=3, Kurven=0, Linien=1
+Winding Number 3/3
+ From the second property follows
+(cid:127) A path that cuts a curve (= the clipping polygon) just once,
+runs either from inside to outside, or from outside to inside
+ Clipping operation can be performed by computing
+[Greiner & Hormann, TOG 1998]
+intersections of both polygons
+(cid:127) Similarly, the union and difference
+of two polygons can be calculated
+Interactive Computer Graphics
+19/05/2026 51
+Chapter 5 – Clipping
+[Seite 52]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Special Cases
+ Simple cases can be solved after unsuccessful intersection calculation
+directly via winding number operation
+(cid:127) One polygon is contained in the other polygon
+(cid:127) Polygons have no overlaps
+ Problem: One point lies on one edge
+of the other polygon
+(cid:127) Occurs when an alpha value is 0
+(cid:127) Apply shift (if possible < pixel size)
+failure example 1 failure example 2
+with two solutions with two solutions
+[Greiner & Hormann, TOG 1998]
+Interactive Computer Graphics
+19/05/2026 52
+Chapter 5 – Clipping
+[Seite 53]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Evaluation
+ Allows efficient clipping of arbitrary 2D polygons
+(cid:127) Self overlaps and holes allowed
+ Idea based on definition of winding number
+ Very simple and efficient implementation possible
+(cid:127) Much easier than Weiler-Atherton,
+as less special cases have to be considered
+Interactive Computer Graphics
+19/05/2026 53
+Chapter 5 – Clipping
+[Seite 54]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Chapter Summary
+ Cohen-Sutherland enables line clipping against rectangle
+by exploiting binary outcodes
+ Cyrus-Beck line clipping enables line clipping against convex polygon
+by exploiting parametric representations
+ Sutherland-Hodgman polygon clipping enables polygon against convex polygon
+clipping by exploiting parametric representations
+ Weiler-Atherton polygon clipping enables clipping of non-convex polygons
+against non-convex polygons
+ Greiner-Hormann polygon clipping enables clipping of arbitrary polygons
+against arbitrary polygons
+Interactive Computer Graphics
+19/05/2026 54
+Chapter 5 – Clipping
+[Seite 55]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+References
+Literature and other sources used in this chapter
+Visual Computing Group
+Institute of Media Informatics
+[Seite 56]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+References
+ Text Books
+(cid:127) J. Foley, A. van Dam, S. Feiner. “Computer Graphics: Principles and Practice (3rd Edition)”,
+Addison-Wesley 2013.
+(cid:127) P. Shirley, M. Ashikhmin, S. Marschner. “Fundamentals of Computer Graphics (4th
+Edition)”, AK Peters 2016.
+(cid:127) B. Sproull, W. M. Newman. “Principles of Interactive Computer Graphics”, p. 124, 252, 1973,
+McGraw–Hill Education, ISBN 0-07-085535-8.
+ Research Publications
+(cid:127) M. Cyrus, J. Beck. "Generalized two-and three-dimensional clipping." Computers &
+Graphics 3, no. 1 (1978): 23-28.
+(cid:127) G. Greiner, K. Hormann: Efficient Clipping of Arbitrary Polygons, ACM Transactions on
+Graphics, 17(2):71-83, 1998.
+(cid:127) I. E. Sutherland, G. W. Hodgman. "Reentrant polygon clipping." Communications of the
+ACM 17, no. 1 (1974): 32-42.
+(cid:127) K. Weiler, P. Atherton. "Hidden surface removal using polygon area sorting." In ACM
+SIGGRAPH computer graphics, vol. 11, no. 2, pp. 214-222. ACM, 1977.
+Interactive Computer Graphics
+19/05/2026 56
+Chapter 5 – Clipping

@@ -1,0 +1,16 @@
+Uebung Bonus: Rendering Contest
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Quelle: assignments/bonus-rendering-contest/index.html
+
+Moodle Lernplattform Universität Ulm - Interaktive Computergrafik 
+Moodle Lernplattform Universität Ulm
+Interaktive Computergrafik 
+CS8165.001-SS26 
+Rendering Contest (Bonus Sheet)
+Diese Seite ist Teil des Inhalts, der von Rendering Contest (Bonus Sheet) am Dienstag, 25. August 2026, 20:30 heruntergeladen wurde. Beachten Sie, dass einige Inhalte und alle Dateien, die größer als 2 GB sind, nicht heruntergeladen werden. 
+Diese Datei ist Teil des Inhalts, der am Dienstag, 25. August 2026, 20:30 von Maksym Morozov von Interaktive Computergrafik heruntergeladen wurde.
+
+Externe Links:
+- Moodle Lernplattform Universität Ulm: https://moodle.uni-ulm.de
+- Rendering Contest (Bonus Sheet): https://moodle.uni-ulm.de/mod/assign/view.php?id=1015684
+- Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076

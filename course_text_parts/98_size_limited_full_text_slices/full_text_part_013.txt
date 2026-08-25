@@ -1,0 +1,1306 @@
+    _post_call_callback_gl("glUniform3fv", (void*)glUniform3fv, 3, arg0, arg1, arg2);
+    
+}
+PFNGLUNIFORM3FVPROC glad_debug_glUniform3fv = glad_debug_impl_glUniform3fv;
+PFNGLUNIFORM3IPROC glad_glUniform3i;
+void APIENTRY glad_debug_impl_glUniform3i(GLint arg0, GLint arg1, GLint arg2, GLint arg3) {    
+    _pre_call_callback_gl("glUniform3i", (void*)glUniform3i, 4, arg0, arg1, arg2, arg3);
+     glad_glUniform3i(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glUniform3i", (void*)glUniform3i, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLUNIFORM3IPROC glad_debug_glUniform3i = glad_debug_impl_glUniform3i;
+PFNGLUNIFORM3IVPROC glad_glUniform3iv;
+void APIENTRY glad_debug_impl_glUniform3iv(GLint arg0, GLsizei arg1, const GLint * arg2) {    
+    _pre_call_callback_gl("glUniform3iv", (void*)glUniform3iv, 3, arg0, arg1, arg2);
+     glad_glUniform3iv(arg0, arg1, arg2);
+    _post_call_callback_gl("glUniform3iv", (void*)glUniform3iv, 3, arg0, arg1, arg2);
+    
+}
+PFNGLUNIFORM3IVPROC glad_debug_glUniform3iv = glad_debug_impl_glUniform3iv;
+PFNGLUNIFORM3UIPROC glad_glUniform3ui;
+void APIENTRY glad_debug_impl_glUniform3ui(GLint arg0, GLuint arg1, GLuint arg2, GLuint arg3) {    
+    _pre_call_callback_gl("glUniform3ui", (void*)glUniform3ui, 4, arg0, arg1, arg2, arg3);
+     glad_glUniform3ui(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glUniform3ui", (void*)glUniform3ui, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLUNIFORM3UIPROC glad_debug_glUniform3ui = glad_debug_impl_glUniform3ui;
+PFNGLUNIFORM3UIVPROC glad_glUniform3uiv;
+void APIENTRY glad_debug_impl_glUniform3uiv(GLint arg0, GLsizei arg1, const GLuint * arg2) {    
+    _pre_call_callback_gl("glUniform3uiv", (void*)glUniform3uiv, 3, arg0, arg1, arg2);
+     glad_glUniform3uiv(arg0, arg1, arg2);
+    _post_call_callback_gl("glUniform3uiv", (void*)glUniform3uiv, 3, arg0, arg1, arg2);
+    
+}
+PFNGLUNIFORM3UIVPROC glad_debug_glUniform3uiv = glad_debug_impl_glUniform3uiv;
+PFNGLUNIFORM4FPROC glad_glUniform4f;
+void APIENTRY glad_debug_impl_glUniform4f(GLint arg0, GLfloat arg1, GLfloat arg2, GLfloat arg3, GLfloat arg4) {    
+    _pre_call_callback_gl("glUniform4f", (void*)glUniform4f, 5, arg0, arg1, arg2, arg3, arg4);
+     glad_glUniform4f(arg0, arg1, arg2, arg3, arg4);
+    _post_call_callback_gl("glUniform4f", (void*)glUniform4f, 5, arg0, arg1, arg2, arg3, arg4);
+    
+}
+PFNGLUNIFORM4FPROC glad_debug_glUniform4f = glad_debug_impl_glUniform4f;
+PFNGLUNIFORM4FVPROC glad_glUniform4fv;
+void APIENTRY glad_debug_impl_glUniform4fv(GLint arg0, GLsizei arg1, const GLfloat * arg2) {    
+    _pre_call_callback_gl("glUniform4fv", (void*)glUniform4fv, 3, arg0, arg1, arg2);
+     glad_glUniform4fv(arg0, arg1, arg2);
+    _post_call_callback_gl("glUniform4fv", (void*)glUniform4fv, 3, arg0, arg1, arg2);
+    
+}
+PFNGLUNIFORM4FVPROC glad_debug_glUniform4fv = glad_debug_impl_glUniform4fv;
+PFNGLUNIFORM4IPROC glad_glUniform4i;
+void APIENTRY glad_debug_impl_glUniform4i(GLint arg0, GLint arg1, GLint arg2, GLint arg3, GLint arg4) {    
+    _pre_call_callback_gl("glUniform4i", (void*)glUniform4i, 5, arg0, arg1, arg2, arg3, arg4);
+     glad_glUniform4i(arg0, arg1, arg2, arg3, arg4);
+    _post_call_callback_gl("glUniform4i", (void*)glUniform4i, 5, arg0, arg1, arg2, arg3, arg4);
+    
+}
+PFNGLUNIFORM4IPROC glad_debug_glUniform4i = glad_debug_impl_glUniform4i;
+PFNGLUNIFORM4IVPROC glad_glUniform4iv;
+void APIENTRY glad_debug_impl_glUniform4iv(GLint arg0, GLsizei arg1, const GLint * arg2) {    
+    _pre_call_callback_gl("glUniform4iv", (void*)glUniform4iv, 3, arg0, arg1, arg2);
+     glad_glUniform4iv(arg0, arg1, arg2);
+    _post_call_callback_gl("glUniform4iv", (void*)glUniform4iv, 3, arg0, arg1, arg2);
+    
+}
+PFNGLUNIFORM4IVPROC glad_debug_glUniform4iv = glad_debug_impl_glUniform4iv;
+PFNGLUNIFORM4UIPROC glad_glUniform4ui;
+void APIENTRY glad_debug_impl_glUniform4ui(GLint arg0, GLuint arg1, GLuint arg2, GLuint arg3, GLuint arg4) {    
+    _pre_call_callback_gl("glUniform4ui", (void*)glUniform4ui, 5, arg0, arg1, arg2, arg3, arg4);
+     glad_glUniform4ui(arg0, arg1, arg2, arg3, arg4);
+    _post_call_callback_gl("glUniform4ui", (void*)glUniform4ui, 5, arg0, arg1, arg2, arg3, arg4);
+    
+}
+PFNGLUNIFORM4UIPROC glad_debug_glUniform4ui = glad_debug_impl_glUniform4ui;
+PFNGLUNIFORM4UIVPROC glad_glUniform4uiv;
+void APIENTRY glad_debug_impl_glUniform4uiv(GLint arg0, GLsizei arg1, const GLuint * arg2) {    
+    _pre_call_callback_gl("glUniform4uiv", (void*)glUniform4uiv, 3, arg0, arg1, arg2);
+     glad_glUniform4uiv(arg0, arg1, arg2);
+    _post_call_callback_gl("glUniform4uiv", (void*)glUniform4uiv, 3, arg0, arg1, arg2);
+    
+}
+PFNGLUNIFORM4UIVPROC glad_debug_glUniform4uiv = glad_debug_impl_glUniform4uiv;
+PFNGLUNIFORMBLOCKBINDINGPROC glad_glUniformBlockBinding;
+void APIENTRY glad_debug_impl_glUniformBlockBinding(GLuint arg0, GLuint arg1, GLuint arg2) {    
+    _pre_call_callback_gl("glUniformBlockBinding", (void*)glUniformBlockBinding, 3, arg0, arg1, arg2);
+     glad_glUniformBlockBinding(arg0, arg1, arg2);
+    _post_call_callback_gl("glUniformBlockBinding", (void*)glUniformBlockBinding, 3, arg0, arg1, arg2);
+    
+}
+PFNGLUNIFORMBLOCKBINDINGPROC glad_debug_glUniformBlockBinding = glad_debug_impl_glUniformBlockBinding;
+PFNGLUNIFORMMATRIX2FVPROC glad_glUniformMatrix2fv;
+void APIENTRY glad_debug_impl_glUniformMatrix2fv(GLint arg0, GLsizei arg1, GLboolean arg2, const GLfloat * arg3) {    
+    _pre_call_callback_gl("glUniformMatrix2fv", (void*)glUniformMatrix2fv, 4, arg0, arg1, arg2, arg3);
+     glad_glUniformMatrix2fv(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glUniformMatrix2fv", (void*)glUniformMatrix2fv, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLUNIFORMMATRIX2FVPROC glad_debug_glUniformMatrix2fv = glad_debug_impl_glUniformMatrix2fv;
+PFNGLUNIFORMMATRIX2X3FVPROC glad_glUniformMatrix2x3fv;
+void APIENTRY glad_debug_impl_glUniformMatrix2x3fv(GLint arg0, GLsizei arg1, GLboolean arg2, const GLfloat * arg3) {    
+    _pre_call_callback_gl("glUniformMatrix2x3fv", (void*)glUniformMatrix2x3fv, 4, arg0, arg1, arg2, arg3);
+     glad_glUniformMatrix2x3fv(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glUniformMatrix2x3fv", (void*)glUniformMatrix2x3fv, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLUNIFORMMATRIX2X3FVPROC glad_debug_glUniformMatrix2x3fv = glad_debug_impl_glUniformMatrix2x3fv;
+PFNGLUNIFORMMATRIX2X4FVPROC glad_glUniformMatrix2x4fv;
+void APIENTRY glad_debug_impl_glUniformMatrix2x4fv(GLint arg0, GLsizei arg1, GLboolean arg2, const GLfloat * arg3) {    
+    _pre_call_callback_gl("glUniformMatrix2x4fv", (void*)glUniformMatrix2x4fv, 4, arg0, arg1, arg2, arg3);
+     glad_glUniformMatrix2x4fv(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glUniformMatrix2x4fv", (void*)glUniformMatrix2x4fv, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLUNIFORMMATRIX2X4FVPROC glad_debug_glUniformMatrix2x4fv = glad_debug_impl_glUniformMatrix2x4fv;
+PFNGLUNIFORMMATRIX3FVPROC glad_glUniformMatrix3fv;
+void APIENTRY glad_debug_impl_glUniformMatrix3fv(GLint arg0, GLsizei arg1, GLboolean arg2, const GLfloat * arg3) {    
+    _pre_call_callback_gl("glUniformMatrix3fv", (void*)glUniformMatrix3fv, 4, arg0, arg1, arg2, arg3);
+     glad_glUniformMatrix3fv(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glUniformMatrix3fv", (void*)glUniformMatrix3fv, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLUNIFORMMATRIX3FVPROC glad_debug_glUniformMatrix3fv = glad_debug_impl_glUniformMatrix3fv;
+PFNGLUNIFORMMATRIX3X2FVPROC glad_glUniformMatrix3x2fv;
+void APIENTRY glad_debug_impl_glUniformMatrix3x2fv(GLint arg0, GLsizei arg1, GLboolean arg2, const GLfloat * arg3) {    
+    _pre_call_callback_gl("glUniformMatrix3x2fv", (void*)glUniformMatrix3x2fv, 4, arg0, arg1, arg2, arg3);
+     glad_glUniformMatrix3x2fv(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glUniformMatrix3x2fv", (void*)glUniformMatrix3x2fv, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLUNIFORMMATRIX3X2FVPROC glad_debug_glUniformMatrix3x2fv = glad_debug_impl_glUniformMatrix3x2fv;
+PFNGLUNIFORMMATRIX3X4FVPROC glad_glUniformMatrix3x4fv;
+void APIENTRY glad_debug_impl_glUniformMatrix3x4fv(GLint arg0, GLsizei arg1, GLboolean arg2, const GLfloat * arg3) {    
+    _pre_call_callback_gl("glUniformMatrix3x4fv", (void*)glUniformMatrix3x4fv, 4, arg0, arg1, arg2, arg3);
+     glad_glUniformMatrix3x4fv(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glUniformMatrix3x4fv", (void*)glUniformMatrix3x4fv, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLUNIFORMMATRIX3X4FVPROC glad_debug_glUniformMatrix3x4fv = glad_debug_impl_glUniformMatrix3x4fv;
+PFNGLUNIFORMMATRIX4FVPROC glad_glUniformMatrix4fv;
+void APIENTRY glad_debug_impl_glUniformMatrix4fv(GLint arg0, GLsizei arg1, GLboolean arg2, const GLfloat * arg3) {    
+    _pre_call_callback_gl("glUniformMatrix4fv", (void*)glUniformMatrix4fv, 4, arg0, arg1, arg2, arg3);
+     glad_glUniformMatrix4fv(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glUniformMatrix4fv", (void*)glUniformMatrix4fv, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLUNIFORMMATRIX4FVPROC glad_debug_glUniformMatrix4fv = glad_debug_impl_glUniformMatrix4fv;
+PFNGLUNIFORMMATRIX4X2FVPROC glad_glUniformMatrix4x2fv;
+void APIENTRY glad_debug_impl_glUniformMatrix4x2fv(GLint arg0, GLsizei arg1, GLboolean arg2, const GLfloat * arg3) {    
+    _pre_call_callback_gl("glUniformMatrix4x2fv", (void*)glUniformMatrix4x2fv, 4, arg0, arg1, arg2, arg3);
+     glad_glUniformMatrix4x2fv(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glUniformMatrix4x2fv", (void*)glUniformMatrix4x2fv, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLUNIFORMMATRIX4X2FVPROC glad_debug_glUniformMatrix4x2fv = glad_debug_impl_glUniformMatrix4x2fv;
+PFNGLUNIFORMMATRIX4X3FVPROC glad_glUniformMatrix4x3fv;
+void APIENTRY glad_debug_impl_glUniformMatrix4x3fv(GLint arg0, GLsizei arg1, GLboolean arg2, const GLfloat * arg3) {    
+    _pre_call_callback_gl("glUniformMatrix4x3fv", (void*)glUniformMatrix4x3fv, 4, arg0, arg1, arg2, arg3);
+     glad_glUniformMatrix4x3fv(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glUniformMatrix4x3fv", (void*)glUniformMatrix4x3fv, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLUNIFORMMATRIX4X3FVPROC glad_debug_glUniformMatrix4x3fv = glad_debug_impl_glUniformMatrix4x3fv;
+PFNGLUNMAPBUFFERPROC glad_glUnmapBuffer;
+GLboolean APIENTRY glad_debug_impl_glUnmapBuffer(GLenum arg0) {    
+    GLboolean ret;
+    _pre_call_callback_gl("glUnmapBuffer", (void*)glUnmapBuffer, 1, arg0);
+    ret =  glad_glUnmapBuffer(arg0);
+    _post_call_callback_gl("glUnmapBuffer", (void*)glUnmapBuffer, 1, arg0);
+    return ret;
+}
+PFNGLUNMAPBUFFERPROC glad_debug_glUnmapBuffer = glad_debug_impl_glUnmapBuffer;
+PFNGLUSEPROGRAMPROC glad_glUseProgram;
+void APIENTRY glad_debug_impl_glUseProgram(GLuint arg0) {    
+    _pre_call_callback_gl("glUseProgram", (void*)glUseProgram, 1, arg0);
+     glad_glUseProgram(arg0);
+    _post_call_callback_gl("glUseProgram", (void*)glUseProgram, 1, arg0);
+    
+}
+PFNGLUSEPROGRAMPROC glad_debug_glUseProgram = glad_debug_impl_glUseProgram;
+PFNGLVALIDATEPROGRAMPROC glad_glValidateProgram;
+void APIENTRY glad_debug_impl_glValidateProgram(GLuint arg0) {    
+    _pre_call_callback_gl("glValidateProgram", (void*)glValidateProgram, 1, arg0);
+     glad_glValidateProgram(arg0);
+    _post_call_callback_gl("glValidateProgram", (void*)glValidateProgram, 1, arg0);
+    
+}
+PFNGLVALIDATEPROGRAMPROC glad_debug_glValidateProgram = glad_debug_impl_glValidateProgram;
+PFNGLVERTEX2DPROC glad_glVertex2d;
+void APIENTRY glad_debug_impl_glVertex2d(GLdouble arg0, GLdouble arg1) {    
+    _pre_call_callback_gl("glVertex2d", (void*)glVertex2d, 2, arg0, arg1);
+     glad_glVertex2d(arg0, arg1);
+    _post_call_callback_gl("glVertex2d", (void*)glVertex2d, 2, arg0, arg1);
+    
+}
+PFNGLVERTEX2DPROC glad_debug_glVertex2d = glad_debug_impl_glVertex2d;
+PFNGLVERTEX2DVPROC glad_glVertex2dv;
+void APIENTRY glad_debug_impl_glVertex2dv(const GLdouble * arg0) {    
+    _pre_call_callback_gl("glVertex2dv", (void*)glVertex2dv, 1, arg0);
+     glad_glVertex2dv(arg0);
+    _post_call_callback_gl("glVertex2dv", (void*)glVertex2dv, 1, arg0);
+    
+}
+PFNGLVERTEX2DVPROC glad_debug_glVertex2dv = glad_debug_impl_glVertex2dv;
+PFNGLVERTEX2FPROC glad_glVertex2f;
+void APIENTRY glad_debug_impl_glVertex2f(GLfloat arg0, GLfloat arg1) {    
+    _pre_call_callback_gl("glVertex2f", (void*)glVertex2f, 2, arg0, arg1);
+     glad_glVertex2f(arg0, arg1);
+    _post_call_callback_gl("glVertex2f", (void*)glVertex2f, 2, arg0, arg1);
+    
+}
+PFNGLVERTEX2FPROC glad_debug_glVertex2f = glad_debug_impl_glVertex2f;
+PFNGLVERTEX2FVPROC glad_glVertex2fv;
+void APIENTRY glad_debug_impl_glVertex2fv(const GLfloat * arg0) {    
+    _pre_call_callback_gl("glVertex2fv", (void*)glVertex2fv, 1, arg0);
+     glad_glVertex2fv(arg0);
+    _post_call_callback_gl("glVertex2fv", (void*)glVertex2fv, 1, arg0);
+    
+}
+PFNGLVERTEX2FVPROC glad_debug_glVertex2fv = glad_debug_impl_glVertex2fv;
+PFNGLVERTEX2IPROC glad_glVertex2i;
+void APIENTRY glad_debug_impl_glVertex2i(GLint arg0, GLint arg1) {    
+    _pre_call_callback_gl("glVertex2i", (void*)glVertex2i, 2, arg0, arg1);
+     glad_glVertex2i(arg0, arg1);
+    _post_call_callback_gl("glVertex2i", (void*)glVertex2i, 2, arg0, arg1);
+    
+}
+PFNGLVERTEX2IPROC glad_debug_glVertex2i = glad_debug_impl_glVertex2i;
+PFNGLVERTEX2IVPROC glad_glVertex2iv;
+void APIENTRY glad_debug_impl_glVertex2iv(const GLint * arg0) {    
+    _pre_call_callback_gl("glVertex2iv", (void*)glVertex2iv, 1, arg0);
+     glad_glVertex2iv(arg0);
+    _post_call_callback_gl("glVertex2iv", (void*)glVertex2iv, 1, arg0);
+    
+}
+PFNGLVERTEX2IVPROC glad_debug_glVertex2iv = glad_debug_impl_glVertex2iv;
+PFNGLVERTEX2SPROC glad_glVertex2s;
+void APIENTRY glad_debug_impl_glVertex2s(GLshort arg0, GLshort arg1) {    
+    _pre_call_callback_gl("glVertex2s", (void*)glVertex2s, 2, arg0, arg1);
+     glad_glVertex2s(arg0, arg1);
+    _post_call_callback_gl("glVertex2s", (void*)glVertex2s, 2, arg0, arg1);
+    
+}
+PFNGLVERTEX2SPROC glad_debug_glVertex2s = glad_debug_impl_glVertex2s;
+PFNGLVERTEX2SVPROC glad_glVertex2sv;
+void APIENTRY glad_debug_impl_glVertex2sv(const GLshort * arg0) {    
+    _pre_call_callback_gl("glVertex2sv", (void*)glVertex2sv, 1, arg0);
+     glad_glVertex2sv(arg0);
+    _post_call_callback_gl("glVertex2sv", (void*)glVertex2sv, 1, arg0);
+    
+}
+PFNGLVERTEX2SVPROC glad_debug_glVertex2sv = glad_debug_impl_glVertex2sv;
+PFNGLVERTEX3DPROC glad_glVertex3d;
+void APIENTRY glad_debug_impl_glVertex3d(GLdouble arg0, GLdouble arg1, GLdouble arg2) {    
+    _pre_call_callback_gl("glVertex3d", (void*)glVertex3d, 3, arg0, arg1, arg2);
+     glad_glVertex3d(arg0, arg1, arg2);
+    _post_call_callback_gl("glVertex3d", (void*)glVertex3d, 3, arg0, arg1, arg2);
+    
+}
+PFNGLVERTEX3DPROC glad_debug_glVertex3d = glad_debug_impl_glVertex3d;
+PFNGLVERTEX3DVPROC glad_glVertex3dv;
+void APIENTRY glad_debug_impl_glVertex3dv(const GLdouble * arg0) {    
+    _pre_call_callback_gl("glVertex3dv", (void*)glVertex3dv, 1, arg0);
+     glad_glVertex3dv(arg0);
+    _post_call_callback_gl("glVertex3dv", (void*)glVertex3dv, 1, arg0);
+    
+}
+PFNGLVERTEX3DVPROC glad_debug_glVertex3dv = glad_debug_impl_glVertex3dv;
+PFNGLVERTEX3FPROC glad_glVertex3f;
+void APIENTRY glad_debug_impl_glVertex3f(GLfloat arg0, GLfloat arg1, GLfloat arg2) {    
+    _pre_call_callback_gl("glVertex3f", (void*)glVertex3f, 3, arg0, arg1, arg2);
+     glad_glVertex3f(arg0, arg1, arg2);
+    _post_call_callback_gl("glVertex3f", (void*)glVertex3f, 3, arg0, arg1, arg2);
+    
+}
+PFNGLVERTEX3FPROC glad_debug_glVertex3f = glad_debug_impl_glVertex3f;
+PFNGLVERTEX3FVPROC glad_glVertex3fv;
+void APIENTRY glad_debug_impl_glVertex3fv(const GLfloat * arg0) {    
+    _pre_call_callback_gl("glVertex3fv", (void*)glVertex3fv, 1, arg0);
+     glad_glVertex3fv(arg0);
+    _post_call_callback_gl("glVertex3fv", (void*)glVertex3fv, 1, arg0);
+    
+}
+PFNGLVERTEX3FVPROC glad_debug_glVertex3fv = glad_debug_impl_glVertex3fv;
+PFNGLVERTEX3IPROC glad_glVertex3i;
+void APIENTRY glad_debug_impl_glVertex3i(GLint arg0, GLint arg1, GLint arg2) {    
+    _pre_call_callback_gl("glVertex3i", (void*)glVertex3i, 3, arg0, arg1, arg2);
+     glad_glVertex3i(arg0, arg1, arg2);
+    _post_call_callback_gl("glVertex3i", (void*)glVertex3i, 3, arg0, arg1, arg2);
+    
+}
+PFNGLVERTEX3IPROC glad_debug_glVertex3i = glad_debug_impl_glVertex3i;
+PFNGLVERTEX3IVPROC glad_glVertex3iv;
+void APIENTRY glad_debug_impl_glVertex3iv(const GLint * arg0) {    
+    _pre_call_callback_gl("glVertex3iv", (void*)glVertex3iv, 1, arg0);
+     glad_glVertex3iv(arg0);
+    _post_call_callback_gl("glVertex3iv", (void*)glVertex3iv, 1, arg0);
+    
+}
+PFNGLVERTEX3IVPROC glad_debug_glVertex3iv = glad_debug_impl_glVertex3iv;
+PFNGLVERTEX3SPROC glad_glVertex3s;
+void APIENTRY glad_debug_impl_glVertex3s(GLshort arg0, GLshort arg1, GLshort arg2) {    
+    _pre_call_callback_gl("glVertex3s", (void*)glVertex3s, 3, arg0, arg1, arg2);
+     glad_glVertex3s(arg0, arg1, arg2);
+    _post_call_callback_gl("glVertex3s", (void*)glVertex3s, 3, arg0, arg1, arg2);
+    
+}
+PFNGLVERTEX3SPROC glad_debug_glVertex3s = glad_debug_impl_glVertex3s;
+PFNGLVERTEX3SVPROC glad_glVertex3sv;
+void APIENTRY glad_debug_impl_glVertex3sv(const GLshort * arg0) {    
+    _pre_call_callback_gl("glVertex3sv", (void*)glVertex3sv, 1, arg0);
+     glad_glVertex3sv(arg0);
+    _post_call_callback_gl("glVertex3sv", (void*)glVertex3sv, 1, arg0);
+    
+}
+PFNGLVERTEX3SVPROC glad_debug_glVertex3sv = glad_debug_impl_glVertex3sv;
+PFNGLVERTEX4DPROC glad_glVertex4d;
+void APIENTRY glad_debug_impl_glVertex4d(GLdouble arg0, GLdouble arg1, GLdouble arg2, GLdouble arg3) {    
+    _pre_call_callback_gl("glVertex4d", (void*)glVertex4d, 4, arg0, arg1, arg2, arg3);
+     glad_glVertex4d(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glVertex4d", (void*)glVertex4d, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLVERTEX4DPROC glad_debug_glVertex4d = glad_debug_impl_glVertex4d;
+PFNGLVERTEX4DVPROC glad_glVertex4dv;
+void APIENTRY glad_debug_impl_glVertex4dv(const GLdouble * arg0) {    
+    _pre_call_callback_gl("glVertex4dv", (void*)glVertex4dv, 1, arg0);
+     glad_glVertex4dv(arg0);
+    _post_call_callback_gl("glVertex4dv", (void*)glVertex4dv, 1, arg0);
+    
+}
+PFNGLVERTEX4DVPROC glad_debug_glVertex4dv = glad_debug_impl_glVertex4dv;
+PFNGLVERTEX4FPROC glad_glVertex4f;
+void APIENTRY glad_debug_impl_glVertex4f(GLfloat arg0, GLfloat arg1, GLfloat arg2, GLfloat arg3) {    
+    _pre_call_callback_gl("glVertex4f", (void*)glVertex4f, 4, arg0, arg1, arg2, arg3);
+     glad_glVertex4f(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glVertex4f", (void*)glVertex4f, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLVERTEX4FPROC glad_debug_glVertex4f = glad_debug_impl_glVertex4f;
+PFNGLVERTEX4FVPROC glad_glVertex4fv;
+void APIENTRY glad_debug_impl_glVertex4fv(const GLfloat * arg0) {    
+    _pre_call_callback_gl("glVertex4fv", (void*)glVertex4fv, 1, arg0);
+     glad_glVertex4fv(arg0);
+    _post_call_callback_gl("glVertex4fv", (void*)glVertex4fv, 1, arg0);
+    
+}
+PFNGLVERTEX4FVPROC glad_debug_glVertex4fv = glad_debug_impl_glVertex4fv;
+PFNGLVERTEX4IPROC glad_glVertex4i;
+void APIENTRY glad_debug_impl_glVertex4i(GLint arg0, GLint arg1, GLint arg2, GLint arg3) {    
+    _pre_call_callback_gl("glVertex4i", (void*)glVertex4i, 4, arg0, arg1, arg2, arg3);
+     glad_glVertex4i(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glVertex4i", (void*)glVertex4i, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLVERTEX4IPROC glad_debug_glVertex4i = glad_debug_impl_glVertex4i;
+PFNGLVERTEX4IVPROC glad_glVertex4iv;
+void APIENTRY glad_debug_impl_glVertex4iv(const GLint * arg0) {    
+    _pre_call_callback_gl("glVertex4iv", (void*)glVertex4iv, 1, arg0);
+     glad_glVertex4iv(arg0);
+    _post_call_callback_gl("glVertex4iv", (void*)glVertex4iv, 1, arg0);
+    
+}
+PFNGLVERTEX4IVPROC glad_debug_glVertex4iv = glad_debug_impl_glVertex4iv;
+PFNGLVERTEX4SPROC glad_glVertex4s;
+void APIENTRY glad_debug_impl_glVertex4s(GLshort arg0, GLshort arg1, GLshort arg2, GLshort arg3) {    
+    _pre_call_callback_gl("glVertex4s", (void*)glVertex4s, 4, arg0, arg1, arg2, arg3);
+     glad_glVertex4s(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glVertex4s", (void*)glVertex4s, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLVERTEX4SPROC glad_debug_glVertex4s = glad_debug_impl_glVertex4s;
+PFNGLVERTEX4SVPROC glad_glVertex4sv;
+void APIENTRY glad_debug_impl_glVertex4sv(const GLshort * arg0) {    
+    _pre_call_callback_gl("glVertex4sv", (void*)glVertex4sv, 1, arg0);
+     glad_glVertex4sv(arg0);
+    _post_call_callback_gl("glVertex4sv", (void*)glVertex4sv, 1, arg0);
+    
+}
+PFNGLVERTEX4SVPROC glad_debug_glVertex4sv = glad_debug_impl_glVertex4sv;
+PFNGLVERTEXATTRIB1DPROC glad_glVertexAttrib1d;
+void APIENTRY glad_debug_impl_glVertexAttrib1d(GLuint arg0, GLdouble arg1) {    
+    _pre_call_callback_gl("glVertexAttrib1d", (void*)glVertexAttrib1d, 2, arg0, arg1);
+     glad_glVertexAttrib1d(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib1d", (void*)glVertexAttrib1d, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB1DPROC glad_debug_glVertexAttrib1d = glad_debug_impl_glVertexAttrib1d;
+PFNGLVERTEXATTRIB1DVPROC glad_glVertexAttrib1dv;
+void APIENTRY glad_debug_impl_glVertexAttrib1dv(GLuint arg0, const GLdouble * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib1dv", (void*)glVertexAttrib1dv, 2, arg0, arg1);
+     glad_glVertexAttrib1dv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib1dv", (void*)glVertexAttrib1dv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB1DVPROC glad_debug_glVertexAttrib1dv = glad_debug_impl_glVertexAttrib1dv;
+PFNGLVERTEXATTRIB1FPROC glad_glVertexAttrib1f;
+void APIENTRY glad_debug_impl_glVertexAttrib1f(GLuint arg0, GLfloat arg1) {    
+    _pre_call_callback_gl("glVertexAttrib1f", (void*)glVertexAttrib1f, 2, arg0, arg1);
+     glad_glVertexAttrib1f(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib1f", (void*)glVertexAttrib1f, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB1FPROC glad_debug_glVertexAttrib1f = glad_debug_impl_glVertexAttrib1f;
+PFNGLVERTEXATTRIB1FVPROC glad_glVertexAttrib1fv;
+void APIENTRY glad_debug_impl_glVertexAttrib1fv(GLuint arg0, const GLfloat * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib1fv", (void*)glVertexAttrib1fv, 2, arg0, arg1);
+     glad_glVertexAttrib1fv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib1fv", (void*)glVertexAttrib1fv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB1FVPROC glad_debug_glVertexAttrib1fv = glad_debug_impl_glVertexAttrib1fv;
+PFNGLVERTEXATTRIB1SPROC glad_glVertexAttrib1s;
+void APIENTRY glad_debug_impl_glVertexAttrib1s(GLuint arg0, GLshort arg1) {    
+    _pre_call_callback_gl("glVertexAttrib1s", (void*)glVertexAttrib1s, 2, arg0, arg1);
+     glad_glVertexAttrib1s(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib1s", (void*)glVertexAttrib1s, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB1SPROC glad_debug_glVertexAttrib1s = glad_debug_impl_glVertexAttrib1s;
+PFNGLVERTEXATTRIB1SVPROC glad_glVertexAttrib1sv;
+void APIENTRY glad_debug_impl_glVertexAttrib1sv(GLuint arg0, const GLshort * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib1sv", (void*)glVertexAttrib1sv, 2, arg0, arg1);
+     glad_glVertexAttrib1sv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib1sv", (void*)glVertexAttrib1sv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB1SVPROC glad_debug_glVertexAttrib1sv = glad_debug_impl_glVertexAttrib1sv;
+PFNGLVERTEXATTRIB2DPROC glad_glVertexAttrib2d;
+void APIENTRY glad_debug_impl_glVertexAttrib2d(GLuint arg0, GLdouble arg1, GLdouble arg2) {    
+    _pre_call_callback_gl("glVertexAttrib2d", (void*)glVertexAttrib2d, 3, arg0, arg1, arg2);
+     glad_glVertexAttrib2d(arg0, arg1, arg2);
+    _post_call_callback_gl("glVertexAttrib2d", (void*)glVertexAttrib2d, 3, arg0, arg1, arg2);
+    
+}
+PFNGLVERTEXATTRIB2DPROC glad_debug_glVertexAttrib2d = glad_debug_impl_glVertexAttrib2d;
+PFNGLVERTEXATTRIB2DVPROC glad_glVertexAttrib2dv;
+void APIENTRY glad_debug_impl_glVertexAttrib2dv(GLuint arg0, const GLdouble * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib2dv", (void*)glVertexAttrib2dv, 2, arg0, arg1);
+     glad_glVertexAttrib2dv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib2dv", (void*)glVertexAttrib2dv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB2DVPROC glad_debug_glVertexAttrib2dv = glad_debug_impl_glVertexAttrib2dv;
+PFNGLVERTEXATTRIB2FPROC glad_glVertexAttrib2f;
+void APIENTRY glad_debug_impl_glVertexAttrib2f(GLuint arg0, GLfloat arg1, GLfloat arg2) {    
+    _pre_call_callback_gl("glVertexAttrib2f", (void*)glVertexAttrib2f, 3, arg0, arg1, arg2);
+     glad_glVertexAttrib2f(arg0, arg1, arg2);
+    _post_call_callback_gl("glVertexAttrib2f", (void*)glVertexAttrib2f, 3, arg0, arg1, arg2);
+    
+}
+PFNGLVERTEXATTRIB2FPROC glad_debug_glVertexAttrib2f = glad_debug_impl_glVertexAttrib2f;
+PFNGLVERTEXATTRIB2FVPROC glad_glVertexAttrib2fv;
+void APIENTRY glad_debug_impl_glVertexAttrib2fv(GLuint arg0, const GLfloat * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib2fv", (void*)glVertexAttrib2fv, 2, arg0, arg1);
+     glad_glVertexAttrib2fv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib2fv", (void*)glVertexAttrib2fv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB2FVPROC glad_debug_glVertexAttrib2fv = glad_debug_impl_glVertexAttrib2fv;
+PFNGLVERTEXATTRIB2SPROC glad_glVertexAttrib2s;
+void APIENTRY glad_debug_impl_glVertexAttrib2s(GLuint arg0, GLshort arg1, GLshort arg2) {    
+    _pre_call_callback_gl("glVertexAttrib2s", (void*)glVertexAttrib2s, 3, arg0, arg1, arg2);
+     glad_glVertexAttrib2s(arg0, arg1, arg2);
+    _post_call_callback_gl("glVertexAttrib2s", (void*)glVertexAttrib2s, 3, arg0, arg1, arg2);
+    
+}
+PFNGLVERTEXATTRIB2SPROC glad_debug_glVertexAttrib2s = glad_debug_impl_glVertexAttrib2s;
+PFNGLVERTEXATTRIB2SVPROC glad_glVertexAttrib2sv;
+void APIENTRY glad_debug_impl_glVertexAttrib2sv(GLuint arg0, const GLshort * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib2sv", (void*)glVertexAttrib2sv, 2, arg0, arg1);
+     glad_glVertexAttrib2sv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib2sv", (void*)glVertexAttrib2sv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB2SVPROC glad_debug_glVertexAttrib2sv = glad_debug_impl_glVertexAttrib2sv;
+PFNGLVERTEXATTRIB3DPROC glad_glVertexAttrib3d;
+void APIENTRY glad_debug_impl_glVertexAttrib3d(GLuint arg0, GLdouble arg1, GLdouble arg2, GLdouble arg3) {    
+    _pre_call_callback_gl("glVertexAttrib3d", (void*)glVertexAttrib3d, 4, arg0, arg1, arg2, arg3);
+     glad_glVertexAttrib3d(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glVertexAttrib3d", (void*)glVertexAttrib3d, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLVERTEXATTRIB3DPROC glad_debug_glVertexAttrib3d = glad_debug_impl_glVertexAttrib3d;
+PFNGLVERTEXATTRIB3DVPROC glad_glVertexAttrib3dv;
+void APIENTRY glad_debug_impl_glVertexAttrib3dv(GLuint arg0, const GLdouble * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib3dv", (void*)glVertexAttrib3dv, 2, arg0, arg1);
+     glad_glVertexAttrib3dv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib3dv", (void*)glVertexAttrib3dv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB3DVPROC glad_debug_glVertexAttrib3dv = glad_debug_impl_glVertexAttrib3dv;
+PFNGLVERTEXATTRIB3FPROC glad_glVertexAttrib3f;
+void APIENTRY glad_debug_impl_glVertexAttrib3f(GLuint arg0, GLfloat arg1, GLfloat arg2, GLfloat arg3) {    
+    _pre_call_callback_gl("glVertexAttrib3f", (void*)glVertexAttrib3f, 4, arg0, arg1, arg2, arg3);
+     glad_glVertexAttrib3f(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glVertexAttrib3f", (void*)glVertexAttrib3f, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLVERTEXATTRIB3FPROC glad_debug_glVertexAttrib3f = glad_debug_impl_glVertexAttrib3f;
+PFNGLVERTEXATTRIB3FVPROC glad_glVertexAttrib3fv;
+void APIENTRY glad_debug_impl_glVertexAttrib3fv(GLuint arg0, const GLfloat * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib3fv", (void*)glVertexAttrib3fv, 2, arg0, arg1);
+     glad_glVertexAttrib3fv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib3fv", (void*)glVertexAttrib3fv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB3FVPROC glad_debug_glVertexAttrib3fv = glad_debug_impl_glVertexAttrib3fv;
+PFNGLVERTEXATTRIB3SPROC glad_glVertexAttrib3s;
+void APIENTRY glad_debug_impl_glVertexAttrib3s(GLuint arg0, GLshort arg1, GLshort arg2, GLshort arg3) {    
+    _pre_call_callback_gl("glVertexAttrib3s", (void*)glVertexAttrib3s, 4, arg0, arg1, arg2, arg3);
+     glad_glVertexAttrib3s(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glVertexAttrib3s", (void*)glVertexAttrib3s, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLVERTEXATTRIB3SPROC glad_debug_glVertexAttrib3s = glad_debug_impl_glVertexAttrib3s;
+PFNGLVERTEXATTRIB3SVPROC glad_glVertexAttrib3sv;
+void APIENTRY glad_debug_impl_glVertexAttrib3sv(GLuint arg0, const GLshort * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib3sv", (void*)glVertexAttrib3sv, 2, arg0, arg1);
+     glad_glVertexAttrib3sv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib3sv", (void*)glVertexAttrib3sv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB3SVPROC glad_debug_glVertexAttrib3sv = glad_debug_impl_glVertexAttrib3sv;
+PFNGLVERTEXATTRIB4NBVPROC glad_glVertexAttrib4Nbv;
+void APIENTRY glad_debug_impl_glVertexAttrib4Nbv(GLuint arg0, const GLbyte * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib4Nbv", (void*)glVertexAttrib4Nbv, 2, arg0, arg1);
+     glad_glVertexAttrib4Nbv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib4Nbv", (void*)glVertexAttrib4Nbv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB4NBVPROC glad_debug_glVertexAttrib4Nbv = glad_debug_impl_glVertexAttrib4Nbv;
+PFNGLVERTEXATTRIB4NIVPROC glad_glVertexAttrib4Niv;
+void APIENTRY glad_debug_impl_glVertexAttrib4Niv(GLuint arg0, const GLint * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib4Niv", (void*)glVertexAttrib4Niv, 2, arg0, arg1);
+     glad_glVertexAttrib4Niv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib4Niv", (void*)glVertexAttrib4Niv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB4NIVPROC glad_debug_glVertexAttrib4Niv = glad_debug_impl_glVertexAttrib4Niv;
+PFNGLVERTEXATTRIB4NSVPROC glad_glVertexAttrib4Nsv;
+void APIENTRY glad_debug_impl_glVertexAttrib4Nsv(GLuint arg0, const GLshort * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib4Nsv", (void*)glVertexAttrib4Nsv, 2, arg0, arg1);
+     glad_glVertexAttrib4Nsv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib4Nsv", (void*)glVertexAttrib4Nsv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB4NSVPROC glad_debug_glVertexAttrib4Nsv = glad_debug_impl_glVertexAttrib4Nsv;
+PFNGLVERTEXATTRIB4NUBPROC glad_glVertexAttrib4Nub;
+void APIENTRY glad_debug_impl_glVertexAttrib4Nub(GLuint arg0, GLubyte arg1, GLubyte arg2, GLubyte arg3, GLubyte arg4) {    
+    _pre_call_callback_gl("glVertexAttrib4Nub", (void*)glVertexAttrib4Nub, 5, arg0, arg1, arg2, arg3, arg4);
+     glad_glVertexAttrib4Nub(arg0, arg1, arg2, arg3, arg4);
+    _post_call_callback_gl("glVertexAttrib4Nub", (void*)glVertexAttrib4Nub, 5, arg0, arg1, arg2, arg3, arg4);
+    
+}
+PFNGLVERTEXATTRIB4NUBPROC glad_debug_glVertexAttrib4Nub = glad_debug_impl_glVertexAttrib4Nub;
+PFNGLVERTEXATTRIB4NUBVPROC glad_glVertexAttrib4Nubv;
+void APIENTRY glad_debug_impl_glVertexAttrib4Nubv(GLuint arg0, const GLubyte * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib4Nubv", (void*)glVertexAttrib4Nubv, 2, arg0, arg1);
+     glad_glVertexAttrib4Nubv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib4Nubv", (void*)glVertexAttrib4Nubv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB4NUBVPROC glad_debug_glVertexAttrib4Nubv = glad_debug_impl_glVertexAttrib4Nubv;
+PFNGLVERTEXATTRIB4NUIVPROC glad_glVertexAttrib4Nuiv;
+void APIENTRY glad_debug_impl_glVertexAttrib4Nuiv(GLuint arg0, const GLuint * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib4Nuiv", (void*)glVertexAttrib4Nuiv, 2, arg0, arg1);
+     glad_glVertexAttrib4Nuiv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib4Nuiv", (void*)glVertexAttrib4Nuiv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB4NUIVPROC glad_debug_glVertexAttrib4Nuiv = glad_debug_impl_glVertexAttrib4Nuiv;
+PFNGLVERTEXATTRIB4NUSVPROC glad_glVertexAttrib4Nusv;
+void APIENTRY glad_debug_impl_glVertexAttrib4Nusv(GLuint arg0, const GLushort * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib4Nusv", (void*)glVertexAttrib4Nusv, 2, arg0, arg1);
+     glad_glVertexAttrib4Nusv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib4Nusv", (void*)glVertexAttrib4Nusv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB4NUSVPROC glad_debug_glVertexAttrib4Nusv = glad_debug_impl_glVertexAttrib4Nusv;
+PFNGLVERTEXATTRIB4BVPROC glad_glVertexAttrib4bv;
+void APIENTRY glad_debug_impl_glVertexAttrib4bv(GLuint arg0, const GLbyte * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib4bv", (void*)glVertexAttrib4bv, 2, arg0, arg1);
+     glad_glVertexAttrib4bv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib4bv", (void*)glVertexAttrib4bv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB4BVPROC glad_debug_glVertexAttrib4bv = glad_debug_impl_glVertexAttrib4bv;
+PFNGLVERTEXATTRIB4DPROC glad_glVertexAttrib4d;
+void APIENTRY glad_debug_impl_glVertexAttrib4d(GLuint arg0, GLdouble arg1, GLdouble arg2, GLdouble arg3, GLdouble arg4) {    
+    _pre_call_callback_gl("glVertexAttrib4d", (void*)glVertexAttrib4d, 5, arg0, arg1, arg2, arg3, arg4);
+     glad_glVertexAttrib4d(arg0, arg1, arg2, arg3, arg4);
+    _post_call_callback_gl("glVertexAttrib4d", (void*)glVertexAttrib4d, 5, arg0, arg1, arg2, arg3, arg4);
+    
+}
+PFNGLVERTEXATTRIB4DPROC glad_debug_glVertexAttrib4d = glad_debug_impl_glVertexAttrib4d;
+PFNGLVERTEXATTRIB4DVPROC glad_glVertexAttrib4dv;
+void APIENTRY glad_debug_impl_glVertexAttrib4dv(GLuint arg0, const GLdouble * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib4dv", (void*)glVertexAttrib4dv, 2, arg0, arg1);
+     glad_glVertexAttrib4dv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib4dv", (void*)glVertexAttrib4dv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB4DVPROC glad_debug_glVertexAttrib4dv = glad_debug_impl_glVertexAttrib4dv;
+PFNGLVERTEXATTRIB4FPROC glad_glVertexAttrib4f;
+void APIENTRY glad_debug_impl_glVertexAttrib4f(GLuint arg0, GLfloat arg1, GLfloat arg2, GLfloat arg3, GLfloat arg4) {    
+    _pre_call_callback_gl("glVertexAttrib4f", (void*)glVertexAttrib4f, 5, arg0, arg1, arg2, arg3, arg4);
+     glad_glVertexAttrib4f(arg0, arg1, arg2, arg3, arg4);
+    _post_call_callback_gl("glVertexAttrib4f", (void*)glVertexAttrib4f, 5, arg0, arg1, arg2, arg3, arg4);
+    
+}
+PFNGLVERTEXATTRIB4FPROC glad_debug_glVertexAttrib4f = glad_debug_impl_glVertexAttrib4f;
+PFNGLVERTEXATTRIB4FVPROC glad_glVertexAttrib4fv;
+void APIENTRY glad_debug_impl_glVertexAttrib4fv(GLuint arg0, const GLfloat * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib4fv", (void*)glVertexAttrib4fv, 2, arg0, arg1);
+     glad_glVertexAttrib4fv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib4fv", (void*)glVertexAttrib4fv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB4FVPROC glad_debug_glVertexAttrib4fv = glad_debug_impl_glVertexAttrib4fv;
+PFNGLVERTEXATTRIB4IVPROC glad_glVertexAttrib4iv;
+void APIENTRY glad_debug_impl_glVertexAttrib4iv(GLuint arg0, const GLint * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib4iv", (void*)glVertexAttrib4iv, 2, arg0, arg1);
+     glad_glVertexAttrib4iv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib4iv", (void*)glVertexAttrib4iv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB4IVPROC glad_debug_glVertexAttrib4iv = glad_debug_impl_glVertexAttrib4iv;
+PFNGLVERTEXATTRIB4SPROC glad_glVertexAttrib4s;
+void APIENTRY glad_debug_impl_glVertexAttrib4s(GLuint arg0, GLshort arg1, GLshort arg2, GLshort arg3, GLshort arg4) {    
+    _pre_call_callback_gl("glVertexAttrib4s", (void*)glVertexAttrib4s, 5, arg0, arg1, arg2, arg3, arg4);
+     glad_glVertexAttrib4s(arg0, arg1, arg2, arg3, arg4);
+    _post_call_callback_gl("glVertexAttrib4s", (void*)glVertexAttrib4s, 5, arg0, arg1, arg2, arg3, arg4);
+    
+}
+PFNGLVERTEXATTRIB4SPROC glad_debug_glVertexAttrib4s = glad_debug_impl_glVertexAttrib4s;
+PFNGLVERTEXATTRIB4SVPROC glad_glVertexAttrib4sv;
+void APIENTRY glad_debug_impl_glVertexAttrib4sv(GLuint arg0, const GLshort * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib4sv", (void*)glVertexAttrib4sv, 2, arg0, arg1);
+     glad_glVertexAttrib4sv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib4sv", (void*)glVertexAttrib4sv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB4SVPROC glad_debug_glVertexAttrib4sv = glad_debug_impl_glVertexAttrib4sv;
+PFNGLVERTEXATTRIB4UBVPROC glad_glVertexAttrib4ubv;
+void APIENTRY glad_debug_impl_glVertexAttrib4ubv(GLuint arg0, const GLubyte * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib4ubv", (void*)glVertexAttrib4ubv, 2, arg0, arg1);
+     glad_glVertexAttrib4ubv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib4ubv", (void*)glVertexAttrib4ubv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB4UBVPROC glad_debug_glVertexAttrib4ubv = glad_debug_impl_glVertexAttrib4ubv;
+PFNGLVERTEXATTRIB4UIVPROC glad_glVertexAttrib4uiv;
+void APIENTRY glad_debug_impl_glVertexAttrib4uiv(GLuint arg0, const GLuint * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib4uiv", (void*)glVertexAttrib4uiv, 2, arg0, arg1);
+     glad_glVertexAttrib4uiv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib4uiv", (void*)glVertexAttrib4uiv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB4UIVPROC glad_debug_glVertexAttrib4uiv = glad_debug_impl_glVertexAttrib4uiv;
+PFNGLVERTEXATTRIB4USVPROC glad_glVertexAttrib4usv;
+void APIENTRY glad_debug_impl_glVertexAttrib4usv(GLuint arg0, const GLushort * arg1) {    
+    _pre_call_callback_gl("glVertexAttrib4usv", (void*)glVertexAttrib4usv, 2, arg0, arg1);
+     glad_glVertexAttrib4usv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttrib4usv", (void*)glVertexAttrib4usv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIB4USVPROC glad_debug_glVertexAttrib4usv = glad_debug_impl_glVertexAttrib4usv;
+PFNGLVERTEXATTRIBDIVISORPROC glad_glVertexAttribDivisor;
+void APIENTRY glad_debug_impl_glVertexAttribDivisor(GLuint arg0, GLuint arg1) {    
+    _pre_call_callback_gl("glVertexAttribDivisor", (void*)glVertexAttribDivisor, 2, arg0, arg1);
+     glad_glVertexAttribDivisor(arg0, arg1);
+    _post_call_callback_gl("glVertexAttribDivisor", (void*)glVertexAttribDivisor, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIBDIVISORPROC glad_debug_glVertexAttribDivisor = glad_debug_impl_glVertexAttribDivisor;
+PFNGLVERTEXATTRIBI1IPROC glad_glVertexAttribI1i;
+void APIENTRY glad_debug_impl_glVertexAttribI1i(GLuint arg0, GLint arg1) {    
+    _pre_call_callback_gl("glVertexAttribI1i", (void*)glVertexAttribI1i, 2, arg0, arg1);
+     glad_glVertexAttribI1i(arg0, arg1);
+    _post_call_callback_gl("glVertexAttribI1i", (void*)glVertexAttribI1i, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIBI1IPROC glad_debug_glVertexAttribI1i = glad_debug_impl_glVertexAttribI1i;
+PFNGLVERTEXATTRIBI1IVPROC glad_glVertexAttribI1iv;
+void APIENTRY glad_debug_impl_glVertexAttribI1iv(GLuint arg0, const GLint * arg1) {    
+    _pre_call_callback_gl("glVertexAttribI1iv", (void*)glVertexAttribI1iv, 2, arg0, arg1);
+     glad_glVertexAttribI1iv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttribI1iv", (void*)glVertexAttribI1iv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIBI1IVPROC glad_debug_glVertexAttribI1iv = glad_debug_impl_glVertexAttribI1iv;
+PFNGLVERTEXATTRIBI1UIPROC glad_glVertexAttribI1ui;
+void APIENTRY glad_debug_impl_glVertexAttribI1ui(GLuint arg0, GLuint arg1) {    
+    _pre_call_callback_gl("glVertexAttribI1ui", (void*)glVertexAttribI1ui, 2, arg0, arg1);
+     glad_glVertexAttribI1ui(arg0, arg1);
+    _post_call_callback_gl("glVertexAttribI1ui", (void*)glVertexAttribI1ui, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIBI1UIPROC glad_debug_glVertexAttribI1ui = glad_debug_impl_glVertexAttribI1ui;
+PFNGLVERTEXATTRIBI1UIVPROC glad_glVertexAttribI1uiv;
+void APIENTRY glad_debug_impl_glVertexAttribI1uiv(GLuint arg0, const GLuint * arg1) {    
+    _pre_call_callback_gl("glVertexAttribI1uiv", (void*)glVertexAttribI1uiv, 2, arg0, arg1);
+     glad_glVertexAttribI1uiv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttribI1uiv", (void*)glVertexAttribI1uiv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIBI1UIVPROC glad_debug_glVertexAttribI1uiv = glad_debug_impl_glVertexAttribI1uiv;
+PFNGLVERTEXATTRIBI2IPROC glad_glVertexAttribI2i;
+void APIENTRY glad_debug_impl_glVertexAttribI2i(GLuint arg0, GLint arg1, GLint arg2) {    
+    _pre_call_callback_gl("glVertexAttribI2i", (void*)glVertexAttribI2i, 3, arg0, arg1, arg2);
+     glad_glVertexAttribI2i(arg0, arg1, arg2);
+    _post_call_callback_gl("glVertexAttribI2i", (void*)glVertexAttribI2i, 3, arg0, arg1, arg2);
+    
+}
+PFNGLVERTEXATTRIBI2IPROC glad_debug_glVertexAttribI2i = glad_debug_impl_glVertexAttribI2i;
+PFNGLVERTEXATTRIBI2IVPROC glad_glVertexAttribI2iv;
+void APIENTRY glad_debug_impl_glVertexAttribI2iv(GLuint arg0, const GLint * arg1) {    
+    _pre_call_callback_gl("glVertexAttribI2iv", (void*)glVertexAttribI2iv, 2, arg0, arg1);
+     glad_glVertexAttribI2iv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttribI2iv", (void*)glVertexAttribI2iv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIBI2IVPROC glad_debug_glVertexAttribI2iv = glad_debug_impl_glVertexAttribI2iv;
+PFNGLVERTEXATTRIBI2UIPROC glad_glVertexAttribI2ui;
+void APIENTRY glad_debug_impl_glVertexAttribI2ui(GLuint arg0, GLuint arg1, GLuint arg2) {    
+    _pre_call_callback_gl("glVertexAttribI2ui", (void*)glVertexAttribI2ui, 3, arg0, arg1, arg2);
+     glad_glVertexAttribI2ui(arg0, arg1, arg2);
+    _post_call_callback_gl("glVertexAttribI2ui", (void*)glVertexAttribI2ui, 3, arg0, arg1, arg2);
+    
+}
+PFNGLVERTEXATTRIBI2UIPROC glad_debug_glVertexAttribI2ui = glad_debug_impl_glVertexAttribI2ui;
+PFNGLVERTEXATTRIBI2UIVPROC glad_glVertexAttribI2uiv;
+void APIENTRY glad_debug_impl_glVertexAttribI2uiv(GLuint arg0, const GLuint * arg1) {    
+    _pre_call_callback_gl("glVertexAttribI2uiv", (void*)glVertexAttribI2uiv, 2, arg0, arg1);
+     glad_glVertexAttribI2uiv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttribI2uiv", (void*)glVertexAttribI2uiv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIBI2UIVPROC glad_debug_glVertexAttribI2uiv = glad_debug_impl_glVertexAttribI2uiv;
+PFNGLVERTEXATTRIBI3IPROC glad_glVertexAttribI3i;
+void APIENTRY glad_debug_impl_glVertexAttribI3i(GLuint arg0, GLint arg1, GLint arg2, GLint arg3) {    
+    _pre_call_callback_gl("glVertexAttribI3i", (void*)glVertexAttribI3i, 4, arg0, arg1, arg2, arg3);
+     glad_glVertexAttribI3i(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glVertexAttribI3i", (void*)glVertexAttribI3i, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLVERTEXATTRIBI3IPROC glad_debug_glVertexAttribI3i = glad_debug_impl_glVertexAttribI3i;
+PFNGLVERTEXATTRIBI3IVPROC glad_glVertexAttribI3iv;
+void APIENTRY glad_debug_impl_glVertexAttribI3iv(GLuint arg0, const GLint * arg1) {    
+    _pre_call_callback_gl("glVertexAttribI3iv", (void*)glVertexAttribI3iv, 2, arg0, arg1);
+     glad_glVertexAttribI3iv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttribI3iv", (void*)glVertexAttribI3iv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIBI3IVPROC glad_debug_glVertexAttribI3iv = glad_debug_impl_glVertexAttribI3iv;
+PFNGLVERTEXATTRIBI3UIPROC glad_glVertexAttribI3ui;
+void APIENTRY glad_debug_impl_glVertexAttribI3ui(GLuint arg0, GLuint arg1, GLuint arg2, GLuint arg3) {    
+    _pre_call_callback_gl("glVertexAttribI3ui", (void*)glVertexAttribI3ui, 4, arg0, arg1, arg2, arg3);
+     glad_glVertexAttribI3ui(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glVertexAttribI3ui", (void*)glVertexAttribI3ui, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLVERTEXATTRIBI3UIPROC glad_debug_glVertexAttribI3ui = glad_debug_impl_glVertexAttribI3ui;
+PFNGLVERTEXATTRIBI3UIVPROC glad_glVertexAttribI3uiv;
+void APIENTRY glad_debug_impl_glVertexAttribI3uiv(GLuint arg0, const GLuint * arg1) {    
+    _pre_call_callback_gl("glVertexAttribI3uiv", (void*)glVertexAttribI3uiv, 2, arg0, arg1);
+     glad_glVertexAttribI3uiv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttribI3uiv", (void*)glVertexAttribI3uiv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIBI3UIVPROC glad_debug_glVertexAttribI3uiv = glad_debug_impl_glVertexAttribI3uiv;
+PFNGLVERTEXATTRIBI4BVPROC glad_glVertexAttribI4bv;
+void APIENTRY glad_debug_impl_glVertexAttribI4bv(GLuint arg0, const GLbyte * arg1) {    
+    _pre_call_callback_gl("glVertexAttribI4bv", (void*)glVertexAttribI4bv, 2, arg0, arg1);
+     glad_glVertexAttribI4bv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttribI4bv", (void*)glVertexAttribI4bv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIBI4BVPROC glad_debug_glVertexAttribI4bv = glad_debug_impl_glVertexAttribI4bv;
+PFNGLVERTEXATTRIBI4IPROC glad_glVertexAttribI4i;
+void APIENTRY glad_debug_impl_glVertexAttribI4i(GLuint arg0, GLint arg1, GLint arg2, GLint arg3, GLint arg4) {    
+    _pre_call_callback_gl("glVertexAttribI4i", (void*)glVertexAttribI4i, 5, arg0, arg1, arg2, arg3, arg4);
+     glad_glVertexAttribI4i(arg0, arg1, arg2, arg3, arg4);
+    _post_call_callback_gl("glVertexAttribI4i", (void*)glVertexAttribI4i, 5, arg0, arg1, arg2, arg3, arg4);
+    
+}
+PFNGLVERTEXATTRIBI4IPROC glad_debug_glVertexAttribI4i = glad_debug_impl_glVertexAttribI4i;
+PFNGLVERTEXATTRIBI4IVPROC glad_glVertexAttribI4iv;
+void APIENTRY glad_debug_impl_glVertexAttribI4iv(GLuint arg0, const GLint * arg1) {    
+    _pre_call_callback_gl("glVertexAttribI4iv", (void*)glVertexAttribI4iv, 2, arg0, arg1);
+     glad_glVertexAttribI4iv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttribI4iv", (void*)glVertexAttribI4iv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIBI4IVPROC glad_debug_glVertexAttribI4iv = glad_debug_impl_glVertexAttribI4iv;
+PFNGLVERTEXATTRIBI4SVPROC glad_glVertexAttribI4sv;
+void APIENTRY glad_debug_impl_glVertexAttribI4sv(GLuint arg0, const GLshort * arg1) {    
+    _pre_call_callback_gl("glVertexAttribI4sv", (void*)glVertexAttribI4sv, 2, arg0, arg1);
+     glad_glVertexAttribI4sv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttribI4sv", (void*)glVertexAttribI4sv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIBI4SVPROC glad_debug_glVertexAttribI4sv = glad_debug_impl_glVertexAttribI4sv;
+PFNGLVERTEXATTRIBI4UBVPROC glad_glVertexAttribI4ubv;
+void APIENTRY glad_debug_impl_glVertexAttribI4ubv(GLuint arg0, const GLubyte * arg1) {    
+    _pre_call_callback_gl("glVertexAttribI4ubv", (void*)glVertexAttribI4ubv, 2, arg0, arg1);
+     glad_glVertexAttribI4ubv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttribI4ubv", (void*)glVertexAttribI4ubv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIBI4UBVPROC glad_debug_glVertexAttribI4ubv = glad_debug_impl_glVertexAttribI4ubv;
+PFNGLVERTEXATTRIBI4UIPROC glad_glVertexAttribI4ui;
+void APIENTRY glad_debug_impl_glVertexAttribI4ui(GLuint arg0, GLuint arg1, GLuint arg2, GLuint arg3, GLuint arg4) {    
+    _pre_call_callback_gl("glVertexAttribI4ui", (void*)glVertexAttribI4ui, 5, arg0, arg1, arg2, arg3, arg4);
+     glad_glVertexAttribI4ui(arg0, arg1, arg2, arg3, arg4);
+    _post_call_callback_gl("glVertexAttribI4ui", (void*)glVertexAttribI4ui, 5, arg0, arg1, arg2, arg3, arg4);
+    
+}
+PFNGLVERTEXATTRIBI4UIPROC glad_debug_glVertexAttribI4ui = glad_debug_impl_glVertexAttribI4ui;
+PFNGLVERTEXATTRIBI4UIVPROC glad_glVertexAttribI4uiv;
+void APIENTRY glad_debug_impl_glVertexAttribI4uiv(GLuint arg0, const GLuint * arg1) {    
+    _pre_call_callback_gl("glVertexAttribI4uiv", (void*)glVertexAttribI4uiv, 2, arg0, arg1);
+     glad_glVertexAttribI4uiv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttribI4uiv", (void*)glVertexAttribI4uiv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIBI4UIVPROC glad_debug_glVertexAttribI4uiv = glad_debug_impl_glVertexAttribI4uiv;
+PFNGLVERTEXATTRIBI4USVPROC glad_glVertexAttribI4usv;
+void APIENTRY glad_debug_impl_glVertexAttribI4usv(GLuint arg0, const GLushort * arg1) {    
+    _pre_call_callback_gl("glVertexAttribI4usv", (void*)glVertexAttribI4usv, 2, arg0, arg1);
+     glad_glVertexAttribI4usv(arg0, arg1);
+    _post_call_callback_gl("glVertexAttribI4usv", (void*)glVertexAttribI4usv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXATTRIBI4USVPROC glad_debug_glVertexAttribI4usv = glad_debug_impl_glVertexAttribI4usv;
+PFNGLVERTEXATTRIBIPOINTERPROC glad_glVertexAttribIPointer;
+void APIENTRY glad_debug_impl_glVertexAttribIPointer(GLuint arg0, GLint arg1, GLenum arg2, GLsizei arg3, const void * arg4) {    
+    _pre_call_callback_gl("glVertexAttribIPointer", (void*)glVertexAttribIPointer, 5, arg0, arg1, arg2, arg3, arg4);
+     glad_glVertexAttribIPointer(arg0, arg1, arg2, arg3, arg4);
+    _post_call_callback_gl("glVertexAttribIPointer", (void*)glVertexAttribIPointer, 5, arg0, arg1, arg2, arg3, arg4);
+    
+}
+PFNGLVERTEXATTRIBIPOINTERPROC glad_debug_glVertexAttribIPointer = glad_debug_impl_glVertexAttribIPointer;
+PFNGLVERTEXATTRIBP1UIPROC glad_glVertexAttribP1ui;
+void APIENTRY glad_debug_impl_glVertexAttribP1ui(GLuint arg0, GLenum arg1, GLboolean arg2, GLuint arg3) {    
+    _pre_call_callback_gl("glVertexAttribP1ui", (void*)glVertexAttribP1ui, 4, arg0, arg1, arg2, arg3);
+     glad_glVertexAttribP1ui(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glVertexAttribP1ui", (void*)glVertexAttribP1ui, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLVERTEXATTRIBP1UIPROC glad_debug_glVertexAttribP1ui = glad_debug_impl_glVertexAttribP1ui;
+PFNGLVERTEXATTRIBP1UIVPROC glad_glVertexAttribP1uiv;
+void APIENTRY glad_debug_impl_glVertexAttribP1uiv(GLuint arg0, GLenum arg1, GLboolean arg2, const GLuint * arg3) {    
+    _pre_call_callback_gl("glVertexAttribP1uiv", (void*)glVertexAttribP1uiv, 4, arg0, arg1, arg2, arg3);
+     glad_glVertexAttribP1uiv(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glVertexAttribP1uiv", (void*)glVertexAttribP1uiv, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLVERTEXATTRIBP1UIVPROC glad_debug_glVertexAttribP1uiv = glad_debug_impl_glVertexAttribP1uiv;
+PFNGLVERTEXATTRIBP2UIPROC glad_glVertexAttribP2ui;
+void APIENTRY glad_debug_impl_glVertexAttribP2ui(GLuint arg0, GLenum arg1, GLboolean arg2, GLuint arg3) {    
+    _pre_call_callback_gl("glVertexAttribP2ui", (void*)glVertexAttribP2ui, 4, arg0, arg1, arg2, arg3);
+     glad_glVertexAttribP2ui(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glVertexAttribP2ui", (void*)glVertexAttribP2ui, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLVERTEXATTRIBP2UIPROC glad_debug_glVertexAttribP2ui = glad_debug_impl_glVertexAttribP2ui;
+PFNGLVERTEXATTRIBP2UIVPROC glad_glVertexAttribP2uiv;
+void APIENTRY glad_debug_impl_glVertexAttribP2uiv(GLuint arg0, GLenum arg1, GLboolean arg2, const GLuint * arg3) {    
+    _pre_call_callback_gl("glVertexAttribP2uiv", (void*)glVertexAttribP2uiv, 4, arg0, arg1, arg2, arg3);
+     glad_glVertexAttribP2uiv(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glVertexAttribP2uiv", (void*)glVertexAttribP2uiv, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLVERTEXATTRIBP2UIVPROC glad_debug_glVertexAttribP2uiv = glad_debug_impl_glVertexAttribP2uiv;
+PFNGLVERTEXATTRIBP3UIPROC glad_glVertexAttribP3ui;
+void APIENTRY glad_debug_impl_glVertexAttribP3ui(GLuint arg0, GLenum arg1, GLboolean arg2, GLuint arg3) {    
+    _pre_call_callback_gl("glVertexAttribP3ui", (void*)glVertexAttribP3ui, 4, arg0, arg1, arg2, arg3);
+     glad_glVertexAttribP3ui(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glVertexAttribP3ui", (void*)glVertexAttribP3ui, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLVERTEXATTRIBP3UIPROC glad_debug_glVertexAttribP3ui = glad_debug_impl_glVertexAttribP3ui;
+PFNGLVERTEXATTRIBP3UIVPROC glad_glVertexAttribP3uiv;
+void APIENTRY glad_debug_impl_glVertexAttribP3uiv(GLuint arg0, GLenum arg1, GLboolean arg2, const GLuint * arg3) {    
+    _pre_call_callback_gl("glVertexAttribP3uiv", (void*)glVertexAttribP3uiv, 4, arg0, arg1, arg2, arg3);
+     glad_glVertexAttribP3uiv(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glVertexAttribP3uiv", (void*)glVertexAttribP3uiv, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLVERTEXATTRIBP3UIVPROC glad_debug_glVertexAttribP3uiv = glad_debug_impl_glVertexAttribP3uiv;
+PFNGLVERTEXATTRIBP4UIPROC glad_glVertexAttribP4ui;
+void APIENTRY glad_debug_impl_glVertexAttribP4ui(GLuint arg0, GLenum arg1, GLboolean arg2, GLuint arg3) {    
+    _pre_call_callback_gl("glVertexAttribP4ui", (void*)glVertexAttribP4ui, 4, arg0, arg1, arg2, arg3);
+     glad_glVertexAttribP4ui(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glVertexAttribP4ui", (void*)glVertexAttribP4ui, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLVERTEXATTRIBP4UIPROC glad_debug_glVertexAttribP4ui = glad_debug_impl_glVertexAttribP4ui;
+PFNGLVERTEXATTRIBP4UIVPROC glad_glVertexAttribP4uiv;
+void APIENTRY glad_debug_impl_glVertexAttribP4uiv(GLuint arg0, GLenum arg1, GLboolean arg2, const GLuint * arg3) {    
+    _pre_call_callback_gl("glVertexAttribP4uiv", (void*)glVertexAttribP4uiv, 4, arg0, arg1, arg2, arg3);
+     glad_glVertexAttribP4uiv(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glVertexAttribP4uiv", (void*)glVertexAttribP4uiv, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLVERTEXATTRIBP4UIVPROC glad_debug_glVertexAttribP4uiv = glad_debug_impl_glVertexAttribP4uiv;
+PFNGLVERTEXATTRIBPOINTERPROC glad_glVertexAttribPointer;
+void APIENTRY glad_debug_impl_glVertexAttribPointer(GLuint arg0, GLint arg1, GLenum arg2, GLboolean arg3, GLsizei arg4, const void * arg5) {    
+    _pre_call_callback_gl("glVertexAttribPointer", (void*)glVertexAttribPointer, 6, arg0, arg1, arg2, arg3, arg4, arg5);
+     glad_glVertexAttribPointer(arg0, arg1, arg2, arg3, arg4, arg5);
+    _post_call_callback_gl("glVertexAttribPointer", (void*)glVertexAttribPointer, 6, arg0, arg1, arg2, arg3, arg4, arg5);
+    
+}
+PFNGLVERTEXATTRIBPOINTERPROC glad_debug_glVertexAttribPointer = glad_debug_impl_glVertexAttribPointer;
+PFNGLVERTEXP2UIPROC glad_glVertexP2ui;
+void APIENTRY glad_debug_impl_glVertexP2ui(GLenum arg0, GLuint arg1) {    
+    _pre_call_callback_gl("glVertexP2ui", (void*)glVertexP2ui, 2, arg0, arg1);
+     glad_glVertexP2ui(arg0, arg1);
+    _post_call_callback_gl("glVertexP2ui", (void*)glVertexP2ui, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXP2UIPROC glad_debug_glVertexP2ui = glad_debug_impl_glVertexP2ui;
+PFNGLVERTEXP2UIVPROC glad_glVertexP2uiv;
+void APIENTRY glad_debug_impl_glVertexP2uiv(GLenum arg0, const GLuint * arg1) {    
+    _pre_call_callback_gl("glVertexP2uiv", (void*)glVertexP2uiv, 2, arg0, arg1);
+     glad_glVertexP2uiv(arg0, arg1);
+    _post_call_callback_gl("glVertexP2uiv", (void*)glVertexP2uiv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXP2UIVPROC glad_debug_glVertexP2uiv = glad_debug_impl_glVertexP2uiv;
+PFNGLVERTEXP3UIPROC glad_glVertexP3ui;
+void APIENTRY glad_debug_impl_glVertexP3ui(GLenum arg0, GLuint arg1) {    
+    _pre_call_callback_gl("glVertexP3ui", (void*)glVertexP3ui, 2, arg0, arg1);
+     glad_glVertexP3ui(arg0, arg1);
+    _post_call_callback_gl("glVertexP3ui", (void*)glVertexP3ui, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXP3UIPROC glad_debug_glVertexP3ui = glad_debug_impl_glVertexP3ui;
+PFNGLVERTEXP3UIVPROC glad_glVertexP3uiv;
+void APIENTRY glad_debug_impl_glVertexP3uiv(GLenum arg0, const GLuint * arg1) {    
+    _pre_call_callback_gl("glVertexP3uiv", (void*)glVertexP3uiv, 2, arg0, arg1);
+     glad_glVertexP3uiv(arg0, arg1);
+    _post_call_callback_gl("glVertexP3uiv", (void*)glVertexP3uiv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXP3UIVPROC glad_debug_glVertexP3uiv = glad_debug_impl_glVertexP3uiv;
+PFNGLVERTEXP4UIPROC glad_glVertexP4ui;
+void APIENTRY glad_debug_impl_glVertexP4ui(GLenum arg0, GLuint arg1) {    
+    _pre_call_callback_gl("glVertexP4ui", (void*)glVertexP4ui, 2, arg0, arg1);
+     glad_glVertexP4ui(arg0, arg1);
+    _post_call_callback_gl("glVertexP4ui", (void*)glVertexP4ui, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXP4UIPROC glad_debug_glVertexP4ui = glad_debug_impl_glVertexP4ui;
+PFNGLVERTEXP4UIVPROC glad_glVertexP4uiv;
+void APIENTRY glad_debug_impl_glVertexP4uiv(GLenum arg0, const GLuint * arg1) {    
+    _pre_call_callback_gl("glVertexP4uiv", (void*)glVertexP4uiv, 2, arg0, arg1);
+     glad_glVertexP4uiv(arg0, arg1);
+    _post_call_callback_gl("glVertexP4uiv", (void*)glVertexP4uiv, 2, arg0, arg1);
+    
+}
+PFNGLVERTEXP4UIVPROC glad_debug_glVertexP4uiv = glad_debug_impl_glVertexP4uiv;
+PFNGLVERTEXPOINTERPROC glad_glVertexPointer;
+void APIENTRY glad_debug_impl_glVertexPointer(GLint arg0, GLenum arg1, GLsizei arg2, const void * arg3) {    
+    _pre_call_callback_gl("glVertexPointer", (void*)glVertexPointer, 4, arg0, arg1, arg2, arg3);
+     glad_glVertexPointer(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glVertexPointer", (void*)glVertexPointer, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLVERTEXPOINTERPROC glad_debug_glVertexPointer = glad_debug_impl_glVertexPointer;
+PFNGLVIEWPORTPROC glad_glViewport;
+void APIENTRY glad_debug_impl_glViewport(GLint arg0, GLint arg1, GLsizei arg2, GLsizei arg3) {    
+    _pre_call_callback_gl("glViewport", (void*)glViewport, 4, arg0, arg1, arg2, arg3);
+     glad_glViewport(arg0, arg1, arg2, arg3);
+    _post_call_callback_gl("glViewport", (void*)glViewport, 4, arg0, arg1, arg2, arg3);
+    
+}
+PFNGLVIEWPORTPROC glad_debug_glViewport = glad_debug_impl_glViewport;
+PFNGLWAITSYNCPROC glad_glWaitSync;
+void APIENTRY glad_debug_impl_glWaitSync(GLsync arg0, GLbitfield arg1, GLuint64 arg2) {    
+    _pre_call_callback_gl("glWaitSync", (void*)glWaitSync, 3, arg0, arg1, arg2);
+     glad_glWaitSync(arg0, arg1, arg2);
+    _post_call_callback_gl("glWaitSync", (void*)glWaitSync, 3, arg0, arg1, arg2);
+    
+}
+PFNGLWAITSYNCPROC glad_debug_glWaitSync = glad_debug_impl_glWaitSync;
+PFNGLWINDOWPOS2DPROC glad_glWindowPos2d;
+void APIENTRY glad_debug_impl_glWindowPos2d(GLdouble arg0, GLdouble arg1) {    
+    _pre_call_callback_gl("glWindowPos2d", (void*)glWindowPos2d, 2, arg0, arg1);
+     glad_glWindowPos2d(arg0, arg1);
+    _post_call_callback_gl("glWindowPos2d", (void*)glWindowPos2d, 2, arg0, arg1);
+    
+}
+PFNGLWINDOWPOS2DPROC glad_debug_glWindowPos2d = glad_debug_impl_glWindowPos2d;
+PFNGLWINDOWPOS2DVPROC glad_glWindowPos2dv;
+void APIENTRY glad_debug_impl_glWindowPos2dv(const GLdouble * arg0) {    
+    _pre_call_callback_gl("glWindowPos2dv", (void*)glWindowPos2dv, 1, arg0);
+     glad_glWindowPos2dv(arg0);
+    _post_call_callback_gl("glWindowPos2dv", (void*)glWindowPos2dv, 1, arg0);
+    
+}
+PFNGLWINDOWPOS2DVPROC glad_debug_glWindowPos2dv = glad_debug_impl_glWindowPos2dv;
+PFNGLWINDOWPOS2FPROC glad_glWindowPos2f;
+void APIENTRY glad_debug_impl_glWindowPos2f(GLfloat arg0, GLfloat arg1) {    
+    _pre_call_callback_gl("glWindowPos2f", (void*)glWindowPos2f, 2, arg0, arg1);
+     glad_glWindowPos2f(arg0, arg1);
+    _post_call_callback_gl("glWindowPos2f", (void*)glWindowPos2f, 2, arg0, arg1);
+    
+}
+PFNGLWINDOWPOS2FPROC glad_debug_glWindowPos2f = glad_debug_impl_glWindowPos2f;
+PFNGLWINDOWPOS2FVPROC glad_glWindowPos2fv;
+void APIENTRY glad_debug_impl_glWindowPos2fv(const GLfloat * arg0) {    
+    _pre_call_callback_gl("glWindowPos2fv", (void*)glWindowPos2fv, 1, arg0);
+     glad_glWindowPos2fv(arg0);
+    _post_call_callback_gl("glWindowPos2fv", (void*)glWindowPos2fv, 1, arg0);
+    
+}
+PFNGLWINDOWPOS2FVPROC glad_debug_glWindowPos2fv = glad_debug_impl_glWindowPos2fv;
+PFNGLWINDOWPOS2IPROC glad_glWindowPos2i;
+void APIENTRY glad_debug_impl_glWindowPos2i(GLint arg0, GLint arg1) {    
+    _pre_call_callback_gl("glWindowPos2i", (void*)glWindowPos2i, 2, arg0, arg1);
+     glad_glWindowPos2i(arg0, arg1);
+    _post_call_callback_gl("glWindowPos2i", (void*)glWindowPos2i, 2, arg0, arg1);
+    
+}
+PFNGLWINDOWPOS2IPROC glad_debug_glWindowPos2i = glad_debug_impl_glWindowPos2i;
+PFNGLWINDOWPOS2IVPROC glad_glWindowPos2iv;
+void APIENTRY glad_debug_impl_glWindowPos2iv(const GLint * arg0) {    
+    _pre_call_callback_gl("glWindowPos2iv", (void*)glWindowPos2iv, 1, arg0);
+     glad_glWindowPos2iv(arg0);
+    _post_call_callback_gl("glWindowPos2iv", (void*)glWindowPos2iv, 1, arg0);
+    
+}
+PFNGLWINDOWPOS2IVPROC glad_debug_glWindowPos2iv = glad_debug_impl_glWindowPos2iv;
+PFNGLWINDOWPOS2SPROC glad_glWindowPos2s;
+void APIENTRY glad_debug_impl_glWindowPos2s(GLshort arg0, GLshort arg1) {    
+    _pre_call_callback_gl("glWindowPos2s", (void*)glWindowPos2s, 2, arg0, arg1);
+     glad_glWindowPos2s(arg0, arg1);
+    _post_call_callback_gl("glWindowPos2s", (void*)glWindowPos2s, 2, arg0, arg1);
+    
+}
+PFNGLWINDOWPOS2SPROC glad_debug_glWindowPos2s = glad_debug_impl_glWindowPos2s;
+PFNGLWINDOWPOS2SVPROC glad_glWindowPos2sv;
+void APIENTRY glad_debug_impl_glWindowPos2sv(const GLshort * arg0) {    
+    _pre_call_callback_gl("glWindowPos2sv", (void*)glWindowPos2sv, 1, arg0);
+     glad_glWindowPos2sv(arg0);
+    _post_call_callback_gl("glWindowPos2sv", (void*)glWindowPos2sv, 1, arg0);
+    
+}
+PFNGLWINDOWPOS2SVPROC glad_debug_glWindowPos2sv = glad_debug_impl_glWindowPos2sv;
+PFNGLWINDOWPOS3DPROC glad_glWindowPos3d;
+void APIENTRY glad_debug_impl_glWindowPos3d(GLdouble arg0, GLdouble arg1, GLdouble arg2) {    
+    _pre_call_callback_gl("glWindowPos3d", (void*)glWindowPos3d, 3, arg0, arg1, arg2);
+     glad_glWindowPos3d(arg0, arg1, arg2);
+    _post_call_callback_gl("glWindowPos3d", (void*)glWindowPos3d, 3, arg0, arg1, arg2);
+    
+}
+PFNGLWINDOWPOS3DPROC glad_debug_glWindowPos3d = glad_debug_impl_glWindowPos3d;
+PFNGLWINDOWPOS3DVPROC glad_glWindowPos3dv;
+void APIENTRY glad_debug_impl_glWindowPos3dv(const GLdouble * arg0) {    
+    _pre_call_callback_gl("glWindowPos3dv", (void*)glWindowPos3dv, 1, arg0);
+     glad_glWindowPos3dv(arg0);
+    _post_call_callback_gl("glWindowPos3dv", (void*)glWindowPos3dv, 1, arg0);
+    
+}
+PFNGLWINDOWPOS3DVPROC glad_debug_glWindowPos3dv = glad_debug_impl_glWindowPos3dv;
+PFNGLWINDOWPOS3FPROC glad_glWindowPos3f;
+void APIENTRY glad_debug_impl_glWindowPos3f(GLfloat arg0, GLfloat arg1, GLfloat arg2) {    
+    _pre_call_callback_gl("glWindowPos3f", (void*)glWindowPos3f, 3, arg0, arg1, arg2);
+     glad_glWindowPos3f(arg0, arg1, arg2);
+    _post_call_callback_gl("glWindowPos3f", (void*)glWindowPos3f, 3, arg0, arg1, arg2);
+    
+}
+PFNGLWINDOWPOS3FPROC glad_debug_glWindowPos3f = glad_debug_impl_glWindowPos3f;
+PFNGLWINDOWPOS3FVPROC glad_glWindowPos3fv;
+void APIENTRY glad_debug_impl_glWindowPos3fv(const GLfloat * arg0) {    
+    _pre_call_callback_gl("glWindowPos3fv", (void*)glWindowPos3fv, 1, arg0);
+     glad_glWindowPos3fv(arg0);
+    _post_call_callback_gl("glWindowPos3fv", (void*)glWindowPos3fv, 1, arg0);
+    
+}
+PFNGLWINDOWPOS3FVPROC glad_debug_glWindowPos3fv = glad_debug_impl_glWindowPos3fv;
+PFNGLWINDOWPOS3IPROC glad_glWindowPos3i;
+void APIENTRY glad_debug_impl_glWindowPos3i(GLint arg0, GLint arg1, GLint arg2) {    
+    _pre_call_callback_gl("glWindowPos3i", (void*)glWindowPos3i, 3, arg0, arg1, arg2);
+     glad_glWindowPos3i(arg0, arg1, arg2);
+    _post_call_callback_gl("glWindowPos3i", (void*)glWindowPos3i, 3, arg0, arg1, arg2);
+    
+}
+PFNGLWINDOWPOS3IPROC glad_debug_glWindowPos3i = glad_debug_impl_glWindowPos3i;
+PFNGLWINDOWPOS3IVPROC glad_glWindowPos3iv;
+void APIENTRY glad_debug_impl_glWindowPos3iv(const GLint * arg0) {    
+    _pre_call_callback_gl("glWindowPos3iv", (void*)glWindowPos3iv, 1, arg0);
+     glad_glWindowPos3iv(arg0);
+    _post_call_callback_gl("glWindowPos3iv", (void*)glWindowPos3iv, 1, arg0);
+    
+}
+PFNGLWINDOWPOS3IVPROC glad_debug_glWindowPos3iv = glad_debug_impl_glWindowPos3iv;
+PFNGLWINDOWPOS3SPROC glad_glWindowPos3s;
+void APIENTRY glad_debug_impl_glWindowPos3s(GLshort arg0, GLshort arg1, GLshort arg2) {    
+    _pre_call_callback_gl("glWindowPos3s", (void*)glWindowPos3s, 3, arg0, arg1, arg2);
+     glad_glWindowPos3s(arg0, arg1, arg2);
+    _post_call_callback_gl("glWindowPos3s", (void*)glWindowPos3s, 3, arg0, arg1, arg2);
+    
+}
+PFNGLWINDOWPOS3SPROC glad_debug_glWindowPos3s = glad_debug_impl_glWindowPos3s;
+PFNGLWINDOWPOS3SVPROC glad_glWindowPos3sv;
+void APIENTRY glad_debug_impl_glWindowPos3sv(const GLshort * arg0) {    
+    _pre_call_callback_gl("glWindowPos3sv", (void*)glWindowPos3sv, 1, arg0);
+     glad_glWindowPos3sv(arg0);
+    _post_call_callback_gl("glWindowPos3sv", (void*)glWindowPos3sv, 1, arg0);
+    
+}
+PFNGLWINDOWPOS3SVPROC glad_debug_glWindowPos3sv = glad_debug_impl_glWindowPos3sv;
+static void load_GL_VERSION_1_0(GLADloadproc load) {
+	if(!GLAD_GL_VERSION_1_0) return;
+	glad_glCullFace = (PFNGLCULLFACEPROC)load("glCullFace");
+	glad_glFrontFace = (PFNGLFRONTFACEPROC)load("glFrontFace");
+	glad_glHint = (PFNGLHINTPROC)load("glHint");
+	glad_glLineWidth = (PFNGLLINEWIDTHPROC)load("glLineWidth");
+	glad_glPointSize = (PFNGLPOINTSIZEPROC)load("glPointSize");
+	glad_glPolygonMode = (PFNGLPOLYGONMODEPROC)load("glPolygonMode");
+	glad_glScissor = (PFNGLSCISSORPROC)load("glScissor");
+	glad_glTexParameterf = (PFNGLTEXPARAMETERFPROC)load("glTexParameterf");
+	glad_glTexParameterfv = (PFNGLTEXPARAMETERFVPROC)load("glTexParameterfv");
+	glad_glTexParameteri = (PFNGLTEXPARAMETERIPROC)load("glTexParameteri");
+	glad_glTexParameteriv = (PFNGLTEXPARAMETERIVPROC)load("glTexParameteriv");
+	glad_glTexImage1D = (PFNGLTEXIMAGE1DPROC)load("glTexImage1D");
+	glad_glTexImage2D = (PFNGLTEXIMAGE2DPROC)load("glTexImage2D");
+	glad_glDrawBuffer = (PFNGLDRAWBUFFERPROC)load("glDrawBuffer");
+	glad_glClear = (PFNGLCLEARPROC)load("glClear");
+	glad_glClearColor = (PFNGLCLEARCOLORPROC)load("glClearColor");
+	glad_glClearStencil = (PFNGLCLEARSTENCILPROC)load("glClearStencil");
+	glad_glClearDepth = (PFNGLCLEARDEPTHPROC)load("glClearDepth");
+	glad_glStencilMask = (PFNGLSTENCILMASKPROC)load("glStencilMask");
+	glad_glColorMask = (PFNGLCOLORMASKPROC)load("glColorMask");
+	glad_glDepthMask = (PFNGLDEPTHMASKPROC)load("glDepthMask");
+	glad_glDisable = (PFNGLDISABLEPROC)load("glDisable");
+	glad_glEnable = (PFNGLENABLEPROC)load("glEnable");
+	glad_glFinish = (PFNGLFINISHPROC)load("glFinish");
+	glad_glFlush = (PFNGLFLUSHPROC)load("glFlush");
+	glad_glBlendFunc = (PFNGLBLENDFUNCPROC)load("glBlendFunc");
+	glad_glLogicOp = (PFNGLLOGICOPPROC)load("glLogicOp");
+	glad_glStencilFunc = (PFNGLSTENCILFUNCPROC)load("glStencilFunc");
+	glad_glStencilOp = (PFNGLSTENCILOPPROC)load("glStencilOp");
+	glad_glDepthFunc = (PFNGLDEPTHFUNCPROC)load("glDepthFunc");
+	glad_glPixelStoref = (PFNGLPIXELSTOREFPROC)load("glPixelStoref");
+	glad_glPixelStorei = (PFNGLPIXELSTOREIPROC)load("glPixelStorei");
+	glad_glReadBuffer = (PFNGLREADBUFFERPROC)load("glReadBuffer");
+	glad_glReadPixels = (PFNGLREADPIXELSPROC)load("glReadPixels");
+	glad_glGetBooleanv = (PFNGLGETBOOLEANVPROC)load("glGetBooleanv");
+	glad_glGetDoublev = (PFNGLGETDOUBLEVPROC)load("glGetDoublev");
+	glad_glGetError = (PFNGLGETERRORPROC)load("glGetError");
+	glad_glGetFloatv = (PFNGLGETFLOATVPROC)load("glGetFloatv");
+	glad_glGetIntegerv = (PFNGLGETINTEGERVPROC)load("glGetIntegerv");
+	glad_glGetString = (PFNGLGETSTRINGPROC)load("glGetString");
+	glad_glGetTexImage = (PFNGLGETTEXIMAGEPROC)load("glGetTexImage");
+	glad_glGetTexParameterfv = (PFNGLGETTEXPARAMETERFVPROC)load("glGetTexParameterfv");
+	glad_glGetTexParameteriv = (PFNGLGETTEXPARAMETERIVPROC)load("glGetTexParameteriv");
+	glad_glGetTexLevelParameterfv = (PFNGLGETTEXLEVELPARAMETERFVPROC)load("glGetTexLevelParameterfv");
+	glad_glGetTexLevelParameteriv = (PFNGLGETTEXLEVELPARAMETERIVPROC)load("glGetTexLevelParameteriv");
+	glad_glIsEnabled = (PFNGLISENABLEDPROC)load("glIsEnabled");
+	glad_glDepthRange = (PFNGLDEPTHRANGEPROC)load("glDepthRange");
+	glad_glViewport = (PFNGLVIEWPORTPROC)load("glViewport");
+	glad_glNewList = (PFNGLNEWLISTPROC)load("glNewList");
+	glad_glEndList = (PFNGLENDLISTPROC)load("glEndList");
+	glad_glCallList = (PFNGLCALLLISTPROC)load("glCallList");
+	glad_glCallLists = (PFNGLCALLLISTSPROC)load("glCallLists");
+	glad_glDeleteLists = (PFNGLDELETELISTSPROC)load("glDeleteLists");
+	glad_glGenLists = (PFNGLGENLISTSPROC)load("glGenLists");
+	glad_glListBase = (PFNGLLISTBASEPROC)load("glListBase");
+	glad_glBegin = (PFNGLBEGINPROC)load("glBegin");
+	glad_glBitmap = (PFNGLBITMAPPROC)load("glBitmap");
+	glad_glColor3b = (PFNGLCOLOR3BPROC)load("glColor3b");
+	glad_glColor3bv = (PFNGLCOLOR3BVPROC)load("glColor3bv");
+	glad_glColor3d = (PFNGLCOLOR3DPROC)load("glColor3d");
+	glad_glColor3dv = (PFNGLCOLOR3DVPROC)load("glColor3dv");
+	glad_glColor3f = (PFNGLCOLOR3FPROC)load("glColor3f");
+	glad_glColor3fv = (PFNGLCOLOR3FVPROC)load("glColor3fv");
+	glad_glColor3i = (PFNGLCOLOR3IPROC)load("glColor3i");
+	glad_glColor3iv = (PFNGLCOLOR3IVPROC)load("glColor3iv");
+	glad_glColor3s = (PFNGLCOLOR3SPROC)load("glColor3s");
+	glad_glColor3sv = (PFNGLCOLOR3SVPROC)load("glColor3sv");
+	glad_glColor3ub = (PFNGLCOLOR3UBPROC)load("glColor3ub");
+	glad_glColor3ubv = (PFNGLCOLOR3UBVPROC)load("glColor3ubv");
+	glad_glColor3ui = (PFNGLCOLOR3UIPROC)load("glColor3ui");
+	glad_glColor3uiv = (PFNGLCOLOR3UIVPROC)load("glColor3uiv");
+	glad_glColor3us = (PFNGLCOLOR3USPROC)load("glColor3us");
+	glad_glColor3usv = (PFNGLCOLOR3USVPROC)load("glColor3usv");
+	glad_glColor4b = (PFNGLCOLOR4BPROC)load("glColor4b");
+	glad_glColor4bv = (PFNGLCOLOR4BVPROC)load("glColor4bv");
+	glad_glColor4d = (PFNGLCOLOR4DPROC)load("glColor4d");
+	glad_glColor4dv = (PFNGLCOLOR4DVPROC)load("glColor4dv");
+	glad_glColor4f = (PFNGLCOLOR4FPROC)load("glColor4f");
+	glad_glColor4fv = (PFNGLCOLOR4FVPROC)load("glColor4fv");
+	glad_glColor4i = (PFNGLCOLOR4IPROC)load("glColor4i");
+	glad_glColor4iv = (PFNGLCOLOR4IVPROC)load("glColor4iv");
+	glad_glColor4s = (PFNGLCOLOR4SPROC)load("glColor4s");
+	glad_glColor4sv = (PFNGLCOLOR4SVPROC)load("glColor4sv");
+	glad_glColor4ub = (PFNGLCOLOR4UBPROC)load("glColor4ub");
+	glad_glColor4ubv = (PFNGLCOLOR4UBVPROC)load("glColor4ubv");
+	glad_glColor4ui = (PFNGLCOLOR4UIPROC)load("glColor4ui");
+	glad_glColor4uiv = (PFNGLCOLOR4UIVPROC)load("glColor4uiv");
+	glad_glColor4us = (PFNGLCOLOR4USPROC)load("glColor4us");
+	glad_glColor4usv = (PFNGLCOLOR4USVPROC)load("glColor4usv");
+	glad_glEdgeFlag = (PFNGLEDGEFLAGPROC)load("glEdgeFlag");
+	glad_glEdgeFlagv = (PFNGLEDGEFLAGVPROC)load("glEdgeFlagv");
+	glad_glEnd = (PFNGLENDPROC)load("glEnd");
+	glad_glIndexd = (PFNGLINDEXDPROC)load("glIndexd");
+	glad_glIndexdv = (PFNGLINDEXDVPROC)load("glIndexdv");
+	glad_glIndexf = (PFNGLINDEXFPROC)load("glIndexf");
+	glad_glIndexfv = (PFNGLINDEXFVPROC)load("glIndexfv");
+	glad_glIndexi = (PFNGLINDEXIPROC)load("glIndexi");
+	glad_glIndexiv = (PFNGLINDEXIVPROC)load("glIndexiv");
+	glad_glIndexs = (PFNGLINDEXSPROC)load("glIndexs");
+	glad_glIndexsv = (PFNGLINDEXSVPROC)load("glIndexsv");
+	glad_glNormal3b = (PFNGLNORMAL3BPROC)load("glNormal3b");
+	glad_glNormal3bv = (PFNGLNORMAL3BVPROC)load("glNormal3bv");
+	glad_glNormal3d = (PFNGLNORMAL3DPROC)load("glNormal3d");
+	glad_glNormal3dv = (PFNGLNORMAL3DVPROC)load("glNormal3dv");
+	glad_glNormal3f = (PFNGLNORMAL3FPROC)load("glNormal3f");
+	glad_glNormal3fv = (PFNGLNORMAL3FVPROC)load("glNormal3fv");
+	glad_glNormal3i = (PFNGLNORMAL3IPROC)load("glNormal3i");
+	glad_glNormal3iv = (PFNGLNORMAL3IVPROC)load("glNormal3iv");
+	glad_glNormal3s = (PFNGLNORMAL3SPROC)load("glNormal3s");
+	glad_glNormal3sv = (PFNGLNORMAL3SVPROC)load("glNormal3sv");
+	glad_glRasterPos2d = (PFNGLRASTERPOS2DPROC)load("glRasterPos2d");
+	glad_glRasterPos2dv = (PFNGLRASTERPOS2DVPROC)load("glRasterPos2dv");
+	glad_glRasterPos2f = (PFNGLRASTERPOS2FPROC)load("glRasterPos2f");
+	glad_glRasterPos2fv = (PFNGLRASTERPOS2FVPROC)load("glRasterPos2fv");
+	glad_glRasterPos2i = (PFNGLRASTERPOS2IPROC)load("glRasterPos2i");
+	glad_glRasterPos2iv = (PFNGLRASTERPOS2IVPROC)load("glRasterPos2iv");
+	glad_glRasterPos2s = (PFNGLRASTERPOS2SPROC)load("glRasterPos2s");
+	glad_glRasterPos2sv = (PFNGLRASTERPOS2SVPROC)load("glRasterPos2sv");
+	glad_glRasterPos3d = (PFNGLRASTERPOS3DPROC)load("glRasterPos3d");
+	glad_glRasterPos3dv = (PFNGLRASTERPOS3DVPROC)load("glRasterPos3dv");
+	glad_glRasterPos3f = (PFNGLRASTERPOS3FPROC)load("glRasterPos3f");
+	glad_glRasterPos3fv = (PFNGLRASTERPOS3FVPROC)load("glRasterPos3fv");
+	glad_glRasterPos3i = (PFNGLRASTERPOS3IPROC)load("glRasterPos3i");
+	glad_glRasterPos3iv = (PFNGLRASTERPOS3IVPROC)load("glRasterPos3iv");
+	glad_glRasterPos3s = (PFNGLRASTERPOS3SPROC)load("glRasterPos3s");
+	glad_glRasterPos3sv = (PFNGLRASTERPOS3SVPROC)load("glRasterPos3sv");
+	glad_glRasterPos4d = (PFNGLRASTERPOS4DPROC)load("glRasterPos4d");
+	glad_glRasterPos4dv = (PFNGLRASTERPOS4DVPROC)load("glRasterPos4dv");
+	glad_glRasterPos4f = (PFNGLRASTERPOS4FPROC)load("glRasterPos4f");
+	glad_glRasterPos4fv = (PFNGLRASTERPOS4FVPROC)load("glRasterPos4fv");
+	glad_glRasterPos4i = (PFNGLRASTERPOS4IPROC)load("glRasterPos4i");
+	glad_glRasterPos4iv = (PFNGLRASTERPOS4IVPROC)load("glRasterPos4iv");
+	glad_glRasterPos4s = (PFNGLRASTERPOS4SPROC)load("glRasterPos4s");
+	glad_glRasterPos4sv = (PFNGLRASTERPOS4SVPROC)load("glRasterPos4sv");
+	glad_glRectd = (PFNGLRECTDPROC)load("glRectd");
+	glad_glRectdv = (PFNGLRECTDVPROC)load("glRectdv");
+	glad_glRectf = (PFNGLRECTFPROC)load("glRectf");
+	glad_glRectfv = (PFNGLRECTFVPROC)load("glRectfv");
+	glad_glRecti = (PFNGLRECTIPROC)load("glRecti");
+	glad_glRectiv = (PFNGLRECTIVPROC)load("glRectiv");
+	glad_glRects = (PFNGLRECTSPROC)load("glRects");
+	glad_glRectsv = (PFNGLRECTSVPROC)load("glRectsv");
+	glad_glTexCoord1d = (PFNGLTEXCOORD1DPROC)load("glTexCoord1d");
+	glad_glTexCoord1dv = (PFNGLTEXCOORD1DVPROC)load("glTexCoord1dv");
+	glad_glTexCoord1f = (PFNGLTEXCOORD1FPROC)load("glTexCoord1f");
+	glad_glTexCoord1fv = (PFNGLTEXCOORD1FVPROC)load("glTexCoord1fv");
+	glad_glTexCoord1i = (PFNGLTEXCOORD1IPROC)load("glTexCoord1i");
+	glad_glTexCoord1iv = (PFNGLTEXCOORD1IVPROC)load("glTexCoord1iv");
+	glad_glTexCoord1s = (PFNGLTEXCOORD1SPROC)load("glTexCoord1s");
+	glad_glTexCoord1sv = (PFNGLTEXCOORD1SVPROC)load("glTexCoord1sv");
+	glad_glTexCoord2d = (PFNGLTEXCOORD2DPROC)load("glTexCoord2d");
+	glad_glTexCoord2dv = (PFNGLTEXCOORD2DVPROC)load("glTexCoord2dv");
+	glad_glTexCoord2f = (PFNGLTEXCOORD2FPROC)load("glTexCoord2f");
+	glad_glTexCoord2fv = (PFNGLTEXCOORD2FVPROC)load("glTexCoord2fv");
+	glad_glTexCoord2i = (PFNGLTEXCOORD2IPROC)load("glTexCoord2i");
+	glad_glTexCoord2iv = (PFNGLTEXCOORD2IVPROC)load("glTexCoord2iv");
+	glad_glTexCoord2s = (PFNGLTEXCOORD2SPROC)load("glTexCoord2s");
+	glad_glTexCoord2sv = (PFNGLTEXCOORD2SVPROC)load("glTexCoord2sv");
+	glad_glTexCoord3d = (PFNGLTEXCOORD3DPROC)load("glTexCoord3d");
+	glad_glTexCoord3dv = (PFNGLTEXCOORD3DVPROC)load("glTexCoord3dv");
+	glad_glTexCoord3f = (PFNGLTEXCOORD3FPROC)load("glTexCoord3f");
+	glad_glTexCoord3fv = (PFNGLTEXCOORD3FVPROC)load("glTexCoord3fv");
+	glad_glTexCoord3i = (PFNGLTEXCOORD3IPROC)load("glTexCoord3i");
+	glad_glTexCoord3iv = (PFNGLTEXCOORD3IVPROC)load("glTexCoord3iv");
+	glad_glTexCoord3s = (PFNGLTEXCOORD3SPROC)load("glTexCoord3s");
+	glad_glTexCoord3sv = (PFNGLTEXCOORD3SVPROC)load("glTexCoord3sv");
+	glad_glTexCoord4d = (PFNGLTEXCOORD4DPROC)load("glTexCoord4d");
+	glad_glTexCoord4dv = (PFNGLTEXCOORD4DVPROC)load("glTexCoord4dv");
+	glad_glTexCoord4f = (PFNGLTEXCOORD4FPROC)load("glTexCoord4f");
+	glad_glTexCoord4fv = (PFNGLTEXCOORD4FVPROC)load("glTexCoord4fv");
+	glad_glTexCoord4i = (PFNGLTEXCOORD4IPROC)load("glTexCoord4i");
+	glad_glTexCoord4iv = (PFNGLTEXCOORD4IVPROC)load("glTexCoord4iv");
+	glad_glTexCoord4s = (PFNGLTEXCOORD4SPROC)load("glTexCoord4s");
+	glad_glTexCoord4sv = (PFNGLTEXCOORD4SVPROC)load("glTexCoord4sv");
+	glad_glVertex2d = (PFNGLVERTEX2DPROC)load("glVertex2d");
+	glad_glVertex2dv = (PFNGLVERTEX2DVPROC)load("glVertex2dv");
+	glad_glVertex2f = (PFNGLVERTEX2FPROC)load("glVertex2f");
+	glad_glVertex2fv = (PFNGLVERTEX2FVPROC)load("glVertex2fv");
+	glad_glVertex2i = (PFNGLVERTEX2IPROC)load("glVertex2i");
+	glad_glVertex2iv = (PFNGLVERTEX2IVPROC)load("glVertex2iv");
+	glad_glVertex2s = (PFNGLVERTEX2SPROC)load("glVertex2s");
+	glad_glVertex2sv = (PFNGLVERTEX2SVPROC)load("glVertex2sv");
+	glad_glVertex3d = (PFNGLVERTEX3DPROC)load("glVertex3d");
+	glad_glVertex3dv = (PFNGLVERTEX3DVPROC)load("glVertex3dv");
+	glad_glVertex3f = (PFNGLVERTEX3FPROC)load("glVertex3f");
+	glad_glVertex3fv = (PFNGLVERTEX3FVPROC)load("glVertex3fv");
+	glad_glVertex3i = (PFNGLVERTEX3IPROC)load("glVertex3i");

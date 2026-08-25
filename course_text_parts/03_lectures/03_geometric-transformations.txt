@@ -1,0 +1,1008 @@
+Kapitel 03: Geometric Transformations - Moodle-Seite
+----------------------------------------------------
+Quelle: lectures/03-geometric-transformations/index.html
+
+Moodle Lernplattform Universität Ulm - Interaktive Computergrafik 
+Moodle Lernplattform Universität Ulm
+Interaktive Computergrafik 
+CS8165.001-SS26 
+Chap03 - Geometric Transformations (28.04.26)
+Diese Seite ist Teil des Inhalts, der von Chap03 - Geometric Transformations (28.04.26) am Dienstag, 25. August 2026, 20:30 heruntergeladen wurde. Beachten Sie, dass einige Inhalte und alle Dateien, die größer als 2 GB sind, nicht heruntergeladen werden. 
+Dateien und Verzeichnisse 
+03-geometric-transformations.pdf 
+Diese Datei ist Teil des Inhalts, der am Dienstag, 25. August 2026, 20:30 von Maksym Morozov von Interaktive Computergrafik heruntergeladen wurde.
+
+Externe Links:
+- Moodle Lernplattform Universität Ulm: https://moodle.uni-ulm.de
+- Chap03 - Geometric Transformations (28.04.26): https://moodle.uni-ulm.de/mod/resource/view.php?id=1015655
+- Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
+
+Kapitel 03: Geometric Transformations - Folien
+----------------------------------------------
+Quelle: lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf
+
+[Seite 1]
+Seiten-Metadaten: Bilder=2, Rechtecke=2, Kurven=0, Linien=0
+Interactive Computer Graphics
+Chapter 3 – Geometric Transformations
+Summer Term 2026
+Timo Ropinski
+Visual Computing Group
+Institute of Media Informatics
+[Seite 2]
+Seiten-Metadaten: Bilder=0, Rechtecke=12, Kurven=11, Linien=1
+Transforming 3D Models
+ 3D models need to be positioned and oriented in the virtual world
+(sometimes scaling and other modifications are necessary)
+ These modifications are performed by applying transformations to the
+vertices describing a 3D model
+ Transformations are applied through
+matrix vector multiplication 𝑦
+𝑥
+World Coordinate System
+Interactive Computer Graphics
+28/04/2026 2
+Chapter 3 – Geometric Transformations
+[Seite 3]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Chapter Outline
+3.1 Mathematical Foundations
+3.2 Affine Transformations
+3.3 Composition of Transformations
+3.4 Coordinate System Change
+3.5 Transformations in OpenGL
+References
+Interactive Computer Graphics
+28/04/2026 3
+Chapter 3 – Geometric Transformations
+[Seite 4]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+3.1 Mathematical Foundations
+Vector and Matrix Calculus
+Visual Computing Group
+Institute of Media Informatics
+[Seite 5]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=4, Linien=1
+Vertices as Vectors
+ Vectors are used to represent geometric objects (coordinates)
+ Vectors have real numbers as components, so they are elements of ℝ2, ℝ3 , ℝ4
+(cid:127) In computer graphics mostly ℝ3 or ℝ4 vectors used
+ Vertices of a polygon are represented as column vectors
+𝑣
+𝑥
+𝑣
+𝑥 𝑣
+𝑦
+𝑣⃑ = 𝑣 , 𝑣⃑ =
+𝑦 𝑣
+𝑧
+𝑣
+𝑧 𝑣
+𝑤
+Interactive Computer Graphics
+28/04/2026 5
+Chapter 3 – Geometric Transformations
+[Seite 6]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=2, Linien=1
+Transformations as Matrices
+ Matrices are used to represent transformations
+ In computer graphics mainly 4 × 4 square matrices are used
+𝑎 𝑏 𝑐 𝑑
+𝑒 𝑓 𝑔 ℎ
+𝑀 =
+𝑖 𝑗 𝑘 𝑙
+𝑚 𝑛 𝑜 𝑝
+ Unit matrix 𝐼: all 𝐴 = 0 (i≠j) and all 𝐴 = 1 (main diagonal)
+𝑖𝑗 𝑖𝑖
+ Inverse matrix 𝑀−1 (for square matrices) : 𝑀−1 ⋅ 𝑀 = 𝑀 ⋅ 𝑀−1 = 𝐼
+Interactive Computer Graphics
+28/04/2026 6
+Chapter 3 – Geometric Transformations
+[Seite 7]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=10, Linien=1
+Matrix Vector Multiplication
+ Since vectors describe vertices and matrices describe transformations,
+transformations can be applied through matrix vector multiplication
+ Input: 𝑚 × 𝑛 matrix 𝐴 and ℝm vector 𝐵
+ Result: ℝn vector 𝐶, whereby is 𝐵 transformed through 𝐴
+ Example for 4 × 4 matrix 𝐴 and ℝ4 vector 𝐵:
+𝑎 𝑏 𝑐 𝑑 𝑥 𝑎 ⋅ 𝑥 + 𝑏 ⋅ 𝑦 + 𝑐 ⋅ 𝑧 + 𝑑 ⋅ 𝑤
+𝑒 𝑓 𝑔 ℎ 𝑦 𝑒 ⋅ 𝑥 + 𝑓 ⋅ 𝑦 + 𝑔 ⋅ 𝑧 + ℎ ⋅ 𝑤
+⋅ =
+𝑖 𝑗 𝑘 𝑙 𝑧 𝑖 ⋅ 𝑥 + 𝑗 ⋅ 𝑦 + 𝑘 ⋅ 𝑧 + 𝑙 ⋅ 𝑤
+𝑚 𝑛 𝑜 𝑝 𝑤 𝑚 ⋅ 𝑥 + 𝑛 ⋅ 𝑦 + 𝑜 ⋅ 𝑧 + 𝑝 ⋅ 𝑤
+ General multiplication rule is 𝑐 =
+∑𝑚
+𝑎 ⋅ 𝑏
+𝑗,𝑖 𝑘=1 𝑘,𝑖 𝑗,𝑘
+Interactive Computer Graphics
+28/04/2026 7
+Chapter 3 – Geometric Transformations
+[Seite 8]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+3.2 Affine Transformations
+Translation, Rotation, Scaling, and more
+Visual Computing Group
+Institute of Media Informatics
+[Seite 9]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=12, Linien=1
+Translations – Moving 3D Models
+ Matrix representation of a translation
+1 0 0 𝑑
+𝑥
+0 1 0 𝑑
+𝑦
+𝑇 𝑑 , 𝑑 , 𝑑 =
+𝑥 𝑦 𝑧
+0 0 1 𝑑
+𝑧
+0 0 0 1
+ Application of a translation
+1 0 0 𝑑 𝑣 𝑣 + 𝑑
+𝑥 𝑥 𝑥 𝑥
+0 1 0 𝑑 𝑣 𝑣 + 𝑑
+𝑦 𝑦 𝑦 𝑦
+𝑇 𝑑 , 𝑑 , 𝑑 ⋅ 𝑣 = ⋅ =
+𝑥 𝑦 𝑧 𝑣
+0 0 1 𝑑 𝑣 + 𝑑
+𝑧
+𝑧 𝑧 𝑧
+1
+0 0 0 1 1
+Interactive Computer Graphics
+28/04/2026 9
+Chapter 3 – Geometric Transformations
+[Seite 10]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=4, Linien=1
+Translation Properties
+ Lengths and angles are preserved
+ Identity: 𝑇(0, 0, 0) = 𝐼 (identity matrix)
+ Changing order of translations:
+(cid:127) 𝑇(𝑑1 , 𝑑1 , 𝑑1 ) ⋅ 𝑇(𝑑2 , 𝑑2 , 𝑑2 ) = 𝑇(𝑑2 , 𝑑2 , 𝑑2 ) ⋅ 𝑇(𝑑1 , 𝑑1 , 𝑑1 )
+𝑥 𝑦 𝑧 𝑥 𝑦 𝑧 𝑥 𝑦 𝑧 𝑥 𝑦 𝑧
+ Concatenating translations:
+(cid:127) 𝑇 𝑑1 , 𝑑1 , 𝑑1 ⋅ 𝑇 𝑑2 , 𝑑2 , 𝑑2 = 𝑇(𝑑1 + 𝑑2 , 𝑑1 + 𝑑2 , 𝑑1 + 𝑑2 )
+𝑥 𝑦 𝑧 𝑥 𝑦 𝑧 𝑥 𝑥 𝑦 𝑦 𝑧 𝑧
+ Inverting translations:
+(cid:127) 𝑇−1(𝑑 , 𝑑 , 𝑑 ) = 𝑇(−𝑑 , −𝑑 , −𝑑 )
+𝑥 𝑦 𝑧 𝑥 𝑦 𝑧
+Interactive Computer Graphics
+28/04/2026 10
+Chapter 3 – Geometric Transformations
+[Seite 11]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=12, Linien=1
+Scaling – Resizing 3D Models
+ Matrix representation of a scaling
+𝑠 0 0 0
+𝑥
+0 𝑠 0 0
+𝑦
+𝑆 𝑠 , 𝑠 , 𝑠 =
+𝑥 𝑦 𝑧
+0 0 𝑠 0
+𝑧
+0 0 0 1
+ Application of a scaling
+𝑠 0 0 0 𝑣 𝑣 ⋅ 𝑠
+𝑥 𝑥 𝑥 𝑥
+0 𝑠 0 0 𝑣 𝑣 ⋅ 𝑠
+𝑦 𝑦 𝑦 𝑦
+𝑆 𝑠 , 𝑠 , 𝑠 ⋅ 𝑣 = ⋅ =
+𝑥 𝑦 𝑧 𝑣 𝑣 ⋅ 𝑠
+0 0 𝑠 0
+𝑧 𝑧 𝑧
+𝑧
+1 1
+0 0 0 1
+Interactive Computer Graphics
+28/04/2026 11
+Chapter 3 – Geometric Transformations
+[Seite 12]
+Seiten-Metadaten: Bilder=0, Rechtecke=6, Kurven=6, Linien=1
+Scaling Properties
+ Lengths are not preserved, angles only for uniform scalings
+ Identity: 𝑆(1, 1, 1) = 𝐼 (identity matrix)
+ Changing order of scalings:
+(cid:127) 𝑆(𝑠1 , 𝑠1 , 𝑠1 ) ⋅ 𝑆(𝑠2 , 𝑠2 , 𝑠2 ) = 𝑆(𝑠2 , 𝑠2 , 𝑠2 ) ⋅ 𝑆(𝑠1 , 𝑠1 , 𝑠1 )
+𝑥 𝑦 𝑧 𝑥 𝑦 𝑧 𝑥 𝑦 𝑧 𝑥 𝑦 𝑧
+ Concatenating scalings:
+(cid:127) 𝑆 𝑠1 , 𝑠1 , 𝑠1 ⋅ 𝑆 𝑠2 , 𝑠2 , 𝑠2 = 𝑆(𝑠1 ⋅ 𝑠2 , 𝑠1 ⋅ 𝑠2 , 𝑠1 ⋅ 𝑠2 )
+𝑥 𝑦 𝑧 𝑥 𝑦 𝑧 𝑥 𝑥 𝑦 𝑦 𝑧 𝑧
+ Inverting scalings:
+1 1 1
+(cid:127) S−1(𝑠 , 𝑠 , 𝑠 ) = S , ,
+𝑥 𝑦 𝑧
+𝑠 𝑠 𝑠
+𝑥 𝑦 𝑧
+Interactive Computer Graphics
+28/04/2026 12
+Chapter 3 – Geometric Transformations
+[Seite 13]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=12, Linien=1
+Rotation – Changing Orientation of 3D Models 1/2
+ Matrix representation of a rotation around x-, y- and z-axis
+1 0 0 0
+0 cos 𝜃 −𝑠𝑖𝑛𝜃 0
+𝑅 𝜃 =
+𝑥
+0 𝑠𝑖𝑛𝜃 𝑐𝑜𝑠𝜃 0
+0 0 0 1
+𝑐𝑜𝑠𝜃 0 𝑠𝑖𝑛𝜃 0
+0 1 0 0
+𝑅 𝜃 =
+𝑦
+−𝑠𝑖𝑛𝜃 0 𝑐𝑜𝑠𝜃 0
+0 0 0 1
+𝑐𝑜𝑠𝜃 −𝑠𝑖𝑛𝜃 0 0
+𝑠𝑖𝑛𝜃 𝑐𝑜𝑠𝜃 0 0
+𝑅 𝜃 =
+𝑧
+0 0 1 0
+0 0 0 1
+Interactive Computer Graphics
+28/04/2026 13
+Chapter 3 – Geometric Transformations
+[Seite 14]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Rotation – Changing Orientation of 3D Models 2/2
+ Rotations are made in the right-handed coordinate system so that when we
+look along a positive axis to the origin, a 90° rotation about that axis
+interleaves the positive axes as follows
+(cid:127) Rotation around x-axis transforms +𝑦 to +𝑧
+(cid:127) Rotation around y-axis transforms +𝑧 to +𝑥
+(cid:127) Rotation around z-axis transforms +𝑥 to +𝑦
+Interactive Computer Graphics
+28/04/2026 14
+Chapter 3 – Geometric Transformations
+[Seite 15]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=6, Linien=1
+Rotation Properties
+ Lengths and angles are preserved
+ Identity: 𝑅 0 = 𝑅 0 = 𝑅 0 = I (identity matrix)
+𝑥 𝑦 𝑧
+ Changing order of rotations around same axis:
+(cid:127) 𝑅 (𝜃) ⋅ 𝑅 (𝜑) = 𝑅 (𝜑) ⋅ 𝑅 (𝜃)
+𝑎 𝑎 𝑎 𝑎
+ Concatenating rotations around same axis:
+(cid:127) 𝑅 (𝜃) ⋅ 𝑅 (𝜑) = 𝑅 (𝜃 + 𝜑)
+𝑎 𝑎 𝑎
+ Inverting rotations:
+(cid:127) 𝑅−1(𝜃) = 𝑅(– 𝜃) = 𝑅𝑇(𝜃)
+ Rotations around different axis are not commutative!
+Interactive Computer Graphics
+28/04/2026 15
+Chapter 3 – Geometric Transformations
+[Seite 16]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=8, Linien=1
+Mirroring – Reflecting 3D Models on a Plane
+ Matrix representation of mirroring along x-y plane
+1 0 0 0
+0 1 0 0
+𝑀 =
+𝑧
+0 0 −1 0
+0 0 0 1
+ Application of mirroring
+1 0 0 0 𝑣 𝑣
+𝑥 𝑥
+0 1 0 0 𝑣 𝑣
+𝑦 𝑦
+𝑀 ⋅ 𝑣 = ⋅ =
+𝑧 0 0 −1 0 𝑣 −𝑣
+𝑧 𝑧
+0 0 0 1 1 1
+ Mirroring converts between left- and right-handed coordinate system
+ Mirroring preserves lengths and angles, but not the polygon orientation (!)
+Interactive Computer Graphics
+28/04/2026 16
+Chapter 3 – Geometric Transformations
+[Seite 17]
+Seiten-Metadaten: Bilder=0, Rechtecke=6, Kurven=11, Linien=1
+Shearing – Skewing 3D Models
+ Matrix representation of a shearing
+1 ℎ ℎ 0
+𝑥𝑦 𝑥𝑧
+ℎ 1 ℎ 0
+𝑦𝑥 𝑦𝑧
+𝑆𝐻(ℎ , ℎ , ℎ , ℎ , ℎ , ℎ ) =
+𝑥𝑦 𝑥𝑧 𝑦𝑥 𝑦𝑧 𝑧𝑥 𝑧𝑦
+ℎ ℎ 1 0
+𝑧𝑥 𝑧𝑦
+0 0 0 1
+ Application of shearing
+1 𝑎 0 0 𝑣 𝑣 + 𝑎𝑣
+𝑥 𝑥 𝑦
+0 1 0 0 𝑣 𝑣
+𝑦 𝑦
+𝑆𝐻 (𝑎) ⋅ 𝑣 = ⋅ =
+𝑥𝑦 0 0 1 0 𝑣 𝑣
+𝑧 𝑧
+0 0 0 1 1 1
+Interactive Computer Graphics
+28/04/2026 17
+Chapter 3 – Geometric Transformations
+[Seite 18]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+3.3 Composition of Transformations
+Concatenation of several transformation steps
+Visual Computing Group
+Institute of Media Informatics
+[Seite 19]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Composition of Transformations
+ Composition of transformations 𝑇 is done
+𝑖
+by multiplying the respective transformation matrices
+ (𝑇 ⋅ 𝑇 ⋅ … ⋅ 𝑇 ⋅ 𝑇 ) ⋅ 𝑣 = (𝑇 ⋅ (𝑇 ⋅ (… ⋅ (𝑇 ⋅ (𝑇 ⋅ 𝑣)))))
+1 2 n−1 n 1 2 n−1 n
+(cid:127) Interpretation: apply first transformation 𝑇 , then 𝑇 , ..., and finally 𝑇
+n n−1 1
+ Application of composited transformation is more efficient!
+ Reminder: matrix multiplication generalizes the vector-matrix product
+(cid:127) Result entries are calculated as follows
+ 𝑐 =
+∑𝑚
+𝑎 ⋅ 𝑏
+𝑗,𝑖 𝑘=1 𝑘,𝑖 𝑗,𝑘
+Interactive Computer Graphics
+28/04/2026 19
+Chapter 3 – Geometric Transformations
+[Seite 20]
+Seiten-Metadaten: Bilder=0, Rechtecke=7, Kurven=790, Linien=1
+Reference Points 1/2
+ Rotation and scaling happen in relation to origin (reference point)
+y
+y
+x
+x
+Interactive Computer Graphics
+28/04/2026 20
+Chapter 3 – Geometric Transformations
+[Seite 21]
+Seiten-Metadaten: Bilder=0, Rechtecke=11, Kurven=101, Linien=1
+Reference Points 2/2
+ In order to rotate (or scale) 3D models at an arbitrary reference point,
+a sequence of transformations is necessary
+(cid:127) Move the 3D model from reference point 𝑀 to the origin 𝑂
+(cid:127) Rotate (or scale) the 3D model
+(cid:127) Move the 3D model back to 𝑀
+ Example: Rotation of 𝜃 around 𝑀 = (𝑥 , 𝑦 , 𝑧 )
+𝑀 𝑀 𝑀
+(𝑇 𝑥 , 𝑦 , 𝑧 ⋅ 𝑅 𝜃 ⋅ 𝑇 −𝑥 , −𝑦 , −𝑧 ) ⋅ 𝑣
+𝑀 𝑀 𝑀 𝑧 𝑀 𝑀 𝑀
+y y y y
+M
+θ
+x x x x
+Interactive Computer Graphics
+28/04/2026 21
+Chapter 3 – Geometric Transformations
+[Seite 22]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=11, Linien=1
+Rotation Around Arbitrary Axis
+ Rotation around any axis
+(cid:127) Axis given by center of rotation 𝑃 and direction 𝑈 = (𝑢 , 𝑢 , 𝑢 )
+𝑥 𝑦 𝑧
+(cid:127) Rotation by 𝜃 degrees
+ Construction of transformation as transformation sequence
+(cid:127) Move center of rotation 𝑃 to the origin
+y
+(cid:127) Rotation around the y-axis so that 𝑈 lies in the yz-plane
+P
+(cid:127) Rotation about the x-axis so that 𝑈 lies on the z-axis U
+(cid:127) Rotation about the z-axis by 𝜃 degrees
+(cid:127) Reverse rotation about the x-axis
+x
+(cid:127) Reverse rotation about the y-axis
+(cid:127) Backward shift to 𝑃
+z
+Interactive Computer Graphics
+28/04/2026 22
+Chapter 3 – Geometric Transformations
+[Seite 23]
+Seiten-Metadaten: Bilder=0, Rechtecke=8, Kurven=4, Linien=1
+Reminder: Vector Calculus
+ Length of a vector is expressed as follows
+𝑣⃑ = 𝑣 2 + 𝑣 2 + 𝑣 2
+𝑥 𝑦 𝑧
+ Vectors of length 𝑣⃑ = 1 are normalized and called unit vectors
+ Arbitrary vectors can be normalized as follows
+𝑣
+𝑥
+1
+𝑣
+𝑛 =
+𝑦
+|𝑣⃑|
+𝑣
+𝑧
+Interactive Computer Graphics
+28/04/2026 23
+Chapter 3 – Geometric Transformations
+[Seite 24]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=14, Linien=1
+Reminder: Cross Product (= vector product)
+ Given two vectors 𝑢 and 𝑣⃑ in ℝ3
+ Cross product 𝑢 × 𝑣⃑ of 𝑢 and 𝑣⃑ is a vector defined as follows
+𝑢 𝑣 𝑢 ⋅ 𝑣 − 𝑢 ⋅ 𝑣
+𝑥 𝑥 𝑦 𝑧 𝑧 𝑦
+𝑢 × 𝑣⃑ = 𝑢 × 𝑣 = 𝑢 ⋅ 𝑣 − 𝑢 ⋅ 𝑣
+𝑦 𝑦 𝑧 𝑥 𝑥 𝑧
+𝑢 𝑣 𝑢 ⋅ 𝑣 − 𝑢 ⋅ 𝑣
+𝑧 𝑧 𝑥 𝑦 𝑦 𝑥
+ Geometric interpretation
+(cid:127) 𝑢 × 𝑣⃑ is perpendicular to the plane defined by 𝑢 and 𝑣⃑
+(cid:127) Length of 𝑢 × 𝑣⃑ is equal to the parallelogram area spanned by 𝑢 and 𝑣⃑
+Interactive Computer Graphics
+28/04/2026 24
+Chapter 3 – Geometric Transformations
+[Seite 25]
+Seiten-Metadaten: Bilder=0, Rechtecke=8, Kurven=21, Linien=5
+Example – Transforming Directed Line Segment 1/7
+ Example transformation task
+(cid:127) Given line segments 𝑃 𝑃 and 𝑃 𝑃
+1 2 1 3
+(cid:127) Transform it into the yz-plane so that 𝑃 𝑃 lies on the z-axis
+1 2
+(cid:127) Length and angles shall be preserved
+y y
+P
+3
+P
+2
+P 1 x P 3 x
+P
+1
+P
+2
+z z
+ Two alternative approaches can be taken
+(cid:127) Determine rotation angles for rotation sequence
+(cid:127) Exploit properties of orthogonal matrices
+Interactive Computer Graphics
+28/04/2026 25
+Chapter 3 – Geometric Transformations
+[Seite 26]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=6, Linien=1
+Example – Transforming Directed Line Segment 2/7
+ Approach 1: Determine rotation angles for rotation sequence
+(cid:127) Move 𝑃 = 𝑥 , 𝑦 , 𝑧 into the origin
+1 1 1 1
+(cid:127) Rotate around the y-axis so that 𝑃 𝑃 lies in the yz-plane
+1 2
+(cid:127) Rotate around the x-axis so that 𝑃 𝑃 lies on the z-axis
+1 2
+(cid:127) Rotate around the z-axis so that 𝑃 𝑃 lies in the yz-plane
+1 3
+(cid:127) Step 1 – Move 𝑃 into origin
+1
+(cid:127) Translation 𝑇(– 𝑥 , – 𝑦 , – 𝑧 )
+1 1 1
+(cid:127) New coordinates
+(cid:127) 𝑃′ = 0,0,0
+1
+(cid:127) 𝑃′ = 𝑥 – 𝑥 , 𝑦 – 𝑦 , 𝑧 – 𝑧
+2 2 1 2 1 2 1
+(cid:127) 𝑃′ = (𝑥 – 𝑥 , 𝑦 – 𝑦 , 𝑧 – 𝑧 )
+3 3 1 3 1 3 1
+Interactive Computer Graphics
+28/04/2026 26
+Chapter 3 – Geometric Transformations
+[Seite 27]
+Seiten-Metadaten: Bilder=0, Rechtecke=43, Kurven=53, Linien=3
+Example – Transforming Directed Line Segment 3/7
+ Step 2 – Rotation of 𝑃′ 𝑃′ around y-axis into yz-plane
+1 2
+(cid:127) Rotation 𝑅 (𝜃– 90°)
+𝑦
+(cid:127) Rotation angle – (90°– 𝜃) = 𝜃– 90°
+y
+(cid:127) Matrix ingredients
+𝑧′ 𝑧 −𝑧
+(cid:127) cos 𝜃– 90° = sin 𝜃 = 2 = 2 1
+𝐷 1 𝐷 1 P
+3
+𝑥′ 𝑥 −𝑥
+(cid:127) sin 𝜃– 90° = −𝑐𝑜𝑠 𝜃 = − 2 = − 2 1 P( x , y ,z )
+𝐷 𝐷 2 2 2 2
+1 1
+(cid:127) 𝐷 = (𝑥′ )2+(𝑧′ )2 P
+1 2 2 1 x
+θ
+D
+(cid:127) New coordinates 1
+( x , 0,z )
+2 2
+(cid:127) 𝑃′′ = 𝑅 (𝜃– 90°) ⋅ 𝑃′
+𝑖 𝑦 𝑖
+z
+Interactive Computer Graphics
+28/04/2026 27
+Chapter 3 – Geometric Transformations
+[Seite 28]
+Seiten-Metadaten: Bilder=0, Rechtecke=14, Kurven=31, Linien=4
+Example – Transforming Directed Line Segment 4/7
+ Step 3 – Rotation of 𝑃′′ 𝑃′′ around x-axis onto z-axis
+1 2
+(cid:127) Rotation 𝑅 (φ)
+𝑥
+(cid:127) Matrix ingredients
+y
+𝑧′′
+(cid:127) cos φ = 2
+𝐷
+2
+𝑦′′
+(cid:127) 𝑠𝑖𝑛 φ = 2
+𝐷
+2
+(cid:127) 𝐷 = 𝑃′′ 𝑃′′ = |𝑃 𝑃 | P y
+2 1 2 1 2 3 22
+(cid:127) New coordinates D P
+P 2 1
+2 x
+(cid:127) 𝑃′′′ = 𝑅 φ ⋅ 𝑃′′ = 𝑅 𝜑 ⋅ 𝑅 𝜃– 90° ⋅ 𝑃′ φ
+𝑖 𝑥 𝑖 𝑥 𝑦 𝑖
+(cid:127) 𝑃′′′ = 𝑅 φ ⋅ 𝑃′′ = 𝑅 𝜑 ⋅ 𝑅 𝜃– 90° ⋅ 𝑃′ = (0,0, |𝑃 𝑃 |) z
+2 𝑥 2 𝑥 𝑦 2 1 2
+22
+z
+Interactive Computer Graphics
+28/04/2026 28
+Chapter 3 – Geometric Transformations
+[Seite 29]
+Seiten-Metadaten: Bilder=0, Rechtecke=14, Kurven=29, Linien=5
+Example – Transforming Directed Line Segment 5/7
+y
+ Step 4 – Rotation of 𝑃′′′ 𝑃′′′ into yz-plane
+1 3
+(cid:127) Rotation 𝑅 (α)
+𝑧
+y
+3
+(cid:127) Matrix ingredients
+α
+𝑦′′′
+(cid:127) cos α = 3 P 3  D
+𝐷 3
+3
+𝑥′′′ x
+(cid:127) 𝑠𝑖𝑛 α = 3 P x
+𝐷 1 3
+3
+(cid:127) 𝐷 = (𝑥′′′ )2+(𝑦′′′ )2 z 2  2  P
+3 3 3 2
+z
+ Entire transformation 𝑀 is a rigid body transformation
+which preserves lengths and angle
+𝑀 = 𝑅 (α) ⋅ 𝑅 (φ) ⋅ 𝑅 (𝜃– 90°) ⋅ 𝑇(– 𝑥 , – 𝑦 , – 𝑧 )
+𝑧 𝑥 𝑦 1 1 1
+Interactive Computer Graphics
+28/04/2026 29
+Chapter 3 – Geometric Transformations
+[Seite 30]
+Seiten-Metadaten: Bilder=0, Rechtecke=9, Kurven=29, Linien=5
+Example – Transforming Directed Line Segment 6/7
+ Approach 2: Construct orthogonal matrix which obeys following properties
+(cid:127) Each row and column corresponds to a unit length vector
+(cid:127) Row and column vectors are orthogonal to each other
+(cid:127) Each row vector rotates on one main axis
+(𝑅 on x-axis, 𝑅 on y-axis, 𝑅 on z-axis)
+𝑥 𝑦 𝑧
+ Orthogonal matrix notation
+y y
+𝑟 𝑟 𝑟 𝑅 P 3
+1𝑥 2𝑥 3𝑥 𝑥
+P
+(cid:127) 𝑅 = 𝑟 1𝑦 𝑟 2𝑦 𝑟 3𝑦 = 𝑅 𝑦 = 𝑅 1 𝑅 2 𝑅 3 P 1 2 x P 3 P x
+1
+𝑟 𝑟 𝑟 P
+1𝑧 2𝑧 3𝑧 𝑅 𝑧 z z 2
+ Consideration 1: Formulate 𝑅 as unit vector rotating on z-axis
+𝑧
+𝑃 𝑃
+(cid:127) 𝑅 = 𝑟 𝑟 𝑟 𝑇 = 1 2
+𝑧 1𝑧 2𝑧 3𝑧
+|𝑃 𝑃 |
+1 2
+Interactive Computer Graphics
+28/04/2026 30
+Chapter 3 – Geometric Transformations
+[Seite 31]
+Seiten-Metadaten: Bilder=0, Rechtecke=9, Kurven=27, Linien=5
+Example – Transforming Directed Line Segment 7/7
+ Consideration 2: Formulate 𝑅 as unit vector
+𝑥
+orthogonal to the plane spanned by 𝑃 , 𝑃 , and 𝑃
+1 2 3
+𝑃 𝑃 ×𝑃 𝑃
+(cid:127) 𝑅 = 𝑟 𝑟 𝑟 𝑇 = 1 3 1 2
+𝑥 1𝑥 2𝑥 3𝑥
+|𝑃 𝑃 ×𝑃 𝑃 |
+1 3 1 2
+ Consideration 3: Formulate 𝑅 as unit vector orthogonal to 𝑅 and 𝑅
+𝑦 𝑥 𝑧
+(cid:127) 𝑅 = 𝑟 𝑟 𝑟 𝑇 = 𝑅 × 𝑅
+1𝑦 2𝑦 3𝑦
+𝑦 𝑧 𝑥
+ Entire transformation 𝑀 is described by an orthogonal matrix and translation
+𝑟 𝑟 𝑟 0
+1𝑥 2𝑥 3𝑥
+𝑟 𝑟 𝑟 0
+1𝑦 2𝑦 3𝑦 y y
+(cid:127) 𝑀 = ⋅ 𝑇(−𝑥 , −𝑦 , −𝑧 )
+1 1 1
+𝑟 𝑟 𝑟 0 P
+1𝑧 2𝑧 3𝑧 3
+P
+0 0 0 1 P 1 2 x P 3 P x
+1
+P
+2
+z z
+Interactive Computer Graphics
+28/04/2026 31
+Chapter 3 – Geometric Transformations
+[Seite 32]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=1, Linien=1
+Example – Direction of Flight Transformation 1/3
+ Example transformation task
+(cid:127) Given 3D model centered in origin of 𝑥 -, 𝑦 -, 𝑧 -coordinate system
+𝑝 𝑝 𝑝
+(cid:127) Transform it such that
+(cid:127) it is centered in arbitrary point 𝑃, and
+(cid:127) the 𝑧 -axis is directed into arbitrary direction 𝐷𝑂𝐹, while
+𝑝
+(cid:127) 𝑥 𝑧 -plane is not rotated
+𝑝 𝑝
+ Approach: rotate first and then move
+(cid:127) Rotate 3D model such that 𝑧 -axis is oriented along 𝐷𝑂𝐹
+𝑝
+(cid:127) Translate 3D model from origin into 𝑃
+Interactive Computer Graphics
+28/04/2026 32
+Chapter 3 – Geometric Transformations
+[Seite 33]
+Seiten-Metadaten: Bilder=0, Rechtecke=6, Kurven=8, Linien=1
+Example – Direction of Flight Transformation 2/3
+𝑟 𝑟 𝑟
+1𝑥 2𝑥 3𝑥
+ Step 1 – create orthogonal rotation matrix 𝑅 = 𝑟 𝑟 𝑟
+1𝑦 2𝑦 3𝑦
+𝑟 𝑟 𝑟
+1𝑧 2𝑧 3𝑧
+(cid:127) 𝑧 -axis shall be rotated to be aligned with 𝐷𝑂𝐹
+𝑝
+ 𝑅 = 𝑟 𝑟 𝑟 𝑇 = 𝐷𝑂𝐹
+3𝑥 3𝑦 3𝑧
+3
+|𝐷𝑂𝐹|
+(cid:127) 𝑥 -axis shall be rotated to be horizontal vector (i.e., orthogonal to y-axis)
+𝑝
+which is orthogonal to 𝐷𝑂𝐹
+ 𝑅 = 𝑟 𝑟 𝑟 𝑇 = 𝑦×𝐷𝑂𝐹
+1𝑥 1𝑦 1𝑧
+1
+|𝑦×𝐷𝑂𝐹|
+(cid:127) 𝑦 -axis shall be rotated to be aligned with 𝑅 × 𝑅
+𝑝 3 1
+ 𝑅 = 𝑟 𝑟 𝑟 𝑇 = 𝐷𝑂𝐹×(𝑦×𝐷𝑂𝐹)
+2𝑥 2𝑦 2𝑧
+2
+|𝐷𝑂𝐹×(𝑦×𝐷𝑂𝐹)|
+Interactive Computer Graphics
+28/04/2026 33
+Chapter 3 – Geometric Transformations
+[Seite 34]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=2, Linien=1
+Example – Direction of Flight Transformation 3/3
+ Transformation 𝑀 is described by a translation and an orthogonal matrix
+𝑇
+𝑟 𝑟 𝑟 0
+1𝑥 2𝑥 3𝑥
+𝑟 𝑟 𝑟 0
+1𝑦 2𝑦 3𝑦
+(cid:127) 𝑀 = 𝑇(𝑥 , 𝑦 , 𝑧 ) ⋅
+𝑝 𝑝 𝑝
+𝑟 𝑟 𝑟 0
+1𝑧 2𝑧 3𝑧
+0 0 0 1
+ Degenerated case
+(cid:127) If 𝐷𝑂𝐹 = 𝑦, then there are infinitely many horizontal vectors
+(cid:127) The cross products 𝑦 × 𝐷𝑂𝐹 and 𝐷𝑂𝐹 × (𝑦 × 𝐷𝑂𝐹) are 0 in this case
+Interactive Computer Graphics
+28/04/2026 34
+Chapter 3 – Geometric Transformations
+[Seite 35]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+3.4 Coordinate System Change
+Transformation as change of frame of reference
+Visual Computing Group
+Institute of Media Informatics
+[Seite 36]
+Seiten-Metadaten: Bilder=0, Rechtecke=15, Kurven=42, Linien=193
+Coordinate System Change
+ Alternative view on transformations:
+(cid:127) transformations change the coordinate system of 3D model
+P
+4
+3
+2
+1
+Example 1 Example 2
+Interactive Computer Graphics
+28/04/2026 36
+Chapter 3 – Geometric Transformations
+[Seite 37]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Local Coordinate Systems
+ Application in OpenGL
+(cid:127) Individual 3D models of a scene have their own, local coordinate system
+(cid:127) Local coordinate systems of the 3D models must be changed
+into a common coordinate system, the world coordinate system
+ Transformation between coordinate systems (CS)
+(cid:127) 𝑀 denotes the change from 𝐶𝑆 to 𝐶𝑆
+𝑖←𝑗 𝑗 𝑖
+(cid:127) 𝑃(𝑖) denotes the representation of point 𝑃 in 𝐶𝑆
+𝑖
+(cid:127) Inversion: 𝑀 = (𝑀 )−1
+𝑖←𝑗 𝑗←𝑖
+(cid:127) Transition through multiple CSs: 𝑀 ⋅ 𝑀 = 𝑀
+𝑖←𝑗 𝑗←𝑘 𝑖←𝑘
+Interactive Computer Graphics
+28/04/2026 37
+Chapter 3 – Geometric Transformations
+[Seite 38]
+Seiten-Metadaten: Bilder=0, Rechtecke=8, Kurven=31, Linien=1
+Example 1 – Coordinate System Change 1/2
+x(1)
+ Example transformation task y y(5)
+Q
+(cid:127) Rotation and scaling of an object around its center 𝑀
+y(1)
+M
+and subsequent translation to a point 𝑄
+ Entire transformation 𝑀 is described as follows
+x x(5)
+(cid:127) 𝑀 = 𝑇(𝑥 , 𝑦 , 𝑧 ) ⋅ 𝑅 (𝜃) ⋅ 𝑆(s , s , s ) ⋅ 𝑇(– 𝑥 , – 𝑦 , – 𝑧 )
+Q Q Q 𝑧 x y z M M M
+ Expressed as change of coordinate systems
+(cid:127) 𝑀 = 𝑀 ⋅ 𝑀 ⋅ 𝑀 ⋅ 𝑀 = 𝑀
+5←1 5←4 4←3 3←2 2←1
+(cid:127) 𝑀 = 𝑀 ⋅ 𝑀 ⋅ 𝑀 ⋅ 𝑀 = 𝑀−1
+1←5 1←2 2←3 3←4 4←5
+1 1 1
+(cid:127) 𝑀−1 = 𝑇(𝑥 , 𝑦 , 𝑧 ) ⋅ 𝑆( , , ) ⋅ 𝑅 (−𝜃) ⋅ 𝑇(– 𝑥 , – 𝑦 , – 𝑧 )
+M M M 𝑧 Q Q Q
+s s s
+x y z
+ As applied to a point 𝑃
+(cid:127) 𝑃(5) = 𝑀 ⋅ 𝑃 1 ; 𝑃(1) = 𝑀 ⋅ 𝑃 5
+5←1 1←5
+Interactive Computer Graphics
+28/04/2026 38
+Chapter 3 – Geometric Transformations
+[Seite 39]
+Seiten-Metadaten: Bilder=0, Rechtecke=6, Kurven=105, Linien=101
+Example 1 – Coordinate System Change 2/2
+y y y y y
+M
+Q
+x x x x x
+3D Model Transformation
+y(5)
+y(2) y(3)
+y(1) y(1) y(1) y(1) y(1)
+M x(2) x(3) y(4)
+x(5)
+x(4)
+x(1) x(1) x(1) x(1) x(1)
+   
+M  S s ,s ,s M  T x ,y ,z
+  32 x y z   54 Q Q Q
+M  T x ,y ,z M  R 
+21 M M M 43 z Coordinate System Change
+Interactive Computer Graphics
+28/04/2026 39
+Chapter 3 – Geometric Transformations
+Extrahierte Tabellen:
+[Tabelle 1]
+y y y y y M Q x x x x x 3D Model Transformation
+y(5) y(2) y(3) y(1) y(1) y(1) y(1) y(1) M x(2) x(3) y(4) x(5) x(4) x(1) x(1) x(1) x(1) x(1)     M S s ,s ,s M T x ,y ,z   32 x y z  54 Q Q Q M T x ,y ,z M  R  21 M M M 43 z Coordinate System Change
+[Seite 40]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Example 2 – Hierarchical Coordinate Systems 1/2
+ To model complex scenes, a hierarchy of coordinate systems is helpful
+ Example: modeling of a tricycle
+(cid:127) World-coordinate system
+(cid:127) Tricycle-coordinate system
+(cid:127) Wheel-coordinate system
+Interactive Computer Graphics
+28/04/2026 40
+Chapter 3 – Geometric Transformations
+[Seite 41]
+Seiten-Metadaten: Bilder=0, Rechtecke=126, Kurven=0, Linien=15
+Example 2 – Hierarchical Coordinate Systems 1/2
+ Scene graphs are used to represent hierarchical coordinate systems
+and the required transformations
+Tricycle Translation T
+wo
+Steering Rotation R (α)
+y-tr
+Handlebar
+FrontWheel Rotation R (β')
+z-wh
+Frame
+Framebar
+Seat
+RearAxis
+RearWheels Rotation R (β'')
+z-wh
+RearWheel1
+RearWheel2
+Interactive Computer Graphics
+28/04/2026 41
+Chapter 3 – Geometric Transformations
+[Seite 42]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+3.5 Transformations in OpenGL
+Implementation with GLM und GLSL
+Visual Computing Group
+Institute of Media Informatics
+[Seite 43]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Geometric Transformations in OpenGL
+ Supported coordinate systems
+(cid:127) Floating-point coordinate system for 2D and 3D
+(cid:127) Integer coordinate system (2D) as a special case
+ Representation of vectors
+(cid:127) 2D vector by one-dimensional array with 2 elements
+(cid:127) 3D vector by one-dimensional array with 3 elements
+ Representation of matrices
+(cid:127) 3 × 3 matrices by two-dimensional array with 3 × 3 elements
+(cid:127) 4 × 4 matrices by two-dimensional array with 4 × 4 elements
+ Functions for geometric transformations
+(cid:127) OpenGL does not specify classes for vectors and matrices
+(cid:127) GLM can be used to manage vectors and matrices
+Interactive Computer Graphics
+28/04/2026 43
+Chapter 3 – Geometric Transformations
+[Seite 44]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+OpenGL Transformation Pipeline
+ Model-View matrix
+(cid:127) Transformation matrix for model space related transformations
+(cid:127) Additionally contains the transformation of the scene
+into the camera coordinate system (view transformation, not projection!)
+ Transformation pipeline
+(cid:127) Each vertex is multiplied by OpenGL first with the current
+model-view matrix, then with the current projection matrix
+(cid:127) Each standard scene should have
+(cid:127) a single projection transformation
+(cid:127) a single view transformation, and
+(cid:127) depending on scene complexity, any number of model transformations
+Interactive Computer Graphics
+28/04/2026 44
+Chapter 3 – Geometric Transformations
+[Seite 45]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=5, Linien=1
+Example – Translation and Scaling
+ Drawing cylinder objects
+(cid:127) drawCylinder draws a cylinder centered at the origin,
+with respect to the y-axis, with a given radius and height
+(cid:127) By translation this "unit cylinder" can be positioned
+y
+(cid:127) By scaling this "unit cylinder" can be resized
+z
+x
+Interactive Computer Graphics
+28/04/2026 45
+Chapter 3 – Geometric Transformations
+[Seite 46]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Matrix Specification
+ Matrices are often specified in form of a C array
+void draw(...) {
+...
+GLfloat M[4][4];
+M[0][0] = ....;
+...
+M[3][3] = ....;
+...
+}
+Interactive Computer Graphics
+28/04/2026 46
+Chapter 3 – Geometric Transformations
+[Seite 47]
+Seiten-Metadaten: Bilder=5, Rechtecke=11, Kurven=24, Linien=1
+Example – Portico Modeling 1/5
+D
+ Columned hall consists of floor space, H·0.1
+top surface and columns
+ Columns are evenly distributed
+along the edge of the round floor surface H
+ Total height of a column is 𝐻,
+with a total of 20% attributable to the base
+ Each column has 2 pedestals below
+and 2 pedestals above
+ Radii
+(cid:127) center column 70%
+(cid:127) inner base 90%
+(cid:127) outer base 𝐷
+Interactive Computer Graphics
+28/04/2026 47
+Chapter 3 – Geometric Transformations
+[Seite 48]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Example – Portico Modeling 2/5
+ Drawing a cylinder closed at top and bottom
+(cid:127) Each column should "stand" in the y-axis
+(cid:127) Each column should have a lid surface at the top and bottom
+ Disk primitive is embedded in the xy-plane
+ Cylinder primitive consists only of lateral surface
+(cid:127) Height axis equals z-axis
+ Tessellation as number of polygon divisions can be specified
+Interactive Computer Graphics
+28/04/2026 48
+Chapter 3 – Geometric Transformations
+[Seite 49]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Example – Portico Modeling 3/5
+ Drawing a single column
+(cid:127) Composition of 5 cylinder objects
+(cid:127) Rotation into y-axis to match orientation
+(cid:127) Positioning of the parts by translation along the y-axis
+(cid:127) Incremental translation around the partial column height
+Interactive Computer Graphics
+28/04/2026 49
+Chapter 3 – Geometric Transformations
+[Seite 50]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Example – Portico Modeling 4/5
+ Drawing the group of columns
+(cid:127) Columns are evenly distributed on a circle with radius 𝑅
+𝐻
+(cid:127) Number 𝑁, radius 𝑅 of the columns as well as floor radius 𝑅 adjustable
+𝐻
+Interactive Computer Graphics
+28/04/2026 50
+Chapter 3 – Geometric Transformations
+[Seite 51]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=1
+Example – Portico Modeling 5/5
+ Drawing the hall
+(cid:127) Use cylinder primitive as floor area
+(cid:127) Use cone primitive as a roof
+Interactive Computer Graphics
+28/04/2026 51
+Chapter 3 – Geometric Transformations
+[Seite 52]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Chapter Summary
+ 3D models can be positioned, resized and oriented in the 3D world
+by applying affine transformations to their vertices
+ An affine transformation is represented by a 4x4 matrix
+ Affine transformations can be more efficiently applied
+when concatenated to a single matrix through matrix multiplication
+ An alternative view on transformations is
+that they change the reference coordinate system
+Interactive Computer Graphics
+28/04/2026 52
+Chapter 3 – Geometric Transformations
+[Seite 53]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+References
+Literature and other sources used in this chapter
+Visual Computing Group
+Institute of Media Informatics
+[Seite 54]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+References
+ Text Books
+(cid:127) J. Foley, A. van Dam, S. Feiner: Computer Graphics: Principles and Practice
+(3rd Edition), Addison-Wesley 2013. (Chapters 10 & 11)
+(cid:127) P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer
+Graphics (4th Edition), AK Peters 2016. (Chapter 6)
+Interactive Computer Graphics
+28/04/2026 54
+Chapter 3 – Geometric Transformations

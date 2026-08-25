@@ -1,0 +1,2084 @@
+ Since clipping is performed for all geometry, algorithms are highly optimized
+Interactive Computer Graphics
+19/05/2026 2
+Chapter 5 – Clipping
+[Seite 3]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Clipping Projected Geometry 2/2
+ Analytical clipping
+(cid:127) Clipping before raster conversion, clipped primitives are raster-converted
+(cid:127) Compute time savings if clipped primitive is much smaller than unclipped
+(cid:127) OpenGL: clipping against canonical view volume
+ Pixel-based clipping
+(cid:127) Clipping during or after raster conversion
+(cid:127) Only pixels in the clip region are used
+(cid:127) Works with any given clip regions
+(cid:127) OpenGL: possible with fragment shaders, stencil buffer or scissoring
+Interactive Computer Graphics
+19/05/2026 3
+Chapter 5 – Clipping
+[Seite 4]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Chapter Outline
+5.1 Cohen-Sutherland Line Clipping
+5.2 Cyrus-Beck Line Clipping
+5.3 Sutherland-Hodgman Polygon Clipping
+5.4 Weiler-Atherton Polygon Clipping
+5.5 Greiner-Hormann Polygon Clipping
+References
+Interactive Computer Graphics
+19/05/2026 4
+Chapter 5 – Clipping
+[Seite 5]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+5.1 Cohen-Sutherland Line Clipping
+Clip lines against rectangle
+Visual Computing Group
+Institute of Media Informatics
+[Seite 6]
+Seiten-Metadaten: Bilder=0, Rechtecke=85, Kurven=147, Linien=1
+Brute-Force Line Clipping 1/2
+ Check each edge of the rectangle for intersection with line
+(cid:127) Intersection calculation for the line defined by the edge, and the line
+(cid:127) If intersection lies within edge and within line, clipping necessary
+𝑅
+Interactive Computer Graphics
+19/05/2026 6
+Chapter 5 – Clipping
+[Seite 7]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=15, Linien=1
+Brute-Force Line Clipping 2/2
+ Using the parameter representation for lines
+𝑥 𝑥 − 𝑥
+0 1 0
+𝑝 𝑡 = 𝑝 + 𝑡 ⋅ 𝑝 − 𝑝 = + 𝑡 ⋅ , 𝑝
+0 1 0 𝑦 𝑦 − 𝑦 1
+0 1 0
+whereby line segment 𝑠 is defined as all points
+𝑝 𝑡 : 0 ≤ 𝑡 ≤ 1
+𝑝
+0
+ Intersection calculation
+(cid:127) Parameter representation for 𝑠 and for an edge 𝑒 of 𝑅
+(cid:127) Calculation of the intersection given by 𝑡 and 𝑡
+𝑒 𝑠
+(cid:127) 0 ≤ 𝑡 ≤ 1 and 0 ≤ 𝑡 ≤ 1 ⇒ intersection lies in both segments
+𝑒 𝑠
+and is therefore clip intersection
+ Disadvantage: considerable computational effort, inefficient in practice
+Interactive Computer Graphics
+19/05/2026 7
+Chapter 5 – Clipping
+[Seite 8]
+Seiten-Metadaten: Bilder=0, Rechtecke=9, Kurven=12, Linien=1
+Endpoint Analysis 1/2
+ Idea: Use end point analysis to create new lines
+(cid:127) Clipping against a rectangle yields a line
+(cid:127) Clipping against a convex polygon results in a line
+ Endpoint analysis
+(cid:127) Line segment 𝑠 = (𝑝 , 𝑝 ), 𝑝 = (𝑥 , 𝑦 ) and 𝑝 = (𝑥 , 𝑦 )
+0 1 0 0 0 1 1 1
+(cid:127) If 𝑝 ∈ 𝑅 xor 𝑝 ∈ 𝑅
+0 1
+⇒ Clipping necessary
+(cid:127) If 𝑝 ∈ 𝑅 ∧ 𝑝 ∈ 𝑅⇒ 𝑠 ⊂ 𝑅 𝑅
+0 1
+⇒ Clipping not necessary
+(cid:127) If 𝑝 ∉ 𝑅 ∧ 𝑝 ∉ 𝑅
+0 1
+⇒ Clipping may be necessary
+Interactive Computer Graphics
+19/05/2026 8
+Chapter 5 – Clipping
+Extrahierte Tabellen:
+[Tabelle 1]
+(cid:127) If 𝑝 ∈ 𝑅 xor 𝑝 ∈ 𝑅 0 1 ⇒ Clipping necessary
+(cid:127) If 𝑝 ∈ 𝑅 ∧ 𝑝 ∈ 𝑅⇒ 𝑠 ⊂ 𝑅 0 1 ⇒ Clipping not necessary
+(cid:127) If 𝑝 ∉ 𝑅 ∧ 𝑝 ∉ 𝑅 0 1 ⇒ Clipping may be necessary
+[Seite 9]
+Seiten-Metadaten: Bilder=0, Rechtecke=254, Kurven=12, Linien=1
+Endpoint Analysis 2/2
+ Clipping lines against a clip rectangle by reduction to endpoint analysis
+(cid:127) If both endpoints are to the right of 𝑥 and to the left of 𝑥
+𝑚𝑖𝑛 𝑚𝑎𝑥
+and above 𝑦 and below 𝑦 , they are inside
+𝑚𝑖𝑛 𝑚𝑎𝑥
+(cid:127) If both endpoints are to the left of 𝑥 or to the right of 𝑥
+𝑚𝑖𝑛 𝑚𝑎𝑥
+or below 𝑦 or above 𝑦 , they are outside
+𝑚𝑖𝑛 𝑚𝑎𝑥
+(cid:127) Otherwise, the line segment must be split at a clip edge
+𝑦
+𝑚𝑎𝑥 𝑅
+𝑦
+𝑚𝑖𝑛
+𝑥 𝑥
+𝑚𝑖𝑛 𝑚𝑎𝑥
+Interactive Computer Graphics
+19/05/2026 9
+Chapter 5 – Clipping
+Extrahierte Tabellen:
+[Tabelle 1]
+(cid:127) If both endpoints are to the right of 𝑥 and to the left of 𝑥 𝑚𝑖𝑛 𝑚𝑎𝑥 and above 𝑦 and below 𝑦 , they are inside 𝑚𝑖𝑛 𝑚𝑎𝑥
+(cid:127) If both endpoints are to the left of 𝑥 or to the right of 𝑥 𝑚𝑖𝑛 𝑚𝑎𝑥 or below 𝑦 or above 𝑦 , they are outside 𝑚𝑖𝑛 𝑚𝑎𝑥
+[Seite 10]
+Seiten-Metadaten: Bilder=0, Rechtecke=6, Kurven=0, Linien=5
+Binary Coding of Half-Planes 1/3
+ Classification of the plane in nine regions
+(cid:127) Classify a point by one bit each
+for belonging to each of the 4 half-planes
+1001 1000 1010
+(cid:127) 4-bit outcode
+(cid:127) Bit 0: 𝑥 < 𝑥
+𝑚𝑖𝑛
+0001 0000 0010
+(cid:127) Bit 1: 𝑥 > 𝑥
+𝑚𝑎𝑥
+(cid:127) Bit 2: 𝑦 < 𝑦
+𝑚𝑖𝑛
+0101 0100 0110
+(cid:127) Bit 3: 𝑦 > 𝑦
+𝑚𝑎𝑥
+Interactive Computer Graphics
+19/05/2026 10
+Chapter 5 – Clipping
+[Seite 11]
+Seiten-Metadaten: Bilder=0, Rechtecke=7, Kurven=0, Linien=5
+Binary Coding of Half-Planes 2/3
+ Endpoint classification
+(cid:127) Line segment 𝑠 = (𝑝 , 𝑝 )
+0 1
+(cid:127) Outcodes:
+1001 1000 1010
+(cid:127) oc0 = 𝑜𝑢𝑡𝑐𝑜𝑑𝑒(𝑝 ), oc1 = 𝑜𝑢𝑡𝑐𝑜𝑑𝑒(𝑝 )
+0 1
+(cid:127) oc0 == 0 && oc1 == 0 ⇒ 𝑠 within 𝑅
+0001 0000 0010
+(cid:127) Both endpoints are inside
+(cid:127) (oc0 & oc1) != 0 ⇒ 𝑠 outside of 𝑅
+0101 0100 0110
+(cid:127) Endpoints lie in the exterior
+of a common half-plane
+(cid:127) Endpoints divide an "outside bit"
+Interactive Computer Graphics
+19/05/2026 11
+Chapter 5 – Clipping
+[Seite 12]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Binary Coding of Half-Planes 3/3
+ Clipping, if (oc0 & oc1) = 0:
+(cid:127) Choose an order for clipping (e.g., top, bottom, right, left)
+(cid:127) Select clip edge that is crossed by the line
+(cid:127) Check done on basis of bit codes, which differ in at least 1 bit
+(cid:127) Clip 𝑠 at this clip edge
+(cid:127) Calculate intersection with clip edge,
+which fixes either 𝑥 or 𝑦 that can be put into the equation
+(cid:127) Example: Intersection with top edge
+(cid:127) 𝑝. 𝑦 = 𝑦
+𝑚𝑎𝑥
+(cid:127) 𝑝. 𝑥 = 𝑥 + (𝑥 − 𝑥 ) · (𝑦 − 𝑦 )/(𝑦 − 𝑦 )
+0 1 0 𝑚𝑎𝑥 0 1 0
+(cid:127) Line is divided into two segments, from which one is outside and discarded
+(cid:127) Iterate with newly generated line
+Interactive Computer Graphics
+19/05/2026 12
+Chapter 5 – Clipping
+[Seite 13]
+Seiten-Metadaten: Bilder=0, Rechtecke=7, Kurven=0, Linien=1
+Pseudo Code
+void cohensutherlandLineClipper(Line s, Rectangle r) {
+int oc0 = outcode(s.p0, r);
+int oc1 = outcode(s.p1, r);
+bool done = false;
+while (!done) { int outcode(Point p, Rectangle r) {
+if (oc0 == 0 && oc1 == 0) { int c = 0;
+drawLine(s); done = true; if (p.y > r.max().y())
+} else if (oc0 & oc1 != 0) { c |= 8;
+done = true; else if (p.y < r.min().y())
+} else { c |= 4;
+if (top edge intersected) { if (p.x > r.max().x())
+calculate intersection with top edge c |= 2;
+replace and reclassify endpoint else if (p.x < r.min().x())
+} c |= 1;
+else if (bottom edge intersected) { ... } return c;
+else if (right edge intersected) { ... } }
+else if (left edge intersected) { ... }
+}
+}
+}
+Interactive Computer Graphics
+19/05/2026 13
+Chapter 5 – Clipping
+[Seite 14]
+Seiten-Metadaten: Bilder=0, Rechtecke=251, Kurven=12, Linien=1
+Example
+1001 1000 1010
+𝑅
+0001 0000 0010
+0101 0100 0110
+Interactive Computer Graphics
+19/05/2026 14
+Chapter 5 – Clipping
+[Seite 15]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Evaluation
+ Occasionally performs several (unnecessary) clip operations on a line as test
+and clippings are done in a fixed edge order
+ Especially efficient when
+(cid:127) almost all lines are outside
+(cid:127) almost all lines are inside
+ Can be generalized to the three-dimensional case
+Interactive Computer Graphics
+19/05/2026 15
+Chapter 5 – Clipping
+[Seite 16]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+5.2 Cyrus-Beck Line Clipping
+Clip lines against convex polygon
+Visual Computing Group
+Institute of Media Informatics
+[Seite 17]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Cyrus-Beck Line Clipping
+ Introduced in 1978 by Cyrus and Beck
+(cid:127) Algorithm for clipping lines against a convex polygon in the plane
+(cid:127) Expandable to clipping lines against a convex polyhedron in space
+(cid:127) Fundamentally different approach than Cohen-Sutherland
+ Further development in 1984 by Liang and Barsky
+(cid:127) Optimization of Cyrus-Beck for axis-parallel, rectangular clip regions
+ Main idea
+(cid:127) Exploit parametric representation
+(cid:127) First calculation of the parameter values o f the intersection points,
+then only calculation of the intersection point coordinates
+(cid:127) Avoid repeated clip coordinate calculation
+Interactive Computer Graphics
+19/05/2026 17
+Chapter 5 – Clipping
+[Seite 18]
+Seiten-Metadaten: Bilder=0, Rechtecke=333, Kurven=70, Linien=1
+Parametric Line Representation
+ Parametric line representation written as follows
+𝑝 𝑡 = 𝑝 + 𝑡 ⋅ 𝑝 − 𝑝 , 0 ≤ 𝑡 ≤ 1
+0 1 0
+ Proceeding
+(cid:127) Find the 4 𝑡's for the 4 clip edges
+(cid:127) Decide which of these form clip intersections
+(cid:127) Calculate these intersections (maximum 2)
+𝑅
+Interactive Computer Graphics
+19/05/2026 18
+Chapter 5 – Clipping
+[Seite 19]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=14, Linien=1
+Intersection Point Calculation 1/2
+ Consider edge 𝐸 and its outward pointing edge normal 𝑁
+ Through dot product 𝑁 ⋅ (𝑝(𝑡) − 𝑝 ) it can be decided
+𝐸
+in which half-space a line point 𝑝(𝑡) lies
+𝐸
+𝑝 𝑁  (𝑝(𝑡) – 𝑝 ) < 0
+𝐸 𝐸
+𝑝
+1
+𝑁  (𝑝(𝑡) – 𝑝 ) > 0
+𝐸
+𝑝
+0
+𝑁
+Interactive Computer Graphics
+19/05/2026 19
+Chapter 5 – Clipping
+[Seite 20]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=12, Linien=1
+Intersection Point Calculation 2/2
+ Determine intersection by calculating 𝑡 for
+𝑁 ⋅ 𝑝 𝑡 − 𝑝 = 0
+𝐸
+ Substitution of 𝑝 𝑡 and regrouping gives
+𝑁 ⋅ 𝑝 − 𝑝
+0 𝐸
+𝑡 =
+𝑁 ⋅ 𝑝 − 𝑝
+1 0
+ Solution exists only if denominator not zero, i.e., 𝑁 ⋅ 𝑝 − 𝑝 ≠ 0
+1 0
+(cid:127) Line must not be degenerated
+(cid:127) Line must not be parallel to the edge
+ Application for the 4 edges ⇒ 4 values f or 𝑡
+ Elimination of 𝑡-values t hat are not in the range [0, 1]
+Interactive Computer Graphics
+19/05/2026 20
+Chapter 5 – Clipping
+[Seite 21]
+Seiten-Metadaten: Bilder=0, Rechtecke=374, Kurven=36, Linien=1
+Determine Relevant t-Values
+ Classification of intersection points as potentially entering (PE)
+or potentially leaving (PL) with respect to interior of half-plane edge
+𝑝
+𝑝
+1
+1
+𝑝
+1
+𝑠 𝑃𝐸
+2
+𝑃𝐿 𝑃𝐿 𝑃𝐿
+𝑝 𝑠
+0 1
+𝑃𝐸
+𝑝 𝑃𝐿
+0
+𝑠
+3
+𝑃𝐸
+𝑃𝐸
+𝑁 ⋅ 𝑝 − 𝑝 > 0 ⇒ PL
+1 0
+𝑁 ⋅ 𝑝 − 𝑝 < 0 ⇒ PE
+𝑝 1 0
+0
+Interactive Computer Graphics
+19/05/2026 21
+Chapter 5 – Clipping
+[Seite 22]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Pseudo Code
+void cyrusBeckLineClipper(Line s, Rectangle r) {
+precalculate N for edges of r and select P
+i E
+D = s.p1 - s.p0
+if (s.p0 == s.p1) {
+degenerated line, clip as point;
+} else {
+t = 0; t = 1;
+E L
+for each candidate intersection with a clip edge {
+if (N  D != 0) { // only for non-parallel lines...
+i
+calculate t;
+use sign of N  D to categorize as PE or PL
+i
+if (PE) t = max(t , t);
+E E
+else if (PL) t = min(t , t);
+L L
+}
+}
+if (t < t ) { drawline(P(t ),P(t )); }
+E L E L
+else { ignore line; }
+}
+}
+Interactive Computer Graphics
+19/05/2026 22
+Chapter 5 – Clipping
+[Seite 23]
+Seiten-Metadaten: Bilder=0, Rechtecke=28, Kurven=9, Linien=13
+Axis-Parallel Clipping Region
+ When clipping region is axis parallel and given by [𝑥 , 𝑥 ] × [𝑦 , 𝑦 ],
+𝑚𝑖𝑛 𝑚𝑎𝑥 𝑚𝑖𝑛 𝑚𝑎𝑥
+following values occur
+𝑁 ⋅ 𝑝 − 𝑝
+0 𝐸
+Clip Edge 𝐸 Normal 𝑁 𝑝 𝑝 − 𝑝 𝑡 =
+𝐸 0 𝐸
+𝑁 ⋅ 𝑝 − 𝑝
+1 0
+−(𝑥 − 𝑥 )
+0 𝑚𝑖𝑛
+𝑥 = 𝑥 (−1,0) (𝑥 , 𝑦) (𝑥 – 𝑥 , 𝑦 – 𝑦)
+𝑚𝑖𝑛 𝑚𝑖𝑛 0 𝑚𝑖𝑛 0 (𝑥 − 𝑥 )
+1 0
+−(𝑥 − 𝑥 )
+0 𝑚𝑎𝑥
+𝑥 = 𝑥 (1,0) (𝑥 , 𝑦) (𝑥 – 𝑥 , 𝑦 – 𝑦)
+𝑚𝑎𝑥 𝑚𝑎𝑥 0 𝑚𝑎𝑥 0 (𝑥 − 𝑥 )
+1 0
+−(𝑦 − 𝑦 )
+0 𝑚𝑖𝑛
+𝑦 = 𝑦 (0, −1) (𝑥, 𝑦 ) (𝑥 – 𝑥, 𝑦 – 𝑦 )
+𝑚𝑖𝑛 𝑚𝑖𝑛 0 0 𝑚𝑖𝑛 (𝑦 − 𝑦 )
+1 0
+−(𝑦 − 𝑦 )
+0 𝑚𝑎𝑥
+𝑦 = 𝑦 (0,1) (𝑥, 𝑦 ) (𝑥 – 𝑥, 𝑦 – 𝑦 )
+𝑚𝑎𝑥 𝑚𝑎𝑥 0 0 𝑚𝑎𝑥 (𝑦 − 𝑦 )
+1 0
+Interactive Computer Graphics
+19/05/2026 23
+Chapter 5 – Clipping
+Extrahierte Tabellen:
+[Tabelle 1]
+Clip Edge 𝐸 | Normal𝑁 | 𝑝 𝐸 | 𝑝 − 𝑝 0 𝐸 | 𝑁 ⋅ 𝑝 − 𝑝 0 𝐸 𝑡 = 𝑁 ⋅ 𝑝 − 𝑝 1 0
+𝑥 = 𝑥 𝑚𝑖𝑛 | (−1,0) | (𝑥 ,𝑦) 𝑚𝑖𝑛 | (𝑥 – 𝑥 ,𝑦 – 𝑦) 0 𝑚𝑖𝑛 0 | −(𝑥 − 𝑥 ) 0 𝑚𝑖𝑛 (𝑥 − 𝑥 ) 1 0
+𝑥 = 𝑥 𝑚𝑎𝑥 | (1,0) | (𝑥 ,𝑦) 𝑚𝑎𝑥 | (𝑥 – 𝑥 ,𝑦 – 𝑦) 0 𝑚𝑎𝑥 0 | −(𝑥 − 𝑥 ) 0 𝑚𝑎𝑥 (𝑥 − 𝑥 ) 1 0
+𝑦 = 𝑦 𝑚𝑖𝑛 | (0,−1) | (𝑥,𝑦 ) 𝑚𝑖𝑛 | (𝑥 – 𝑥,𝑦 – 𝑦 ) 0 0 𝑚𝑖𝑛 | −(𝑦 − 𝑦 ) 0 𝑚𝑖𝑛 (𝑦 − 𝑦 ) 1 0
+𝑦 = 𝑦 𝑚𝑎𝑥 | (0,1) | (𝑥,𝑦 ) 𝑚𝑎𝑥 | (𝑥 – 𝑥,𝑦 – 𝑦 ) 0 0 𝑚𝑎𝑥 | −(𝑦 − 𝑦 ) 0 𝑚𝑎𝑥 (𝑦 − 𝑦 ) 1 0
+[Seite 24]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Comparison with Cohen-Sutherland
+ Algorithm of Cohen-Sutherland
+(cid:127) Sometimes performs useless clip operations,
+as clipping and testing are done in a fixed order
+(cid:127) Efficient when outcode tests can be performed inexpensively (e.g., by bitwise
+operations) and the majority of line segments are trivially accepted or rejected
+(cid:127) Especially efficient for large clip rectangles, when almost all lines are inside, and
+small clip rectangles when almost all lines are outside
+(cid:127) Generalizable to 3D
+ Algorithm of Cyrus-Beck / Liang-Barsky
+(cid:127) Beneficial if many lines really need to be clipped, because calculating the
+coordinates of the clip intersections is delayed as long as possible and the
+necessary tests are performed using the parameter values
+(cid:127) Generalizable to convex clip-polygons and 3D
+Interactive Computer Graphics
+19/05/2026 24
+Chapter 5 – Clipping
+[Seite 25]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+5.3 Sutherland-Hodgman Polygon Clipping
+A pipelined version of the scalar product algorithm extended to clip polygons
+Visual Computing Group
+Institute of Media Informatics
+[Seite 26]
+Seiten-Metadaten: Bilder=0, Rechtecke=11, Kurven=12, Linien=1
+Sutherland-Hodgman Polygon Clipping 1/2
+ Background
+(cid:127) General polygon clipping (arbitrary polygon against convex polygon)
+(cid:127) Originally developed for visibility detection
+(apply before rasterization to eliminate non-visible polygon pieces)
+ Polygon clipping is more complex than line clipping
+(cid:127) Clipped polygons must be closed
+(cid:127) A polygon can be split into several components by clipping
+Interactive Computer Graphics
+19/05/2026 26
+Chapter 5 – Clipping
+[Seite 27]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Sutherland-Hodgman Polygon Clipping 2/2
+ Iterative algorithm paradigm
+(cid:127) Clipping a polygon takes place against a half-plane
+(cid:127) Clipping is performed sequentially for each edge of the clipping region
+ Input
+(cid:127) Convex clipping region
+(cid:127) Polygon: convex or non-convex
+ Output
+(cid:127) One or several partial polygons
+inside clip region
+Interactive Computer Graphics
+19/05/2026 27
+Chapter 5 – Clipping
+[Seite 28]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=38, Linien=5
+Four Cases
+ Depending on which case occurs, following points added to output list
+(cid:127) Case 1: 𝑝
+(cid:127) Case 2: Intersection point 𝑖
+(cid:127) Case 3: --
+(cid:127) Case 4: Intersection point 𝑖 and 𝑝
+Inside Outside Inside Outside Inside Outside Inside Outside
+𝑠
+𝑝
+𝑖
+𝑝
+𝑠
+𝑝 𝑠
+𝑖 𝑝 𝑠
+Case 1 Case 2 Case 3 Case 4
+Interactive Computer Graphics
+19/05/2026 28
+Chapter 5 – Clipping
+[Seite 29]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Proceeding
+ Polygon to be clipped is defined by
+(cid:127) Vertices: [𝑣 , 𝑣 , … , 𝑣 ]
+1 2 𝑛
+(cid:127) Contour: [𝑣 , 𝑣 , … , 𝑣 , 𝑣 ]
+1 2 𝑛 1
+(cid:127) Edges: [𝑣 , 𝑣 ] and [𝑣 , 𝑣 ]
+𝑖 𝑖+1 𝑛 1
+ Vertex sequence (contour) is clipped in each pass against the half-plane
+ Output of a run is again a sequence of vertices
+Interactive Computer Graphics
+19/05/2026 29
+Chapter 5 – Clipping
+[Seite 30]
+Seiten-Metadaten: Bilder=3, Rechtecke=20, Kurven=11, Linien=1
+Pipeline Version
+ Speed c an be optimized through pipeline version
+(cid:127) Input: sequence of polygon vertices processed by "Pipeline of Clippers"
+ Passing on to the next level once a new vertex has been identified
+ No cache is needed during clipping
+(cid:127) Suitable for implementation by hardware
+{𝑣 , 𝑣 , … } Right Bottom Left Top {𝑣 , 𝑣 , … }
+1 2 1 2
+Interactive Computer Graphics
+19/05/2026 30
+Chapter 5 – Clipping
+[Seite 31]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Pseudo Code
+public VertexList shClipper(VertexList inputVertices, Edge clipE) {
+VertexList outputVertices; // output list of vertices
+int N = inputVertices.size(); // number of vertices to be processed
+Vertex s = inputVertices.get(N-1); // get last vertex
+for (int j = 0; j < N; j++) {
+Vertex p = inputVertices.get( j );
+if (inside(p, clipE)) {
+if (inside(s, clipE)) { // case 1
+outputVertices.add( p );
+} else { // case 4
+outputVertices.add( intersect(s, p, clipE) );
+outputVertices.add( p );
+}
+} else if (inside(s, clipE)) { // case 2
+outputVertices.add( intersect(s, p, clipE) );
+}
+s = p;
+}
+return outputVertices;
+}
+Interactive Computer Graphics
+19/05/2026 31
+Chapter 5 – Clipping
+[Seite 32]
+Seiten-Metadaten: Bilder=0, Rechtecke=11, Kurven=4, Linien=1
+Inside Test
+ Inside test for rectangular clip regions
+boolean inside(Vertex v, Edge e) { // e is edge of a clip rectangle
+if (e.v1.x > e.v0.x) // bottom
+if (v.y >= e.v0.y) return true;
+else if (e.v1.x < e.v0.x) // top
+if (v.y <= e.v0.y) return true;
+else if (e.v1.y > e.v0.y) // right
+if (v.x <= e.v1.x) return true;
+else if (e.v1.y < e.v0.y) // left
+if (v.x >= e.v0.x) return true;
+return false;
+}
+ General: is the point to the left of the directed edge?
+(cid:127) Check sign of dot product of clip edge normal and point’s position vector
+(cid:127) Direction: from the starting point to the end point
+(cid:127) Polygon vertices are arranged counterclockwise
+Interactive Computer Graphics
+19/05/2026 32
+Chapter 5 – Clipping
+[Seite 33]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Intersection Computation
+ For rectangular clip regions
+Vertex intersect(Vertex p, Vertex s, Edge e) {
+Vertex i;
+if (e.v0.y == e.v1.y) { // horizontal edge
+i.y = e.v0.y;
+i.x = p.x + (e.v0.y - p.y) * (s.x - p.x) / (s.y - p.y);
+} else { // vertical edge
+i.x = e.v0.x;
+i.y = p.y + (e.v0.x - p.x) * (s.y - p.y) / (s.x - p.x);
+}
+return i;
+}
+Interactive Computer Graphics
+19/05/2026 33
+Chapter 5 – Clipping
+[Seite 34]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+5.4 Weiler-Atherton Polygon Clipping
+Clip arbitrary polygons against arbitrary clip polygons
+Visual Computing Group
+Institute of Media Informatics
+[Seite 35]
+Seiten-Metadaten: Bilder=0, Rechtecke=13, Kurven=9, Linien=1
+Weiler-Atherton Polygon Clipping
+ Basic idea: edges of the clip polygon 𝐴 and the polygon 𝐵 to be clipped
+divide the plane into disjoint regions
+𝐴
+ Following four region types are distinguished
+1. Only-in-A (light blue)
+𝐵
+2. Only-in-B (gray)
+3. In-A-and-B (dark blue)
+4. Neither-in-A-nor-in-B (white)
+ Clipped polygon consists of all regions that belong to type 3,
+i.e., are completely in 𝐴 and 𝐵 (dark blue)
+ To obtain clipped polygon, algorithm determines a set of closed polylines in
+the plane that are just the edges of these regions
+Interactive Computer Graphics
+19/05/2026 35
+Chapter 5 – Clipping
+Extrahierte Tabellen:
+[Tabelle 1]
+ | 𝐴 | 
+𝐵 |  | 
+[Tabelle 2]
+ Following four region types are distinguished 1. Only-in-A (light blue) 2. Only-in-B (gray) 3. In-A-and-B (dark blue) 4. Neither-in-A-nor-in-B (white)
+ Clipped polygon consists of all regions that belong to type 3, i.e., are completely in 𝐴 and 𝐵 (dark blue)
+ To obtain clipped polygon, algorithm determines a set of closed polylines in the plane that are just the edges of these regions
+[Seite 36]
+Seiten-Metadaten: Bilder=5, Rechtecke=7, Kurven=0, Linien=1
+Example Run
+ Proceeding best illustrated by example run
+ Given case: two partially overlapping polygons
+(cid:127) Insert all intersections of 𝐴 and 𝐵
+(cid:127) Double all edge segments, and label each segment
+according to the adjacent region
+(only selection of labels depicted in figure)
+(cid:127) Form regions enclosing contours from all segments
+(cid:127) Associate the labels of the segments of a region to find the region 𝐴𝐵
+Interactive Computer Graphics
+19/05/2026 36
+Chapter 5 – Clipping
+Extrahierte Tabellen:
+[Tabelle 1]
+(cid:127) Insert all intersections of 𝐴 and 𝐵
+(cid:127) Double all edge segments, and label each segment according to the adjacent region (only selection of labels depicted in figure)
+(cid:127) Form regions enclosing contours from all segments
+(cid:127) Associate the labels of the segments of a region to find the region 𝐴𝐵
+[Seite 37]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=6, Linien=10
+Intersection Types
+ There are two intersection types that are distinguished
+ Transversal intersections
+(cid:127) Two edges of the two polygons intersect at one point
+(cid:127) Procedure: intersection is inserted in vertex list of both polygons
+ Segment overlaps (non-transversal)
+(cid:127) Two edges of polygons overlap completely or partially
+(cid:127) Procedure: Each corner point on section segment
+is inserted in the other polygon
+Interactive Computer Graphics
+19/05/2026 37
+Chapter 5 – Clipping
+[Seite 38]
+Seiten-Metadaten: Bilder=3, Rechtecke=3, Kurven=1, Linien=1
+Contour Processing
+ In order to find the regions-enclosing contours,
+one must eliminate overlaps of the contours
+ Transversal intersections
+(cid:127) Take the contour edges of 𝐴
+and insert the contour edges of 𝐵 one after the other
+(cid:127) Procedure: modify doubly linked list, and use end point comparison to
+check on which side the contour edges must be inserted
+ Different treatment of non-transversal transitions necessary
+Interactive Computer Graphics
+19/05/2026 38
+Chapter 5 – Clipping
+[Seite 39]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Evaluation
+ Extension to multiple polygons
+(cid:127) Efficiently possible through iterative application
+(cid:127) Alternatively, intersection points can be generated
+for all polygons in in the first step
+ Conclusion
+(cid:127) Efficient clipping of arbitrary polygons
+(cid:127) Role of the polygons is interchangeable
+(cid:127) Complex implementation!
+Interactive Computer Graphics
+19/05/2026 39
+Chapter 5 – Clipping
+[Seite 40]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+5.5 Greiner-Hormann Polygon Clipping
+Exploitation of the winding number to clip arbitrary polygons
+Visual Computing Group
+Institute of Media Informatics
+[Seite 41]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Greiner-Hormann
+ Basic Idea: clipped region is made up of all edges of 𝑆 that lie in 𝐶,
+combined with all edges of 𝐶 that lie in 𝑆
+[Greiner & Hormann, TOG 1998]
+Interactive Computer Graphics
+19/05/2026 41
+Chapter 5 – Clipping
+[Seite 42]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Chalk Wagon Metaphor
+ Using a chalk wagon metaphor
+(cid:127) Drive along all edges of 𝐴 with a chalk wagon
+that is only open when the current position is within 𝐵
+(cid:127) Drive along all edges of 𝐵 with a chalk wagon
+that is only open when the current position is within 𝐴
+(cid:127) Join all drawn edges to the clipped polygon
+Interactive Computer Graphics
+19/05/2026 42
+Chapter 5 – Clipping
+[Seite 43]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Contour Detection
+ The edges of polygon 𝐴 within polygon 𝐵 can thus be found as follows
+(cid:127) Insert in 𝐴 all intersection points with 𝐵
+(cid:127) Start at any vertex 𝑣 of 𝐴
+(cid:127) If 𝑣 is within 𝐵, the edge flag is turned on, otherwise not
+(cid:127) Traverse edges of 𝐴 and invert edge marker flag when intersecting with 𝐵
+ Thereafter, the procedure is analogous to the reversed roles of 𝐴 and 𝐵,
+and the results are merged
+Interactive Computer Graphics
+19/05/2026 43
+Chapter 5 – Clipping
+[Seite 44]
+Seiten-Metadaten: Bilder=5, Rechtecke=3, Kurven=0, Linien=1
+Set Operations
+[Greiner & Hormann, TOG 1998]
+Interactive Computer Graphics
+19/05/2026 44
+Chapter 5 – Clipping
+[Seite 45]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=4, Linien=1
+Data Structure 1/2
+ Polygons exist as a closed, double-linked list
+𝑃 , 𝑃 , 𝑃 , … , 𝑃 = 𝑃
+0 1 2 𝑛 0
+ The following segments are included
+𝑃 𝑃 , 𝑃 𝑃 , … , 𝑃 𝑃 = 𝑃 𝑃
+0 1 1 2 𝑛−1 𝑛 𝑛−1 0
+ Used data structure for vertices
+typedef struct vertex {
+int x, y;
+struct vertex *next;
+struct vertex *prev;
+struct vertex *nextPoly; // relevant for several unconnected regions
+bool intersect; // is current point intersection point?
+struct vertex *neighbor; // associated intersection point in other polygon
+bool entry; // is current point entry point?
+float alpha; // interpolation factor of intersection point
+bool visited; // has this point been already visited?
+} vertex;
+Interactive Computer Graphics
+19/05/2026 45
+Chapter 5 – Clipping
+[Seite 46]
+Seiten-Metadaten: Bilder=4, Rechtecke=3, Kurven=0, Linien=1
+Data Structure 2/2
+[Greiner & Hormann, TOG 1998]
+Interactive Computer Graphics
+19/05/2026 46
+Chapter 5 – Clipping
+[Seite 47]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Proceeding
+ Create data structure
+(cid:127) Create doubly linked list with node data structure
+(cid:127) Add the intersections with the corresponding alpha values to the list
+(cid:127) Traverse the polygon to find entry and exit points
+(use winding number rule)
+ Generate the clipping result
+(cid:127) Traverse data structure and create new polygon
+with newPolygon and newVertex
+Interactive Computer Graphics
+19/05/2026 47
+Chapter 5 – Clipping
+[Seite 48]
+Seiten-Metadaten: Bilder=4, Rechtecke=5, Kurven=0, Linien=1
+Pseudo Code
+while unprocessed intersections in subject polygon
+current = first unprocessed intersecting
+point of subject polygon
+newPolygon()
+newVertex(current)
+repeat
+if current->entry
+repeat
+current = current->next
+newVertex(current)
+until current->intersect
+else
+repeat
+current = current->prev
+newVertex(current)
+until current->intersect
+end if
+current = current->neighbor
+until PolygonClosed
+end while
+[Greiner & Hormann, TOG 1998]
+Interactive Computer Graphics
+19/05/2026 48
+Chapter 5 – Clipping
+[Seite 49]
+Seiten-Metadaten: Bilder=8, Rechtecke=4, Kurven=2, Linien=1
+Winding Number 1/3
+ Winding number of a point 𝐴 and a closed curve 𝛾
+indicates the number of times a ray that traverses the entire curve from 𝐴
+winds around 𝐴
+1
+𝜔 𝛾, 𝐴 = (cid:3505) 𝑑𝜑
+2𝜋
+(cid:127) Counterclockwise: +1
+(cid:127) Clockwise: -1
+ 𝐴 lies in 𝛾 if and only if odd number of winds
+[Greiner & Hormann, TOG 1998]
+Interactive Computer Graphics
+19/05/2026 49
+Chapter 5 – Clipping
+[Seite 50]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Winding Number 2/3
+ The winding number of a point 𝐴 has the following useful properties
+1. If 𝐴 or the curve 𝛾 is continuously changed so that 𝐴 maintains a
+positive distance to 𝛾, the winding number will not change
+For curve 𝛾, the winding number is constant in each region formed by 𝛾
+2. When 𝐴 moves and 𝛾 crosses once, winding number changes by exactly 1
+[Greiner & Hormann, TOG 1998]
+Interactive Computer Graphics
+19/05/2026 50
+Chapter 5 – Clipping
+[Seite 51]
+Seiten-Metadaten: Bilder=5, Rechtecke=3, Kurven=0, Linien=1
+Winding Number 3/3
+ From the second property follows
+(cid:127) A path that cuts a curve (= the clipping polygon) just once,
+runs either from inside to outside, or from outside to inside
+ Clipping operation can be performed by computing
+[Greiner & Hormann, TOG 1998]
+intersections of both polygons
+(cid:127) Similarly, the union and difference
+of two polygons can be calculated
+Interactive Computer Graphics
+19/05/2026 51
+Chapter 5 – Clipping
+[Seite 52]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Special Cases
+ Simple cases can be solved after unsuccessful intersection calculation
+directly via winding number operation
+(cid:127) One polygon is contained in the other polygon
+(cid:127) Polygons have no overlaps
+ Problem: One point lies on one edge
+of the other polygon
+(cid:127) Occurs when an alpha value is 0
+(cid:127) Apply shift (if possible < pixel size)
+failure example 1 failure example 2
+with two solutions with two solutions
+[Greiner & Hormann, TOG 1998]
+Interactive Computer Graphics
+19/05/2026 52
+Chapter 5 – Clipping
+[Seite 53]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Evaluation
+ Allows efficient clipping of arbitrary 2D polygons
+(cid:127) Self overlaps and holes allowed
+ Idea based on definition of winding number
+ Very simple and efficient implementation possible
+(cid:127) Much easier than Weiler-Atherton,
+as less special cases have to be considered
+Interactive Computer Graphics
+19/05/2026 53
+Chapter 5 – Clipping
+[Seite 54]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Chapter Summary
+ Cohen-Sutherland enables line clipping against rectangle
+by exploiting binary outcodes
+ Cyrus-Beck line clipping enables line clipping against convex polygon
+by exploiting parametric representations
+ Sutherland-Hodgman polygon clipping enables polygon against convex polygon
+clipping by exploiting parametric representations
+ Weiler-Atherton polygon clipping enables clipping of non-convex polygons
+against non-convex polygons
+ Greiner-Hormann polygon clipping enables clipping of arbitrary polygons
+against arbitrary polygons
+Interactive Computer Graphics
+19/05/2026 54
+Chapter 5 – Clipping
+[Seite 55]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+References
+Literature and other sources used in this chapter
+Visual Computing Group
+Institute of Media Informatics
+[Seite 56]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+References
+ Text Books
+(cid:127) J. Foley, A. van Dam, S. Feiner. “Computer Graphics: Principles and Practice (3rd Edition)”,
+Addison-Wesley 2013.
+(cid:127) P. Shirley, M. Ashikhmin, S. Marschner. “Fundamentals of Computer Graphics (4th
+Edition)”, AK Peters 2016.
+(cid:127) B. Sproull, W. M. Newman. “Principles of Interactive Computer Graphics”, p. 124, 252, 1973,
+McGraw–Hill Education, ISBN 0-07-085535-8.
+ Research Publications
+(cid:127) M. Cyrus, J. Beck. "Generalized two-and three-dimensional clipping." Computers &
+Graphics 3, no. 1 (1978): 23-28.
+(cid:127) G. Greiner, K. Hormann: Efficient Clipping of Arbitrary Polygons, ACM Transactions on
+Graphics, 17(2):71-83, 1998.
+(cid:127) I. E. Sutherland, G. W. Hodgman. "Reentrant polygon clipping." Communications of the
+ACM 17, no. 1 (1974): 32-42.
+(cid:127) K. Weiler, P. Atherton. "Hidden surface removal using polygon area sorting." In ACM
+SIGGRAPH computer graphics, vol. 11, no. 2, pp. 214-222. ACM, 1977.
+Interactive Computer Graphics
+19/05/2026 56
+Chapter 5 – Clipping
+
+
+Kapitel 06: Rasterization - Moodle-Seite
+----------------------------------------
+Quelle: lectures/06-rasterization/index.html
+
+Moodle Lernplattform Universität Ulm - Interaktive Computergrafik 
+Moodle Lernplattform Universität Ulm
+Interaktive Computergrafik 
+CS8165.001-SS26 
+Chap06 - Rasterization (27.05.26)
+Diese Seite ist Teil des Inhalts, der von Chap06 - Rasterization (27.05.26) am Dienstag, 25. August 2026, 20:30 heruntergeladen wurde. Beachten Sie, dass einige Inhalte und alle Dateien, die größer als 2 GB sind, nicht heruntergeladen werden. 
+Dateien und Verzeichnisse 
+06-rasterization.pdf 
+Diese Datei ist Teil des Inhalts, der am Dienstag, 25. August 2026, 20:30 von Maksym Morozov von Interaktive Computergrafik heruntergeladen wurde.
+
+Externe Links:
+- Moodle Lernplattform Universität Ulm: https://moodle.uni-ulm.de
+- Chap06 - Rasterization (27.05.26): https://moodle.uni-ulm.de/mod/resource/view.php?id=1027884
+- Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
+
+Kapitel 06: Rasterization - Folien
+----------------------------------
+Quelle: lectures/06-rasterization/slides/06-rasterization.pdf
+
+[Seite 1]
+Seiten-Metadaten: Bilder=2, Rechtecke=2, Kurven=0, Linien=0
+Interactive Computer Graphics
+Chapter 5 – Rasterization
+Summer Term 2026
+Timo Ropinski
+Visual Computing Group
+Institute of Media Informatics
+[Seite 2]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=369, Linien=25
+Rasterization 1/2
+ Pixels ...
+(cid:127) ... are picture elements A Pixel Is NotA Little Square,
+A Pixel Is NotA Little Square,
+(cid:127) ... are the smallest elements of a raster image
+A Pixel Is NotA Little Square!
+(cid:127) ... do not overlap and cover the entire picture
+Technical Memo, Alvy Ray Smith (1995)
+ Advantages
+(cid:127) Easy to save
+(cid:127) Easy to handle (e.g. for image processing)
+ Disadvantage
+(cid:127) High storage space requirement
+(cid:127) Transformation can lead to artifacts
+Interactive Computer Graphics
+27/05/2026 2
+Chapter 6 – Rasterization
+[Seite 3]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=408, Linien=25
+Rasterization 2/2
+ Pixel-based displays require discretization of primitives into pixels
+ Discretization is done by rasterization algorithms
+ Rasterization is time-critical
+(cid:127) Avoid expensive operations
+(cid:127) Optimize for hardware implementation
+(cid:127) Focus on triangles primitives
+(other polygons can be tessellated)
+ Rasterization is quality critical
+(cid:127) Goodness of approximation important
+Interactive Computer Graphics
+27/05/2026 3
+Chapter 6 – Rasterization
+[Seite 4]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Chapter Outline
+6.1 Line Rasterization
+6.2 Triangle Edge Rasterization
+6.3 Region Filling
+6.4 Scanline-Based Triangle Rasterization
+6.5 Block-Based Triangle Rasterization
+References
+Interactive Computer Graphics
+27/05/2026 4
+Chapter 6 – Rasterization
+[Seite 5]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+6.1 Line Rasterization
+Drawing a one pixel thick line
+Visual Computing Group
+Institute of Media Informatics
+[Seite 6]
+Seiten-Metadaten: Bilder=6, Rechtecke=3, Kurven=0, Linien=1
+Line Rasterization
+ Given two 2D endpoints in integer coordinates,
+determine pixels depicting 1-pixel wide line segment between endpoints
+ Trivial cases
+(cid:127) Horizontal line segments
+(cid:127) Vertical line segments
+(cid:127) Diagonal line segments
+ Non-trivial cases
+(cid:127) General case
+Interactive Computer Graphics
+27/05/2026 6
+Chapter 6 – Rasterization
+[Seite 7]
+Seiten-Metadaten: Bilder=1, Rechtecke=7, Kurven=0, Linien=1
+Quality Criteria
+ For all line segments with a slope |𝑚| ≤ 1,
+one pixel should be drawn per column
+ For all line segments with a slope |𝑚| ≥ 1,
+one pixel per line should be drawn
+|𝑚| > 1
+ All line segments should have uniform
+width regardless of slope and length
+|𝑚| < 1
+Interactive Computer Graphics
+27/05/2026 7
+Chapter 6 – Rasterization
+[Seite 8]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Naïve Algorithm 1/2
+ Utilization of the Cartesian normal form of the straight line equation
+𝑦 = 𝑚 · 𝑥 + 𝐵
+ Assumptions (without restriction of generality)
+(cid:127) Line segments lie between (𝑥 , 𝑦 ) and (𝑥 , 𝑦 )
+0 0 1 1
+(cid:127) Lines are drawn from left to right 𝑥 < 𝑥
+0 1
+void drawLine(int x0, int y0, int x1, int y1) {
+float dx = x1 - x0; // Calculate change in x
+float dy = y1 - y0; // Calculate change in y
+float m = dy / dx; // Calculate slope of the line
+float B = y0 - m * x0; // Calculate y-intercept of the line
+for (int x = x0; x <= x1; x++) { // Loop from start x to end x
+writePixel(x, round(m * x + B)); // Draw pixel at (x, y)
+}
+}
+Interactive Computer Graphics
+27/05/2026 8
+Chapter 6 – Rasterization
+[Seite 9]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=20, Linien=1
+Naïve Algorithm 2/2
+ Downsides
+(cid:127) Does not work for 𝑥 = 𝑥
+0 1
+(cid:127) Does not work for |𝑚| > 1, since gaps arise
+(solution: swap the roles of 𝑥 and 𝑦 for |𝑚| > 1)
+(cid:127) In each iteration, a multiplication 𝑚 · 𝑥 is performed
+(high computational effort)
+(cid:127) Using floating-point calculations (additional type conversions necessary)
+(cid:127) Rounding prevents reversibility
+(reversibility: reversing endpoints draws same pixels in reverse order)
+(cid:127) When drawing and then deleting a line, pixels may be left over
+(cid:127) Line width might change when drawing opposing edges
+Interactive Computer Graphics
+27/05/2026 9
+Chapter 6 – Rasterization
+[Seite 10]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Digital Difference Analyzer (DDA) 1/3
+ Reuse the last computed 𝑦 to avoid multiplications in the loop
+𝑥 → 𝑥 + 1 ⇒ (𝑥, 𝑦) → (𝑥 + 1, 𝑦 + 𝑚)
+void drawLine(int x0, int y0, int x1, int y1) {
+float m = float(y1 - y0) / float(x1 - x0); // Calculate the slope
+float y = y0; // Start y at y0
+for (int x = x0; x <= x1; x++) { // Loop from x0 to x1 and increment x
+writePixel(x, round(y)); // Draw pixel at (x, rounded y)
+y += m; // Increment y by slope per step in x
+}
+}
+Interactive Computer Graphics
+27/05/2026 10
+Chapter 6 – Rasterization
+[Seite 11]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Digital Difference Analyzer (DDA) 2/3
+ Algorithm can be extended to relax endpoint order
+void drawLine(int x0, int y0, int x1, int y1) {
+int sx = (x0 < x1 ? 1 : -1); // Determine x direction
+float sm = sx * float(y1 - y0) / float(x1 - x0); // Calculate slope multiplied by step
+float y = y0; // Start y at y0
+for (int x = x0; x != x1 + sx; x += sx) { // Loop from x0 to x1 with step sx
+writePixel(x, round(y)); // Draw pixel at (x, rounded y)
+y += sm; // Increment y by slope*step per x-step
+}
+}
+Interactive Computer Graphics
+27/05/2026 11
+Chapter 6 – Rasterization
+[Seite 12]
+Seiten-Metadaten: Bilder=0, Rechtecke=9, Kurven=22, Linien=1
+Digital Difference Analyzer (DDA) 3/3
+ Downsides
+(cid:127) Does not work for 𝑥 = 𝑥
+0 1
+(cid:127) Does not work for |𝑚| > 1, since gaps arise
+(solution: swap the roles of 𝑥 and 𝑦 for |𝑚| > 1)
+(cid:127) In each iteration, a multiplication 𝑚 · 𝑥 is performed
+(high computational effort)
+(cid:127) Using floating-point calculations (additional type conversions necessary)
+(cid:127) Rounding prevents reversibility
+(reversibility: reversing endpoints draws same pixels in reverse order)
+(cid:127) When drawing and then deleting a line, pixels may be left over
+(cid:127) Line width might change when drawing opposing edges
+Interactive Computer Graphics
+27/05/2026 12
+Chapter 6 – Rasterization
+[Seite 13]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=34, Linien=12
+Midpoint-Line Algorithm 1/2
+ Assumption 1: 0 ≤ 𝑚 ≤ 1
+(without loss of generality, as otherwise mirroring on axes/diagonals)
+ Lower left end point 𝑃 = (𝑥 , 𝑦 ),
+0 0 0
+upper right end point 𝑃 = (𝑥 , 𝑦 )
+1 1 1
+ 𝑃 = (𝑥 , 𝑦 ) is last drawn pixel
+𝑝 𝑝 𝑝
+ After 𝑃 one of the following
+𝑝
+two pixels has to be chosen
+(cid:127) 𝐸 = (𝑥 + 1, 𝑦 )
+𝑝 𝑝
+𝑁𝐸
+(cid:127) 𝑁𝐸 = (𝑥 + 1, 𝑦 + 1)
+𝑝 𝑝
+𝑀
+𝐸
+𝑃
+Interactive Computer Graphics
+27/05/2026 13
+Chapter 6 – Rasterization
+Extrahierte Tabellen:
+[Tabelle 1]
+𝑁𝐸 |  |  | 
+𝐸 | 𝑀 |  | 
+[Seite 14]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=10, Linien=8
+Midpoint-Line Algorithm 2/2
+ Observation
+(cid:127) 𝐸 is closer to the line if 𝑀 is above the line
+(cid:127) 𝑁𝐸 is closer to the line if 𝑀 is below the line
+(cid:127) Vertical distance between pixel to chose
+and the actual line segment is always < 0.5
+ Goal: find an efficient calculation rule NE
+to determine if 𝑀 is above or below line segment
+M
+P E
+Interactive Computer Graphics
+27/05/2026 14
+Chapter 6 – Rasterization
+Extrahierte Tabellen:
+[Tabelle 1]
+P E | M
+[Seite 15]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=8, Linien=1
+Implicit Function
+ Line equation usually given as explicit function 𝑓(𝑥)
+𝑑𝑦
+𝑓 𝑥 = 𝑦 = 𝑚 ⋅ 𝑥 + 𝐵 = ⋅ 𝑥 + 𝐵, with 𝑑𝑥 = 𝑥 − 𝑥 and 𝑑𝑦 = 𝑦 − 𝑦
+1 𝑜 1 𝑜
+𝑑𝑥
+ Line equation can also be written as implicit function 𝐹(𝑥, 𝑦)
+𝐹 𝑥, 𝑦 = 𝑎 ⋅ 𝑥 + 𝑏 ⋅ 𝑦 + 𝑐 = 0
+⇔ 𝐹(𝑥, 𝑦) = 𝑑𝑦 ⋅ 𝑥 − 𝑑𝑥 ⋅ 𝑦 + 𝐵 ⋅ 𝑑𝑥 = 0
+⇒ 𝑎 = 𝑑𝑦, 𝑏 = −𝑑𝑥, 𝑐 = 𝐵 · 𝑑𝑥, 𝑎 > 0 for 𝑦 > 𝑦
+1 𝑜
+ 𝐹(𝑥, 𝑦) has the following properties
+> 0 𝑢𝑛𝑑𝑒𝑟 𝑙𝑖𝑛𝑒
+𝐹 𝑥, 𝑦 (cid:4688)= 0 𝑜𝑛 𝑙𝑖𝑛𝑒
+< 0 𝑎𝑏𝑜𝑣𝑒 𝑙𝑖𝑛𝑒
+1
+ Pixel selection done based on value of 𝐹 at 𝑀: 𝐹 𝑀 = 𝐹(𝑥 + 1, 𝑦 + )
+𝑝 𝑝
+2
+Interactive Computer Graphics
+27/05/2026 15
+Chapter 6 – Rasterization
+[Seite 16]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=2, Linien=1
+Decision Variable 𝑑
+ Sign of 𝐹(𝑀) is sufficient to decide which point is chosen
+1
+ Define decision variable 𝑑 as 𝑑 = 𝐹 𝑀 = 𝐹(𝑥 + 1, 𝑦 + )
+𝑝 𝑝
+2
+(cid:127) If 𝑑 > 0, select 𝑁𝐸 (𝑀 below the line)
+(cid:127) If 𝑑 < 0, select 𝐸 (𝑀 above the line)
+(cid:127) If 𝑑 = 0, consistently choose either 𝑁𝐸 or 𝐸
+ Update decision variable 𝑑
+(cid:127) Depending on choice of 𝑁𝐸 or 𝐸 and value of 𝑑 for the selected pixel,
+𝑑 is calculated for the next grid line (𝑥 + 2) from the current 𝑑
+𝑝
+Interactive Computer Graphics
+27/05/2026 16
+Chapter 6 – Rasterization
+[Seite 17]
+Seiten-Metadaten: Bilder=0, Rechtecke=7, Kurven=12, Linien=1
+Update of 𝑑 for 𝐸
+ Previous decision variable was given by
+1 1
+𝑑 = 𝐹 𝑥 + 1, 𝑦 + = 𝑎 ⋅ 𝑥 + 1 + 𝑏 ⋅ 𝑦 + + 𝑐
+𝑜𝑙𝑑 𝑝 𝑝 𝑝 𝑝
+2 2
+ 𝑀 is incremented by 1 in the 𝑥-direction, resulting in
+1 1
+𝑑 = 𝐹 𝑥 + 2, 𝑦 + = 𝑎 ⋅ 𝑥 + 2 + 𝑏 ⋅ 𝑦 + + 𝑐
+𝑛𝑒𝑤 𝑝 𝑝 𝑝 𝑝
+2 2
+ Incremental difference between 𝑑 and 𝑑
+𝑛𝑒𝑤 𝑜𝑙𝑑
+𝑑 = 𝑑 + 𝑎
+𝑛𝑒𝑤 𝑜𝑙𝑑
+Δ𝐸: = 𝑎 = 𝑑𝑦
+ Calculate decision variable when choosing 𝐸 incremental
+𝑑 = 𝑑 + Δ𝐸
+𝑛𝑒𝑤 𝑜𝑙𝑑
+Interactive Computer Graphics
+27/05/2026 17
+Chapter 6 – Rasterization
+[Seite 18]
+Seiten-Metadaten: Bilder=0, Rechtecke=7, Kurven=12, Linien=1
+Update of 𝑑 for 𝑁𝐸
+ Previous decision variable was given by
+1 1
+𝑑 = 𝐹 𝑥 + 1, 𝑦 + = 𝑎 ⋅ 𝑥 + 1 + 𝑏 ⋅ 𝑦 + + 𝑐
+𝑜𝑙𝑑 𝑝 𝑝 𝑝 𝑝
+2 2
+ 𝑀 is incremented by 1 in the 𝑥- and 𝑦-direction, resulting in
+3 3
+𝑑 = 𝐹 𝑥 + 2, 𝑦 + = 𝑎 ⋅ 𝑥 + 2 + 𝑏 ⋅ 𝑦 + + 𝑐
+𝑛𝑒𝑤 𝑝 𝑝 𝑝 𝑝
+2 2
+ Incremental difference between 𝑑 and 𝑑
+𝑛𝑒𝑤 𝑜𝑙𝑑
+𝑑 = 𝑑 + 𝑎 + 𝑏
+𝑛𝑒𝑤 𝑜𝑙𝑑
+Δ𝑁𝐸: = 𝑎 + 𝑏 = 𝑑𝑦 − 𝑑𝑥
+ Calculate decision variable when choosing 𝑁𝐸 incremental
+𝑑 = 𝑑 + Δ𝑁𝐸
+𝑛𝑒𝑤 𝑜𝑙𝑑
+Interactive Computer Graphics
+27/05/2026 18
+Chapter 6 – Rasterization
+[Seite 19]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Proceeding
+ In each step, the algorithm selects between two pixels 𝑁𝐸 and 𝐸
+based on sign of decision variable 𝑑
+ Depending on the choice, decision variable is updated
+by adding difference Δ𝑁𝐸 or Δ𝐸
+Interactive Computer Graphics
+27/05/2026 19
+Chapter 6 – Rasterization
+[Seite 20]
+Seiten-Metadaten: Bilder=0, Rechtecke=10, Kurven=12, Linien=1
+Initializing 𝑑
+1
+ First midpoint 𝑀 is located at (𝑥 + 1, 𝑦 + )
+0 0
+2
+1 1 𝑏
+𝐹 𝑥 + 1, 𝑦 + = 𝑎 ⋅ 𝑥 + 1 + 𝑏 ⋅ 𝑦 + + 𝑐 = 𝑎 ⋅ 𝑥 + 𝑏 ⋅ 𝑦 + 𝑐 + 𝑎 +
+0 0 0 0 0 0
+2 2 2
+𝑏
+= 𝐹 𝑥 , 𝑦 + 𝑎 +
+0 0
+2
+ As (𝑥 , 𝑦 ) lies on line F 𝑥 , 𝑦 = 0 holds, and
+0 0 0 0
+𝑏 𝑑𝑥
+𝑑 = a + = 𝑑𝑦 −
+𝑠𝑡𝑎𝑟𝑡
+2 2
+ To eliminate fraction in 𝑑 it is multiplied by 2
+𝑠𝑡𝑎𝑟𝑡
+𝑑 = 2 ⋅ a + b = 2 ⋅ 𝑑𝑦 − 𝑑𝑥
+𝑠𝑡𝑎𝑟𝑡
+ Thus, decision variable 𝑑, all constants and the increments Δ𝐸 and Δ𝑁𝐸
+must also be multiplied by 2, which does not affect sign of 𝑑
+𝐹 𝑥, 𝑦 = 2 ⋅ (𝑎 ⋅ 𝑥 + 𝑏 ⋅ 𝑦 + 𝑐) = 0
+Interactive Computer Graphics
+27/05/2026 20
+Chapter 6 – Rasterization
+[Seite 21]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=2, Linien=1
+Using 𝑑
+ Midpoint line algorithms uses 𝑑 as follows
+𝑑 = 2 · 𝑑𝑦 – 𝑑𝑥
+𝑠𝑡𝑎𝑟𝑡
+Δ𝑁𝐸 = 2 · 𝑑𝑦 – 𝑑𝑥
+Δ𝐸 = 2 · 𝑑𝑦
+(cid:127) When 𝐸 is chosen (𝑑 ≤ 0): 𝑑 = 𝑑 + 2 · 𝑑𝑦
+𝑜𝑙𝑑 𝑛𝑒𝑤 𝑜𝑙𝑑
+(cid:127) When 𝑁𝐸 is chosen (𝑑 > 0): 𝑑 = 𝑑 + 2 · (𝑑𝑦 – 𝑑𝑥)
+𝑜𝑙𝑑 𝑛𝑒𝑤 𝑜𝑙𝑑
+Interactive Computer Graphics
+27/05/2026 21
+Chapter 6 – Rasterization
+[Seite 22]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Pseudo Code – Simple Version
+void midPointLine(int x0, int y0, int x1, int y1) {
+int dx = x1 - x0; // Calculate delta x
+int dy = y1 - y0; // Calculate delta y
+int d = 2 * dy - dx; // Initial decision variable
+int dE = 2 * dy; // Increment used for move to E
+int dNE = 2 * (dy - dx); // Increment used for move to NE
+int x = x0, y = y0; // Start position
+writePixel(x, y); // Plot the first pixel
+while (x < x1) { // Loop through from x0 to x1
+if (d <= 0) { // Decision is East
+d += dE; x++;
+} else { // Decision is North East
+d += dNE; x++; y++;
+}
+writePixel(x, y); // Plot each computed pixel
+}
+}
+Interactive Computer Graphics
+27/05/2026 22
+Chapter 6 – Rasterization
+[Seite 23]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=94, Linien=15
+Example
+ Draw line from (5, 8) to (9, 11)
+(cid:127) Order of values for 𝑑
+12
+(cid:127) 2, 0, 6, 4
+(cid:127) Order of chosen pixels
+11
+(cid:127) NE, E, NE, NE
+10
+9
+8
+7
+4 5 6 7 8 9 10
+Interactive Computer Graphics
+27/05/2026 23
+Chapter 6 – Rasterization
+[Seite 24]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Evaluation
+ Necessary arithmetic operations
+(cid:127) As only integer values are used, only integer operations are necessary
+(cid:127) Additions/subtractions only and multiplication by 2
+(left shift by 1 bit position)
+(cid:127) No multiplications in the loop
+ Reversibility
+(cid:127) Order of endpoints can be made reversible
+(cid:127) Line from 𝑃 to 𝑃 has the same pixels as line from 𝑃 to 𝑃
+0 1 1 0
+⇒ when drawing from right to left select SW pixels for 𝑑 = 0
+Interactive Computer Graphics
+27/05/2026 24
+Chapter 6 – Rasterization
+[Seite 25]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Pseudo Code - Reversible
+void drawLine(int x0, int y0, int x1, int y1) {
+int dx = abs(x1 - x0); // Calculate absolute delta x
+int sx = (x0 < x1 ? 1 : -1); // Set step x based on direction
+int dy = abs(y1 - y0); // Calculate absolute delta y
+int sy = (y0 < y1 ? 1 : -1); // Set step y based on direction
+int d = 2 * dy - dx; // Initial decision variable
+int dE = 2 * dy; // Increment for move East or West
+int dNE = 2 * (dy - dx); // Increment for move NE or SW
+int x = x0, y = y0; // Start positions
+writePixel(x, y); // Plot the first pixel
+while (x != x1) { // Loop until target x reached
+if ((d < 0) || ((d == 0) && (sx == 1))) { // Decide East or West
+d += dE; x += sx;
+} else { // Decide North-East or South-West
+d += dNE; x += sx; y += sy;
+}
+writePixel(x, y); // Plot each computed pixel
+}
+}
+Interactive Computer Graphics
+27/05/2026 25
+Chapter 6 – Rasterization
+[Seite 26]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+6.2 Triangle Edge Rasterization
+Drawing a one pixel thick triangle edge
+Visual Computing Group
+Institute of Media Informatics
+Interactive Computer Graphics
+27/05/2026 26
+Chapter 6 – Rasterization
+[Seite 27]
+Seiten-Metadaten: Bilder=3, Rechtecke=3, Kurven=371, Linien=25
+Triangle Edges 1/2
+ Using midpoint line algorithm for triangle edge rasterization
+(cid:127) Provides pixels closest to triangle edge
+(cid:127) Does not consider if pixel lies inside or outside triangle
+⇒ Edge pixels can penetrate into interior of adjacent triangles
+Interactive Computer Graphics
+27/05/2026 27
+Chapter 6 – Rasterization
+[Seite 28]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=1
+Triangle Edges 2/2
+ Midpoint line algorithm must consider inside vs. outside pixels
+(cid:127) Adaptation of the midpoint line algorithm
+(cid:127) Restriction to pixels strictly inside triangle
+(cid:127) Must be applied to line rasterization also for consistency reasons
+ Definition of triangle inside:
+edge pixel belongs to inside if:
+edge half-plane lies below / right of edge
+(cid:127) see Top-Left Rule
+(cid:127) “top || left”, “top & left”, “left & left”
+Interactive Computer Graphics
+27/05/2026 28
+Chapter 6 – Rasterization
+[Seite 29]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Edge Rasterization 1/3
+ Triangle edge rasterization can exploit edge coherence
+(cid:127) Two edges of triangle intersect a scanline
+(cid:127) Same edges intersected by scanline 𝑖 likely also intersect scanline 𝑖 + 1
+ Due to coherence, intersections can be calculated incrementally
+(cid:127) For each increase of 𝑦 → 𝑦 + 1
+𝑥 can be computed through edge slope 𝐴: 𝑥 = 𝑥 + 1/𝐴
+void leftEdgeScan(int x0, int y0, int x1, int y1) { // y0 < y1
+float x = x0; // Start x at x0
+float dxdy = (x1 - x0) / (y1 - y0); // Calculate dx/dy = 1/A
+for (int y = y0; y < y1; y++) { // Loop from y0 to y1
+writePixel(ceil(x), y); // Plot pixel at (ceil(x), y)
+x += dxdy; // Increment x by dx/dy
+}
+}
+Interactive Computer Graphics
+27/05/2026 29
+Chapter 6 – Rasterization
+[Seite 30]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Edge Rasterization 2/3
+ Integer arithmetic can be used for (left) edges with slopes > 1
+(cid:127) Consider 𝑑𝑥𝑑𝑦 = (𝑥𝑚𝑎𝑥 − 𝑥𝑚𝑖𝑛)/(𝑦𝑚𝑎𝑥 − 𝑦𝑚𝑖𝑛)
+(cid:127) 𝑥 is only changed by 𝑑𝑥𝑑𝑦
+⇒ 𝑥 can be represented as a fraction with denominator (𝑦𝑚𝑎𝑥 − 𝑦𝑚𝑖𝑛)
+(cid:127) Let 𝑎 be the integer part
+𝑑: = 𝑦𝑚𝑎𝑥 − 𝑦𝑚𝑖𝑛 the denominator, and
+𝑛: = 𝑥𝑚𝑎𝑥 − 𝑥𝑚𝑖𝑛 the numerator of 𝑑𝑥𝑑𝑦
+⇒ 𝑥 = (𝑎 · 𝑑 + 𝑏)/𝑑 = 𝑎 · 𝑑/𝑑 + 𝑏/𝑑 = 𝑎 + 𝑏/𝑑 with 𝑏 < 𝑑
+(cid:127) When incrementing 𝑥 by 𝑑𝑥𝑑𝑦, counter 𝑏 is always incremented by 𝑛
+(cid:127) If 𝑏/𝑑 > 1 (i.e., 𝑏 > 𝑑)
+(cid:127) 𝑎 is incremented by 1
+(cid:127) counter 𝑏 is decreased by 𝑑
+Interactive Computer Graphics
+27/05/2026 30
+Chapter 6 – Rasterization
+[Seite 31]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Edge Rasterization 3/3
+void leftEdgeScan(int x0, int y0, int x1, int y1) { // slope > 1
+int d = y1 - y0; // denominator (Nenner)
+int n = x1 - x0; // numerator (Zähler)
+int a = x0; // integer part of x
+int b = d; // fraction part of x plus d
+for (int y = y0; y < y1; y++) { // Loop from y0 to y1
+writePixel(a, y); // Plot pixel at (a, y)
+b += n; // Increment b by numerator to handle x = x + 1/A
+if (b >= d) { // Check if b exceeds or equals denominator
+a++; // Increment integer part of x
+b -= d; // Adjust fraction part back by denominator
+}
+}
+}
+Interactive Computer Graphics
+27/05/2026 31
+Chapter 6 – Rasterization
+[Seite 32]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+6.3 Region Filling
+Homogeneous coloring of regions
+Visual Computing Group
+Institute of Media Informatics
+[Seite 33]
+Seiten-Metadaten: Bilder=0, Rechtecke=12, Kurven=46, Linien=13
+Region Types 1/2
+ 4-connected
+(cid:127) All pixels of region can be reached by following movements
+(cid:127) Left, right, bottom, top
+ 8-connected
+(cid:127) All pixels of region can be reached by following movements
+(cid:127) Left, right, bottom, top
+(cid:127) Left-bottom, left-top, right-top, right-bottom
+ 4-connected regions are also 8-connected
+Interactive Computer Graphics
+27/05/2026 33
+Chapter 6 – Rasterization
+[Seite 34]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=210, Linien=37
+Region Types 2/2
+ Examples
+4-connected 8-connected 8-connected
+Interactive Computer Graphics
+27/05/2026 34
+Chapter 6 – Rasterization
+[Seite 35]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=218, Linien=25
+Region Spezification
+ Color-based
+(cid:127) Starting at pixel 𝑃, determine largest contiguous region
+which pixels have a specific color
+(cid:127) Color assignment done by flood fill algorithms
+ Border-based
+(cid:127) Starting at pixel 𝑃, determine the largest contiguous region
+which pixels have a color different from the border color
+(cid:127) Color assignment done by boundary fill algorithms
+Interactive Computer Graphics
+27/05/2026 35
+Chapter 6 – Rasterization
+[Seite 36]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Flood Fill Algorithm
+void floodFill4(int x, int y, Color oldC, Color newC) {
+if ((x < 0) || (x >= width)) return; // Return if x is out of bounds
+if ((y < 0) || (y >= height)) return; // Return if y is out of bounds
+if (oldC == readPixel(x, y)) { // Check if the current color matches oldC
+writePixel(x, y, newC); // Change the color of the pixel
+floodFill4(x, y-1, oldC, newC); // Recursively fill up
+floodFill4(x, y+1, oldC, newC); // Recursively fill down
+floodFill4(x+1, y, oldC, newC); // Recursively fill right
+floodFill4(x-1, y, oldC, newC); // Recursively fill left
+}
+}
+Interactive Computer Graphics
+27/05/2026 36
+Chapter 6 – Rasterization
+[Seite 37]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Boundary Fill Algorithm
+void boundaryFill4(int x, int y, Color oldC, Color newC) {
+if ((x < 0) || (x >= width)) return; // Return if x is out of bounds
+if ((y < 0) || (y >= height)) return; // Return if y is out of bounds
+Color c = readPixel(x, y);
+if (c == oldC) return; // Return if pixel is a boundary pixel
+if (c == newC) return; // Return if pixel has been processed
+writePixel(x, y, newC); // Change the color of the pixel
+boundaryFill4(x, y-1, oldC, newC); // Recursively fill up
+boundaryFill4(x, y+1, oldC, newC); // Recursively fill down
+boundaryFill4(x+1, y, oldC, newC); // Recursively fill right
+boundaryFill4(x-1, y, oldC, newC); // Recursively fill left
+}
+Interactive Computer Graphics
+27/05/2026 37
+Chapter 6 – Rasterization
+[Seite 38]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=1
+Fill Algorithms
+ High number of recursions can lead to stack overflow
+ Use smarter data structures, i.e., queues and stacks
+Queue Stack
+Interactive Computer Graphics
+27/05/2026 38
+Chapter 6 – Rasterization
+[Seite 39]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+6.4 Scanline-Based Triangle Rasterization
+Segment-based rasterization of the simplest type of polygon
+Visual Computing Group
+Institute of Media Informatics
+[Seite 40]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=8, Linien=1
+Triangle Rasterization
+ Triangle rasterization
+(cid:127) Rasterize filled triangles is main task in real-time rendering
+(cid:127) Realization through graphics hardware desired
+(cid:127) General polygons split into triangles through tessellation
+V
+2
+ Rasterization requires three steps
+(cid:127) Determine triangle edges
+(cid:127) Fill triangle’s interior
+V
+1
+(cid:127) Interpolate information over triangle
+(e.g., colors, z-values)
+V
+0
+Interactive Computer Graphics
+27/05/2026 40
+Chapter 6 – Rasterization
+[Seite 41]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=25, Linien=22
+Scanline-Based Rasterization
+ Rasterization through scanline conversion exploits spatial coherence
+(cid:127) Pixels of a scanline are colored similarly
+(cid:127) Adjacent scanlines span similar pixels
+(cid:127) Adjacent scanlines are colored similarly
+V
+2
+ Scanline segments can be calculated
+through modified midpoint line algorithm
+(cid:127) Rasterize triangle edges
+V
+to obtain edge pixels 1
+(cid:127) Generate pixels of scanlines
+between each pair of edge pixels
+V
+0
+Interactive Computer Graphics
+27/05/2026 41
+Chapter 6 – Rasterization
+[Seite 42]
+Seiten-Metadaten: Bilder=0, Rechtecke=6, Kurven=23, Linien=1
+Algorithm Overview
+ Observation: triangle can be split into top an bottom half
+(cid:127) For each half two edge pixels and one segment exist
+(cid:127) Segments differ only slightly, depending on edge slope
+V
+2
+ Procedure
+E
+(cid:127) Sort triangle vertices based on 𝑦-coordinate
+12
+⇒ ( 𝑥 , 𝑦 , 𝑥 , 𝑦 , 𝑥 , 𝑦 ) with 𝑦 ≤ 𝑦 ≤ 𝑦
+0 0 1 1 2 2 0 1 2 E Top Half
+02
+(cid:127) Rasterize lower half between 𝐸 and 𝐸
+01 02
+V
+(cid:127) Rasterize upper half between 𝐸 and 𝐸 Bottom Half 1
+02 12
+E
+01
+V
+0
+Interactive Computer Graphics
+27/05/2026 42
+Chapter 6 – Rasterization
+[Seite 43]
+Seiten-Metadaten: Bilder=0, Rechtecke=6, Kurven=17, Linien=1
+Slope Calculation
+ Calculate slope for each triangle edge: 1/𝐴 = 𝑑𝑥/𝑑𝑦
+(cid:127) Δ = (𝑥 − 𝑥 )/(𝑦 − 𝑦 )
+02 2 0 2 0
+(cid:127) Δ = (𝑥 − 𝑥 )/(𝑦 − 𝑦 )
+01 1 0 1 0
+(cid:127) Δ = (𝑥 − 𝑥 )/(𝑦 − 𝑦 )
+12 2 1 2 1
+V
+2
+E
+ Calculate number of scanlines
+12
+for each triangle half
+E Top Half
+02
+(cid:127) 𝑁 = 𝑦 − 𝑦
+𝑡𝑜𝑝 2 1
+V
+(cid:127) 𝑁 = 𝑦 − 𝑦 Bottom Half 1
+𝑏𝑜𝑡𝑡𝑜𝑚 1 0
+E
+01
+V
+0
+Interactive Computer Graphics
+27/05/2026 43
+Chapter 6 – Rasterization
+[Seite 44]
+Seiten-Metadaten: Bilder=0, Rechtecke=6, Kurven=4, Linien=2
+Pseudo Code
+void processTriangle(int x0, int y0, float delta02, float delta01, int Nbottom, int Ntop) {
+float XLeft = x0; // Start position for left x
+float XRight = x0; // Start position for right x
+int Y = y0; // Start position for y
+float DeltaLeft = delta02; // Delta for left x for bottom half
+float DeltaRight = delta01; // Delta for right x for bottom half
+for (int i = 0; i < Nbottom; i++) { // Loop for bottom half of the triangle
+processSegment(Y, round(XLeft), round(XRight)); // Process current segment
+XLeft += DeltaLeft; // Increment left x by delta left
+XRight += DeltaRight; // Increment right x by delta right
+Y += 1; // Increment y
+}
+DeltaRight = delta12; // Delta for right x for top half
+for (int i = 0; i <= Ntop; i++) { // Loop for top half of the triangle
+processSegment(Y, round(XLeft), round(XRight)); // Process current segment
+XLeft += DeltaLeft; // Increment left x by delta left
+XRight += DeltaRight; // Increment right x by delta right
+Y += 1; // Increment y
+Assumption: main axis is left
+}
+Otherwise: switch left and right
+}
+Interactive Computer Graphics
+27/05/2026 44
+Chapter 6 – Rasterization
+Extrahierte Tabellen:
+[Tabelle 1]
+Assumption: main axis is left Otherwise: switch left and right | 
+[Seite 45]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=25, Linien=1
+Segment Rasterization
+V
+2
+ Each segment generates fragments
+ Rendering pipeline processes generated fragments
+(𝑥 , 𝑦 )
+(e.g., depth testing, alpha blending) 𝑟𝑖𝑔ℎ𝑡 𝑠
+(𝑥 , 𝑦 )
+𝑙𝑒𝑓𝑡 𝑠
+V
+1
+V
+0
+void processSegment(int y_s, int x_left, int x_right) {
+for (int x = x_left; x < x_right; x++) { // Loop from x_left to x_right
+processFragment(x, y_s); // Process each fragment at (x, y_s)
+}
+}
+Interactive Computer Graphics
+27/05/2026 45
+Chapter 6 – Rasterization
+[Seite 46]
+Seiten-Metadaten: Bilder=1, Rechtecke=6, Kurven=49, Linien=1
+Vertex Attribute Interpolation
+V
+2
+ During rasterization vertex attributes (e.g., color, depth)
+must be interpolated over triangle
+(𝑥 , 𝑦 , 𝑧 )
+𝑟𝑖𝑔ℎ𝑡 𝑠 𝑟𝑖𝑔ℎ𝑡
+ Bilinear interpolation can be used
+(𝑥 , 𝑦 , 𝑧 )
+1. Interpolate attributes along both edges 𝑙𝑒𝑓𝑡 𝑠 𝑙𝑒𝑓𝑡
+V
+1
+(𝑦 −𝑦 )
+(cid:127) 𝑧 = 𝑧 + 𝑠 0 ⋅ (𝑧 − 𝑧 )
+𝑙𝑒𝑓𝑡 0 2 0
+(𝑦 −𝑦 )
+2 0
+(𝑦 −𝑦 )
+(cid:127) 𝑧 = 𝑧 + 𝑠 1 ⋅ (𝑧 − 𝑧 )
+𝑟𝑖𝑔ℎ𝑡 1 2 1
+(𝑦 −𝑦 )
+2 1 V
+0
+2. Interpolate attributes along segment
+(𝑥 −𝑥 )
+𝑐𝑒𝑛𝑡𝑒𝑟 𝑙𝑒𝑓𝑡
+(cid:127) 𝑧 = 𝑧 + ⋅ (𝑧 − 𝑧 )
+𝑐𝑒𝑛𝑡𝑒𝑟 𝑙𝑒𝑓𝑡 𝑟𝑖𝑔ℎ𝑡 𝑙𝑒𝑓𝑡
+(𝑥 −𝑥 )
+𝑟𝑖𝑔ℎ𝑡 𝑙𝑒𝑓𝑡
+Interactive Computer Graphics
+27/05/2026 46
+Chapter 6 – Rasterization
+[Seite 47]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=4, Linien=1
+Incremental Interpolation 1/3
+ Spatial coherence allows for an incremental attribute interpolation
+ Example: consider triangle’s plane equation for calculating 𝑧 increments
+(cid:127) 𝐴𝑥 + 𝐵𝑦 + 𝐶𝑧 + 𝐷 = 0
+(cid:127) With plane coefficients 𝐴, 𝐵, 𝐶: 𝐴, 𝐵, 𝐶 = 𝑉 − 𝑉 × (𝑉 − 𝑉 )
+2 0 1 2
+(cid:127) Resolve for 𝑧: 𝑧 = (−𝐴𝑥 − 𝐵𝑦 − 𝐷)/𝐶
+(cid:127) Calculate 𝑑𝑧𝑑𝑥 as change of 𝑧 in case of horizontal change by +1
+(cid:127) Consider 𝑧 → 𝑧 at 𝑥 → 𝑥 where 𝑥 = 𝑥 + 1:
+𝑖 𝑖+1 𝑖 𝑖+1 𝑖+1 𝑖
+((−𝐴𝑥 − 𝐵𝑦 − 𝐷)/𝐶) − ((−𝐴𝑥 − 𝐵𝑦 − 𝐷)/𝐶)) = −𝐴/𝐶 =: 𝑑𝑧𝑑𝑥
+𝑖 𝑖+1
+(cid:127) Calculate 𝑑𝑧𝑑y as change of 𝑧 in case of vertical change by +1
+(cid:127) Consider 𝑧 → 𝑧 at y → y where 𝑦 = 𝑦 + 1:
+𝑖 𝑖+1 𝑖 𝑖+1 𝑖+1 𝑖
+((−𝐴𝑥 − 𝐵𝑦 − 𝐷)/𝐶) − ((−𝐴x − 𝐵𝑦 − 𝐷)/𝐶)) = −𝐵/𝐶 =: 𝑑𝑧𝑑𝑦
+𝑖 𝑖+1
+Interactive Computer Graphics
+27/05/2026 47
+Chapter 6 – Rasterization
+[Seite 48]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=2, Linien=1
+Incremental Interpolation 2/3
+ Increments 𝑑𝑧𝑑𝑥 and 𝑑𝑧𝑑𝑦 are used to incrementally modify given 𝑧 value,
+i.e., when moving from (𝑥, 𝑦) to (𝑥 + 1, 𝑦) or (𝑥, 𝑦 + 1)
+ Case 1: next fragment in scanline (horizontal change by +1)
+(cid:127) 𝑥 → 𝑥 ⇒ 𝑧 ≔ 𝑧 + 𝑑𝑧𝑑𝑥
+𝑖 𝑖+1 𝑖
+ Case 2: first fragment on next scanline
+(cid:127) 𝑥 → 𝑥 ∧ y → y ⇒ 𝑧 ≔ 𝑧 + 𝑑𝑧𝑑𝑦 − 𝑥 − 𝑥 ⋅ 𝑑𝑧𝑑𝑥
+𝑖 0 𝑖 𝑖+1 𝑖 𝑖 0
+ 𝑑𝑧𝑑𝑥 and 𝑑𝑧𝑑𝑦 can be precomputed for both triangle halves
+Interactive Computer Graphics
+27/05/2026 48
+Chapter 6 – Rasterization
+[Seite 49]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Incremental Interpolation 3/3
+ All vertex attributes can be interpolated incrementally analogous to depth
+(cid:127) Colors (𝑟, 𝑔, 𝑏, 𝑎)
+(cid:127) Texture coordinates (𝑢, 𝑣)
+(cid:127) …
+ For each attribute 𝜃 define
+(cid:127) 𝑑𝜃𝑑𝑥
+(cid:127) 𝑑𝜃𝑑𝑦
+(cid:127) With 𝜃 ∈ {𝑧, 𝑟, 𝑔, 𝑏, 𝑎, 𝑛 , 𝑛 , 𝑛 , 𝑢, 𝑣, … }
+𝑥 𝑦 𝑧
+ 𝑑𝜃𝑑𝑥 and 𝑑𝜃𝑑𝑦 can be precomputed for both triangle halves
+Interactive Computer Graphics
+27/05/2026 49
+Chapter 6 – Rasterization
+[Seite 50]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+6.5 Tile-Based Triangle Rasterization
+Parallel tile-based triangle rasterization
+Visual Computing Group
+Institute of Media Informatics
+[Seite 51]
+Seiten-Metadaten: Bilder=0, Rechtecke=1023, Kurven=8, Linien=1
+Tile-Based Triangle Rasterization
+ Modern GPUs have a block-wise structure,
+where one processor is responsible for one screen tile of adjacent pixels
+ Segment-based triangled rasterization is difficult to parallelize
+ Tile-based rasterization is a better fit with modern GPUs
+V
+2
+ Advantage
+(cid:127) Different tiles can be rasterized independently
+ Drawback
+(cid:127) Vertex attribute interpolation can only reuse
+V
+1
+information from within the same tile
+V
+0
+Interactive Computer Graphics
+27/05/2026 51
+Chapter 6 – Rasterization
+Extrahierte Tabellen:
+[Tabelle 1]
+ |  |  |  |  |  |  |  | V
+[Seite 52]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=39, Linien=2
+Edge-Based Triangle Representation 1/2
+ Edge-based area representation is possible through implicit edge functions
+ Implicit edge function can be defined based on two edge vertices
+𝑉 = (𝑥 , 𝑦 ) and 𝑉 = (𝑥 , 𝑦 )
+0 0 0 1 1 1
+ For a given coordinate (𝑥, 𝑦), the implicit edge function is defined as
+E 𝑥, 𝑦 = 𝑦 − 𝑦 ⋅ 𝑥 − 𝑥 − 𝑥 ⋅ 𝑦 + 𝐵 ⋅ 𝑥 − 𝑥
+1 0 1 0 01 1 0
+with 𝐵 = 𝑦 − 𝑚 ⋅ 𝑥 and 𝑚 = (𝑦 − 𝑦 )/(𝑥 − 𝑥 )
+01 0 01 0 01 1 0 1 0
+𝑉 = (𝑥 , 𝑦 )
+1 1 1
+ E(𝑥, 𝑦) has the following properties
+> 0: x, y is right of edge
+E 𝑥, 𝑦 (cid:3422) = 0: x, y is on the edge
+< 0: x, y is left of edge
+𝑉 = (𝑥 , 𝑦 )
+0 0 0
+Interactive Computer Graphics
+27/05/2026 52
+Chapter 6 – Rasterization
+[Seite 53]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=38, Linien=1
+Edge-Based Triangle Representation 2/2
+ To represent a triangle, three implicit edge functions are combined
+(cid:127) 𝐸 𝑥, 𝑦 = 𝑦 − 𝑦 ⋅ 𝑥 − 𝑥 − 𝑥 ⋅ 𝑦 + 𝐵 ⋅ 𝑥 − 𝑥
+01 1 0 1 0 01 1 0
+(cid:127) 𝐸 𝑥, 𝑦 = 𝑦 − 𝑦 ⋅ 𝑥 − 𝑥 − 𝑥 ⋅ 𝑦 + 𝐵 ⋅ 𝑥 − 𝑥
+12 2 1 2 1 12 2 1
+(cid:127) 𝐸 𝑥, 𝑦 = 𝑦 − 𝑦 ⋅ 𝑥 − 𝑥 − 𝑥 ⋅ 𝑦 + 𝐵 ⋅ 𝑥 − 𝑥
+20 0 2 0 2 20 0 2
+V
+ A given pixel at location (𝑥, 𝑦) is inside the triangle if 2
+𝐸 𝑥, 𝑦 < 0 ∧ 𝐸 𝑥, 𝑦 < 0 ∧ 𝐸 𝑥, 𝑦 < 0
+01 12 20
+ Formulation can be evaluated in parallel at many positions
+V
+1
+ Formulation can be extended to arbitrary convex polygons
+by using as many implicit edge functions as edges exist
+V
+0
+Interactive Computer Graphics
+27/05/2026 53
+Chapter 6 – Rasterization
+[Seite 54]
+Seiten-Metadaten: Bilder=45, Rechtecke=1068, Kurven=8, Linien=1
+Rasterization Procedure
+1. Determine tiles which are (partially) covering triangle
+(e.g., easiest approximation would be bounding box)
+2. For each covering tile
+(cid:127) For each pixel
+V
+(cid:127) If all implicit edge functions evaluate to < 0 2
+(cid:127) Interpolate vertex attributes
+(cid:127) Draw pixel
+V
+1
+V
+0
+Interactive Computer Graphics
+27/05/2026 54
+Chapter 6 – Rasterization
+Extrahierte Tabellen:
+[Tabelle 1]
+ |  |  |  |  |  |  |  | V
+[Seite 55]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Chapter Summary
+ Pixel-based displays require the rasterization of primitives
+(cid:127) Rasterization fidelity is critical for image quality
+(cid:127) Rasterization is time-critical and should be optimized for hardware
+ Focus on triangles due to speed and ease of tessellation of other polygons
+ Segment-based triangle rasterization avoids overlap
+between adjacent triangles
+(cid:127) Midpoint scheme can be used to rasterize triangle edges
+ Block-based triangle rasterization allows for parallel processing
+on graphics hardware
+Interactive Computer Graphics
+27/05/2026 55
+Chapter 6 – Rasterization
+[Seite 56]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+References
+Literature and other sources used in this chapter
+Visual Computing Group
+Institute of Media Informatics
+[Seite 57]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+References
+ Text Books
+(cid:127) Foley J., van Dam, A., Feiner, S. (2013). Computer Graphics: Principles and
+Practice, Addison-Wesley.
+ Research Publications
+(cid:127) Bresenham, J. E. (1998). Algorithm for computer control of a digital plotter.
+In Seminal graphics: pioneering efforts that shaped the field (pp. 1-6).
+(cid:127) Pineda, J. (1988, June). A parallel algorithm for polygon rasterization. In
+Proceedings of the 15th annual conference on Computer graphics and
+interactive techniques (pp. 17-20).
+Interactive Computer Graphics
+27/05/2026 57
+Chapter 6 – Rasterization
+[Seite 58]
+Seiten-Metadaten: Bilder=3, Rechtecke=4, Kurven=1, Linien=1
+Slide for Future: Sustainability in CG (@ EG25)
+also @ IEEE VR
+Interactive Computer Graphics
+27/05/2026 58
+Chapter 1 – Introduction
+[Seite 59]
+Seiten-Metadaten: Bilder=5, Rechtecke=3, Kurven=1, Linien=1
+Slide for Future: Sustainability in CG (@ EG25)
+Unoptimized Optimized Unoptimized Optimized
+Inverse Simulation of Radiative Thermal Transport
+Christian Freude, Lukas Lipp, Matthias Zezulka, Florian Rist, Michael Wimmer, David Hahn
+Interactive Computer Graphics
+27/05/2026 59
+Chapter 1 – Introduction
+[Seite 60]
+Seiten-Metadaten: Bilder=6, Rechtecke=3, Kurven=1, Linien=1
+Slide for Future: Sustainability in CG (@ EG25)
+Optimizing Free-Form Grid Shells with Reclaimed Elements under Inventory Constraints
+Andrea Favilli, Francesco Laccone, Paolo Cignoni, Luigi Malomo, Daniela Giorgi
+Interactive Computer Graphics
+27/05/2026 60
+Chapter 1 – Introduction
+[Seite 61]
+Seiten-Metadaten: Bilder=3, Rechtecke=3, Kurven=1, Linien=1
+Slide for Future: Sustainability in CG (@ EG25)
+Stress-Aligned Hexahedral Lattice Structures
+Dennis Bukenberger, Junpeng Wang, Jun Wu, Rüdiger Westermann
+Interactive Computer Graphics
+27/05/2026 61
+Chapter 1 – Introduction
+
+
+Kapitel 07: Visibility Determination - Moodle-Seite
+---------------------------------------------------
+Quelle: lectures/07-visibility-determination/index.html
+
+Moodle Lernplattform Universität Ulm - Interaktive Computergrafik 
+Moodle Lernplattform Universität Ulm
+Interaktive Computergrafik 
+CS8165.001-SS26 
+Chap07 - Visibility Determination (09.06.26)
+Diese Seite ist Teil des Inhalts, der von Chap07 - Visibility Determination (09.06.26) am Dienstag, 25. August 2026, 20:30 heruntergeladen wurde. Beachten Sie, dass einige Inhalte und alle Dateien, die größer als 2 GB sind, nicht heruntergeladen werden. 
+Dateien und Verzeichnisse 
+07-visibility-determination.pdf 
+Diese Datei ist Teil des Inhalts, der am Dienstag, 25. August 2026, 20:30 von Maksym Morozov von Interaktive Computergrafik heruntergeladen wurde.
+
+Externe Links:
+- Moodle Lernplattform Universität Ulm: https://moodle.uni-ulm.de
+- Chap07 - Visibility Determination (09.06.26): https://moodle.uni-ulm.de/mod/resource/view.php?id=1032565
+- Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
+
+Kapitel 07: Visibility Determination - Folien
+---------------------------------------------
+Quelle: lectures/07-visibility-determination/slides/07-visibility-determination.pdf
+
+[Seite 1]
+Seiten-Metadaten: Bilder=2, Rechtecke=2, Kurven=0, Linien=0
+Interactive Computer Graphics
+Chapter 7 – Visibility Determination
+Summer Term 2026
+Timo Ropinski
+Visual Computing Group
+Institute of Media Informatics
+[Seite 2]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Visibility Determination
+ Problem
+(cid:127) Given scene objects and virtual camera
+(cid:127) Determine visible parts of scene objects
+(cid:127) Not occluded by same scene object
+(cid:127) Not occluded by other scene objects
+(cid:127) Not pointing away from camera for closed, opaque objects
+ Two equivalent perspectives on the problem
+(cid:127) Determination of visible lines and surfaces
+(Visible Surface Determination, VSD)
+(cid:127) Hidden Surface Removal (HSR) and Hidden Line Removal (HLR)
+ Quality criteria for visibility determination algorithms
+(cid:127) Generality: algorithms should be applicable for all types of geometry
+(e.g., convex/non-convex, polygons, polyhedra)
+(cid:127) Performance: determining hidden scene object parts
+has to be more cost effective than their rasterization costs
+(cid:127) Robustness: algorithms should be robust to numerical errors
+Interactive Computer Graphics
+09/06/2026 2
+Chapter 7 – Visibility Determination
+[Seite 3]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Object-Based Algorithms
+ Geometry-based analysis of scene objects before rasterization
+(cid:127) Compare each scene object against all other scene objects
+(cid:127) Determine visible parts based on virtual camera
+(cid:127) Rasterize the visible scene parts
+For each object in sceneObjects
+// Determine object parts that are visible from virtual camera's perspective
+visibleParts = determineVisibleParts(object, sceneObjects, virtualCamera)
+// Convert visible object parts into a format suitable for rendering
+rasterize(visibleParts)
+EndFor
+ Runtime complexity: 𝑂(𝑛2), 𝑛 number scene objects
+(cid:127) Analytical visibility assessment
+(cid:127) Example: Weiler Atherton algorithm
+Interactive Computer Graphics
+09/06/2026 3
+Chapter 7 – Visibility Determination
+[Seite 4]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Image-Based Algorithms
+ Pixel-based analysis of scene objects after rasterization
+(cid:127) Rasterize scene objects based on image resolution
+(cid:127) Investigate for each pixel which scene object is visible
+For each pixel in outputRaster
+// Determine which scene object is visible at this pixel
+visibleObject = determineVisibleObject(pixel, sceneObjects)
+// Get the color of the visible object
+color = obtainObjectColor(visibleObject)
+// Set the pixel in the output raster to this color
+setPixel(pixel, color)
+EndFor
+ Runtime complexity: 𝑂(𝑛 · 𝑝), 𝑛 number scene objects, 𝑝 number pixels
+(cid:127) Discrete visibility detection (depth sorting of pixel samples)
+(cid:127) Example: z-buffer algorithm
+Interactive Computer Graphics
+09/06/2026 4
+Chapter 7 – Visibility Determination
+[Seite 5]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Chapter Outline
+7.1 Object-Based Algorithms
+7.2 Binary Space Partitioning
+7.3 Warnock Algorithm
+7.4 Depth Buffer Algorithm
+7.5 Depth Buffer Extensions
+7.6 Ray Casting

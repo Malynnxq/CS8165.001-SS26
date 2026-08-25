@@ -1,0 +1,26 @@
+Uebung 00: Introduction to C++
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Quelle: assignments/00-introduction-to-cpp/index.html
+
+Moodle Lernplattform Universität Ulm - Interaktive Computergrafik 
+Moodle Lernplattform Universität Ulm
+Interaktive Computergrafik 
+CS8165.001-SS26 
+Introduction to C++
+Diese Seite ist Teil des Inhalts, der von Introduction to C++ am Dienstag, 25. August 2026, 20:30 heruntergeladen wurde. Beachten Sie, dass einige Inhalte und alle Dateien, die größer als 2 GB sind, nicht heruntergeladen werden. 
+Beschreibung 
+We recommend using VS Code or Visual Studio as IDE. You can find a guide on how to get started with C++ and VS Code here . And a guide for how to get started with Visual Studio and c++ here . 
+Another helpful tutorial on getting started with C++ can be found here . 
+And helpful tutorials about OpenGL can be found here . 
+Diese Datei ist Teil des Inhalts, der am Dienstag, 25. August 2026, 20:30 von Maksym Morozov von Interaktive Computergrafik heruntergeladen wurde.
+
+Externe Links:
+- Moodle Lernplattform Universität Ulm: https://moodle.uni-ulm.de
+- Introduction to C++: https://moodle.uni-ulm.de/mod/assign/view.php?id=1015678
+- VS Code: https://code.visualstudio.com/
+- Visual Studio: https://visualstudio.microsoft.com/de/#vs-section
+- here: https://code.visualstudio.com/docs/languages/cpp
+- here: https://learn.microsoft.com/en-us/cpp/get-started/?view=msvc-170
+- here: https://www.learncpp.com/
+- here: https://learnopengl.com/Introduction
+- Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076

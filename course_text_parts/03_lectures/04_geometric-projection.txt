@@ -1,0 +1,968 @@
+Kapitel 04: Geometric Projection - Moodle-Seite
+-----------------------------------------------
+Quelle: lectures/04-geometric-projection/index.html
+
+Moodle Lernplattform Universität Ulm - Interaktive Computergrafik 
+Moodle Lernplattform Universität Ulm
+Interaktive Computergrafik 
+CS8165.001-SS26 
+Chap04 - Geometric Projection (12.05.26)
+Diese Seite ist Teil des Inhalts, der von Chap04 - Geometric Projection (12.05.26) am Dienstag, 25. August 2026, 20:30 heruntergeladen wurde. Beachten Sie, dass einige Inhalte und alle Dateien, die größer als 2 GB sind, nicht heruntergeladen werden. 
+Dateien und Verzeichnisse 
+04-geometric-projection.pdf 
+Diese Datei ist Teil des Inhalts, der am Dienstag, 25. August 2026, 20:30 von Maksym Morozov von Interaktive Computergrafik heruntergeladen wurde.
+
+Externe Links:
+- Moodle Lernplattform Universität Ulm: https://moodle.uni-ulm.de
+- Chap04 - Geometric Projection (12.05.26): https://moodle.uni-ulm.de/mod/resource/view.php?id=1025842
+- Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
+
+Kapitel 04: Geometric Projection - Folien
+-----------------------------------------
+Quelle: lectures/04-geometric-projection/slides/04-geometric-projection.pdf
+
+[Seite 1]
+Seiten-Metadaten: Bilder=2, Rechtecke=2, Kurven=0, Linien=0
+Interactive Computer Graphics
+Chapter 4 – Geometric Projection
+Summer Term 2026
+Timo Ropinski
+Visual Computing Group
+Institute of Media Informatics
+[Seite 2]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Projecting 3D Models
+ To compute the 2D representation of a 3D model on the screen,
+it needs to be projected, whereby it loses its z-coordinates
+ Depending on the projection type, the object might get skewed
+(perspective shortening)
+ Projection can also be expressed as a matrix multiplication,
+as done with geometric transformations
+Interactive Computer Graphics
+12/05/2026 2
+Chapter 4 – Geometric Projection
+[Seite 3]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Chapter Outline
+4.1 Linear Perspective
+4.2 Planar Projections
+4.3 Camera Modeling
+4.4 Specifying Projections in OpenGL
+4.5 Perspective Projection Derivation
+4.6 Orthographic Projection Derivation
+4.7 Viewport Transformation
+References
+Interactive Computer Graphics
+12/05/2026 3
+Chapter 4 – Geometric Projection
+[Seite 4]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+4.1 Linear Perspective
+Discovery of perspective distortion in art
+Visual Computing Group
+Institute of Media Informatics
+4
+[Seite 5]
+Seiten-Metadaten: Bilder=5, Rechtecke=3, Kurven=0, Linien=1
+Linear Perspective
+ What is wrong in this image?
+William Hogarth:
+False Perspective, 1754
+Satire on False Perspective
+William Hogarth (1753)
+Interactive Computer Graphics
+12/05/2026 5
+Chapter 4 – Geometric Projection
+[Seite 6]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Drawing by Projecting
+ Projection: method for imaging objects using parallel or central beams
+ Perspective:
+"The science which teaches how to represent tri-dimensional objects
+on a bi-dimensional surface, so that the perspective image coincides with
+the one which is given by direct vision.“
+(Reina at La Prospettiva, Milan, 1940)
+ Early example of a projection: ground plan
+of a Mesopotamian building 2150 BC
+(one of the first known technical drawings)
+Interactive Computer Graphics
+12/05/2026 6
+Chapter 4 – Geometric Projection
+[Seite 7]
+Seiten-Metadaten: Bilder=4, Rechtecke=3, Kurven=0, Linien=1
+Projection in the Arts 1/5
+ Before the Renaissance, pictures often had a religious
+and symbolic character
+ Perspective was not understood:
+accordingly, they seem 2-dimensional
+Fresco from an Egyptian grave
+(circa 1500 BC)
+Madonna and Child on a Curved Throne,
+Byzantine School (circa 1325)
+Interactive Computer Graphics
+12/05/2026 7
+Chapter 4 – Geometric Projection
+[Seite 8]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=8
+Projection in the Arts 2/5
+ Techniques to simulate space:
+(cid:127) Shaded round volumetric shapes
+(cid:127) Spatial depth through converging lines
+Giotto di Bondone
+(1266-1337, Florence)
+Confirmation of St. Francis
+(circa 1325)
+Line convergence is not systematic, lines do not converge in a single vanishing point
+Interactive Computer Graphics
+12/05/2026 8
+Chapter 4 – Geometric Projection
+[Seite 9]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Projection in the Arts 3/5
+ Renaissance (1400-1700)
+(cid:127) New emphasis on the importance of personal views and interpretation of
+the world, power of observation, especially of nature
+(astronomy, anatomy, botany, ...)
+(cid:127) Universe as a clockwork:
+intellectual reconstruction of the universe
+according to mechanical principles
+Interactive Computer Graphics
+12/05/2026 9
+Chapter 4 – Geometric Projection
+[Seite 10]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=1
+Projection in the Arts 4/5
+ Examples from the Renaissance
+Interactive Computer Graphics
+12/05/2026 10
+Chapter 4 – Geometric Projection
+[Seite 11]
+Seiten-Metadaten: Bilder=44, Rechtecke=3, Kurven=0, Linien=1
+Projection in the Arts 4/5
+ Examples from the Renaissance
+The Last Supper
+Leonardo da Vinci (1498)
+Interactive Computer Graphics
+12/05/2026 11
+Chapter 4 – Geometric Projection
+[Seite 12]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Projection in the Arts 5/5
+ "The Invention of the Painting" (1830) by Karl Friedrich Schinkel (1781-1841):
+(cid:127) An image based on a legend by Pliny the Elder
+(cid:127) Tracing the shadow contours on a drawing surface
+Interactive Computer Graphics
+12/05/2026 12
+Chapter 4 – Geometric Projection
+[Seite 13]
+Seiten-Metadaten: Bilder=13, Rechtecke=3, Kurven=0, Linien=1
+Projection in the Arts 6/5
+ M. C. Escher (1898 – 1972)
+Interactive Computer Graphics
+12/05/2026 13
+Chapter 4 – Geometric Projection
+[Seite 14]
+Seiten-Metadaten: Bilder=4, Rechtecke=3, Kurven=0, Linien=1
+Projection Technics 1/3
+ Filippo Brunelleschi (1377-1446):
+Systematic method for obtaining
+a perspective projection
+Interactive Computer Graphics
+12/05/2026 14
+Chapter 4 – Geometric Projection
+[Seite 15]
+Seiten-Metadaten: Bilder=6, Rechtecke=3, Kurven=0, Linien=1
+Projection Technics 1/3
+The Delivery of the Keys
+Perugino (1482)
+Interactive Computer Graphics
+12/05/2026 15
+Chapter 4 – Geometric Projection
+[Seite 16]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Projection Technics 2/3
+ Formal description of the perspective projection
+(cid:127) Leone Batista Alberti (1404-1472):
+First essay on the subject of "La Pittura" (1435)
+(cid:127) "A painting [the projection plane] is the intersection of a visual pyramid [view
+frustum] at a given distance, with a fixed center [center of projection] and a
+defined position of light, represented by art with lines and colors on a given
+surface [the rendering].“
+(Alberti, On Painting)
+ Determination of the projected image:
+(cid:127) Height of the object (𝐴𝐵)
+(cid:127) Distance from eye to object (𝐶𝐵)
+(cid:127) Distance from the eye to the image plane (𝐶𝐷)
+(cid:127) Similar triangles: 𝐶𝐵: 𝐶𝐷 behaves like 𝐴𝐵: 𝐸𝐷
+(intercept theorem)
+Interactive Computer Graphics
+12/05/2026 16
+Chapter 4 – Geometric Projection
+[Seite 17]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Projection Technics 3/3
+ Albrecht Dürer (1471-1528):
+Geometric and mechanical
+description of the concept
+of similar triangles
+ Construction of several
+"projection apparatuses"
+Der Zeichner der Laute
+Albrecht Dürer (1525)
+Interactive Computer Graphics
+12/05/2026 17
+Chapter 4 – Geometric Projection
+[Seite 18]
+Seiten-Metadaten: Bilder=3, Rechtecke=3, Kurven=0, Linien=1
+Projection Technics 3/3
+ Camera Obscura
+Interactive Computer Graphics
+12/05/2026 18
+Chapter 4 – Geometric Projection
+[Seite 19]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+4.2 Planar Projections
+Perspective and parallel projections
+Visual Computing Group
+Institute of Media Informatics
+[Seite 20]
+Seiten-Metadaten: Bilder=3, Rechtecke=4, Kurven=0, Linien=1
+Geometric Projections
+ Method of mapping objects onto a screen using projectors
+ Planar geometric projections
+(cid:127) Projection beams are straight lines
+(cid:127) Projection surface is a plane
+(image plane, picture plane,
+view plane, projection plane, ...)
+ Non-planar geometric projections:
+(cid:127) Curved projection beams
+and projection surfaces
+(e.g., fisheye lens)
+Interactive Computer Graphics
+12/05/2026 20
+Chapter 4 – Geometric Projection
+[Seite 21]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=1, Linien=9
+Projection Types 1/2
+ Perspective projection (= central projection)
+A'
+(cid:127) Established by projection center
+A
+(COP, center of projection)
+B'
+(cid:127) Perspective reduction: The size of the projection
+of an object decreases with increasing distance
+B
+from the projection center
+ Parallel projection
+A'
+(cid:127) Determined by projection direction A
+(DOP, direction of projection)
+B'
+(cid:127) Receives sizes of the objects projected in parallel
+B
+Interactive Computer Graphics
+12/05/2026 21
+Chapter 4 – Geometric Projection
+[Seite 22]
+Seiten-Metadaten: Bilder=0, Rechtecke=33, Kurven=30, Linien=1
+Projection Types 2/2
+Planar geometric Projections
+Parallel Perspective
+Orthographic Oblique 1-Point
+2-Point
+Top Axonometric
+Front Kabinett 3-Point
+Isometric
+Side Kavalier
+Interactive Computer Graphics
+12/05/2026 22
+Chapter 4 – Geometric Projection
+[Seite 23]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Orthographic Projections
+ Orthographic projections often used for
+construction drawings of machines and parts
+ Main views: Front view, top view and side view
+ Advantages
+(cid:127) Accurate length and angle measurements possible
+(cid:127) all views use the same scale
+ Disadvantage
+(cid:127) No realistic representation for 3D objects
+and their environment
+(cid:127) Multiple views necessary to gain spatial idea of a 3D object
+Interactive Computer Graphics
+12/05/2026 23
+Chapter 4 – Geometric Projection
+[Seite 24]
+Seiten-Metadaten: Bilder=4, Rechtecke=3, Kurven=0, Linien=1
+Axonometric Projections
+ Projection beams perpendicular to the projection plane
+Isometric
+ Projection plane not perpendicular to a coordinate axis
+ Visible effects
+(cid:127) Several perpendicular surfaces visible
+(cid:127) Parallel lines are shortened equally Dimetric
+ Isometric
+(cid:127) Normal of projection plane forms same angle with all main axes
+(cid:127) All major axes are shortened in same ratio
+and relative proportions are preserved Dimetric
+ Dimetric
+(cid:127) Normal of projection plane forms same angle with two main axes
+(cid:127) Same shortening ratios for two main axes
+Dimetric
+ Trimetric
+(cid:127) Normal of projection plane forms different angles with the coordinate axes
+(cid:127) Any shortening conditions along the main axes possible
+Interactive Computer Graphics
+12/05/2026 24
+Chapter 4 – Geometric Projection
+[Seite 25]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Isometric Projections
+ Applications in illustrations, furniture design, ...
+ Advantages
+(cid:127) Communicate spatial impression in a single view
+(cid:127) Same length ratios along the main axes
+ Disadvantages
+(cid:127) Missing shortening creates a distorted appearance
+(cid:127) Less useful for objects with curved surfaces
+Interactive Computer Graphics
+12/05/2026 25
+Chapter 4 – Geometric Projection
+[Seite 26]
+Seiten-Metadaten: Bilder=3, Rechtecke=23, Kurven=33, Linien=4
+Oblique Projection 1/2
+ Projection rays not perpendicular to the projection plane
+(cid:127) Common: 𝛼 = 30°
+a
+ Cavalier projection α a'
+α
+(cid:127) 𝛼 = 45°, i.e., tan (𝛼) = 1
+a' projectors
+α
+(cid:127) Lengths on straight lines
+perpendicular to the projection
+projection plane
+plane remain unchanged
+ Cabinet projection
+(cid:127) 𝛼 = 63.4°, i.e., tan (𝛼) = 2
+(cid:127) Lengths on straight lines
+perpendicular to the projection
+plane are halved
+Cavalier Cabinet
+Interactive Computer Graphics
+12/05/2026 26
+Chapter 4 – Geometric Projection
+[Seite 27]
+Seiten-Metadaten: Bilder=4, Rechtecke=3, Kurven=0, Linien=1
+Oblique Projection 2/2
+ Advantages
+(cid:127) Can accurately represent the shape of a boundary surface
+of an object for accurate measurements
+(cid:127) Missing foreshortening simplifies comparison of sizes
+(cid:127) Gives a good impression of the 3D appearance
+ Disadvantage
+(cid:127) Objects appear distorted if the projection plane
+is not carefully chosen (e.g., circles to ellipses)
+(cid:127) Missing reduction (no realistic appearance)
+ Choice of projection level
+(cid:127) Parallel to the most irregular main boundary area of t he object to be displayed
+(cid:127) Parallel to the boundary plane containing circular or curved surfaces
+(cid:127) Parallel to the longest main boundary surface of the object
+(cid:127) Parallel to the boundary surface, which is of the greatest interest
+ Examples: technical illustrations (radio, city view)
+Interactive Computer Graphics
+12/05/2026 27
+Chapter 4 – Geometric Projection
+[Seite 28]
+Seiten-Metadaten: Bilder=3, Rechtecke=3, Kurven=0, Linien=1
+Properties of Parallel Projections
+ Assumption: Object surface of greatest interest lies parallel to a main plane
+(cid:127) Direction of projection: DOP (direction of projection)
+(cid:127) Normal of the projection plane: VPN (view plane normal)
+ Top view (orthographic)
+(cid:127) VPN || Main axis, DOP || VPN
+(cid:127) Shows single object surface and allows exact measurements
+Top View
+ Axonometric
+(cid:127) VPN not || to main axis, DOP || VPN
+(cid:127) Adjacent areas, none exact, are visible in the picture;
+even shortening (as a function of the angle between
+surface normal and DOP)
+Axonometric
+ Oblique
+(cid:127) VPN || Main axis, DOP and VPN not parallel
+(cid:127) Adjacent surfaces, one exact, the other shortened,
+are visible in the figure
+Oblique
+Interactive Computer Graphics
+12/05/2026 28
+Chapter 4 – Geometric Projection
+[Seite 29]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Perspective Projections 1/3
+ Properties
+(cid:127) Communicate realistic views of three-dimensional objects
+and give a spatial impression
+(cid:127) Distort objects in perspective view
+(cid:127) Scaling of objects is lost
+(except where the object intersects the projection plane)
+ Differences to parallel projection
+(cid:127) Parallel straight lines that are not parallel to the
+projection plane are displayed in intersecting straight lines
+(cid:127) The size of an object decreases
+with increasing distance to the projection center
+(cid:127) Shortening is not uniform
+Interactive Computer Graphics
+12/05/2026 29
+Chapter 4 – Geometric Projection
+[Seite 30]
+Seiten-Metadaten: Bilder=3, Rechtecke=4, Kurven=0, Linien=1
+Perspective Projections 2/3
+ Vanishing points
+(cid:127) For rectangular objects (e.g., axis parallel cubes) whose surface normals
+are parallel to the x-, y-, or z-axis, the number of vanishing points is equal
+to the number of coordinate axes intersected by the projection plane
+1-Point Perspective 2-Point Perspective 3-Point Perspective
+Interactive Computer Graphics
+12/05/2026 30
+Chapter 4 – Geometric Projection
+[Seite 31]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=1
+Perspective Projections 3/3
+ What happens if the cube is rotated so that its surface normals are not
+parallel to the coordinate axes?
+ Although the projection plane intersects only one coordinate axis, in this case
+you get 3 vanishing points
+Interactive Computer Graphics
+12/05/2026 31
+Chapter 4 – Geometric Projection
+[Seite 32]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+4.3 Camera Modeling
+Orientation of the camera and definition of the view volume
+Visual Computing Group
+Institute of Media Informatics
+[Seite 33]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Camera Modeling
+ Application of planar geometric projections, represented by 4 × 4 matrices,
+to project a 3D scene onto a projection screen, i.e., the canvas
+ Basic camera parameters
+(cid:127) Camera position
+(cid:127) Camera orientation
+(cid:127) Projection type (parallel or perspective)
+(cid:127) Angle of view
+(cid:127) Depth restriction (far distance, near distance)
+ Disregarded parameters
+(cid:127) Distance of the image plane from the origin (focal length)
+(cid:127) Depth of field
+(cid:127) Inclination of the film plane (tilt of view plane)
+Interactive Computer Graphics
+12/05/2026 33
+Chapter 4 – Geometric Projection
+[Seite 34]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=4, Linien=14
+View Volume
+ Objects that are within the view volume are visible for the camera
+ Conical viewing volume
+(cid:127) Clipping the scene objects against a conical viewing volume is expensive
+(solving quadratic equations)
+ Frustum - rectangular viewing volume
+(cid:127) Approximation of the conical visual volume by a frustum
+(cid:127) Fits to a rectangular window
+(cid:127) Clipping the scene objects against a frustration is cheap
+(solving linear equations)
+Interactive Computer Graphics
+12/05/2026 34
+Chapter 4 – Geometric Projection
+[Seite 35]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Projection Specification
+ Specified by Height Angle, Aspect Ratio,
+Near Plane Distance and Far Plane Distance
+ Examples of Aspect Ratio
+(cid:127) NTSC 4 : 3, HDTV 16 : 9
+(cid:127) Cinema 2.35 : 1, 2.39 : 1, 2.40 : 1, or 2.55 : 1
+(cid:127) IMAX Leonberg 38.80 m : 21.00 m
+Interactive Computer Graphics
+12/05/2026 35
+Chapter 4 – Geometric Projection
+[Seite 36]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+View Angle
+ Parallel projection: no viewing angle as rays are parallel
+ Perspective projection:
+viewing angle determines perspective distortion in the image
+ Specification
+(cid:127) Through the viewing angle in height (field of view in y, fovy)
+(cid:127) The viewing angle in the width results from the viewing angle in the height
+multiplied by the aspect ratio: width angle = height angle · aspect ratio
+(cid:127) Strong distortion in a wide-angle lens
+Interactive Computer Graphics
+12/05/2026 36
+Chapter 4 – Geometric Projection
+[Seite 37]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Clipping Planes
+ Position of the planes is determined by the distance along the look vector:
+near distance and far distance
+(cid:127) Near plane hides objects that are behind or too close to the camera
+(cid:127) Far plane hides objects that are too far away (and may be hard to spot)
+⇒ Reduction of rendering overhead
+ Clipping
+(cid:127) Objects outside the view volume are not drawn
+(cid:127) Viewing volume intersecting objects are clipped
+Interactive Computer Graphics
+12/05/2026 37
+Chapter 4 – Geometric Projection
+[Seite 38]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+4.4 Specifying Projections in OpenGL
+Functions to describe the view volume
+Visual Computing Group
+Institute of Media Informatics
+[Seite 39]
+Seiten-Metadaten: Bilder=6, Rechtecke=9, Kurven=47, Linien=16
+Projection Matrix Generation 1/3
+ Convenient generation of perspective projection matrix with GLM
+ glm::perspective(fovy, aspect, near, far)
+y
+y
+w
+h –n –f
+z
+w
+aspect 
+h
+fovy fovy
+COP x
+z
+ View volume is symmetrical with respect to the z-axis
+ Coordinate system still right-handed
+39
+z=
+–n
+z=
+–f
+Interactive Computer Graphics
+12/05/2026
+Chapter 4 – Geometric Projection
+[Seite 40]
+Seiten-Metadaten: Bilder=6, Rechtecke=7, Kurven=12, Linien=10
+Projection Matrix Generation 2/3
+ Alternative generation of perspective projection matrix with GLM
+ glm::frustum(left, right, bottom, top, near, far)
+y
+(r, t, –n)
+z = –f (far plane)
+(l, b, –n)
+z = –n (near plane)
+COP x
+z
+ View volume does not have to be symmetrical with respect to the z-axis
+ Coordinate system still right-handed
+Interactive Computer Graphics
+12/05/2026 40
+Chapter 4 – Geometric Projection
+[Seite 41]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Projection Matrix Generation 3/3
+ Implementation of glm:perspective
+detail::tmat4x4<T> perspective(T const & fovy, T const & aspect,
+T const & near, T const & far) {
+T const & l, r, b, t;
+t = n * tan(fovy * M_PI / 360.0);
+b = –t;
+l = b * aspect;
+r = t * aspect;
+return frustum(l, r, b, t, n, f);
+}
+Interactive Computer Graphics
+12/05/2026 41
+Chapter 4 – Geometric Projection
+[Seite 42]
+Seiten-Metadaten: Bilder=6, Rechtecke=8, Kurven=8, Linien=9
+Orthographic Matrix Specification
+ Convenient generation of parallel projection matrix with GLM
+ glm::ortho(left, right, bottom, top, near, far)
+(r, t, –f)
+y
+z = –f (far plane)
+z = –n (near plane)
+x
+z (l, b, –n)
+ View volume does not have to be symmetrical with respect to the z-axis
+ Coordinate system still right-handed
+Interactive Computer Graphics
+12/05/2026 42
+Chapter 4 – Geometric Projection
+[Seite 43]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+4.5 Orthographic Projection Derivation
+Step-wise transformation of a cuboid into a cube
+Visual Computing Group
+Institute of Media Informatics
+[Seite 44]
+Seiten-Metadaten: Bilder=1, Rechtecke=7, Kurven=14, Linien=2
+Canonical View Volume
+ Canonical view volume – simplest possible view volume
+(cid:127) Cube centered at the origin
+(cid:127) Cube faces 𝑥 = ±1, 𝑦 = ±1, 𝑧 = ±1
+(cid:127) Defined in a left-handed coordinate system (LHS)
+y
+(1, 1, 1)
+z
+near plane
+𝑧 = – 1 x
+(–1,–1,–1)
+Interactive Computer Graphics
+12/05/2026 44
+Chapter 4 – Geometric Projection
+Extrahierte Tabellen:
+[Tabelle 1]
+ | z
+z | z
+[Seite 45]
+Seiten-Metadaten: Bilder=7, Rechtecke=11, Kurven=44, Linien=6
+Orthographic Projection 1/4
+ Transform right-handed view volume specified as [𝑙, 𝑟] × [𝑏, 𝑡] × [– 𝑛, – 𝑓]
+into left-handed canonical view volume – 1, 1 × – 1, 1 × – 1, 1
+and then create the projected image by neglecting z-values
+y
+y
+(r, t, –f)
+(1, 1, 1)
+z
+x
+(l, b, –n)
+x
+(–1,–1,–1)
+Created View Volume Canonical View Volume
+z
+(Right-Handed Coordinate System) (Left-Handed Coordinate System)
+Interactive Computer Graphics
+12/05/2026 45
+Chapter 4 – Geometric Projection
+Extrahierte Tabellen:
+[Tabelle 2]
+ | z
+z | z
+[Seite 46]
+Seiten-Metadaten: Bilder=0, Rechtecke=6, Kurven=2, Linien=1
+Orthographic Projection 2/4
+ Let 𝑝(𝑥, 𝑦, 𝑧) be a model point and 𝑞(𝑥′, 𝑦′, 𝑧′) its transformed point
+ The desired pixel (𝑥 , 𝑦 ) results from orthographic projection of 𝑞
+𝑝 𝑝
+onto the plane 𝑧 = −1: 𝑥 = 𝑥‘ and 𝑦 = 𝑦′
+𝑝 𝑝
+ Orthographic projection consists of three transformation steps
+(cid:127) Translation 𝑇
+(cid:127) Scaling 𝑆
+(cid:127) Mirroring 𝑆𝑃
+ Step 1, translate view volume into origin 0, 0, 0
+𝑟+𝑙 𝑡+𝑏 𝑓+𝑛
+(cid:127) 𝑇 = 𝑇(− , − , − )
+2 2 2
+Interactive Computer Graphics
+12/05/2026 46
+Chapter 4 – Geometric Projection
+[Seite 47]
+Seiten-Metadaten: Bilder=0, Rechtecke=12, Kurven=16, Linien=1
+Orthographic Projection 3/4
+ Step 2, scale cuboid from step 1 into cube
+(cid:127) Original cuboid bounds are
+𝑟 − 𝑙 𝑟 − 𝑙 𝑡 − 𝑏 𝑡 − 𝑏 𝑓 − 𝑛 𝑓 − 𝑛
+− , × − , × − ,
+2 2 2 2 2 2
+(cid:127) Cube bounds shall be
+−1,1 × −1,1 × −1,1
+(cid:127) Resulting transformation
+2 2 2
+𝑆 = 𝑆 , ,
+𝑟 − 𝑙 𝑡 − 𝑏 𝑓 − 𝑛
+ Step 3, mirror cube from step 2 to get left-handed coordinate system
+1 0 0 0
+0 1 0 0
+𝑆𝑃 = 𝑀 =
+𝑧
+0 0 −1 0
+0 0 0 1
+Interactive Computer Graphics
+12/05/2026 47
+Chapter 4 – Geometric Projection
+[Seite 48]
+Seiten-Metadaten: Bilder=0, Rechtecke=9, Kurven=2, Linien=1
+Orthographic Projection 4/4
+ Multiplication of all orthographic projection matrices results in
+2 𝑟 + 𝑙
+0 0 −
+𝑟 − 𝑙 𝑟 − 𝑙
+2 𝑡 + 𝑏
+0 0 −
+𝑃 = 𝑆𝑃 ⋅ 𝑆 ⋅ 𝑇 = 𝑡 − 𝑏 𝑡 − 𝑏
+𝑜𝑟𝑡ℎ
+2 𝑓 + 𝑛
+0 0 − −
+𝑓 − 𝑛 𝑓 − 𝑛
+0 0 0 1
+ An orthographic projection of the transformed objects
+followed by a hidden surface removal provides the desired image
+Interactive Computer Graphics
+12/05/2026 48
+Chapter 4 – Geometric Projection
+[Seite 49]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+4.6 Perspective Projection Derivation
+Step-wise transformation of a frustum into a cube
+Visual Computing Group
+Institute of Media Informatics
+[Seite 50]
+Seiten-Metadaten: Bilder=3, Rechtecke=11, Kurven=57, Linien=7
+Perspective Projection
+ Transform view volume created by glm::frustum or glm::perspective into
+canonical view volume
+and then create the projected image by neglecting z-values
+y
+y
+(1, 1, 1)
+z
+x
+x
+(–1,–1,–1)
+z
+51
+z=
+–n
+z=
+–f
+Created View Volume Canonical View Volume
+(Right-Handed Coordinate System) (Left-Handed Coordinate System)
+Interactive Computer Graphics
+12/05/2026
+Chapter 4 – Geometric Projection
+Extrahierte Tabellen:
+[Tabelle 2]
+ | z
+z | z
+[Seite 51]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=6, Linien=1
+Transformation of z-Values 1/2
+ After the perspective projection, z-values shall be mapped as follows
+(cid:127) All z-values lying on the near plane shall have a value of -1
+(cid:127) All z-values lying on the far plane shall have a value of 1
+ The following matrix 𝑃 allows modification of the depth values
+𝑝𝑒
+and assures the flip (left-handed to right-handed conversion)
+1 0 0 0
+0 1 0 0
+(cid:127) 𝑃 = , as
+𝑝𝑒
+0 0 𝑎 𝑏
+0 0 −1 0
+𝑥 𝑥
+𝑦 𝑦
+(cid:127) 𝑃 ⋅ = , whereby – 𝑧 is a positive number
+𝑝𝑒 𝑧 𝑎𝑧 + 𝑏
+1 −𝑧
+Interactive Computer Graphics
+12/05/2026 52
+Chapter 4 – Geometric Projection
+[Seite 52]
+Seiten-Metadaten: Bilder=0, Rechtecke=7, Kurven=18, Linien=1
+Transformation of z-Values 2/2
+ Choosing values for 𝑎 and 𝑏 in 𝑃
+𝑝𝑒
+ 𝑎 and 𝑏 must fulfill the following
+𝑇
+−𝑎𝑛 + 𝑏
+𝑃 ⋅ 0 0 −𝑛 1 𝑇 = 0 0 −𝑎𝑛 + 𝑏 𝑛 𝑇 0 0 =(cid:3549) 0 0 −1
+𝑝𝑒
+÷𝑤 𝑛
+𝑇
+−𝑎𝑓 + 𝑏
+𝑃 ⋅ 0 0 −𝑓 1 𝑇 = 0 0 −𝑎𝑓 + 𝑏 𝑓 𝑇 0 0 =(cid:3549) 0 0 1
+𝑝𝑒
+÷𝑤 𝑓
+ Solving the following system of linear equations
+−𝑎𝑛 + 𝑏 = −𝑛
+−𝑎𝑓 + 𝑏 = 𝑓
+𝑓+𝑛
+ results in 𝑎 = −
+𝑓−𝑛
+2𝑛𝑓
+ Substituting 𝑎 results in 𝑏 = −
+𝑓−𝑛
+Interactive Computer Graphics
+12/05/2026 53
+Chapter 4 – Geometric Projection
+[Seite 53]
+Seiten-Metadaten: Bilder=4, Rechtecke=10, Kurven=11, Linien=9
+Transformation of x- and y-Values 1/2
+ Derivation so far leaves us with the following matrix
+which only changes z-coordinates
+1 0 0 0
+0 1 0 0
+(cid:127) 𝑃 = 𝑓+𝑛 2𝑛𝑓
+𝑝𝑒 0 0 − −
+𝑓−𝑛 𝑓−𝑛
+0 0 −1 0
+ To transform x- and y-coordinates, we consider view frustum corner point 𝑝
+𝑟 𝛼
+(cid:127) Due to = tan ( ), we can express coordinates
+𝑛 2
+𝛼
+of 𝑝 as 𝑝 = (𝑛 ⋅ tan , 0, −𝑛)
+2 𝑝
+𝑥
+𝛼
+𝑦
+Interactive Computer Graphics
+12/05/2026 54
+Chapter 4 – Geometric Projection
+[Seite 54]
+Seiten-Metadaten: Bilder=0, Rechtecke=15, Kurven=21, Linien=1
+Transformation of x- and y-Values 2/2
+ To transform p to the coordinates (1,0,-1), the following equation must hold
+𝛼
+𝛼 tan
+𝛼 𝑛 ⋅ tan
+𝑛 ⋅ tan 2
+2 2 1
+0
+0
+(cid:127) 𝑃 ⋅ 0 = =(cid:3549) 0
+𝑝𝑒 𝑓+𝑛 2𝑛𝑓 ÷𝑤 +𝑛 𝑓+𝑛 − 2𝑛𝑓
+−𝑛 +𝑛 − 𝑐𝑜𝑜𝑟𝑑. 𝑓−𝑛 𝑓−𝑛 −1
+𝑓−𝑛 𝑓−𝑛
+1 (=𝑛) 𝑛
+𝑛
+1
+ Thus, the perspective projection matrix is
+𝛼
+cot( ) 0 0 0
+2
+𝛼
+0 cot( ) 0 0
+(cid:127) 𝑃 = 2
+𝑝𝑒
+𝑓+𝑛 2𝑛𝑓
+0 0 − −
+𝑓−𝑛 𝑓−𝑛
+0 0 −1 0
+Interactive Computer Graphics
+12/05/2026 55
+Chapter 4 – Geometric Projection
+[Seite 55]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+4.7 Viewport Transformation
+Mapping the normalized device coordinates to the screen
+Visual Computing Group
+Institute of Media Informatics
+[Seite 56]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Screen Coordinate Mapping
+ Mapping of the viewing plane on a drawing surface
+ Define the pixel rectangle to be mapped to
+(cid:127) Initially, this rectangle is the size of the entire canvas
+ glViewport(GLint x, GLint y, GLsizei width, GLsizei height)
+ When window size changes, adjust the aspect ratio to avoid distortion
+glViewport(0, 0, 400, 200);
+glm::perspective(fovy, 2.0, near, far);
+Interactive Computer Graphics
+12/05/2026 57
+Chapter 4 – Geometric Projection
+[Seite 57]
+Seiten-Metadaten: Bilder=0, Rechtecke=9, Kurven=21, Linien=1
+Viewport Transformation 1/2
+ Specification of the viewport parameters by glm::perspective
+Projection
+glm::frustum
+transformation
+ glViewport(x, y, w, h) glm::ortho
+clip coordinates (LHS)
+Viewport
+glViewPort
+transformation
+screen coordinates
+(x , y ) = (1, 1)
+Nmax Nmax
+(x , y )
+Smax Smax
+M = ?
+S
+p (x , y )
+N N N p (x , y )
+S S S
+NDC (x , y ) Screen Coordinates
+Smin Smin
+(x , y ) = (–1, –1)
+Nmin Nmin
+Interactive Computer Graphics
+12/05/2026 58
+Chapter 4 – Geometric Projection
+[Seite 58]
+Seiten-Metadaten: Bilder=0, Rechtecke=14, Kurven=28, Linien=1
+Viewport Transformation 2/2
+ Viewport transformation is a 2D transformation defined as 𝑝 = 𝑀 ⋅ 𝑝 with
+𝑠 𝑠 𝑁
+Δ𝑥 Δ𝑦
+(cid:127) 𝑀 = 𝑇 𝑥 , 𝑦 ⋅ 𝑆 𝑆 , 𝑆 ⋅ 𝑇 −𝑥 , −𝑦
+𝑠 𝑆𝑚𝑖𝑛 𝑆𝑚𝑖𝑛 𝑁𝑚𝑖𝑛 𝑁𝑚𝑖𝑛
+Δ𝑥 Δ𝑦
+𝑁 𝑁
+ Thus, screen coordinates are computed as
+Δ𝑥 Δ𝑦
+(cid:127) 𝑥 = 𝑥 + (1 + 𝑥 ) 𝑆 ; 𝑦 = 𝑦 + (1 + 𝑦 ) 𝑆
+𝑆 𝑆𝑚𝑖𝑛 𝑁 𝑆 𝑆𝑚𝑖𝑛 𝑁
+2 2
+Δx
+N
+(x , y ) = (1, 1)
+Nmax Nmax Δx
+S (x , y )
+Smax Smax
+M = ?
+S
+Δy Δy
+N p (x , y ) S
+N N N p (x , y )
+S S S
+(x , y )
+Smin Smin
+(x , y ) = (–1, –1)
+Nmin Nmin
+Interactive Computer Graphics
+12/05/2026 59
+Chapter 4 – Geometric Projection
+[Seite 59]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Chapter Summary
+ Projection has its origins in the arts
+ Based on the deformation of the initial view volume to the canonical view
+volume, we can differentiate different projection types
+ In OpenGL two main projection types exist
+(cid:127) Perspective projection results in perspective shortening
+(cid:127) Orthographic projection remains sizes
+ After projection the view transformation transforms into pixel coordinates
+Interactive Computer Graphics
+12/05/2026 60
+Chapter 4 – Geometric Projection
+[Seite 60]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+References
+Literature and other sources used in this chapter
+Visual Computing Group
+Institute of Media Informatics
+[Seite 61]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+References
+ Text Books
+ J. Foley, A. van Dam, S. Feiner: Computer Graphics: Principles and Practice (3rd
+Edition), Addison-Wesley 2013. (Chapter 13)
+ P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics
+(4th Edition), AK Peters 2016. (Chapter 7)
+Interactive Computer Graphics
+12/05/2026 62
+Chapter 4 – Geometric Projection

@@ -1,0 +1,16 @@
+Uebung 03: Geometric Transformations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Quelle: assignments/03-geometric-transformations/index.html
+
+Moodle Lernplattform Universität Ulm - Interaktive Computergrafik 
+Moodle Lernplattform Universität Ulm
+Interaktive Computergrafik 
+CS8165.001-SS26 
+Exercise 3: Geometric Transformations
+Diese Seite ist Teil des Inhalts, der von Exercise 3: Geometric Transformations am Dienstag, 25. August 2026, 20:30 heruntergeladen wurde. Beachten Sie, dass einige Inhalte und alle Dateien, die größer als 2 GB sind, nicht heruntergeladen werden. 
+Diese Datei ist Teil des Inhalts, der am Dienstag, 25. August 2026, 20:30 von Maksym Morozov von Interaktive Computergrafik heruntergeladen wurde.
+
+Externe Links:
+- Moodle Lernplattform Universität Ulm: https://moodle.uni-ulm.de
+- Exercise 3: Geometric Transformations: https://moodle.uni-ulm.de/mod/assign/view.php?id=1015681
+- Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076

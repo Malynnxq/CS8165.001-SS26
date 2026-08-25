@@ -1,0 +1,602 @@
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 45: [Embree Ray Tracing Website - http://embree.github.io/] [Maisch & Ropinski, Eurographics 2017] [Hendrik vann Jenssen]
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 46: Non-Photorealistic Rendering (NPR)
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 46: [Suggestive contour line drawings, DeCarlo 2003]
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 47: Image-Based Algorithms
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 48: Object-Based Algorithms
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 51: (cid:127) Simulation of a two-giro gravity attitude control system - Edward Zajac
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 51: (cid:127) Ivan Sutherland - Head Mounted Display
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 2: Object-based Rendering
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 3: 2.7 Pixel-based Rendering
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 5: Geometry-based Rendering 1/2
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 6: Geometry-based Rendering 2/2
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 9:  After rasterization per-fragment tests are performed
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 10: Library for real-time computer graphics
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 11: [http://www.computinghistory.org.uk/det/11262/SGI-O2/]
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 12:  Implementation is hardware-dependent
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 12:  Meanwhile Khronos also released low-level API Vulkan
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 13: (cid:127) Designed for high performance and low-level GPU control
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 13: (cid:127) Better suited for complex, large-scale rendering engines
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 13:  Vulkan also harder to learn and requires more setup/code
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 14: (cid:127) OpenGL ES - limited version for embedded systems
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 14: (cid:127) WebGL - Javascript connection for Web Development
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 14: (cid:127) Can be done through platform-specific integration
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 14: (cid:127) Platform-independent solutions also exist (GLUT, freeGLUT, GLFW)
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 15: (functional approach, low-level)
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 15: (cid:127) Contrast: scene or object description (declarative approach, high-level)
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 18: #include <GLFW/glfw3.h>
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 18: static void error_callback(int error, const char* description) {
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 18: static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 18: if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 19: GLFWwindow* window;
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 19: window = glfwCreateWindow(640, 480, "Simple example", NULL, NULL);
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 20:  Function-Prefix "gl"
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 20:  Constant-Prefix "GL"
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 20: Suffix Data Type C-Data Type OpenGL typedef
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 20: i 32-bit Integer int / long GLint, Glsizei
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 20: f 32-bit Floating-Point float GLfloat, GLclamf
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 20: d 64-bit Floating-Point double GLdouble, GLclampd
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 20: ui 32-bit unsigned Integer unsigned int / long GLuint, GLenum, GLbitfield
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 20: v Pointer * -
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 23: (cid:127) Number of vertices, number of components (x, y, z, ...)
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 24: GLfloat vertices[6][2] = { // 6 vertices with two components each (x,y)
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 25: (cid:127) data – address in main memory (i.e., vertices or &vertices[0])
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 25: (i.e. sizeof(vertices) or numVertices*sizeof(GLfloat)*2)
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 25:  In the case of data == NULL, only the memory on the GPU is reserved,
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 26: (cid:127) normalized – normalize integer values w hen converting to floating-point numbers
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 26: to [-1,1] (signed) or [0,1] (unsigned)
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 30: static const GLfloat vertices[6][2] = {
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 30: static const char* vs_src =
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 30: "layout (location = 0) in vec2 aPos;\n"
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 30: " gl_Position = vec4(aPos, 0.0, 1.0);\n"
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 30: static const char* fs_src =
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 30: " FragColor = vec4(1.0, 1.0, 1.0, 1.0);\n"
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 31: program = create_program(vs_src, fs_src);
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 38:  Various vendor-dependent extensions are introduced
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 39: ATTRIB iPos = vertex.position ;
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 39: ATTRIB iNormal = vertex.normal ;
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 39: OUTPUT oPos = result.position ;
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 39: OUTPUT oColor = result.color ;
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 39: DP4 oPos.x, mvp [0], iPos ;
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 39: DP4 oPos.y, mvp [1], iPos ;
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 39: DP4 oPos.z, mvp [2], iPos ;
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 39: DP4 oPos.w, mvp [3], iPos ;
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 40: High-Level Shading Languages 1/2
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 40:  High-level languages f or shading are specified in C-like syntax
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 41: High-Level Shading Languages 2/2
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 41: (cid:127) CG - C for Graphics by NVIDIA
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 41: (in practice rather semi-platform independent)
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 41: (cid:127) HLSL - High Level Shading Language from Microsoft
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 41: (cid:127) GLSL - OpenGL Shading Language
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 41: vec4 v1; // same as ‘float v1[4]’ in C
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 41: ivec3 v2; // same as ‘int v2[3]’ in C
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 41: vec4 v3 = v1.xzzy; // swizzling of components
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 42:  After that, there was an extension for image-based algorithms by fragment
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 45: [ID Software‘s Doom III]
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 46: gl_Position = vec4(pos.x, pos.y, pos.z, pos.w);
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 51:  Clip coordinates range from -1 to 1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 54: VertexOut.texCoord = vec2(…);
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 58:  Fragment shaders are executed for fragments (= pixel predecessors)
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 58: FragData0 = vec4(1.0, 0.0, 0.0, 1.0);
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 58: gl_FragDepth = 0.5;
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 59: out VertexData { colorOut = vec4(1.0, // R
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 59: VertexOut.texCoord = texCoord;
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 59: VertexOut.normal = normalize(normalMatrix * normal);
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 59: gl_Position = projModelViewMatrix * vec4(position, 1.0);
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 62: v = glCreateShader(GL_VERTEX_SHADER); // vertex shader
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 62: char* vs = readTextFile(”vertex-shader.vert");
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 62: const char* vv = vs;
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 62: f = glCreateShader(GL_FRAGMENT_SHADER); // fragment shader
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 62: char* fs = readTextFile(”fragment-shader.frag");
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 62: const char* ff = fs;
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 62: p = glCreateProgram(); // create shader program
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 63: GLint loc0 = glGetUniformLocation(p, ”isoValue_");
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 63: float intensities[2] = {0.33f, 0.51f};
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 63: GLint loc1 = glGetUniformLocation(p, ”intensities_");
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 63: double vertices[12] = {0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0};
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 63: GLint loc2 = glGetUniformLocation(p, ”vertices_");
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 65: www.developer.nvidia.com/page/tools.html
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 65: www.ati.com/developer/tools.html
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 68:  After fragments have been generated, they must go through the per-fragment
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 73: (cid:127) 𝑃 = [𝑅, 𝐺, 𝐵, 𝐴], 𝑤𝑖𝑡ℎ 𝑅, 𝐺, 𝐵, 𝐴 ∈ [0,1]
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 73: (cid:127) Semi-transparent surfaces
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 73: (cid:127) 𝐴 = 0.0 completely transparent
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 73: (cid:127) 𝐴 = 0.2 80% transparent (i.e., 20% opaque)
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 73: (cid:127) 𝐴 = 1.0 0% transparent (i.e., 100% opaque)
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 74:  Example application for transparency: drawing with semi-transparent brush
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 76:  Source fragment: [𝑃 , 𝑃 , 𝑃 , 𝑃 ]
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 76:  Destination pixel: [𝑃 , 𝑃 , 𝑃 , 𝑃 ]
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 78: (cid:127) 𝑃 = [𝑃 , 𝑃 , 𝑃 , 𝑃 ]
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 78:  Example 2: Alpha-based mixing of source pixels and destination pixels
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 78: (cid:127) 𝑃 = [𝑃 · 𝑃 + (1 − 𝑃 ) · 𝑃 ,
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 81:  Context-bound raster with a resolution and structure
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 82: = 32bit Color Buffer
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 87: Pixel-based Rendering Operations
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 88: Draw/Read
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 89:  glDrawPixels(x, y, width, height, format, type, pixels);
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 89: GLubyte img[64][64][3];
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 90:  glReadPixels(x, y, width, height, format, type, pixels);
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 90: GLubyte* img = 0;
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 90: img = new GLubyte[width*height*3]; // allocation
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 91: (cid:127) GL_RGB – red-green-blue values of the frame buffer (FB)
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 91: (cid:127) GL_RGBA – red-Green-Blue-Alpha values of the FB
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 91: (cid:127) Format = GL_RGBA and
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 91: (cid:127) Data type = GL_UNSIGNED_INT
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 91: => 4 components (RGBA) per pixel are read in each one integer (4x4=16 bytes needed)
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 94: (cid:127) D. Shreiner, G. Sellers, J. Kessenich, B. Licea-Kane: OpenGL Programming
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 5: 𝑣⃑ = 𝑣 , 𝑣⃑ =
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 6: 𝑀 =
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 6:  Unit matrix 𝐼: all 𝐴 = 0 (i≠j) and all 𝐴 = 1 (main diagonal)
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 6:  Inverse matrix 𝑀−1 (for square matrices) : 𝑀−1 ⋅ 𝑀 = 𝑀 ⋅ 𝑀−1 = 𝐼
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 7: ⋅ =
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 7:  General multiplication rule is 𝑐 =
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 7: 𝑗,𝑖 𝑘=1 𝑘,𝑖 𝑗,𝑘
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 9: 𝑇 𝑑 , 𝑑 , 𝑑 =
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 9: 𝑇 𝑑 , 𝑑 , 𝑑 ⋅ 𝑣 = ⋅ =
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 10:  Identity: 𝑇(0, 0, 0) = 𝐼 (identity matrix)
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 10: (cid:127) 𝑇(𝑑1 , 𝑑1 , 𝑑1 ) ⋅ 𝑇(𝑑2 , 𝑑2 , 𝑑2 ) = 𝑇(𝑑2 , 𝑑2 , 𝑑2 ) ⋅ 𝑇(𝑑1 , 𝑑1 , 𝑑1 )
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 10: (cid:127) 𝑇 𝑑1 , 𝑑1 , 𝑑1 ⋅ 𝑇 𝑑2 , 𝑑2 , 𝑑2 = 𝑇(𝑑1 + 𝑑2 , 𝑑1 + 𝑑2 , 𝑑1 + 𝑑2 )
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 10: (cid:127) 𝑇−1(𝑑 , 𝑑 , 𝑑 ) = 𝑇(−𝑑 , −𝑑 , −𝑑 )
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 11: 𝑆 𝑠 , 𝑠 , 𝑠 =
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 11: 𝑆 𝑠 , 𝑠 , 𝑠 ⋅ 𝑣 = ⋅ =
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 12:  Identity: 𝑆(1, 1, 1) = 𝐼 (identity matrix)
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 12: (cid:127) 𝑆(𝑠1 , 𝑠1 , 𝑠1 ) ⋅ 𝑆(𝑠2 , 𝑠2 , 𝑠2 ) = 𝑆(𝑠2 , 𝑠2 , 𝑠2 ) ⋅ 𝑆(𝑠1 , 𝑠1 , 𝑠1 )
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 12: (cid:127) 𝑆 𝑠1 , 𝑠1 , 𝑠1 ⋅ 𝑆 𝑠2 , 𝑠2 , 𝑠2 = 𝑆(𝑠1 ⋅ 𝑠2 , 𝑠1 ⋅ 𝑠2 , 𝑠1 ⋅ 𝑠2 )
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 12: (cid:127) S−1(𝑠 , 𝑠 , 𝑠 ) = S , ,
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 13:  Matrix representation of a rotation around x-, y- and z-axis
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 13: 𝑅 𝜃 =
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 14:  Rotations are made in the right-handed coordinate system so that when we
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 14: (cid:127) Rotation around x-axis transforms +𝑦 to +𝑧
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 14: (cid:127) Rotation around y-axis transforms +𝑧 to +𝑥
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 14: (cid:127) Rotation around z-axis transforms +𝑥 to +𝑦
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 15:  Identity: 𝑅 0 = 𝑅 0 = 𝑅 0 = I (identity matrix)
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 15: (cid:127) 𝑅 (𝜃) ⋅ 𝑅 (𝜑) = 𝑅 (𝜑) ⋅ 𝑅 (𝜃)
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 15: (cid:127) 𝑅 (𝜃) ⋅ 𝑅 (𝜑) = 𝑅 (𝜃 + 𝜑)
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 15: (cid:127) 𝑅−1(𝜃) = 𝑅(– 𝜃) = 𝑅𝑇(𝜃)
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 16:  Matrix representation of mirroring along x-y plane
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 16: 𝑀 ⋅ 𝑣 = ⋅ =
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 16:  Mirroring converts between left- and right-handed coordinate system
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 17: 𝑆𝐻(ℎ , ℎ , ℎ , ℎ , ℎ , ℎ ) =
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 17: 𝑆𝐻 (𝑎) ⋅ 𝑣 = ⋅ =
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 19:  (𝑇 ⋅ 𝑇 ⋅ … ⋅ 𝑇 ⋅ 𝑇 ) ⋅ 𝑣 = (𝑇 ⋅ (𝑇 ⋅ (… ⋅ (𝑇 ⋅ (𝑇 ⋅ 𝑣)))))
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 19:  Reminder: matrix multiplication generalizes the vector-matrix product
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 19:  𝑐 =
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 21:  Example: Rotation of 𝜃 around 𝑀 = (𝑥 , 𝑦 , 𝑧 )
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 22: (cid:127) Axis given by center of rotation 𝑃 and direction 𝑈 = (𝑢 , 𝑢 , 𝑢 )
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 22: (cid:127) Rotation around the y-axis so that 𝑈 lies in the yz-plane
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 22: (cid:127) Rotation about the x-axis so that 𝑈 lies on the z-axis U
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 22: (cid:127) Rotation about the z-axis by 𝜃 degrees
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 22: (cid:127) Reverse rotation about the x-axis
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 22: (cid:127) Reverse rotation about the y-axis
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 23: 𝑣⃑ = 𝑣 2 + 𝑣 2 + 𝑣 2
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 23:  Vectors of length 𝑣⃑ = 1 are normalized and called unit vectors
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 23: 𝑛 =
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 24: Reminder: Cross Product (= vector product)
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 24: 𝑢 × 𝑣⃑ = 𝑢 × 𝑣 = 𝑢 ⋅ 𝑣 − 𝑢 ⋅ 𝑣
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 25: (cid:127) Transform it into the yz-plane so that 𝑃 𝑃 lies on the z-axis
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 26: (cid:127) Move 𝑃 = 𝑥 , 𝑦 , 𝑧 into the origin
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 26: (cid:127) Rotate around the y-axis so that 𝑃 𝑃 lies in the yz-plane
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 26: (cid:127) Rotate around the x-axis so that 𝑃 𝑃 lies on the z-axis
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 26: (cid:127) Rotate around the z-axis so that 𝑃 𝑃 lies in the yz-plane
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 26: (cid:127) 𝑃′ = 0,0,0
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 26: (cid:127) 𝑃′ = 𝑥 – 𝑥 , 𝑦 – 𝑦 , 𝑧 – 𝑧
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 26: (cid:127) 𝑃′ = (𝑥 – 𝑥 , 𝑦 – 𝑦 , 𝑧 – 𝑧 )
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 27:  Step 2 – Rotation of 𝑃′ 𝑃′ around y-axis into yz-plane
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 27: (cid:127) Rotation angle – (90°– 𝜃) = 𝜃– 90°
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 27: (cid:127) cos 𝜃– 90° = sin 𝜃 = 2 = 2 1
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 27: (cid:127) sin 𝜃– 90° = −𝑐𝑜𝑠 𝜃 = − 2 = − 2 1 P( x , y ,z )
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 27: (cid:127) 𝐷 = (𝑥′ )2+(𝑧′ )2 P
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 27: (cid:127) 𝑃′′ = 𝑅 (𝜃– 90°) ⋅ 𝑃′
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 28:  Step 3 – Rotation of 𝑃′′ 𝑃′′ around x-axis onto z-axis
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 28: (cid:127) cos φ = 2
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 28: (cid:127) 𝑠𝑖𝑛 φ = 2
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 28: (cid:127) 𝐷 = 𝑃′′ 𝑃′′ = |𝑃 𝑃 | P y
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 28: (cid:127) 𝑃′′′ = 𝑅 φ ⋅ 𝑃′′ = 𝑅 𝜑 ⋅ 𝑅 𝜃– 90° ⋅ 𝑃′ φ
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 28: (cid:127) 𝑃′′′ = 𝑅 φ ⋅ 𝑃′′ = 𝑅 𝜑 ⋅ 𝑅 𝜃– 90° ⋅ 𝑃′ = (0,0, |𝑃 𝑃 |) z
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 29:  Step 4 – Rotation of 𝑃′′′ 𝑃′′′ into yz-plane
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 29: (cid:127) cos α = 3 P 3  D
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 29: (cid:127) 𝑠𝑖𝑛 α = 3 P x
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 29: (cid:127) 𝐷 = (𝑥′′′ )2+(𝑦′′′ )2 z 2  2  P
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 29: 𝑀 = 𝑅 (α) ⋅ 𝑅 (φ) ⋅ 𝑅 (𝜃– 90°) ⋅ 𝑇(– 𝑥 , – 𝑦 , – 𝑧 )
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 30: (𝑅 on x-axis, 𝑅 on y-axis, 𝑅 on z-axis)
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 30: (cid:127) 𝑅 = 𝑟 1𝑦 𝑟 2𝑦 𝑟 3𝑦 = 𝑅 𝑦 = 𝑅 1 𝑅 2 𝑅 3 P 1 2 x P 3 P x
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 30:  Consideration 1: Formulate 𝑅 as unit vector rotating on z-axis
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 30: (cid:127) 𝑅 = 𝑟 𝑟 𝑟 𝑇 = 1 2
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 31: (cid:127) 𝑅 = 𝑟 𝑟 𝑟 𝑇 = 1 3 1 2
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 31: (cid:127) 𝑅 = 𝑟 𝑟 𝑟 𝑇 = 𝑅 × 𝑅
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 31: (cid:127) 𝑀 = ⋅ 𝑇(−𝑥 , −𝑦 , −𝑧 )
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 33:  Step 1 – create orthogonal rotation matrix 𝑅 = 𝑟 𝑟 𝑟
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 33:  𝑅 = 𝑟 𝑟 𝑟 𝑇 = 𝐷𝑂𝐹
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 33: (cid:127) 𝑥 -axis shall be rotated to be horizontal vector (i.e., orthogonal to y-axis)
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 33:  𝑅 = 𝑟 𝑟 𝑟 𝑇 = 𝑦×𝐷𝑂𝐹
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 33:  𝑅 = 𝑟 𝑟 𝑟 𝑇 = 𝐷𝑂𝐹×(𝑦×𝐷𝑂𝐹)
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 34: (cid:127) 𝑀 = 𝑇(𝑥 , 𝑦 , 𝑧 ) ⋅
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 34: (cid:127) If 𝐷𝑂𝐹 = 𝑦, then there are infinitely many horizontal vectors
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 37: (cid:127) Inversion: 𝑀 = (𝑀 )−1
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 37: (cid:127) Transition through multiple CSs: 𝑀 ⋅ 𝑀 = 𝑀
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 38: (cid:127) 𝑀 = 𝑇(𝑥 , 𝑦 , 𝑧 ) ⋅ 𝑅 (𝜃) ⋅ 𝑆(s , s , s ) ⋅ 𝑇(– 𝑥 , – 𝑦 , – 𝑧 )
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 38: (cid:127) 𝑀 = 𝑀 ⋅ 𝑀 ⋅ 𝑀 ⋅ 𝑀 = 𝑀
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 38: (cid:127) 𝑀 = 𝑀 ⋅ 𝑀 ⋅ 𝑀 ⋅ 𝑀 = 𝑀−1
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 38: (cid:127) 𝑀−1 = 𝑇(𝑥 , 𝑦 , 𝑧 ) ⋅ 𝑆( , , ) ⋅ 𝑅 (−𝜃) ⋅ 𝑇(– 𝑥 , – 𝑦 , – 𝑧 )
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 38: (cid:127) 𝑃(5) = 𝑀 ⋅ 𝑃 1 ; 𝑃(1) = 𝑀 ⋅ 𝑃 5
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 40: (cid:127) World-coordinate system
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 40: (cid:127) Tricycle-coordinate system
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 40: (cid:127) Wheel-coordinate system
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 41: y-tr
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 41: z-wh
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 43: (cid:127) Floating-point coordinate system for 2D and 3D
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 43: (cid:127) 2D vector by one-dimensional array with 2 elements
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 43: (cid:127) 3D vector by one-dimensional array with 3 elements
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 43: (cid:127) 3 × 3 matrices by two-dimensional array with 3 × 3 elements
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 43: (cid:127) 4 × 4 matrices by two-dimensional array with 4 × 4 elements
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 44:  Model-View matrix
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 44: model-view matrix, then with the current projection matrix
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 45: with respect to the y-axis, with a given radius and height
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 46: GLfloat M[4][4];
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 46: M[0][0] = ....;
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 46: M[3][3] = ....;
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 48: (cid:127) Each column should "stand" in the y-axis
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 48:  Disk primitive is embedded in the xy-plane
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 48: (cid:127) Height axis equals z-axis
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 49: (cid:127) Rotation into y-axis to match orientation
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 49: (cid:127) Positioning of the parts by translation along the y-axis
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 54: (3rd Edition), Addison-Wesley 2013. (Chapters 10 & 11)
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 2: it needs to be projected, whereby it loses its z-coordinates
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 6: "The science which teaches how to represent tri-dimensional objects
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 6: on a bi-dimensional surface, so that the perspective image coincides with
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 16: (cid:127) "A painting [the projection plane] is the intersection of a visual pyramid [view
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 16: frustum] at a given distance, with a fixed center [center of projection] and a
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 16: surface [the rendering].“
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 20:  Non-planar geometric projections:
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 21:  Perspective projection (= central projection)
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 26: (cid:127) Common: 𝛼 = 30°
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 26: (cid:127) 𝛼 = 45°, i.e., tan (𝛼) = 1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 26: (cid:127) 𝛼 = 63.4°, i.e., tan (𝛼) = 2
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 29: (cid:127) Communicate realistic views of three-dimensional objects
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 30: are parallel to the x-, y-, or z-axis, the number of vanishing points is equal
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 34:  Frustum - rectangular viewing volume
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 36: multiplied by the aspect ratio: width angle = height angle · aspect ratio
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 36: (cid:127) Strong distortion in a wide-angle lens
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 39:  View volume is symmetrical with respect to the z-axis
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 39:  Coordinate system still right-handed
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 39: z=
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 40: z = –f (far plane)
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 40: z = –n (near plane)
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 40:  View volume does not have to be symmetrical with respect to the z-axis
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 41: t = n * tan(fovy * M_PI / 360.0);
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 41: b = –t;
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 41: l = b * aspect;
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 41: r = t * aspect;
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 43: Step-wise transformation of a cuboid into a cube
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 44: (cid:127) Cube faces 𝑥 = ±1, 𝑦 = ±1, 𝑧 = ±1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 44: (cid:127) Defined in a left-handed coordinate system (LHS)
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 44: 𝑧 = – 1 x
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 45:  Transform right-handed view volume specified as [𝑙, 𝑟] × [𝑏, 𝑡] × [– 𝑛, – 𝑓]
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 45: into left-handed canonical view volume – 1, 1 × – 1, 1 × – 1, 1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 45: and then create the projected image by neglecting z-values
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 45: (Right-Handed Coordinate System) (Left-Handed Coordinate System)
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 46: onto the plane 𝑧 = −1: 𝑥 = 𝑥‘ and 𝑦 = 𝑦′
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 46: (cid:127) 𝑇 = 𝑇(− , − , − )
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 47: 𝑆 = 𝑆 , ,
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 47:  Step 3, mirror cube from step 2 to get left-handed coordinate system
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 47: 𝑆𝑃 = 𝑀 =
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 48: 𝑃 = 𝑆𝑃 ⋅ 𝑆 ⋅ 𝑇 = 𝑡 − 𝑏 𝑡 − 𝑏
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 49: Step-wise transformation of a frustum into a cube
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 51: Transformation of z-Values 1/2
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 51:  After the perspective projection, z-values shall be mapped as follows
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 51: (cid:127) All z-values lying on the near plane shall have a value of -1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 51: (cid:127) All z-values lying on the far plane shall have a value of 1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 51: and assures the flip (left-handed to right-handed conversion)
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 51: (cid:127) 𝑃 = , as
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 51: (cid:127) 𝑃 ⋅ = , whereby – 𝑧 is a positive number
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 52: Transformation of z-Values 2/2
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 52: 𝑃 ⋅ 0 0 −𝑛 1 𝑇 = 0 0 −𝑎𝑛 + 𝑏 𝑛 𝑇 0 0 =(cid:3549) 0 0 −1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 52: 𝑃 ⋅ 0 0 −𝑓 1 𝑇 = 0 0 −𝑎𝑓 + 𝑏 𝑓 𝑇 0 0 =(cid:3549) 0 0 1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 52: −𝑎𝑛 + 𝑏 = −𝑛
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 52: −𝑎𝑓 + 𝑏 = 𝑓
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 52:  results in 𝑎 = −
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 52:  Substituting 𝑎 results in 𝑏 = −
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 53: Transformation of x- and y-Values 1/2
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 53: which only changes z-coordinates
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 53: (cid:127) 𝑃 = 𝑓+𝑛 2𝑛𝑓
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 53:  To transform x- and y-coordinates, we consider view frustum corner point 𝑝
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 53: (cid:127) Due to = tan ( ), we can express coordinates
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 53: of 𝑝 as 𝑝 = (𝑛 ⋅ tan , 0, −𝑛)
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 54: Transformation of x- and y-Values 2/2
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 54: (cid:127) 𝑃 ⋅ 0 = =(cid:3549) 0
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 54: 1 (=𝑛) 𝑛
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 54: (cid:127) 𝑃 = 2
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 57:  glViewport(x, y, w, h) glm::ortho
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 57: (x , y ) = (1, 1)
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 57: M = ?
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 57: (x , y ) = (–1, –1)
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 58:  Viewport transformation is a 2D transformation defined as 𝑝 = 𝑀 ⋅ 𝑝 with
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 58: (cid:127) 𝑀 = 𝑇 𝑥 , 𝑦 ⋅ 𝑆 𝑆 , 𝑆 ⋅ 𝑇 −𝑥 , −𝑦
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 58: (cid:127) 𝑥 = 𝑥 + (1 + 𝑥 ) 𝑆 ; 𝑦 = 𝑦 + (1 + 𝑦 ) 𝑆
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 61: Edition), Addison-Wesley 2013. (Chapter 13)
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 3: (cid:127) Clipping before raster conversion, clipped primitives are raster-converted
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 3:  Pixel-based clipping
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 4: 5.1 Cohen-Sutherland Line Clipping
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 4: 5.2 Cyrus-Beck Line Clipping
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 4: 5.3 Sutherland-Hodgman Polygon Clipping
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 4: 5.4 Weiler-Atherton Polygon Clipping
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 4: 5.5 Greiner-Hormann Polygon Clipping
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 6: Brute-Force Line Clipping 1/2
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 7: Brute-Force Line Clipping 2/2
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 7: 𝑝 𝑡 = 𝑝 + 𝑡 ⋅ 𝑝 − 𝑝 = + 𝑡 ⋅ , 𝑝
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 8: (cid:127) Line segment 𝑠 = (𝑝 , 𝑝 ), 𝑝 = (𝑥 , 𝑦 ) and 𝑝 = (𝑥 , 𝑦 )
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 10: Binary Coding of Half-Planes 1/3
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 10: for belonging to each of the 4 half-planes
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 11: Binary Coding of Half-Planes 2/3
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 11: (cid:127) Line segment 𝑠 = (𝑝 , 𝑝 )
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 11: (cid:127) oc0 = 𝑜𝑢𝑡𝑐𝑜𝑑𝑒(𝑝 ), oc1 = 𝑜𝑢𝑡𝑐𝑜𝑑𝑒(𝑝 )
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 11: (cid:127) oc0 == 0 && oc1 == 0 ⇒ 𝑠 within 𝑅
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 11: (cid:127) (oc0 & oc1) != 0 ⇒ 𝑠 outside of 𝑅
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 11: of a common half-plane
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 12: Binary Coding of Half-Planes 3/3
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 12:  Clipping, if (oc0 & oc1) = 0:
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 12: (cid:127) 𝑝. 𝑦 = 𝑦
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 12: (cid:127) 𝑝. 𝑥 = 𝑥 + (𝑥 − 𝑥 ) · (𝑦 − 𝑦 )/(𝑦 − 𝑦 )
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 13: int oc0 = outcode(s.p0, r);
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 13: int oc1 = outcode(s.p1, r);
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 13: bool done = false;
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 13: if (oc0 == 0 && oc1 == 0) { int c = 0;
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 13: drawLine(s); done = true; if (p.y > r.max().y())
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 13: } else if (oc0 & oc1 != 0) { c |= 8;
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 13: done = true; else if (p.y < r.min().y())
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 13: } else { c |= 4;
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 13: calculate intersection with top edge c |= 2;
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 13: } c |= 1;
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 15:  Can be generalized to the three-dimensional case
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 17: Cyrus-Beck Line Clipping
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 17: (cid:127) Fundamentally different approach than Cohen-Sutherland
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 17: (cid:127) Optimization of Cyrus-Beck for axis-parallel, rectangular clip regions
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 18: 𝑝 𝑡 = 𝑝 + 𝑡 ⋅ 𝑝 − 𝑝 , 0 ≤ 𝑡 ≤ 1
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 19: in which half-space a line point 𝑝(𝑡) lies
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 20: 𝑁 ⋅ 𝑝 𝑡 − 𝑝 = 0
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 20: 𝑡 =
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 20:  Elimination of 𝑡-values t hat are not in the range [0, 1]
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 21: Determine Relevant t-Values
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 21: or potentially leaving (PL) with respect to interior of half-plane edge
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 22: D = s.p1 - s.p0
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 22: if (s.p0 == s.p1) {
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 22: t = 0; t = 1;
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 22: if (N  D != 0) { // only for non-parallel lines...
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 22: if (PE) t = max(t , t);
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 22: else if (PL) t = min(t , t);
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 23: Axis-Parallel Clipping Region
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 23:  When clipping region is axis parallel and given by [𝑥 , 𝑥 ] × [𝑦 , 𝑦 ],
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 23: Clip Edge 𝐸 Normal 𝑁 𝑝 𝑝 − 𝑝 𝑡 =
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 23: 𝑥 = 𝑥 (−1,0) (𝑥 , 𝑦) (𝑥 – 𝑥 , 𝑦 – 𝑦)
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 23: 𝑥 = 𝑥 (1,0) (𝑥 , 𝑦) (𝑥 – 𝑥 , 𝑦 – 𝑦)
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 23: 𝑦 = 𝑦 (0, −1) (𝑥, 𝑦 ) (𝑥 – 𝑥, 𝑦 – 𝑦 )
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 23: 𝑦 = 𝑦 (0,1) (𝑥, 𝑦 ) (𝑥 – 𝑥, 𝑦 – 𝑦 )
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 24: Comparison with Cohen-Sutherland
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 24:  Algorithm of Cohen-Sutherland
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 24:  Algorithm of Cyrus-Beck / Liang-Barsky
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 24: (cid:127) Generalizable to convex clip-polygons and 3D
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 26: Sutherland-Hodgman Polygon Clipping 1/2
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 26: (apply before rasterization to eliminate non-visible polygon pieces)
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 27: Sutherland-Hodgman Polygon Clipping 2/2
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 27: (cid:127) Clipping a polygon takes place against a half-plane
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 27: (cid:127) Polygon: convex or non-convex
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 29: (cid:127) Vertices: [𝑣 , 𝑣 , … , 𝑣 ]
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 29: (cid:127) Contour: [𝑣 , 𝑣 , … , 𝑣 , 𝑣 ]
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 29: (cid:127) Edges: [𝑣 , 𝑣 ] and [𝑣 , 𝑣 ]
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 29:  Vertex sequence (contour) is clipped in each pass against the half-plane
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 31: int N = inputVertices.size(); // number of vertices to be processed
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 31: Vertex s = inputVertices.get(N-1); // get last vertex
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 31: for (int j = 0; j < N; j++) {
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 31: Vertex p = inputVertices.get( j );
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 31: s = p;
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 32: if (v.y >= e.v0.y) return true;
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 32: if (v.y <= e.v0.y) return true;
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 32: if (v.x <= e.v1.x) return true;
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 32: if (v.x >= e.v0.x) return true;
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 33: if (e.v0.y == e.v1.y) { // horizontal edge
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 33: i.y = e.v0.y;
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 33: i.x = p.x + (e.v0.y - p.y) * (s.x - p.x) / (s.y - p.y);
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 33: i.x = e.v0.x;
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 33: i.y = p.y + (e.v0.x - p.x) * (s.y - p.y) / (s.x - p.x);
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 35: Weiler-Atherton Polygon Clipping
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 35: 1. Only-in-A (light blue)
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 35: 2. Only-in-B (gray)
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 35: 3. In-A-and-B (dark blue)
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 35: 4. Neither-in-A-nor-in-B (white)
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 37:  Segment overlaps (non-transversal)
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 38:  In order to find the regions-enclosing contours,
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 38:  Different treatment of non-transversal transitions necessary
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 41: Greiner-Hormann
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 41: [Greiner & Hormann, TOG 1998]
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 45:  Polygons exist as a closed, double-linked list
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 45: 𝑃 , 𝑃 , 𝑃 , … , 𝑃 = 𝑃
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 45: 𝑃 𝑃 , 𝑃 𝑃 , … , 𝑃 𝑃 = 𝑃 𝑃
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 45: struct vertex *next;
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 45: struct vertex *prev;
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 45: struct vertex *nextPoly; // relevant for several unconnected regions
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 45: struct vertex *neighbor; // associated intersection point in other polygon
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 48: current = first unprocessed intersecting
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 48: if current->entry
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 48: current = current->next
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 48: until current->intersect
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 48: current = current->prev
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 48: current = current->neighbor
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 49: 𝜔 𝛾, 𝐴 = (cid:3505) 𝑑𝜑
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 51: (cid:127) A path that cuts a curve (= the clipping polygon) just once,
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 53: (cid:127) Much easier than Weiler-Atherton,
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 54:  Cohen-Sutherland enables line clipping against rectangle
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 54:  Cyrus-Beck line clipping enables line clipping against convex polygon
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 54:  Sutherland-Hodgman polygon clipping enables polygon against convex polygon
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 54:  Weiler-Atherton polygon clipping enables clipping of non-convex polygons
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 54: against non-convex polygons
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 54:  Greiner-Hormann polygon clipping enables clipping of arbitrary polygons
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 56: Addison-Wesley 2013.
+- lectures/05-clipping/slides/05-clipping.pdf, Seite 56: (cid:127) M. Cyrus, J. Beck. "Generalized two-and three-dimensional clipping." Computers &
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 3:  Pixel-based displays require discretization of primitives into pixels
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 3:  Rasterization is time-critical
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 4: 6.4 Scanline-Based Triangle Rasterization
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 4: 6.5 Block-Based Triangle Rasterization
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 6:  Non-trivial cases
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 8: 𝑦 = 𝑚 · 𝑥 + 𝐵
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 8: float dx = x1 - x0; // Calculate change in x
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 8: float dy = y1 - y0; // Calculate change in y
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 8: float m = dy / dx; // Calculate slope of the line
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 8: float B = y0 - m * x0; // Calculate y-intercept of the line
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 8: for (int x = x0; x <= x1; x++) { // Loop from start x to end x
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 8: writePixel(x, round(m * x + B)); // Draw pixel at (x, y)
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 9: (cid:127) Does not work for 𝑥 = 𝑥
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 9: (cid:127) Using floating-point calculations (additional type conversions necessary)
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 10: float m = float(y1 - y0) / float(x1 - x0); // Calculate the slope
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 10: float y = y0; // Start y at y0
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 10: for (int x = x0; x <= x1; x++) { // Loop from x0 to x1 and increment x
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 10: y += m; // Increment y by slope per step in x
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 11: int sx = (x0 < x1 ? 1 : -1); // Determine x direction
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 11: float sm = sx * float(y1 - y0) / float(x1 - x0); // Calculate slope multiplied by step
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 11: for (int x = x0; x != x1 + sx; x += sx) { // Loop from x0 to x1 with step sx
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 11: y += sm; // Increment y by slope*step per x-step
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 13: Midpoint-Line Algorithm 1/2
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 13: (without loss of generality, as otherwise mirroring on axes/diagonals)
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 13:  Lower left end point 𝑃 = (𝑥 , 𝑦 ),
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 13: upper right end point 𝑃 = (𝑥 , 𝑦 )
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 13:  𝑃 = (𝑥 , 𝑦 ) is last drawn pixel
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 13: (cid:127) 𝐸 = (𝑥 + 1, 𝑦 )
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 13: (cid:127) 𝑁𝐸 = (𝑥 + 1, 𝑦 + 1)
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 14: Midpoint-Line Algorithm 2/2
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 15: 𝑓 𝑥 = 𝑦 = 𝑚 ⋅ 𝑥 + 𝐵 = ⋅ 𝑥 + 𝐵, with 𝑑𝑥 = 𝑥 − 𝑥 and 𝑑𝑦 = 𝑦 − 𝑦
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 15: 𝐹 𝑥, 𝑦 = 𝑎 ⋅ 𝑥 + 𝑏 ⋅ 𝑦 + 𝑐 = 0
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 15: ⇔ 𝐹(𝑥, 𝑦) = 𝑑𝑦 ⋅ 𝑥 − 𝑑𝑥 ⋅ 𝑦 + 𝐵 ⋅ 𝑑𝑥 = 0
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 15: ⇒ 𝑎 = 𝑑𝑦, 𝑏 = −𝑑𝑥, 𝑐 = 𝐵 · 𝑑𝑥, 𝑎 > 0 for 𝑦 > 𝑦
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 15: 𝐹 𝑥, 𝑦 (cid:4688)= 0 𝑜𝑛 𝑙𝑖𝑛𝑒
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 15:  Pixel selection done based on value of 𝐹 at 𝑀: 𝐹 𝑀 = 𝐹(𝑥 + 1, 𝑦 + )
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 16:  Define decision variable 𝑑 as 𝑑 = 𝐹 𝑀 = 𝐹(𝑥 + 1, 𝑦 + )
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 16: (cid:127) If 𝑑 = 0, consistently choose either 𝑁𝐸 or 𝐸
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 17: 𝑑 = 𝐹 𝑥 + 1, 𝑦 + = 𝑎 ⋅ 𝑥 + 1 + 𝑏 ⋅ 𝑦 + + 𝑐
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 17: 𝑑 = 𝐹 𝑥 + 2, 𝑦 + = 𝑎 ⋅ 𝑥 + 2 + 𝑏 ⋅ 𝑦 + + 𝑐
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 17: 𝑑 = 𝑑 + 𝑎
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 17: Δ𝐸: = 𝑎 = 𝑑𝑦
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 17: 𝑑 = 𝑑 + Δ𝐸
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 18: 𝑑 = 𝑑 + 𝑎 + 𝑏
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 18: Δ𝑁𝐸: = 𝑎 + 𝑏 = 𝑑𝑦 − 𝑑𝑥
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 18: 𝑑 = 𝑑 + Δ𝑁𝐸
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 20: 𝐹 𝑥 + 1, 𝑦 + = 𝑎 ⋅ 𝑥 + 1 + 𝑏 ⋅ 𝑦 + + 𝑐 = 𝑎 ⋅ 𝑥 + 𝑏 ⋅ 𝑦 + 𝑐 + 𝑎 +
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 20: = 𝐹 𝑥 , 𝑦 + 𝑎 +
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 20:  As (𝑥 , 𝑦 ) lies on line F 𝑥 , 𝑦 = 0 holds, and
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 20: 𝑑 = a + = 𝑑𝑦 −
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 20: 𝑑 = 2 ⋅ a + b = 2 ⋅ 𝑑𝑦 − 𝑑𝑥
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 20: 𝐹 𝑥, 𝑦 = 2 ⋅ (𝑎 ⋅ 𝑥 + 𝑏 ⋅ 𝑦 + 𝑐) = 0
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 21: 𝑑 = 2 · 𝑑𝑦 – 𝑑𝑥
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 21: Δ𝑁𝐸 = 2 · 𝑑𝑦 – 𝑑𝑥
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 21: Δ𝐸 = 2 · 𝑑𝑦
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 21: (cid:127) When 𝐸 is chosen (𝑑 ≤ 0): 𝑑 = 𝑑 + 2 · 𝑑𝑦
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 21: (cid:127) When 𝑁𝐸 is chosen (𝑑 > 0): 𝑑 = 𝑑 + 2 · (𝑑𝑦 – 𝑑𝑥)
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 22: int dx = x1 - x0; // Calculate delta x
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 22: int dy = y1 - y0; // Calculate delta y
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 22: int d = 2 * dy - dx; // Initial decision variable
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 22: int dE = 2 * dy; // Increment used for move to E
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 22: int dNE = 2 * (dy - dx); // Increment used for move to NE
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 22: int x = x0, y = y0; // Start position
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 22: writePixel(x, y); // Plot the first pixel
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 22: if (d <= 0) { // Decision is East
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 22: d += dE; x++;
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 22: d += dNE; x++; y++;
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 22: writePixel(x, y); // Plot each computed pixel
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 24: (cid:127) Additions/subtractions only and multiplication by 2
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 24: ⇒ when drawing from right to left select SW pixels for 𝑑 = 0
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 25: Pseudo Code - Reversible
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 25: int dx = abs(x1 - x0); // Calculate absolute delta x
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 25: int sx = (x0 < x1 ? 1 : -1); // Set step x based on direction
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 25: int dy = abs(y1 - y0); // Calculate absolute delta y
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 25: int sy = (y0 < y1 ? 1 : -1); // Set step y based on direction
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 25: int dE = 2 * dy; // Increment for move East or West
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 25: int dNE = 2 * (dy - dx); // Increment for move NE or SW
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 25: int x = x0, y = y0; // Start positions
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 25: while (x != x1) { // Loop until target x reached
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 25: if ((d < 0) || ((d == 0) && (sx == 1))) { // Decide East or West
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 25: d += dE; x += sx;
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 25: } else { // Decide North-East or South-West
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 25: d += dNE; x += sx; y += sy;
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 28: edge half-plane lies below / right of edge
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 28: (cid:127) see Top-Left Rule
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 29: 𝑥 can be computed through edge slope 𝐴: 𝑥 = 𝑥 + 1/𝐴
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 29: float x = x0; // Start x at x0
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 29: float dxdy = (x1 - x0) / (y1 - y0); // Calculate dx/dy = 1/A
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 29: for (int y = y0; y < y1; y++) { // Loop from y0 to y1
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 29: x += dxdy; // Increment x by dx/dy
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 30: (cid:127) Consider 𝑑𝑥𝑑𝑦 = (𝑥𝑚𝑎𝑥 − 𝑥𝑚𝑖𝑛)/(𝑦𝑚𝑎𝑥 − 𝑦𝑚𝑖𝑛)
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 30: 𝑑: = 𝑦𝑚𝑎𝑥 − 𝑦𝑚𝑖𝑛 the denominator, and
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 30: 𝑛: = 𝑥𝑚𝑎𝑥 − 𝑥𝑚𝑖𝑛 the numerator of 𝑑𝑥𝑑𝑦
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 30: ⇒ 𝑥 = (𝑎 · 𝑑 + 𝑏)/𝑑 = 𝑎 · 𝑑/𝑑 + 𝑏/𝑑 = 𝑎 + 𝑏/𝑑 with 𝑏 < 𝑑
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 31: int d = y1 - y0; // denominator (Nenner)
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 31: int n = x1 - x0; // numerator (Zähler)
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 31: int a = x0; // integer part of x
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 31: int b = d; // fraction part of x plus d
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 31: b += n; // Increment b by numerator to handle x = x + 1/A
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 31: if (b >= d) { // Check if b exceeds or equals denominator
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 31: b -= d; // Adjust fraction part back by denominator
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 33: (cid:127) Left-bottom, left-top, right-top, right-bottom
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 35:  Color-based
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 35:  Border-based
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 36: if ((x < 0) || (x >= width)) return; // Return if x is out of bounds
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 36: if ((y < 0) || (y >= height)) return; // Return if y is out of bounds
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 36: if (oldC == readPixel(x, y)) { // Check if the current color matches oldC
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 36: writePixel(x, y, newC); // Change the color of the pixel
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 36: floodFill4(x, y-1, oldC, newC); // Recursively fill up
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 36: floodFill4(x, y+1, oldC, newC); // Recursively fill down
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 36: floodFill4(x+1, y, oldC, newC); // Recursively fill right
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 36: floodFill4(x-1, y, oldC, newC); // Recursively fill left
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 37: Color c = readPixel(x, y);
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 37: if (c == oldC) return; // Return if pixel is a boundary pixel
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 37: if (c == newC) return; // Return if pixel has been processed
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 37: boundaryFill4(x, y-1, oldC, newC); // Recursively fill up
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 37: boundaryFill4(x, y+1, oldC, newC); // Recursively fill down
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 37: boundaryFill4(x+1, y, oldC, newC); // Recursively fill right
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 37: boundaryFill4(x-1, y, oldC, newC); // Recursively fill left
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 39: Segment-based rasterization of the simplest type of polygon
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 40: (cid:127) Rasterize filled triangles is main task in real-time rendering
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 40: (e.g., colors, z-values)
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 41: Scanline-Based Rasterization
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 43:  Calculate slope for each triangle edge: 1/𝐴 = 𝑑𝑥/𝑑𝑦
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 43: (cid:127) Δ = (𝑥 − 𝑥 )/(𝑦 − 𝑦 )
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 43: (cid:127) 𝑁 = 𝑦 − 𝑦
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 43: (cid:127) 𝑁 = 𝑦 − 𝑦 Bottom Half 1
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 44: float XLeft = x0; // Start position for left x
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 44: float XRight = x0; // Start position for right x
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 44: int Y = y0; // Start position for y
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 44: float DeltaLeft = delta02; // Delta for left x for bottom half
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 44: float DeltaRight = delta01; // Delta for right x for bottom half
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 44: for (int i = 0; i < Nbottom; i++) { // Loop for bottom half of the triangle
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 44: XLeft += DeltaLeft; // Increment left x by delta left
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 44: XRight += DeltaRight; // Increment right x by delta right
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 44: Y += 1; // Increment y
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 44: DeltaRight = delta12; // Delta for right x for top half
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 44: for (int i = 0; i <= Ntop; i++) { // Loop for top half of the triangle
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 45: for (int x = x_left; x < x_right; x++) { // Loop from x_left to x_right
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 45: processFragment(x, y_s); // Process each fragment at (x, y_s)
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 46: (cid:127) 𝑧 = 𝑧 + 𝑠 0 ⋅ (𝑧 − 𝑧 )
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 46: (cid:127) 𝑧 = 𝑧 + 𝑠 1 ⋅ (𝑧 − 𝑧 )
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 46: (cid:127) 𝑧 = 𝑧 + ⋅ (𝑧 − 𝑧 )
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 47: (cid:127) 𝐴𝑥 + 𝐵𝑦 + 𝐶𝑧 + 𝐷 = 0
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 47: (cid:127) With plane coefficients 𝐴, 𝐵, 𝐶: 𝐴, 𝐵, 𝐶 = 𝑉 − 𝑉 × (𝑉 − 𝑉 )
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 47: (cid:127) Resolve for 𝑧: 𝑧 = (−𝐴𝑥 − 𝐵𝑦 − 𝐷)/𝐶
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 47: (cid:127) Calculate 𝑑𝑧𝑑𝑥 as change of 𝑧 in case of horizontal change by +1
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 47: (cid:127) Consider 𝑧 → 𝑧 at 𝑥 → 𝑥 where 𝑥 = 𝑥 + 1:
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 47: ((−𝐴𝑥 − 𝐵𝑦 − 𝐷)/𝐶) − ((−𝐴𝑥 − 𝐵𝑦 − 𝐷)/𝐶)) = −𝐴/𝐶 =: 𝑑𝑧𝑑𝑥
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 47: (cid:127) Calculate 𝑑𝑧𝑑y as change of 𝑧 in case of vertical change by +1
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 47: (cid:127) Consider 𝑧 → 𝑧 at y → y where 𝑦 = 𝑦 + 1:
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 47: ((−𝐴𝑥 − 𝐵𝑦 − 𝐷)/𝐶) − ((−𝐴x − 𝐵𝑦 − 𝐷)/𝐶)) = −𝐵/𝐶 =: 𝑑𝑧𝑑𝑦
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 48:  Case 1: next fragment in scanline (horizontal change by +1)
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 50: 6.5 Tile-Based Triangle Rasterization
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 50: Parallel tile-based triangle rasterization
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 51: Tile-Based Triangle Rasterization
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 51:  Modern GPUs have a block-wise structure,
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 51:  Segment-based triangled rasterization is difficult to parallelize
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 51:  Tile-based rasterization is a better fit with modern GPUs
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 52: Edge-Based Triangle Representation 1/2
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 52:  Edge-based area representation is possible through implicit edge functions
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 52: 𝑉 = (𝑥 , 𝑦 ) and 𝑉 = (𝑥 , 𝑦 )
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 52: E 𝑥, 𝑦 = 𝑦 − 𝑦 ⋅ 𝑥 − 𝑥 − 𝑥 ⋅ 𝑦 + 𝐵 ⋅ 𝑥 − 𝑥
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 52: with 𝐵 = 𝑦 − 𝑚 ⋅ 𝑥 and 𝑚 = (𝑦 − 𝑦 )/(𝑥 − 𝑥 )
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 52: 𝑉 = (𝑥 , 𝑦 )
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 52: E 𝑥, 𝑦 (cid:3422) = 0: x, y is on the edge
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 53: Edge-Based Triangle Representation 2/2
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 53: (cid:127) 𝐸 𝑥, 𝑦 = 𝑦 − 𝑦 ⋅ 𝑥 − 𝑥 − 𝑥 ⋅ 𝑦 + 𝐵 ⋅ 𝑥 − 𝑥
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 55:  Pixel-based displays require the rasterization of primitives

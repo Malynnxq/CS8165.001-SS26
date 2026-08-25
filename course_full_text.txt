@@ -52,7 +52,8 @@ Diese Dateien wurden als Kursquellen beruecksichtigt:
 - lectures/09-texturing/slides/09-texturing.pdf (31911937 bytes)
 - lectures/10-shadows/index.html (2057 bytes)
 - lectures/10-shadows/slides/10-shadows.pdf (18655957 bytes)
-- README.md (1520 bytes)
+- README.md (1680 bytes)
+
 
 Kursuebersicht
 --------------
@@ -155,6 +156,7 @@ Externe Links:
 - https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/: https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/
 - Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
 
+
 Organisatorisches
 -----------------
 Ankuendigungen
@@ -214,8 +216,10 @@ Externe Links:
 - Group Selection for Exercises: https://moodle.uni-ulm.de/mod/choicegroup/view.php?id=1018650
 - Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
 
+
 Vorlesungen und Folien
 ----------------------
+
 Kapitel 01: Introduction - Moodle-Seite
 ---------------------------------------
 Quelle: lectures/01-introduction/index.html
@@ -846,6 +850,7 @@ London (1968).
 Interactive Computer Graphics
 15/04/2026 51
 Chapter 1 – Introduction
+
 
 Kapitel 02: Rendering Pipeline - Moodle-Seite
 ---------------------------------------------
@@ -2286,6 +2291,7 @@ Interactive Computer Graphics
 30/04/2026 94
 Chapter 2 – The Rendering Pipeline
 
+
 Kapitel 03: Geometric Transformations - Moodle-Seite
 ----------------------------------------------------
 Quelle: lectures/03-geometric-transformations/index.html
@@ -3295,6 +3301,7 @@ Interactive Computer Graphics
 28/04/2026 54
 Chapter 3 – Geometric Transformations
 
+
 Kapitel 04: Geometric Projection - Moodle-Seite
 -----------------------------------------------
 Quelle: lectures/04-geometric-projection/index.html
@@ -4264,6 +4271,7 @@ Interactive Computer Graphics
 12/05/2026 62
 Chapter 4 – Geometric Projection
 
+
 Kapitel 05: Clipping - Moodle-Seite
 -----------------------------------
 Quelle: lectures/05-clipping/index.html
@@ -5214,6 +5222,7 @@ SIGGRAPH computer graphics, vol. 11, no. 2, pp. 214-222. ACM, 1977.
 Interactive Computer Graphics
 19/05/2026 56
 Chapter 5 – Clipping
+
 
 Kapitel 06: Rasterization - Moodle-Seite
 ----------------------------------------
@@ -6282,6 +6291,7 @@ Dennis Bukenberger, Junpeng Wang, Jun Wu, Rüdiger Westermann
 Interactive Computer Graphics
 27/05/2026 61
 Chapter 1 – Introduction
+
 
 Kapitel 07: Visibility Determination - Moodle-Seite
 ---------------------------------------------------
@@ -7407,6 +7417,7 @@ Interactive Computer Graphics
 09/06/2026 70
 Chapter 7 – Visibility Determination
 
+
 Kapitel 08: Local Illumination - Moodle-Seite
 ---------------------------------------------
 Quelle: lectures/08-local-illumination/index.html
@@ -8382,6 +8393,7 @@ https://bit.ly/2XbPc7s
 Interactive Computer Graphics
 23/06/2026 62
 Chapter 8 – Local Illumination
+
 
 Kapitel 09: Texturing - Moodle-Seite
 ------------------------------------
@@ -10363,6 +10375,7 @@ Peters 2009. (Chapter 11: Texture Mapping)
 Interactive Computer Graphics 19/07/2026 127
 Chapter 9 - Texturing
 
+
 Kapitel 10: Shadows - Moodle-Seite
 ----------------------------------
 Quelle: lectures/10-shadows/index.html
@@ -10917,8 +10930,10 @@ Peters 2009. (Chapter 10.7: Shadow Maps)
 Interactive Computer Graphics 09/07/2026 55
 Chapter 10 - Shadows
 
+
 Uebungen
 --------
+
 Uebung 00: Introduction to C++
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Quelle: assignments/00-introduction-to-cpp/index.html
@@ -10946,6 +10961,7 @@ Externe Links:
 - here: https://learnopengl.com/Introduction
 - Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
 
+
 Uebung 01: Rendering Pipeline
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Quelle: assignments/01-rendering-pipeline/index.html
@@ -10962,6 +10978,7 @@ Externe Links:
 - Moodle Lernplattform Universität Ulm: https://moodle.uni-ulm.de
 - Exercise 1: Rendering Pipeline: https://moodle.uni-ulm.de/mod/assign/view.php?id=1015679
 - Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
+
 
 Uebung 02: Primitive Types / Shaders
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -10980,6 +10997,7 @@ Externe Links:
 - Exercise 2: Primitive Types / Shaders: https://moodle.uni-ulm.de/mod/assign/view.php?id=1015680
 - Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
 
+
 Uebung 03: Geometric Transformations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Quelle: assignments/03-geometric-transformations/index.html
@@ -10996,6 +11014,7 @@ Externe Links:
 - Moodle Lernplattform Universität Ulm: https://moodle.uni-ulm.de
 - Exercise 3: Geometric Transformations: https://moodle.uni-ulm.de/mod/assign/view.php?id=1015681
 - Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
+
 
 Uebung 04: Projections and Clipping
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -11014,6 +11033,7 @@ Externe Links:
 - Exercise 4: Projections and Clipping: https://moodle.uni-ulm.de/mod/assign/view.php?id=1015682
 - Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
 
+
 Uebung 05: Rasterization
 ~~~~~~~~~~~~~~~~~~~~~~~~
 Quelle: assignments/05-rasterization/index.html
@@ -11031,6 +11051,7 @@ Externe Links:
 - Exercise 5: Rasterization: https://moodle.uni-ulm.de/mod/assign/view.php?id=1015683
 - Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
 
+
 Uebung Bonus: Rendering Contest
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Quelle: assignments/bonus-rendering-contest/index.html
@@ -11047,6 +11068,7 @@ Externe Links:
 - Moodle Lernplattform Universität Ulm: https://moodle.uni-ulm.de
 - Rendering Contest (Bonus Sheet): https://moodle.uni-ulm.de/mod/assign/view.php?id=1015684
 - Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
+
 
 OpenGL Starter Project
 ----------------------
@@ -23067,6 +23089,7 @@ int main(void) {
     return EXIT_SUCCESS;
 }
 
+
 Pruefungsvorbereitungs-Anhang
 -----------------------------
 Dieser Anhang ist aus den vorhandenen Kursdateien abgeleitet. Er ersetzt keine nicht vorhandenen Materialien wie Vorlesungsmitschnitte, Altklausuren oder Musterloesungen.
@@ -25010,6 +25033,7 @@ Uebung Bonus: Rendering Contest
   - https://moodle.uni-ulm.de/mod/assign/view.php?id=1015684
   - https://moodle.uni-ulm.de/course/view.php?id=77076
 - Sinnvolle KI-Aufgabe: Extrahiere Aufgabenstellung, Abgabekriterien, benoetigte Konzepte und erstelle eine Loesungsstrategie ohne nicht belegte Annahmen.
+
 
 Assets: Moodle CSS
 ------------------

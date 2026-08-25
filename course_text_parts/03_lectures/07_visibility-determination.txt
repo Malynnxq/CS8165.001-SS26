@@ -1,0 +1,1123 @@
+Kapitel 07: Visibility Determination - Moodle-Seite
+---------------------------------------------------
+Quelle: lectures/07-visibility-determination/index.html
+
+Moodle Lernplattform Universität Ulm - Interaktive Computergrafik 
+Moodle Lernplattform Universität Ulm
+Interaktive Computergrafik 
+CS8165.001-SS26 
+Chap07 - Visibility Determination (09.06.26)
+Diese Seite ist Teil des Inhalts, der von Chap07 - Visibility Determination (09.06.26) am Dienstag, 25. August 2026, 20:30 heruntergeladen wurde. Beachten Sie, dass einige Inhalte und alle Dateien, die größer als 2 GB sind, nicht heruntergeladen werden. 
+Dateien und Verzeichnisse 
+07-visibility-determination.pdf 
+Diese Datei ist Teil des Inhalts, der am Dienstag, 25. August 2026, 20:30 von Maksym Morozov von Interaktive Computergrafik heruntergeladen wurde.
+
+Externe Links:
+- Moodle Lernplattform Universität Ulm: https://moodle.uni-ulm.de
+- Chap07 - Visibility Determination (09.06.26): https://moodle.uni-ulm.de/mod/resource/view.php?id=1032565
+- Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
+
+Kapitel 07: Visibility Determination - Folien
+---------------------------------------------
+Quelle: lectures/07-visibility-determination/slides/07-visibility-determination.pdf
+
+[Seite 1]
+Seiten-Metadaten: Bilder=2, Rechtecke=2, Kurven=0, Linien=0
+Interactive Computer Graphics
+Chapter 7 – Visibility Determination
+Summer Term 2026
+Timo Ropinski
+Visual Computing Group
+Institute of Media Informatics
+[Seite 2]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Visibility Determination
+ Problem
+(cid:127) Given scene objects and virtual camera
+(cid:127) Determine visible parts of scene objects
+(cid:127) Not occluded by same scene object
+(cid:127) Not occluded by other scene objects
+(cid:127) Not pointing away from camera for closed, opaque objects
+ Two equivalent perspectives on the problem
+(cid:127) Determination of visible lines and surfaces
+(Visible Surface Determination, VSD)
+(cid:127) Hidden Surface Removal (HSR) and Hidden Line Removal (HLR)
+ Quality criteria for visibility determination algorithms
+(cid:127) Generality: algorithms should be applicable for all types of geometry
+(e.g., convex/non-convex, polygons, polyhedra)
+(cid:127) Performance: determining hidden scene object parts
+has to be more cost effective than their rasterization costs
+(cid:127) Robustness: algorithms should be robust to numerical errors
+Interactive Computer Graphics
+09/06/2026 2
+Chapter 7 – Visibility Determination
+[Seite 3]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Object-Based Algorithms
+ Geometry-based analysis of scene objects before rasterization
+(cid:127) Compare each scene object against all other scene objects
+(cid:127) Determine visible parts based on virtual camera
+(cid:127) Rasterize the visible scene parts
+For each object in sceneObjects
+// Determine object parts that are visible from virtual camera's perspective
+visibleParts = determineVisibleParts(object, sceneObjects, virtualCamera)
+// Convert visible object parts into a format suitable for rendering
+rasterize(visibleParts)
+EndFor
+ Runtime complexity: 𝑂(𝑛2), 𝑛 number scene objects
+(cid:127) Analytical visibility assessment
+(cid:127) Example: Weiler Atherton algorithm
+Interactive Computer Graphics
+09/06/2026 3
+Chapter 7 – Visibility Determination
+[Seite 4]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Image-Based Algorithms
+ Pixel-based analysis of scene objects after rasterization
+(cid:127) Rasterize scene objects based on image resolution
+(cid:127) Investigate for each pixel which scene object is visible
+For each pixel in outputRaster
+// Determine which scene object is visible at this pixel
+visibleObject = determineVisibleObject(pixel, sceneObjects)
+// Get the color of the visible object
+color = obtainObjectColor(visibleObject)
+// Set the pixel in the output raster to this color
+setPixel(pixel, color)
+EndFor
+ Runtime complexity: 𝑂(𝑛 · 𝑝), 𝑛 number scene objects, 𝑝 number pixels
+(cid:127) Discrete visibility detection (depth sorting of pixel samples)
+(cid:127) Example: z-buffer algorithm
+Interactive Computer Graphics
+09/06/2026 4
+Chapter 7 – Visibility Determination
+[Seite 5]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Chapter Outline
+7.1 Object-Based Algorithms
+7.2 Binary Space Partitioning
+7.3 Warnock Algorithm
+7.4 Depth Buffer Algorithm
+7.5 Depth Buffer Extensions
+7.6 Ray Casting
+References
+Interactive Computer Graphics
+09/06/2026 5
+Chapter 7 – Visibility Determination
+[Seite 6]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+7.1 Object-Based Algorithms
+Exploiting sorting and clipping
+Visual Computing Group
+Institute of Media Informatics
+[Seite 7]
+Seiten-Metadaten: Bilder=5, Rechtecke=3, Kurven=1, Linien=1
+Painter‘s Algorithm 1/3
+Bob Ross – Grandeur of Summer
+Interactive Computer Graphics
+09/06/2026 7
+Chapter 7 – Visibility Determination
+[Seite 8]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=1
+Painter‘s Algorithm 2/3
+ First algorithm for object-based visible polygon determination
+(cid:127) Input: set of polygons
+(cid:127) Output: rendering of visible polygons
+ Procedure: simulate drawing process of a painting
+1. Sort polygons into list in back-to-front order
+2. Render sorted list from back to front
+Procedure painter(Polygons P, Camera C)
+// Sort and draw polygons based on their depth relative to camera C
+SortedList Q
+For each polygon p in P
+depth z = calculateDepth(p, C)
+Insert p into Q with key z
+For each polygon q in Q
+drawPolygon(q) // Directly into the color buffer
+EndProcedure
+Interactive Computer Graphics
+09/06/2026 8
+Chapter 7 – Visibility Determination
+[Seite 9]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Painter‘s Algorithm 3/3
+ Advantages
+(cid:127) Simple implementation
+(cid:127) No special graphics hardware necessary
+ Disadvantages
+(cid:127) Works for polygons only instead of 3D scene objects
+(cid:127) Application must implement sorting
+(cid:127) Depth values are in general not constant per polygon
+(cid:127) Scene polygons must be subdivided to exclude mutual overlap
+Interactive Computer Graphics
+09/06/2026 9
+Chapter 7 – Visibility Determination
+[Seite 10]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Weiler-Atherton Algorithm 1/3
+ Clipping-based divide-and-conquer approach
+(cid:127) Input: set of polygons
+(cid:127) Output: set of visible polygon parts
+ Procedure
+1. Sort polygons into list 𝐿 in front-to-back order
+2. While polygon list 𝐿 not empty
+1. Choose foremost polygon as clip polygon 𝐶
+2. Clip all other polygons against 𝐶 via 2D clipping
+3. Move clipped polygons into In or Out list
+4. Out list will be new polygon list 𝐿
+Using 𝐴 as a clip polygon
+Interactive Computer Graphics
+09/06/2026 10
+Chapter 7 – Visibility Determination
+[Seite 11]
+Seiten-Metadaten: Bilder=6, Rechtecke=3, Kurven=0, Linien=1
+Weiler-Atherton Algorithm 2/3
+ Example from original paper
+(cid:127) Z value order flipped
+(cid:127) Bold: clip polygon
+(cid:127) Gray: unoccluded parts
+Interactive Computer Graphics
+09/06/2026 11
+Chapter 7 – Visibility Determination
+[Seite 12]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Weiler-Atherton Algorithm 3/3
+ Advantages
+(cid:127) Can handle lines and polygons
+(cid:127) Exact calculation of the visible polygons
+(cid:127) Can be used for wireframe rendering
+with different edge s tyles
+(cid:127) Rasterization and shading performed only for visible polygons
+ Disadvantages
+(cid:127) Badly parallelizable and thus badly supported by graphics hardware
+(cid:127) Implementation involved and vulnerable to numerical issues
+(cid:127) Output of smallest polygons can lead to image artifacts
+Interactive Computer Graphics
+09/06/2026 12
+Chapter 7 – Visibility Determination
+[Seite 13]
+Seiten-Metadaten: Bilder=1, Rechtecke=7, Kurven=20, Linien=3
+Back Face Culling 1/2
+ Solves visibility determination for one convex, opaque scene object,
+as its back faces are not visible
+ Algorithm culls away polygons facing away from virtual camera
+(cid:127) Input: convex, opaque 3D scene object
+(cid:127) Output: set of front-facing polygons of input scene object
+ Procedure: facilitate normal orientation to identify faces to be culled
+(cid:127) Calculate dot product s = 𝑣⃗ ⋅ 𝑛 of view direction 𝑣⃗ and face normal 𝑛
+𝑛
+(cid:127) If 𝑠 < 0, face is pointing towards camera and should be drawn
+𝑉
+else if 𝑠 > 0, face is pointing away and should be culled
+ 𝑛 can be calculated based on face vertices
+(cid:127) 𝑛 can be computed by taking cross product 𝑛 = 𝑒⃗ × 𝑒⃗ of two face edges 𝑒⃗ , 𝑒⃗
+0 1 0 1
+(cid:127) Normalize resultant vector to ensure unit length
+Interactive Computer Graphics
+09/06/2026 13
+Chapter 7 – Visibility Determination
+[Seite 14]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=8, Linien=1
+Back Face Culling 2/2
+ Advantages
+(cid:127) Simple implementation
+(cid:127) An average of 50% of the areas of a scene can be eliminated in this way
+(cid:127) Reduces number of polygons to be processed,
+thus reduces GPU transfers and speeds up the rendering process
+𝑣 𝑣
+2 1
+ Disadvantages
+𝑣 𝑣 𝑣 𝑣
+(cid:127) Vertex order impacts face orientation 0 front facing 1 0 back facing 2
+(cid:127) Proper handling of non-convex or multiple scene objects
+(cid:127) Computation and transformation of normals can introduce overhead
+(cid:127) In dynamic scenes, where objects frequently move or rotate,
+maintaining correct normal orientations can be complex
+Interactive Computer Graphics
+09/06/2026 14
+Chapter 7 – Visibility Determination
+[Seite 15]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=56, Linien=6
+Robert‘s Algorithm
+ First algorithm for object-based visible line determination
+(cid:127) Input: set of convex 3D scene objects
+(cid:127) Output: set of visible lines
+ Procedure: perform for all scene objects the following steps
+1. Remove self-occluded surfaces through back-face culling
+2. Compute shadow volume based on silhouette edges
+3. Clip edges against all computed shadow volumes
+4. Connect remaining edges per scene object
+Interactive Computer Graphics
+09/06/2026 15
+Chapter 7 – Visibility Determination
+[Seite 16]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Assessment Robert‘s Algorithm
+ Advantages
+(cid:127) Determination of visible lines was particularly important
+for presentation on vector screens
+(cid:127) Today used in non-photorealistic rendering
+to generate line drawings
+[cekuhnen, blenderartists.org]
+ Disadvantages
+(cid:127) Dissecting non-convex 3D scene objects into convex parts is difficult
+and requires high runtime complexity
+(cid:127) Roger's extension: Use bounding box tests
+to reduce quadratic runtime complexity to linear
+Interactive Computer Graphics
+09/06/2026 16
+Chapter 7 – Visibility Determination
+[Seite 17]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+7.2 Binary Space Partitioning
+Hierarchical scene bisection
+Visual Computing Group
+Institute of Media Informatics
+[Seite 18]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=19, Linien=29
+Spatial Data Structures
+ Spatial data structures are specialized
+for organizing and storing scene data
+ Types of spatial data structures
+(cid:127) Quad Trees: Optimize 2D data retrieval by dividing space it into four nodes
+(cid:127) Octrees: Optimize 3D data retrieval by dividing space it into eight nodes
+(cid:127) kdTrees: Binary trees that organize points in k-dimensional space
+(cid:127) BSP Trees: Binary trees that use planes to divide 3D space into convex subsets
+ Importance in computer graphics
+(cid:127) Efficiency: Enable real-time rendering through quick data access
+(cid:127) Collision Detection: Enable determining interactions between scene objects
+(cid:127) Visibility Determination: Helps deciding which scene parts are visible
+Interactive Computer Graphics
+09/06/2026 18
+Chapter 7 – Visibility Determination
+[Seite 19]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+BSP Trees 1/2
+ BSP Trees are Binary Space Partitioning trees
+that recursively subdivide space into convex subsets through hyperplanes
+ Key functions
+(cid:127) Space organization: divide 3D space into subspace represented as nodes
+(cid:127) Query efficiency: facilitate rapid querying like determining object visibility
+(cid:127) Render optimization: Render scenes efficiently through occlusion culling
+ Key properties
+(cid:127) Recursive, hierarchical subdivision scheme
+(cid:127) Each node can store one or more polytopes
+Interactive Computer Graphics
+09/06/2026 19
+Chapter 7 – Visibility Determination
+[Seite 20]
+Seiten-Metadaten: Bilder=0, Rechtecke=17, Kurven=23, Linien=1
+BSP Trees 2/2
+ Definition binary tree
+(cid:127) A binary tree is a tree with at most two child nodes per node
+(cid:127) Different traversal schemes for binary trees exist A X X
+(cid:127) In-order traversal: first left child, then root, then right child
+B C Y C
+(cid:127) Pre-order traversal: first root, then left child, then right child
+(cid:127) Post-order traversal: first left child, then right child, then root D E
+ Definition hyperplane
+(cid:127) A hyperplane in the n-dimensional space is a (𝑛-1) -dimensional object
+that separates the 𝑛-dimensional space into two halves
+(cid:127) In 2D space, a line is a hyperplane
+X X
+D
+(cid:127) In 3D space, a plane is a hyperplane A B C C
+Y
+E
+Interactive Computer Graphics
+09/06/2026 20
+Chapter 7 – Visibility Determination
+[Seite 21]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Node Data Structure
+ Each node contains
+(cid:127) Hyperplane
+(cid:127) List of scene geometry associated with the node
+(cid:127) References to the two subspaces
+Class BSPNode:
+Declare plane as Plane
+Declare geometry as List of Polygon
+Declare front as BSPNode
+Declare back as BSPNode
+Interactive Computer Graphics
+09/06/2026 21
+Chapter 7 – Visibility Determination
+[Seite 22]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+BSP Tree Construction
+ Choose a hyperplane from scene geometry for root node
+and associate that plane with root node, split remaining geometry at plane
+ Proceed recursively with the two resulting sets of scene geometries
+and check each polygon against hyperplane
+(cid:127) Coinciding: associate with node
+(cid:127) Intersecting: subdivide into two parts and sort into half-spaces
+ Termination criterion for recursion
+(cid:127) Stop if a node has fewer than a specified number of polygons
+(cid:127) Stop when every single polygon is assigned to a node
+Interactive Computer Graphics
+09/06/2026 22
+Chapter 7 – Visibility Determination
+[Seite 23]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=107, Linien=11
+BSP Tree Construction - Example
+2
+4
+0
+E
+1 2
+3 4
+0
+A
+A B E
+B
+3 1
+Interactive Computer Graphics
+09/06/2026 23
+Chapter 7 – Visibility Determination
+[Seite 24]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+BSP Tree Construction – Pseudo Code
+Function buildBSPTree(BSPNode node, List of Polygons list)
+// Select one polygon to use as a hyperplane
+Polygon p = Get first polygon from list
+Set node.plane to the plane of polygon p
+Add polygon p to node.geometry
+// Initialize lists for front and back polygons
+Declare frontList, backList as List of Polygons
+// Distribute remaining polygons into the corresponding half-spaces
+While there is another polygon p in list
+Evaluate the spatial relation of polygon p with respect to node.plane
+Switch (relation)
+Case COINCIDENT:
+Add p to node.geometry
+Case INFRONT:
+Add p to frontList
+Case BACK:
+Add p to backList
+Case SPANNING:
+Split polygon p by node.plane, distribute pieces to frontList and backList
+// Recursively build the BSP tree in both half-spaces
+Set both node.front and node.back to null
+If frontList is not empty
+Create a new BSPNode for node.front
+Call buildBSPTree recursively for node.front with frontList
+If backList is not empty
+Create a new BSPNode for node.back
+Call buildBSPTree recursively for node.back with backList
+Interactive Computer Graphics
+09/06/2026 24
+Chapter 7 – Visibility Determination
+[Seite 25]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Visibility Determination
+ Visibility determination through modified depth-first traversal
+respecting the current camera
+(cid:127) Tree traversal handles the entire scene geometry
+(cid:127) Drawing is done in analogy to painter’s algorithm
+(cid:127) Traversing provides the necessary "strict back-to-front order"
+ For every node
+(cid:127) Draw the back part of the scene with respect to the camera location first
+(cid:127) Draw the polygon in the current layer
+(cid:127) Draw the front part of the room
+relative to the camera location
+Interactive Computer Graphics
+09/06/2026 25
+Chapter 7 – Visibility Determination
+[Seite 26]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Visibility Determination – Pseudo Code
+Function BSPHiddenSurfaceTraversal(BSPNode node, Point eye)
+// Calculate the signed distance from the eye point to the partition plane
+float distance = classifyPoint(node.plane, eye)
+If distance < 0 Then
+// Eye-point is on the back side of the plane
+Call BSPHiddenSurfaceTraversal for node.front with eye
+Draw the geometry in node
+Call BSPHiddenSurfaceTraversal for node.back with eye
+Else If distance > 0 Then
+// Eye-point is in front of the plane
+Call BSPHiddenSurfaceTraversal for node.back with eye
+Draw the geometry in node
+Call BSPHiddenSurfaceTraversal for node.front with eye
+Else
+// Eye-point is exactly on the partition plane
+Call BSPHiddenSurfaceTraversal for node.back with eye
+Call BSPHiddenSurfaceTraversal for node.front with eye
+Interactive Computer Graphics
+09/06/2026 26
+Chapter 7 – Visibility Determination
+[Seite 27]
+Seiten-Metadaten: Bilder=1, Rechtecke=37, Kurven=136, Linien=11
+0
+BSP Tree Traversal - Example
+𝑩 𝑭
+2
+4 1 2
+𝑭 𝑩 𝑭 𝑩
+E
+3 4
+𝑭 𝑩 𝑭 𝑩
+A B E
+0
+A
+Draw Order
+B
+3 1 B A E
+Interactive Computer Graphics
+09/06/2026 27
+Chapter 7 – Visibility Determination
+[Seite 28]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Splitting Planes Selection
+ Hyperplane selection influences tree balance and required geometry splits
+ Two alternative approaches exist
+(cid:127) Planes can be derived from scene geometry
+(cid:127) Planes can be chosen freely
+ Useful heuristics
+(cid:127) Choose planes that are also polygon planes
+(cid:127) Choose large polygons first
+(cid:127) Choose planes that don’t split many polygons
+(cid:127) Try to choose planes that evenly divide the data (generate few cells)
+28
+[Seite 29]
+Seiten-Metadaten: Bilder=0, Rechtecke=172, Kurven=34, Linien=6
+Traversal Optimization
+ Sub-trees can be skipped during traversal if content is outside view frustum
+(cid:127) Testing is done by checking 8 corner points of 3D view frustum
+(cid:127) If there are two points on different sides, then the subtree is traversed
+(cid:127) If all points are in one subspace, then the other subspace does not have
+to be traversed (view-frustum culling)
+e
+c
+a
+b
+d
+Interactive Computer Graphics
+09/06/2026 29
+Chapter 7 – Visibility Determination
+[Seite 30]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Assessment BSP Trees
+ Advantages
+(cid:127) Simple implementation
+(cid:127) Do not need a depth buffer
+(cid:127) Applicable to static and dynamic scenes
+(static scene geometry precalculated, dynamic objects inserted)
+(cid:127) Support painter’s algorithm by ensuring ordering
+ Disadvantages
+(cid:127) Tree balance difficult (i.e., choice of splitting planes)
+(cid:127) BSP tree construction must be redone for dynamic scenes
+(cid:127) Tree traversal cannot be parallelized
+⇒ BSP trees poorly supported by graphics hardware
+Interactive Computer Graphics
+09/06/2026 30
+Chapter 7 – Visibility Determination
+[Seite 31]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+7.3 Warnock Algorithm
+Image-based divide-and-conquer strategy
+Visual Computing Group
+Institute of Media Informatics
+[Seite 32]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=4, Linien=37
+Warnock Algorithm
+ Hybrid object- and image-based divide-and-conquer approach
+(cid:127) Input: set of polygons and viewport
+(cid:127) Output: set of visible polygon parts
+ Procedure: exploit spatial coherence of projected polygons to divide viewport
+(cid:127) Divide viewport recursively into squared regions
+until visibility determination for a region is trivial
+(cid:127) Recursion depth increases in viewport parts
+where polygons intersect
+Interactive Computer Graphics
+09/06/2026 32
+Chapter 7 – Visibility Determination
+[Seite 33]
+Seiten-Metadaten: Bilder=0, Rechtecke=41, Kurven=12, Linien=1
+Region-Based Visibility Determination
+𝑅 𝑃
+𝑖
+Case 1
+ Given viewport region 𝑅 and set of polygons 𝑃, for the following
+cases visibility determination can be considered trivial
+(cid:127) Case 1: All polygons in 𝑃 are outside of 𝑅 𝑅 𝑃 𝑖 𝑃 𝑖
+⇒ fill 𝑅 with background color
+Case 2
+(cid:127) Case 2: Exactly one polygon 𝑃 intersects or lies entirely in 𝑅
+𝑖
+⇒ fill 𝑅 with background color, draw 𝑃 inside 𝑅
+𝑖
+𝑃 ∩ 𝑅
+𝑖
+(cid:127) Case 3: 𝑅 is contained in exactly one polygon 𝑃
+𝑖
+⇒ fill region with color of 𝑃 Case 3
+𝑖
+(cid:127) Case 4: Multiple polygons intersect or cover 𝑅,
+𝑃
+but only one 𝑃 covers 𝑅 and obscures all other polygons in 𝑅 𝑗
+𝑖
+⇒ fill region with color of 𝑃
+𝑖 𝑃 ∩ 𝑅
+𝑖
+Case 4
+Interactive Computer Graphics
+09/06/2026 33
+Chapter 7 – Visibility Determination
+Extrahierte Tabellen:
+[Tabelle 1]
+(cid:127) Case 1: All polygons in 𝑃 are outside of 𝑅 ⇒ fill 𝑅 with background color
+(cid:127) Case 2: Exactly one polygon 𝑃 intersects or lies entirely in 𝑅 𝑖 ⇒ fill 𝑅 with background color, draw 𝑃 inside 𝑅 𝑖
+(cid:127) Case 3: 𝑅 is contained in exactly one polygon 𝑃 𝑖 ⇒ fill region with color of 𝑃 𝑖
+(cid:127) Case 4: Multiple polygons intersect or cover 𝑅, but only one 𝑃 covers 𝑅 and obscures all other polygons in 𝑅 𝑖 ⇒ fill region with color of 𝑃 𝑖
+[Seite 34]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Procedure
+ Start with entire viewport region 𝑅
+ Subdivide 𝑅 into four equal subregions
+(cid:127) Terminate if subregion size matches pixel size
+(cid:127) Classify subregions based on trivial cases
+(cid:127) If subregion matches trivial cases: resolve
+otherwise: recursively subdivide subregion
+Example run with case numbers
+Interactive Computer Graphics
+09/06/2026 34
+Chapter 7 – Visibility Determination
+[Seite 35]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Pseudo Code
+Procedure warnockHSR(Polygons list, Viewport vp)
+If isSimple(list, vp) Then
+// Base case: Simple enough scenario to draw directly
+drawPolygons(list)
+Else
+// Recursive case: The viewport is too complex and needs to be subdivided
+Declare vp1, vp2, vp3, vp4 as Viewport
+// Subdivide the current viewport into four equal parts
+subdivideViewPort(vp, vp1, vp2, vp3, vp4)
+// Build lists of polygons that are relevant for each subdivided viewport
+List<Polygon> list1 = selectPolygonsInViewport(list, vp1)
+List<Polygon> list2 = selectPolygonsInViewport(list, vp2)
+List<Polygon> list3 = selectPolygonsInViewport(list, vp3)
+List<Polygon> list4 = selectPolygonsInViewport(list, vp4)
+// Recursively apply the Warnock algorithm to each subdivided viewport
+warnockHSR(list1, vp1)
+warnockHSR(list2, vp2)
+warnockHSR(list3, vp3)
+warnockHSR(list4, vp4)
+End If
+End Procedure
+Interactive Computer Graphics
+09/06/2026 35
+Chapter 7 – Visibility Determination
+[Seite 36]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Assessment Warnock Algorithm
+ Advantages
+(cid:127) Efficient for large polygons by exploiting spatial coherence
+(cid:127) Easy to implement through recursive programming
+ Disadvantages
+(cid:127) Restriction to polygons as primitives
+(cid:127) Investigation of non-trivial cases numerically difficult
+(cid:127) No graphics hardware support
+Interactive Computer Graphics
+09/06/2026 36
+Chapter 7 – Visibility Determination
+[Seite 37]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+7.4 Depth Buffer Algorithm
+Exploiting image storage for visibility determination
+Visual Computing Group
+Institute of Media Informatics
+[Seite 38]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Depth Buffer Algorithm 1/3
+ Image-based visibility determination algorithm
+that exploits extra graphics memory called depth buffer (= z-buffer)
+ Depth buffer
+(cid:127) Depth buffer is a 2D raster that contains depth values
+(cid:127) Depth value calculation h appens during rasterization
+(cid:127) Depth values are normalized distance of a visible fragment
+to the near plane in normalized device coordinates
+(cid:127) Depth buffer is part of the frame buffer,
+(i.e., for each pixel, depth value is stored in addition to color values)
+(cid:127) Depth buffers have in general between 16 and 32 bit accuracy
+Interactive Computer Graphics
+09/06/2026 38
+Chapter 7 – Visibility Determination
+[Seite 39]
+Seiten-Metadaten: Bilder=1, Rechtecke=5, Kurven=0, Linien=1
+Depth Buffer Algorithm 2/3
+ Depth buffer algorithm follows occlusion culling principle
+Function occlusionCulling(List of Polygons scene)
+Initialize an OcclusionRepresentation OR
+For each object obj in scene
+If obj is occluded by OR Then
+Continue to the next iteration (skip this object)
+Else
+Render obj
+Update OR with obj
+Interactive Computer Graphics
+09/06/2026 39
+Chapter 7 – Visibility Determination
+Extrahierte Tabellen:
+[Tabelle 1]
+Function occlusionCulling(List of Polygons scene) Initialize an OcclusionRepresentation OR For each object obj in scene If obj is occluded by OR Then Continue to the next iteration (skip this object) Else Render obj Update OR with obj | 
+[Seite 40]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Depth Buffer Algorithm 3/3
+ Depth buffer algorithm performs depth testing for each fragment
+(cid:127) Depth buffer is initialized with background value (e.g., 𝑧 = 1)
+(cid:127) For every scene object
+(cid:127) Rasterize scene object
+(cid:127) For each fragment
+(cid:127) Calculate z-value 𝑧
+(cid:127) If 𝑧 is smaller than current depth value at fragment location in depth buffer
+(cid:127) Write 𝑧 into depth buffer
+(cid:127) Write fragment color into color buffer
+(cid:127) Otherwise
+(cid:127) Ignore fragment and leave framebuffer values (𝑧 and color) unchanged
+(i.e., fragment lies behind an earlier, already drawn fragment)
+Interactive Computer Graphics
+09/06/2026 40
+Chapter 7 – Visibility Determination
+[Seite 41]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Pseudo Code – Depth Buffer Test
+Function zBufferHSR(List of Geometry list)
+// Initialize z-buffer and color buffer for each pixel on the screen
+For x from 0 to Width
+For y from 0 to Height
+Set depthbuffer[x][y] to 1.0 // Maximum depth value
+Set colorbuffer[x][y] to backgroundColor // Default background color
+// Evaluate all objects in the scene
+For each object obj in list
+// Rasterize the object into fragments
+List of Fragments fragments = rasterize(obj)
+// Test each fragment against the z-buffer
+For each fragment f in fragments
+If f.z < depthbuffer[f.x][f.y] Then
+Set depthbuffer[f.x][f.y] to f.z // Update depth buffer with closer fragment
+Set colorbuffer[f.x][f.y] to f.color // Update color buffer with fragment's color
+Interactive Computer Graphics
+09/06/2026 41
+Chapter 7 – Visibility Determination
+[Seite 42]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+OpenGL Depth Buffer
+ OpenGL depth buffer: initialization and activation
+(cid:127) Depth values a re limited to [0, 1] (0: near-plane, 1: far-plane)
+(cid:127) Depth test must be explicitly activated
+(cid:127) Depth test comparison function can be changed
+Function init()
+glClearDepth(1.0); // Initializes maximum z-buffer depth
+glEnable(GL_DEPTH_TEST); // Enables depth testing
+glDepthFunc(GL_LESS); // Fragments pass if they are closer
+glClearColor(bgR, bgG, bgB, bgA); // Sets background color
+// Other initialization settings as needed
+...
+Function draw(List of Geometry scene)
+glClear(GL_DEPTH_BUFFER_BIT); // Clear the depth buffer
+Draw scene geometry
+// Additional rendering operations as needed
+...
+Interactive Computer Graphics
+09/06/2026 42
+Chapter 7 – Visibility Determination
+[Seite 43]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=1
+Depth Buffer Precision
+ Depth buffer precision is limited by its bit-depth (e.g., 16-bit, 24-bit, 32-bit),
+which determines how finely depth can be distinguished
+ Depth buffer precision is not linear: denser at near- and sparser at far-
+clipping plane ⇒ depth conflicts can occur especially at greater distances
+Nvidia Blog
+Interactive Computer Graphics
+09/06/2026 43
+Chapter 7 – Visibility Determination
+[Seite 44]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Z-Fighting 1/2
+ Z-fighting occurs when two or more objects are very close together in depth
+(cid:127) Depth buffer can't consistently resolve which one is closer
+causing flickering or overlapping artifacts in the rendered scene
+Interactive Computer Graphics
+09/06/2026 44
+Chapter 7 – Visibility Determination
+[Seite 45]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Z-Fighting 2/2
+ Mitigation through depth buffer properties
+(cid:127) Use higher precision buffers by switching from 24-bit to 32-bit depth
+(cid:127) Adjust near and far planes: bringing near plane out- and far plane inwards
+reduces the depth range, improving effective depth buffer precision
+ Mitigating through rendering properties
+(cid:127) Polygon offset: slightly offset surfaces that might otherwise z-fight,
+commonly used for rendering shadows or decals
+(cid:127) Staggered rendering: render scenes in multiple passes with adjusted
+depth ranges to ensure that precision is focused where it is most needed
+Interactive Computer Graphics
+09/06/2026 45
+Chapter 7 – Visibility Determination
+[Seite 46]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Assessment Depth Buffering
+ Advantages
+(cid:127) Easy implementation
+(cid:127) No presorting of scene objects required
+⇒ Object evaluation can be performed in any order
+(cid:127) Not limited to polygonal geometries
+⇒ Suitable for all rasterizable objects (also curves, fractals, etc.)
+(cid:127) Hardware support even with low-cost hardware
+(cid:127) Separate storage of depth values enables storage of depth images
+ Disadvantages
+(cid:127) Depth buffer necessary as additional resource
+(cid:127) Semi-transparent scene objects not supported
+(cid:127) Unnecessary rasterization of non-visible scene geometry
+(cid:127) Limited numerical precision of the depth buffer
+(cid:127) Nonlinear distribution of depth accuracy
+Interactive Computer Graphics
+09/06/2026 47
+Chapter 7 – Visibility Determination
+[Seite 47]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+7.5 Depth Buffer Extensions
+How to render semi-transparent scene objects, and how to generate halos
+Visual Computing Group
+Institute of Media Informatics
+Interactive Computer Graphics
+09/06/2026 48
+Chapter 7 – Visibility Determination
+[Seite 48]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Semi-Transparent Objects 1/2
+ Rendering of semi-transparent objects requires special handling
+(cid:127) Opaque and semi-transparent geometry need to be separated
+(cid:127) Opaque geometry is rendered first, semi-transparent blended on top
+Function draw(Vector scene)
+// Clear the framebuffer to prepare for new drawing
+Clear buffers (depth and color)
+// First rendering pass: Draw all opaque objects
+DrawOpaqueGeometry(scene)
+// Second rendering pass: Draw transparent objects
+Enable color blending
+Set blending function to GL_SRC_ALPHA and GL_ONE_MINUS_SRC_ALPHA
+Lock depth buffer to prevent updates during transparent object rendering
+DrawTransparentGeometry(scene) // Render transparent objects
+Unlock depth buffer to allow depth updates
+Disable color blending
+Interactive Computer Graphics
+09/06/2026 49
+Chapter 7 – Visibility Determination
+[Seite 49]
+Seiten-Metadaten: Bilder=2, Rechtecke=5, Kurven=0, Linien=1
+Semi-Transparent Objects 2/2
+ Issue: correct transparency without presorting of scene objects not possible
+Interactive Computer Graphics
+09/06/2026 50
+Chapter 7 – Visibility Determination
+[Seite 50]
+Seiten-Metadaten: Bilder=4, Rechtecke=3, Kurven=0, Linien=1
+Order-Independent Transparency 1/4
+ Order-independent transparency exploits depth peeling to avoid sorting
+ Depth peeling peels away depth layers one-by-one in front-to-back order
+(cid:127) Extract nearest fragments with smallest 𝑧 values in first rendering pass
+(cid:127) Extract next further fragments in each subsequent rendering pass
+(cid:127) The 𝑛th rendering pass delivers the fragments to the nth depth plane
+Interactive Computer Graphics
+09/06/2026 51
+Chapter 7 – Visibility Determination
+[Seite 51]
+Seiten-Metadaten: Bilder=0, Rechtecke=9, Kurven=9, Linien=12
+Order-Independent Transparency 2/4
+ Illustration of subsequent layers
+Layer 0 Layer 1 Layer 2
+0 depth 1 0 depth 1 0 depth 1
+Interactive Computer Graphics
+09/06/2026 52
+Chapter 7 – Visibility Determination
+[Seite 52]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Order-Independent Transparency 3/4
+ 1st pass
+(cid:127) Render scene with conventional depth test (GL_LESS)
+(cid:127) Store resulting depth layer in Z-Buffer A
+(cid:127) Store resulting color layer as Layer 0
+ 2nd pass
+(cid:127) Render scene with conventional depth test (GL_LESS),
+and use second depth test on read-only Z-Buffer A (GL_GREATER)
+(cid:127) Store resulting depth layer in Z-Buffer B
+(cid:127) Store resulting color layer as Layer 1
+ 3rd pass
+(cid:127) Render scene with conventional depth test (GL_LESS),
+and use second depth test on read-only Z-Buffer B (GL_GREATER)
+(cid:127) Store resulting depth layer in Z-Buffer A
+(cid:127) Store resulting color layer as Layer 2
+ ...
+ Postprocess: combine Layer 0 to N in color buffer (screen-aligned textures)
+Interactive Computer Graphics
+09/06/2026 53
+Chapter 7 – Visibility Determination
+[Seite 53]
+Seiten-Metadaten: Bilder=4, Rechtecke=7, Kurven=0, Linien=1
+Order-Independent Transparency 4/4
+1 layer 2 layers
+3 layers 4 layers
+Interactive Computer Graphics
+09/06/2026 54
+Chapter 7 – Visibility Determination
+[Seite 54]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Generating Haloes 1/2
+ Halo: circle of light around sun or moon caused by ice crystals in the air; [...];
+a distinguishing zone surrounding a central object
+ Haloes as wireframe illustration tools result
+in better spatial comprehension
+(cid:127) Add highlights to foreground lines
+(cid:127) Add darkening to background lines
+Interactive Computer Graphics
+09/06/2026 55
+Chapter 7 – Visibility Determination
+[Seite 55]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Generating Haloes 2/2
+ Proceeding
+(cid:127) Render wireframe model with thick lines into depth buffer
+without writing to the color buffer ⇒ depth image contains thick lines
+(cid:127) Render wireframe model with thin lines into color buffer
+⇒ Lines of foreground surfaces have a "safety margin"
+Interactive Computer Graphics
+09/06/2026 56
+Chapter 7 – Visibility Determination
+[Seite 56]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+7.6 Ray Casting
+Shooting rays to determine visibility
+Visual Computing Group
+Institute of Media Informatics
+[Seite 57]
+Seiten-Metadaten: Bilder=1, Rechtecke=5, Kurven=32, Linien=9
+Ray Casting Principle
+ Image-based visibility determination algorithm exploiting ray intersections
+(cid:127) Ray initialization - initialize ray from viewpoint through each pixel
+(ray generation)
+(cid:127) Intersection calculation - find object intersection closest to camera
+(ray intersection)
+(cid:127) Shading - determine pixel color based on intersection color (shading)
+// For-loop over all pixels in the image
+For each pixel in the image
+Initialize ray from the viewpoint through the pixel
+Find the first intersection point of the ray with the scene
+Compute the shading for the pixel based on the intersection point
+Set the color of the pixel based on the computed shading
+Interactive Computer Graphics
+09/06/2026 58
+Chapter 7 – Visibility Determination
+[Seite 58]
+Seiten-Metadaten: Bilder=1, Rechtecke=6, Kurven=19, Linien=8
+Ray Initialization 1/3
+ Ray is defined by origin and direction
+ Mathematically parameterized as a 3D line via 𝑡
+𝑒
+𝑠−𝑒
+(cid:127) 𝑝 𝑡 = 𝑒 + 𝑡 𝑠
+𝑠−𝑒
+(cid:127) 𝑒: ray origin
+(cid:127) 𝑠 − 𝑒: ray direction
+ Ray properties
+(cid:127) 𝑝 0 = 𝑒 and 𝑝 1 = 𝑠
+(cid:127) 0 < 𝑡 < 𝑡 ⇒ 𝑝(𝑡 ) closer to 𝑒 than 𝑝(𝑡 )
+1 2 1 2
+(cid:127) 𝑡 < 0 ⇒ 𝑝 𝑡 behind origin
+Interactive Computer Graphics
+09/06/2026 59
+Chapter 7 – Visibility Determination
+[Seite 59]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Ray Initialization 2/3
+ How can we find 𝑠?
+ Assumption: we have a simplified camera model
+(cid:127) Positioned in 𝑒
+(cid:127) Orthonormal base {𝑢, 𝑣, 𝑤}
+(cid:127) Orthonormal: orthogonal + normalized
+(cid:127) {𝑢, 𝑣, 𝑤} defines right-handed coordinate system
+ Specification of the image plane in relation to {𝑢, 𝑣, 𝑤}
+(cid:127) 𝑙 and 𝑟 define left and right borders
+relative to 𝑒 towards 𝑢 (typical: 𝑙 < 0 < 𝑟)
+(cid:127) 𝑏 and t define lower and upper borders
+relative to 𝑒 towards 𝑣 (typical: b < 0 < 𝑡)
+(cid:127) Distance between image plane and 𝑒 is 𝑑
+Interactive Computer Graphics
+09/06/2026 60
+Chapter 7 – Visibility Determination
+[Seite 60]
+Seiten-Metadaten: Bilder=0, Rechtecke=6, Kurven=14, Linien=1
+Ray Initialization 3/3
+ Definition of the pixel grid with 𝑛 × 𝑛 pixels
+𝑥 𝑦
+(cid:127) Size of the pixel raster is 𝑟 − 𝑙 × 𝑡 − 𝑏
+(cid:127) Pixel spacing is
+(cid:127) x-coordinate: (𝑟 − 𝑙)/𝑛
+𝑥
+(cid:127) y-coordinate: (𝑡 − 𝑏)/𝑛
+𝑦
+1
+(cid:127) To center grid in 𝑟 − 𝑙 × 𝑡 − 𝑏 a pixel wide border is assumed
+2
+ Calculate pixel position (𝑥, 𝑦) in camera coordinates
+1
+ 𝑠 = 𝑙 + 𝑟 − 𝑙 (cid:521) 𝑥 + /𝑛
+𝑢 𝑥
+2
+1
+ 𝑠 = 𝑏 + (𝑡 − 𝑏) (cid:521) 𝑦 + /𝑛
+𝑣 𝑦
+2
+ 𝑠 = −𝑑
+𝑤
+ Calculate ray direction
+(cid:127) 𝑠 − 𝑒 = 𝑠 (cid:521) 𝑢 + 𝑠 (cid:521) 𝑣 +𝑠 (cid:521) 𝑤
+𝑢 𝑣 𝑤
+Interactive Computer Graphics
+09/06/2026 61
+Chapter 7 – Visibility Determination
+[Seite 61]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Intersection Calculation
+ Find smallest positive 𝑡 for which 𝑝(𝑡) is an intersection
+ Simple procedure
+(cid:127) Iterate over all scene objects and calculate intersections
+(cid:127) Sort intersections
+(cid:127) Select intersection with smallest 𝑡
+ Intersection calculation is executed 𝑛 (cid:521) 𝑛 (cid:521) 𝑛 times
+𝑥 𝑦 𝑜
+ Optimized intersection calculation necessary
+Interactive Computer Graphics
+09/06/2026 62
+Chapter 7 – Visibility Determination
+[Seite 62]
+Seiten-Metadaten: Bilder=1, Rechtecke=10, Kurven=27, Linien=1
+Implicit Surface Intersection Calculation
+ Find set of all points with 𝑓 𝑥, 𝑦, 𝑧 = 0
+ Examples: plane, sphere, quadrics, ...
+𝑛 = (𝐴, 𝐵, 𝐶)
+𝑐 = (𝑥 , 𝑦 , 𝑧 )
+𝑐 𝑐 𝑐
+(0,0,0)
+𝑓 𝑥, 𝑦, 𝑧 = Ax + By + Cz + D 𝑓 𝑥, 𝑦, 𝑧 = (𝑥 − 𝑥 )2+(𝑦 − 𝑦 )2+(𝑧 − 𝑧 )2−𝑟2
+𝑐 𝑐 𝑐
+ Intersection calculation: find 𝑓 𝑒 + 𝑡 𝑠 − 𝑒 = 0
+Interactive Computer Graphics
+09/06/2026 63
+Chapter 7 – Visibility Determination
+𝐷
+[Seite 63]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=120, Linien=1
+Intersection Calculation - Triangle
+ Idea: find intersection with plane which embeds triangle,
+and test whether intersection lies inside triangle
+1. Calculate intersection with plane
+through implicit surface intersection calculation
+2. Exploit barycentric coordinates
+to determine if intersection lies inside triangle
+?
+Interactive Computer Graphics
+09/06/2026 64
+Chapter 7 – Visibility Determination
+[Seite 64]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Pseudo Code – Analytic Intersection Computation
+Function castRay(List sceneObjects, Window win, Camera cam)
+// Iterate over each pixel on the window
+For x from 0 to win.width
+For y from 0 to win.height
+Initialize ray r = calculateRay(x, y, win, cam) // Calculate ray from camera through pixel (x, y)
+Initialize closestIntersection as null
+Initialize closestObject as null
+// Test intersection of ray with each object in the scene
+For each object obj in sceneObjects
+intersection = calculateIntersection(obj, ray)
+If intersection occurs and (closestIntersection is null or intersection is closer than closestIntersection)
+Update closestIntersection with this intersection
+Set closestObject to obj
+// If an intersection was found, determine the pixel's color based on the closest object
+If an intersection was found
+color = determineColor(closestObject, intersection)
+Set color of pixel (x, y) to this color
+Interactive Computer Graphics
+09/06/2026 65
+Chapter 7 – Visibility Determination
+[Seite 65]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Pseudo Code - Iterative Intersection Calculation (Ray Marching)
+ Ray march in 𝜀 steps and check all scene objects for intersection
+Function intersect(const Ray& ray, const List of SceneObjects& sceneObjects) const
+Initialize t as 0.0 // Starting point for ray parameter
+Initialize epsilon as 0.01 // Small increment for ray parameter
+// Loop to incrementally trace the ray through the scene
+Loop for a large number of iterations (up to BIG_NUMBER)
+Calculate rayPos as ray.origin + ray.direction * t // Current position along the ray
+// Check for intersections with all scene objects
+For each sceneObject in sceneObjects
+If sceneObject intersects with rayPos
+Set result.position to ray.origin + ray.direction * t // Intersection position
+Set result.color to sceneObject.color // Color at the intersection
+Set result.normal to sceneObject.normal // Normal at the intersection
+Return result // Return the intersection details
+Increment t by epsilon // Move further along the ray
+Return result // Return the result with default values if no intersection is found
+Interactive Computer Graphics
+09/06/2026 66
+Chapter 7 – Visibility Determination
+[Seite 66]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Assessment Ray Casting
+ Advantages
+(cid:127) Image-precise algorithm that support all types of scene objects
+(cid:127) Analytic intersection calculation possible
+(cid:127) Can be parallelized and supported by graphics hardware
+ Disadvantages
+(cid:127) Intersection calculations are computed often
+(cid:127) But: spatial data structures can be used to reduce intersection calculations
+Interactive Computer Graphics
+09/06/2026 67
+Chapter 7 – Visibility Determination
+[Seite 67]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Chapter Summary
+ Visibility determination ensures only scene objects visible from camera are rendered
+ Effective visibility determination is crucial for rendering efficiency and visual accuracy
+ Object-based algorithms perform geometry-based analysis prior to rasterization
+(cid:127) Examples include the Painter's Algorithm, Weiler-Atherton, and Back Face Culling
+(cid:127) These methods often suffer from higher complexity and can be poorly parallelizable
+but are crucial for accurate visibility determination
+ Image-based algorithms operate after scene objects are rasterized based on pixel-level
+(cid:127) The z-buffer algorithm is a fundamental image-based method that exploits depth values
+(cid:127) Simpler and often hardware-accelerated, but methods often constraint by pixel raster
+Interactive Computer Graphics
+09/06/2026 68
+Chapter 7 – Visibility Determination
+[Seite 68]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+References
+Literature and other sources used in this chapter
+Visual Computing Group
+Institute of Media Informatics
+[Seite 69]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+References
+ Text Books
+(cid:127) Foley J., van Dam, A., Feiner, S. (2013). Computer Graphics: Principles and
+Practice, Addison-Wesley.
+ Papers
+(cid:127) Everitt, C. (2001). Interactive order-independent transparency. White paper,
+nVIDIA, 2(6), 7.
+(cid:127) Roberts, L. G. (1963). Machine perception of three-dimensional solids
+(Doctoral dissertation, Massachusetts Institute of Technology).
+(cid:127) Sutherland, I. E., Sproull, R. F., & Schumacker, R. A. (1974). A characterization
+of ten hidden-surface algorithms. ACM Computing Surveys (CSUR), 6(1), 1-
+55.
+(cid:127) Warnock, J. E. (1969). A hidden surface algorithm for computer generated
+halftone pictures. The University of Utah.
+Interactive Computer Graphics
+09/06/2026 70
+Chapter 7 – Visibility Determination

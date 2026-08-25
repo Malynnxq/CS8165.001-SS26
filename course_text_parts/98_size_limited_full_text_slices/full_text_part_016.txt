@@ -1,0 +1,621 @@
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 55: (cid:127) Rasterization is time-critical and should be optimized for hardware
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 55:  Segment-based triangle rasterization avoids overlap
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 55:  Block-based triangle rasterization allows for parallel processing
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 57: Practice, Addison-Wesley.
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 60: Optimizing Free-Form Grid Shells with Reclaimed Elements under Inventory Constraints
+- lectures/06-rasterization/slides/06-rasterization.pdf, Seite 61: Stress-Aligned Hexahedral Lattice Structures
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 2: (e.g., convex/non-convex, polygons, polyhedra)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 3:  Geometry-based analysis of scene objects before rasterization
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 3: visibleParts = determineVisibleParts(object, sceneObjects, virtualCamera)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 4:  Pixel-based analysis of scene objects after rasterization
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 4: visibleObject = determineVisibleObject(pixel, sceneObjects)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 4: color = obtainObjectColor(visibleObject)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 4: (cid:127) Example: z-buffer algorithm
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 5: 7.1 Object-Based Algorithms
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 8:  First algorithm for object-based visible polygon determination
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 8: 1. Sort polygons into list in back-to-front order
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 8: depth z = calculateDepth(p, C)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 10: Weiler-Atherton Algorithm 1/3
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 10:  Clipping-based divide-and-conquer approach
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 10: 1. Sort polygons into list 𝐿 in front-to-back order
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 11: Weiler-Atherton Algorithm 2/3
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 12: Weiler-Atherton Algorithm 3/3
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 13: (cid:127) Output: set of front-facing polygons of input scene object
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 13: (cid:127) Calculate dot product s = 𝑣⃗ ⋅ 𝑛 of view direction 𝑣⃗ and face normal 𝑛
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 13: (cid:127) 𝑛 can be computed by taking cross product 𝑛 = 𝑒⃗ × 𝑒⃗ of two face edges 𝑒⃗ , 𝑒⃗
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 14: (cid:127) Proper handling of non-convex or multiple scene objects
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 15:  First algorithm for object-based visible line determination
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 15: 1. Remove self-occluded surfaces through back-face culling
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 16: (cid:127) Today used in non-photorealistic rendering
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 16: [cekuhnen, blenderartists.org]
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 16: (cid:127) Dissecting non-convex 3D scene objects into convex parts is difficult
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 18: (cid:127) kdTrees: Binary trees that organize points in k-dimensional space
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 18: (cid:127) Efficiency: Enable real-time rendering through quick data access
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 20: (cid:127) In-order traversal: first left child, then root, then right child
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 20: (cid:127) Pre-order traversal: first root, then left child, then right child
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 20: (cid:127) Post-order traversal: first left child, then right child, then root D E
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 20: (cid:127) A hyperplane in the n-dimensional space is a (𝑛-1) -dimensional object
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 22: (cid:127) Intersecting: subdivide into two parts and sort into half-spaces
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 23: BSP Tree Construction - Example
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 24: Polygon p = Get first polygon from list
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 24: // Distribute remaining polygons into the corresponding half-spaces
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 24: // Recursively build the BSP tree in both half-spaces
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 25:  Visibility determination through modified depth-first traversal
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 25: (cid:127) Traversing provides the necessary "strict back-to-front order"
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 26: float distance = classifyPoint(node.plane, eye)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 26: // Eye-point is on the back side of the plane
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 26: // Eye-point is in front of the plane
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 26: // Eye-point is exactly on the partition plane
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 27: BSP Tree Traversal - Example
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 29:  Sub-trees can be skipped during traversal if content is outside view frustum
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 29: to be traversed (view-frustum culling)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 31: Image-based divide-and-conquer strategy
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 32:  Hybrid object- and image-based divide-and-conquer approach
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 33: Region-Based Visibility Determination
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 35: List<Polygon> list1 = selectPolygonsInViewport(list, vp1)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 35: List<Polygon> list2 = selectPolygonsInViewport(list, vp2)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 35: List<Polygon> list3 = selectPolygonsInViewport(list, vp3)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 35: List<Polygon> list4 = selectPolygonsInViewport(list, vp4)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 36: (cid:127) Investigation of non-trivial cases numerically difficult
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 38:  Image-based visibility determination algorithm
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 38: that exploits extra graphics memory called depth buffer (= z-buffer)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 40: (cid:127) Depth buffer is initialized with background value (e.g., 𝑧 = 1)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 40: (cid:127) Calculate z-value 𝑧
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 41: // Initialize z-buffer and color buffer for each pixel on the screen
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 41: Set depthbuffer[x][y] to 1.0 // Maximum depth value
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 41: Set colorbuffer[x][y] to backgroundColor // Default background color
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 41: List of Fragments fragments = rasterize(obj)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 41: // Test each fragment against the z-buffer
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 41: If f.z < depthbuffer[f.x][f.y] Then
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 41: Set depthbuffer[f.x][f.y] to f.z // Update depth buffer with closer fragment
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 41: Set colorbuffer[f.x][f.y] to f.color // Update color buffer with fragment's color
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 42: (cid:127) Depth values a re limited to [0, 1] (0: near-plane, 1: far-plane)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 42: glClearDepth(1.0); // Initializes maximum z-buffer depth
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 43:  Depth buffer precision is limited by its bit-depth (e.g., 16-bit, 24-bit, 32-bit),
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 43:  Depth buffer precision is not linear: denser at near- and sparser at far-
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 44: Z-Fighting 1/2
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 44:  Z-fighting occurs when two or more objects are very close together in depth
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 45: Z-Fighting 2/2
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 45: (cid:127) Adjust near and far planes: bringing near plane out- and far plane inwards
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 45: (cid:127) Polygon offset: slightly offset surfaces that might otherwise z-fight,
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 46: (cid:127) Hardware support even with low-cost hardware
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 46: (cid:127) Semi-transparent scene objects not supported
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 46: (cid:127) Unnecessary rasterization of non-visible scene geometry
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 47: How to render semi-transparent scene objects, and how to generate halos
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 48: Semi-Transparent Objects 1/2
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 48:  Rendering of semi-transparent objects requires special handling
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 48: (cid:127) Opaque and semi-transparent geometry need to be separated
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 48: (cid:127) Opaque geometry is rendered first, semi-transparent blended on top
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 49: Semi-Transparent Objects 2/2
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 50: Order-Independent Transparency 1/4
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 50:  Order-independent transparency exploits depth peeling to avoid sorting
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 50:  Depth peeling peels away depth layers one-by-one in front-to-back order
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 51: Order-Independent Transparency 2/4
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 52: Order-Independent Transparency 3/4
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 52: (cid:127) Store resulting depth layer in Z-Buffer A
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 52: and use second depth test on read-only Z-Buffer A (GL_GREATER)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 52: (cid:127) Store resulting depth layer in Z-Buffer B
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 52: and use second depth test on read-only Z-Buffer B (GL_GREATER)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 52:  Postprocess: combine Layer 0 to N in color buffer (screen-aligned textures)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 53: Order-Independent Transparency 4/4
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 54:  Halo: circle of light around sun or moon caused by ice crystals in the air; [...];
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 57:  Image-based visibility determination algorithm exploiting ray intersections
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 57: (cid:127) Ray initialization - initialize ray from viewpoint through each pixel
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 57: (cid:127) Intersection calculation - find object intersection closest to camera
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 57: (cid:127) Shading - determine pixel color based on intersection color (shading)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 57: // For-loop over all pixels in the image
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 58: (cid:127) 𝑝 𝑡 = 𝑒 + 𝑡 𝑠
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 58: (cid:127) 𝑝 0 = 𝑒 and 𝑝 1 = 𝑠
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 59: (cid:127) Orthonormal: orthogonal + normalized
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 59: (cid:127) {𝑢, 𝑣, 𝑤} defines right-handed coordinate system
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 60: (cid:127) x-coordinate: (𝑟 − 𝑙)/𝑛
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 60: (cid:127) y-coordinate: (𝑡 − 𝑏)/𝑛
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 60:  𝑠 = 𝑙 + 𝑟 − 𝑙 (cid:521) 𝑥 + /𝑛
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 60:  𝑠 = 𝑏 + (𝑡 − 𝑏) (cid:521) 𝑦 + /𝑛
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 60:  𝑠 = −𝑑
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 60: (cid:127) 𝑠 − 𝑒 = 𝑠 (cid:521) 𝑢 + 𝑠 (cid:521) 𝑣 +𝑠 (cid:521) 𝑤
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 62:  Find set of all points with 𝑓 𝑥, 𝑦, 𝑧 = 0
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 62: 𝑛 = (𝐴, 𝐵, 𝐶)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 62: 𝑓 𝑥, 𝑦, 𝑧 = Ax + By + Cz + D 𝑓 𝑥, 𝑦, 𝑧 = (𝑥 − 𝑥 )2+(𝑦 − 𝑦 )2+(𝑧 − 𝑧 )2−𝑟2
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 62:  Intersection calculation: find 𝑓 𝑒 + 𝑡 𝑠 − 𝑒 = 0
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 63: Intersection Calculation - Triangle
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 64: Initialize ray r = calculateRay(x, y, win, cam) // Calculate ray from camera through pixel (x, y)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 64: intersection = calculateIntersection(obj, ray)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 64: color = determineColor(closestObject, intersection)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 64: Set color of pixel (x, y) to this color
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 65: Pseudo Code - Iterative Intersection Calculation (Ray Marching)
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 65: Calculate rayPos as ray.origin + ray.direction * t // Current position along the ray
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 65: Set result.position to ray.origin + ray.direction * t // Intersection position
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 66: (cid:127) Image-precise algorithm that support all types of scene objects
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 67:  Object-based algorithms perform geometry-based analysis prior to rasterization
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 67: (cid:127) Examples include the Painter's Algorithm, Weiler-Atherton, and Back Face Culling
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 67:  Image-based algorithms operate after scene objects are rasterized based on pixel-level
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 67: (cid:127) The z-buffer algorithm is a fundamental image-based method that exploits depth values
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 67: (cid:127) Simpler and often hardware-accelerated, but methods often constraint by pixel raster
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 69: (cid:127) Everitt, C. (2001). Interactive order-independent transparency. White paper,
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 69: (cid:127) Roberts, L. G. (1963). Machine perception of three-dimensional solids
+- lectures/07-visibility-determination/slides/07-visibility-determination.pdf, Seite 69: of ten hidden-surface algorithms. ACM Computing Surveys (CSUR), 6(1), 1-
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 6: X-Ray 400 nm
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 7: 𝑓 = 300.000.000 𝐻𝑧
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 7: 𝑐 = 299.792.458
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 7: λ = (cid:521) ≈ 1 𝑚
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 8: [http://www.micro.magnet.fsu.edu/optics/lightandcolor/sources.html]
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 9: Black-Body Radiation
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 10: https://www.tec-science.com/thermodynamics/temperature/black-body-radiation/ 23/06/2026 10
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 11:  Spectral density functions provide the light intensity (=energy) per wavelength
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 11: 1 wavelength peak (=spectral color)
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 12: main properties (HSL/HSV model)
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 12: (cid:127) Hue - primary color tone
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 12: (cid:127) Saturation - color intensity
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 12: (cid:127) Lightness/Value – brightness
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 14:  Much more frequently SDFs are represented as three-channel color
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 17:  Point light sources 𝐿 = 𝑃, 𝐶 have a geometric center 𝑃 = (𝑥, 𝑦, 𝑧)
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 17: and radiate light with color 𝐶 = (𝑅, 𝐺, 𝐵) evenly in all directions
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 18:  Radiation of light restricted to a cone-shaped area with its tip in the center
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 18:  Specified by cut-off angle and exponents for the decrease
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 19: 𝑓 = min , 1
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 19: (cid:127) 𝑐 , 𝑐 and 𝑐 are user-defined constants
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 21:  Infinity-far away imaginary light source
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 22: (e.g., reflections / shadows between objects)
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 27:  Material appearance is influenced by three wavelength-dependent effects
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 27: R = reflected energy
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 27: I = incoming energy
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 27: A = absorbed
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 27: T = transmitted energy
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 27: (cid:127) Metal – reflection + absorption
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 27: (cid:127) Skin – reflection + transmission + absorption
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 28: A > 0 , T = 0, R > 0 A = I ,T = 0, R = 0
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 28: A = 0, T = 0, R = I A ~= 0, R ~= 0, T ~= I
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 29:  Light-material interaction described by the Spectral Response Function (SRF)
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 30: Reflection = SDF x SRF
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 30:  Light-material interaction results are the product of the SDF and SRF
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 30: → 100% = 100%
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 31:  Definition of visible color = integral over (result SDF x sensor SRF)
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 32:  Synthetic and natural objects are in general not self-emitting
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 32: (cid:127) Light is reflected at its surfaces, i.e., re-emitted into the scene
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 34: [Phong, 1975]
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 35: (cid:127) Location – Position 𝑃 = (𝑥, 𝑦, 𝑧) of the selected point 𝑃
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 35: (cid:127) Orientation – normal direction 𝑁 = (𝑛 , 𝑛 , 𝑛 ) of surface in 𝑃
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 36: (cid:127) Diffuse light reflections are non-directional (scattering)
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 36: (cid:127) Diffuse light reflections are viewer-independent
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 36: [Gouraud, 1971]
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 37: 𝐼 = 𝑙𝑘⋅ 𝑛⋅ 𝐿 ⋅ max( 0, )
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 38: 𝐼 = 𝑘 ⋅ 𝐿 ⋅ 𝑚𝑎𝑥(0, 𝑙⃗ ⋅ 𝑛)
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 38: https://bit.ly/2XFhbcM
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 39:  𝐼 = 𝑘 ⋅ 𝐿
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 40: 𝐼 = 𝑘 ⋅ 𝐿
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 40: https://bit.ly/2XGn61n
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 41: (cid:127) Reflections of light are observer-dependent
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 42: 𝑟⃗ = 2𝑛 ⋅⋅ 𝑛 ⋅ 𝑙 − 𝑙
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 43: 𝐼 = 𝑘𝑟⃗ ⋅ ⋅𝑣⃗ 𝐿 ⋅ max( 0, )
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 44:  𝑝 influences fall off of specular highlight (𝑝 ∊ [1, 𝑀] mit 𝑀 ≈ 100)
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 44: 𝑝 = 1
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 44: 𝑝 = 5
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 44: 𝑝 = 100
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 44: 𝑚𝑎𝑥(0, 𝑟⃗ ⋅ 𝑣⃗)100 [Phong, 1975]
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 45: 𝑟⃗ = 2 ⋅ 𝑛 ⋅ 𝑛 ⋅ 𝑙⃗ − 𝑙⃗
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 45: https://bit.ly/2XbPc7s 𝐼 = 𝑘 ⋅ 𝐿 ⋅ 𝑚𝑎𝑥(0, 𝑟⃗ ⋅ 𝑣⃗)𝑝
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 46: Blinn-Phong Illumination Model 1/2
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 46: (cid:127) Replace mirror direction 𝑟⃗ with Halfway-Vector ℎ
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 46: (cid:127) ℎ = 𝑙 + 𝑣⃗
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 46:  𝐼 = 𝑘 ⋅ 𝐿 ⋅ 𝑚𝑎𝑥(0, ℎ ⋅ 𝑛)𝑝 𝑛
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 46: [Blinn, 1977]
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 47: Blinn-Phong Illumination Model 2/2
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 47: ℎ = 𝑙⃗ + 𝑣⃗
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 47: https://bit.ly/2ICDwBD 𝐼 = 𝑘 ⋅ 𝐿 ⋅ 𝑚𝑎𝑥(0, ℎ ⋅ 𝑛)𝑝
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 48: 𝐼 = 𝑘 ⋅ 𝐿 ⋅ max 0, 𝑛 ⋅ 𝑙
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 48: 𝐼 = 𝑘 ⋅ 𝐿 ⋅ max 0, 𝑣⃗ ⋅ 𝑟⃗
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 49: 𝐼 = 𝑘 ⋅ 𝐿 ⋅ max 0, 𝑣𝑛⃗ ⋅⋅ 𝑟ℎ⃗
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 50: Coloring triangles when using vertex-based illumination
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 51:  Vertex-based illumination also possible to save compute
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 56: (cid:127) => Shading process is continuous on soft edges
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 60: (cid:127) Pixel-based (i.e., image-precise) evaluation of the light sources
+- lectures/08-local-illumination/slides/08-local-illumination.pdf, Seite 62: https://bit.ly/2XbPc7s
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 4: • Realized through per-fragment operations
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 5: Images adapted from Angel and Shreiner: Interactive Computer Graphics, Addison-Wesley, 2015.
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 6: ▪ Textures are therefore general-purpose GPU data sources
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 6: • Base color / albedo
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 6: • Opacity / masks
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 6: [source]
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 7: Base color / albedo
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 7: Opacity / masks
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 13: • GL_RGBA16F: four 16-bit floating-point channels
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 13: • GL_R32F: one 32-bit floating-point channel
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 14: ▪ Floating-point formats
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 14: • Store floating-point values directly
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 15: ▪ Wrong color-space handling causes incorrect shading
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 17: ▪ Example: linear interpolation in 2D (=bilinear)
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 17: f = f (s , t )
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 17: f = (1 − α) ⋅ f + α ⋅ f α =
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 17: f (s, t) = (1 − β) ⋅ f + β ⋅ f β =
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 19: memory = width ⋅ height ⋅ bytes per texel
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 20: • BCn / DXT, ETC2, ASTC
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 23: (x, y, z)
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 24: [0, 1]2
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 24: s, t, r, q s, t, r, q ∈ [0, 1]
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 25: p = (x, y, z) p = (s, t)
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 26: p = (x, y, z) = (a ⋅ cos(θ), a ⋅ sin(θ), 0) θ ∈ [0, 2π] a ∈ [0, r]
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 26: p = (s, t) ∈ [0, 1]2 s = θ t = a
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 27: xy r = 1 h z
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 27: two-dimensional and overlap-free)
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 27: p = (x, y, z) = (r ⋅ cos(θ), r ⋅ sin(θ), z) θ ∈ [0, 2π] z ∈ [0, h]
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 27: p = (s, t) ∈ [0, 1]2 s = θ t = z
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 28: Two-Part Mapping 1/2
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 28: p = (x, y, z) p = (s, t) p
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 28: ▪ Two-part mapping function requires two mappings
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 28: F (p ) = F (F (p )) = (s, t)
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 29: Two-Part Mapping 2/2
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 29: ▪ Two-part mapping has no restrictions wrt. objects to be textured
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 30: Two-Part Mapping Example
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 30: ▪ Object: non-convex polyhedron
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 33: Demo - Texture Coordinate Transformation
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 34: (x, y) (s, t)
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 36: ▪ Forward mapping - from texture to screen space
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 36: ▪ Inverse mapping - from screen to texture space
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 36: • Find corresponding pre-image/footprintof each pixel in texture
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 36: • Integrate over pre-image
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 37: • Texture-to-screen mapping difficult to invert
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 37: 3 x = compute_x(u, v)
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 37: 4 y = compute_y(u, v)
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 37: 5 SCR[x, y] = TEX[u, v]
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 38: ▪ For each pixel pre-image in texture space is foundand its area is integrated over
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 38: 3 u = compute_u(x, y)
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 38: 4 v = compute_v(x, y)
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 39: ▪ Pre-image of square screen pixel intersecting curved surfaceis curvilinear quadrilateral in texture
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 40: • Aliasing: high-frequency signal reconstructionfrom low frequency
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 43: Demo - Magnification Filtering: Nearest vs Linear
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 44: MIP Mapping (multum in parvo = ‘much in little’)
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 44: ▪ [Image provided by Cmglee under CC through Wikipedia]
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 45: ▪ MIP Map-Level 0 : Texture in original size
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 45: ▪ MIP Map-Level 1: Texture size
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 45: ▪ MIP Map-Level : Texture size
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 45: N = 4
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 46: ▪ Self-Contained MIP Map for efficient storage
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 48: λ ∈ [0, N ]
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 48: • Intra-level interpolation: interpolation within two levels closest to
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 48: • Inter-level interpolation: Interpolation of the results of intra-level interpolation based on
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 48: ▪ Constant access cost due to precalculation of the texture pyramid (trilinear interpolation - requires
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 49: M M = 2N
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 49: • 2D texture has texels with (power-of-two texture)
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 49: λ [0, N ]
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 49: • too large - textured image appears blurry (too few texels used)
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 49: • too small - aliasing is not sufficiently reduced
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 50: b = A
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 50: k k = log b
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 51: Demo - Minification, Mipmaps, and Mipmap Level Visualization
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 53: Demo - Anisotropic Filtering
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 54: Texture objects, sampler uniforms, and shader-based access
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 56: • GL_NEAREST - nearest neighbor interpolation
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 56: • GL_LINEAR - bilinear interpolation
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 56: • GL_NEAREST_MIPMAP_NEAREST - nearest neighbor mipmap interpolation
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 56: • GL_NEAREST_MIPMAP_LINEAR - linear interpolation of nearest neighbor mipmap interpolation
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 56: • GL_LINEAR_MIPMAP_NEAREST - bilinear mipmap interpolation
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 56: • GL_LINEAR_MIPMAP_LINEAR - trilinear mipmap interpolation
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 56: ▪ Texture magnification (GL_TEXTURE_MAG_FILTER) options -GL_NEAREST - nearest neighbor
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 56: interpolation -GL_LINEAR - bilinear interpolation
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 59: Demo - Texture Units and Sampler Uniforms
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 60: [0, 1]D
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 63: 1 const GLfloat borderColor[] = { 1.0f, 1.0f, 0.0f, 1.0f };
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 64: F and alpha values F - is current texture with color values T and alpha values T (or
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 64: brightness values T ) - R and R are resulting color and alpha values - E is constant
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 64: C = C C = C ⋅ C C = C C = (1 − C ) ⋅ C + C ⋅ C
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 64: A = A A = A A = A A = A
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 64: C = C C = C ⋅ C C = (1 − A ) ⋅ C + A ⋅ C C = (1 − C ) ⋅ C + C ⋅ C
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 64: A = A A = A ⋅ A A = A A = A ⋅ A
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 64: C = L C = L ⋅ C C = (1 − L ) ⋅ C + L ⋅ C
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 64: A = A A = A A = A
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 64: A = A A = A ⋅ A A = A ⋅ A
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 65: 6 GLint tex2DLoc = glGetUniformLocation(p, "texture2D_");
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 65: 9 GLint tex3DLoc = glGetUniformLocation(p, "texture3D_");
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 66: 1 layout(location = 0) in vec3 position;
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 66: 2 layout(location = 1) in vec3 texCoord;
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 66: 9 vTexCoord = texCoord;
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 66: 10 gl_Position = modelViewProjectionMatrix * vec4(position, 1.0);
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 67: 9 vec4 color0 = texture(texture3D_, vTexCoord);
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 67: 10 fragmentColor = color0.a * texture(texture2D_, vTexCoord.xy);
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 72: I = k ⋅ L k ⋅ L ⋅ max(0, n⃗ ⋅ l ) + k ⋅ L ⋅ max(0, v⃗ ⋅ r )⃗ p
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 72: a a + d d s s
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 73: [0, 1] [−1, 1]
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 73: n⃗ ′ := ( n⃗ ) + 0.5
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 73: • n⃗ :=
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 77: e ⃗ = Δu ⋅ t + Δv ⋅ b
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 77: [ ] = [ ] [ ]
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 79: t =
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 79: b =
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 81: polygon/triangle
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 82: • Bump maps - specify displacement of surface points in normal direction
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 82: Vector offset bump maps - offset vector added to normal
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 82: • Vector rotation bump maps - normal rotated given angle
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 84: • mirror-like reflections
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 84: • image-based lighting
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 85: [Need for Speed no Limits]
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 87: R = 2 ⋅ (V ⋅ N ) ⋅ N − V
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 88: Demo - Cube-map Reflection Vector
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 90: ▪ Dual-paraboloid maps
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 90: ▪ In modern real-time rendering, cube maps are the standard representation!
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 93: • non-uniform distortion
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 94: ▪ Sphere-map texels represent differently sized regions of the environment
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 94: ▪ For modern real-time graphics, this is one reason cube maps are preferred
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 95: Demo - Environment Map Distortion
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 96: ▪ Sphere maps represent non-linear images
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 97: V −z +x +y
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 97: • View direction along the -axis ( axis to the right, axis up)
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 97: (st) = ( + + )
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 97: 2 ⋅ R2 + R2 + (R + 1)2 2 2 ⋅ R2 + R2 + (R + 1)2 2
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 101: ▪ The main artifacts occur at cube-face boundaries
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 102: R = (R , R , R )
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 102: ▪ The cube-map face is selected by the major axis of
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 103: Environment-mapped Utah teapot; image: George7378, CC BY-SA 3.0. Sphere map vs. cube map illustration.
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 104: ▪ Each face is addressed by a separate cube-map face target
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 104: 10 for (int face = 0; face < 6; ++face) {
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 105: 1 vec3 V = normalize(cameraPosition - worldPosition);
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 105: 2 vec3 N = normalize(worldNormal);
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 105: 3 vec3 R = reflect(-V, N);
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 105: 5 vec3 reflectedColor = texture(environmentMap, R).rgb; Cube-map lookup direction
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 107: 3 vec3 V = normalize(cameraPosition - vWorldPosition);
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 107: 4 vec3 N = normalize(vWorldNormal);
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 107: 5 vec3 R = reflect(-V, N);
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 107: 7 vec3 env = texture(environmentMap, R).rgb;
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 107: 8 fragmentColor = vec4(env, 1.0);
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 108: Practical Cube-Map Issues
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 108: ▪ Cube-map reflections are an approximation
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 108: • use mipmaps for glossy / blurred reflections
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 108: • enable seamless cube-map filtering where available
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 109: BY-SA 4.0.
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 110: • seams may occur at cube-face boundaries
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 111: ▪ Self-reflection not taken into account
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 112: • Distortion and filtering problems increase in front half-space
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 114: • Texture coordinates and object-to-texture transformations
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 114: • Solid texturing, slice-based volume rendering, ray marching
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 114: • Step size, empty-space skipping, early termination, bricking
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 115: ▪ A 3D texture stores samples on a regular three-dimensional grid
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 115: ▪ Each voxel can store scalar, vector, or multi-channel data
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 115: (s, t, r) ∈ [0, 1]
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 116: ▪ 3D texture coordinates are usually derived from object-space position
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 116: ▪ For a volume-aligned bounding box
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 116: (s, t, r) =
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 116: ▪ A texture-coordinate transformation can translate, scale, or rotate the volume
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 119: f = (1 − α) ⋅ f + α ⋅ f
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 119: f = (1 − β) ⋅ f + β ⋅ f
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 119: f (s, t, r) = (1 − γ) ⋅ f + γ ⋅ f
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 120: memory = w ⋅ h ⋅ d ⋅ bytes per voxel
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 120: 1 B/voxel 2 B/voxel 4 B/voxel 8 B/voxel
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 121: k + 1 k
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 121: • representing multi-scale volume detail
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 122: • noise-based procedural detail
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 122: Images adapted from [Kopf et al., SIGGRAPH 2007]
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 123: ρ = f (x, y, z)
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 124: T (ρ) = (c, α)
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 124: ▪ Transfer-function design is often the central interaction in volume rendering
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 125: ▪ Slice-based volume rendering draws proxy geometry through the volume
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 126: Front-to-Back Alpha Compositing
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 126: C = C + (1 − α ) ⋅ α ⋅ c
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 126: α = α + (1 − α ) ⋅ α
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 126: ▪ Front-to-back compositing enables early ray termination
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 127: 1 for (float t = tEntry; t < tExit; t += stepSize) {
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 127: 2 vec3 p = rayOrigin + t * rayDirection;
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 127: 3 float rho = texture(volumeTex, p).r;
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 127: 4 vec4 sample = texture(transferTex, rho);
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 127: 5 color.rgb += (1.0 - color.a) * sample.a * sample.rgb;
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 127: 6 color.a += (1.0 - color.a) * sample.a;
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 128: ∇ρ ≈ ⎢ ρ(x, y + Δ, z) − ρ(x, y − Δ, z) ⎥
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 128: ρ(x, y, z + Δ) − ρ(x, y, z − Δ)
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 128: ▪ This enables Phong-like or physically based lighting effects inside the volume
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 129: Quality and Performance Trade-Offs
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 129: • empty-space skipping
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 129: • lower-resolution mip levels for previews
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 129: ▪ Main trade-off: image quality versus samples per ray
+- lectures/09-texturing/slides/09-texturing.pdf, Seite 133: • T. Akenine-Möller, E. Haines: Real-Time Rendering, Addison-Wesley.
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 9: About shadow-receiving and shadow-casting scene objects
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 10: • Shadow-casting scene objects(Occluder)
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 10: • Shadow-receiving scene objects (Receiver)
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 10: ▪ Classify shadow-casting and shadow-receiving objects in a preprocess?
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 10: • Self-shadowing results from same object casting and receiving shadows
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 11: • High intensity contrast between shadowed andnon-shadowed region
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 15: • Shadows as surfaces: exploit hidden-surface algorithms
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 15: • Shadows are dynamic in scenes with dynamic lighting and/ordynamic scene objects(shadows
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 19: • Cast ray from light source through center of shadow-casting objects
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 19: • Position dark polygon where ray intersects shadow-receiving object
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 19: • Single intersection of ray and shadow-receiver can’t capture soft shadows
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 20: ▪ Depth value identical with thatof shadow-receiving polygon(care must be taken wrt. z-buffer
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 20: ▪ Depth value smaller than that of shadow-receiving polygon(shadow can be too large)
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 23: ▪ Project shadow-casting scene objects onto shadow-receiving objectby modifying shape
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 23: ▪ Accurate procedure for semi-transparent shadows,but only if shadows do not overlap
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 23: • Only planar polygons on shadow-receivingscene objects possible
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 23: • No self-shadowing possible
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 24: ▪ Shadow point (= vertex of the shadow polygon) lies on a line between light source and vertex
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 24: of shadow-casting scene object
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 24: S = P − α ⋅ L
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 24: S z = 0 α =
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 24: x = x − x y = y − y
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 24: [x y 01] = [10 − 001 − 000000001][x y z 1]
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 25: • Multiply current model-view -matrix with
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 25: • Lift shadow polygons slightly to avoid z-fighting (integrate b ias in )
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 32: ▪ Shadow volume shape depends on shape and positionof light source and shadow-caster
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 32: • Find silhouettes of shadow-casterregarding light source
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 34: ▪ For convex shadow-casters
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 34: • Add new (infinitely far-away) vertices for each line between and
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 35: • At each intersection with front-face shadow polygon, intersection counter cnt is incremented
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 35: • At each intersection with back-face shadow polygon, intersection counter cnt is decremented
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 35: s = 0
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 37: • Improvement by simplifying shadow-casting geometries
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 37: • Render front-face shadow polygons and increment stencil buffer
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 37: • Render back-face shadow polygons and decrement stencil buffer
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 38: • Render front-face shadow polygons and increment stencil buffer by 1
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 38: • Render back-face shadow polygons and decrement stencil buffer by 1
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 38: • => Shadowed image regions are marked by >0 in stencil buffer
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 38: ▪ Render shadowed parts of shadow-receiving scene objects
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 38: ▪ Render non-shadowed parts of shadow-receiving scene objects
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 38: • Render only where stencil value =0
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 39: • Near - or far -plane can intersect shadow volume
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 41: • Shadow-casting and shadow-receiving objects can have arbitrary shapes
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 41: • Level-of-detail adaptable through approximated geometries
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 41: • Self-shadowing possible
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 43: ▪ Based on z-Buffer (contains depth relative to the light source)
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 44: • Render shadow-casting objectsas seen from the light source into depth texture
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 44: • Project depth texture using projective texturingwhen rendering shadow-receiving objects
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 44: • Shadow-casting and shadow-receivingscene objects can be separated
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 44: • Self-shadowing becomes possible
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 48: A = depthmap(x,y)
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 48: B = z-value of fragments xyz
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 51: Incorrect self-shadowing occurs for
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 51: increasing depth precision of z-buffer
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 51: applying z-bias
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 52: It is difficult to choose a good z-bias
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 54: ▪ Filter (= weighted average formation over neighbors) of a depth valuedoes not make sense
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 58: • Shadow-casting (Occluder) vs. shadow-receiving (Receiver) objects
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 58: • Self-shadowing: Same object casts and receives shadow
+- lectures/10-shadows/slides/10-shadows.pdf, Seite 60: • T. Akenine-Möller, E. Haines: Real-Time Rendering, Addison-Wesley. (Chapter 6: Shadowing)
+
+Visuelle Folien-Inventur
+~~~~~~~~~~~~~~~~~~~~~~~~
+Diese Liste markiert Seiten mit vielen visuellen PDF-Objekten. Die Objekte selbst sind in einer Textdatei nicht vollstaendig darstellbar; fuer Diagrammfragen die genannte Original-PDF-Seite pruefen.
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 1: Bilder=2, Rechtecke=2, Kurven=0, Linien=0
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 2: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 3: Bilder=5, Rechtecke=4, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 4: Bilder=5, Rechtecke=4, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 5: Bilder=5, Rechtecke=4, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 6: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 12: Bilder=1, Rechtecke=5, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 13: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 14: Bilder=1, Rechtecke=3, Kurven=1, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 16: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 17: Bilder=7, Rechtecke=6, Kurven=5, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 18: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 19: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 20: Bilder=6, Rechtecke=3, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 21: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 23: Bilder=8, Rechtecke=3, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 24: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 25: Bilder=4, Rechtecke=404, Kurven=2, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 26: Bilder=3, Rechtecke=6, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 27: Bilder=3, Rechtecke=7, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 28: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 30: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 31: Bilder=3, Rechtecke=3, Kurven=2, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 32: Bilder=1, Rechtecke=3, Kurven=8, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 33: Bilder=6, Rechtecke=18, Kurven=12, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 34: Bilder=4, Rechtecke=3, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 35: Bilder=2, Rechtecke=4, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 36: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 37: Bilder=5, Rechtecke=6, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 38: Bilder=5, Rechtecke=3, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 39: Bilder=1, Rechtecke=8, Kurven=14, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 40: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 41: Bilder=3, Rechtecke=3, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 42: Bilder=0, Rechtecke=15, Kurven=14, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 43: Bilder=2, Rechtecke=3, Kurven=1, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 44: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 45: Bilder=3, Rechtecke=3, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 46: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+- lectures/01-introduction/slides/01-introduction.pdf, Seite 50: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 1: Bilder=2, Rechtecke=2, Kurven=0, Linien=0
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 2: Bilder=1, Rechtecke=14, Kurven=38, Linien=21
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 4: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 5: Bilder=0, Rechtecke=22, Kurven=16, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 8: Bilder=0, Rechtecke=15, Kurven=33, Linien=2
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 9: Bilder=1, Rechtecke=14, Kurven=28, Linien=21
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 10: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 11: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 12: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 20: Bilder=0, Rechtecke=43, Kurven=0, Linien=17
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 21: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 22: Bilder=1, Rechtecke=5, Kurven=0, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 28: Bilder=1, Rechtecke=3, Kurven=18, Linien=15
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 34: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 35: Bilder=3, Rechtecke=22, Kurven=43, Linien=23
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 36: Bilder=0, Rechtecke=87, Kurven=22, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 44: Bilder=3, Rechtecke=3, Kurven=0, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 45: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 47: Bilder=13, Rechtecke=3, Kurven=24, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 48: Bilder=7, Rechtecke=3, Kurven=24, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 49: Bilder=6, Rechtecke=3, Kurven=28, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 50: Bilder=6, Rechtecke=3, Kurven=28, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 51: Bilder=6, Rechtecke=3, Kurven=28, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 52: Bilder=5, Rechtecke=3, Kurven=28, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 53: Bilder=13, Rechtecke=3, Kurven=24, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 56: Bilder=0, Rechtecke=3, Kurven=34, Linien=21
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 61: Bilder=0, Rechtecke=39, Kurven=12, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 65: Bilder=2, Rechtecke=3, Kurven=3, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 66: Bilder=2, Rechtecke=3, Kurven=1, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 67: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 69: Bilder=0, Rechtecke=6, Kurven=23, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 74: Bilder=1, Rechtecke=75, Kurven=0, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 79: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 81: Bilder=0, Rechtecke=8, Kurven=20, Linien=6
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 82: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 85: Bilder=0, Rechtecke=29, Kurven=42, Linien=7
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 86: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 88: Bilder=0, Rechtecke=28, Kurven=34, Linien=6
+- lectures/02-rendering-pipeline/slides/02-rendering-pipeline.pdf, Seite 93: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 1: Bilder=2, Rechtecke=2, Kurven=0, Linien=0
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 2: Bilder=0, Rechtecke=12, Kurven=11, Linien=1
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 4: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 8: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 18: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 20: Bilder=0, Rechtecke=7, Kurven=790, Linien=1
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 21: Bilder=0, Rechtecke=11, Kurven=101, Linien=1
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 25: Bilder=0, Rechtecke=8, Kurven=21, Linien=5
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 27: Bilder=0, Rechtecke=43, Kurven=53, Linien=3
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 28: Bilder=0, Rechtecke=14, Kurven=31, Linien=4
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 29: Bilder=0, Rechtecke=14, Kurven=29, Linien=5
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 30: Bilder=0, Rechtecke=9, Kurven=29, Linien=5
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 31: Bilder=0, Rechtecke=9, Kurven=27, Linien=5
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 32: Bilder=2, Rechtecke=3, Kurven=1, Linien=1
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 35: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 36: Bilder=0, Rechtecke=15, Kurven=42, Linien=193
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 38: Bilder=0, Rechtecke=8, Kurven=31, Linien=1
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 39: Bilder=0, Rechtecke=6, Kurven=105, Linien=101
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 40: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 41: Bilder=0, Rechtecke=126, Kurven=0, Linien=15
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 42: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 45: Bilder=1, Rechtecke=4, Kurven=5, Linien=1
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 47: Bilder=5, Rechtecke=11, Kurven=24, Linien=1
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 49: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 50: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 51: Bilder=2, Rechtecke=4, Kurven=0, Linien=1
+- lectures/03-geometric-transformations/slides/03-geometric-transformations.pdf, Seite 53: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 1: Bilder=2, Rechtecke=2, Kurven=0, Linien=0
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 4: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 5: Bilder=5, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 6: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 7: Bilder=4, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 8: Bilder=1, Rechtecke=4, Kurven=0, Linien=8
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 9: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 10: Bilder=2, Rechtecke=4, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 11: Bilder=44, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 12: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 13: Bilder=13, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 14: Bilder=4, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 15: Bilder=6, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 16: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 17: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 18: Bilder=3, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 19: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 20: Bilder=3, Rechtecke=4, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 21: Bilder=2, Rechtecke=3, Kurven=1, Linien=9
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 22: Bilder=0, Rechtecke=33, Kurven=30, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 23: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 24: Bilder=4, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 25: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 26: Bilder=3, Rechtecke=23, Kurven=33, Linien=4
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 27: Bilder=4, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 28: Bilder=3, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 29: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 30: Bilder=3, Rechtecke=4, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 31: Bilder=2, Rechtecke=4, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 32: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 34: Bilder=2, Rechtecke=3, Kurven=4, Linien=14
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 35: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 36: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 37: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 38: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 39: Bilder=6, Rechtecke=9, Kurven=47, Linien=16
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 40: Bilder=6, Rechtecke=7, Kurven=12, Linien=10
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 42: Bilder=6, Rechtecke=8, Kurven=8, Linien=9
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 43: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 44: Bilder=1, Rechtecke=7, Kurven=14, Linien=2
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 45: Bilder=7, Rechtecke=11, Kurven=44, Linien=6
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 47: Bilder=0, Rechtecke=12, Kurven=16, Linien=1
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 49: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+- lectures/04-geometric-projection/slides/04-geometric-projection.pdf, Seite 50: Bilder=3, Rechtecke=11, Kurven=57, Linien=7

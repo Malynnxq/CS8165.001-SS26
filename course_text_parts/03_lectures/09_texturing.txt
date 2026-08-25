@@ -1,0 +1,1979 @@
+Kapitel 09: Texturing - Moodle-Seite
+------------------------------------
+Quelle: lectures/09-texturing/index.html
+
+Moodle Lernplattform Universität Ulm - Interaktive Computergrafik 
+Moodle Lernplattform Universität Ulm
+Interaktive Computergrafik 
+CS8165.001-SS26 
+Chap09-Texturing (19.07.26)
+Diese Seite ist Teil des Inhalts, der von Chap09-Texturing (19.07.26) am Dienstag, 25. August 2026, 20:30 heruntergeladen wurde. Beachten Sie, dass einige Inhalte und alle Dateien, die größer als 2 GB sind, nicht heruntergeladen werden. 
+Dateien und Verzeichnisse 
+09-texturing.pdf 
+Diese Datei ist Teil des Inhalts, der am Dienstag, 25. August 2026, 20:30 von Maksym Morozov von Interaktive Computergrafik heruntergeladen wurde.
+
+Externe Links:
+- Moodle Lernplattform Universität Ulm: https://moodle.uni-ulm.de
+- Chap09-Texturing (19.07.26): https://moodle.uni-ulm.de/mod/resource/view.php?id=1036791
+- Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
+
+Kapitel 09: Texturing - Folien
+------------------------------
+Quelle: lectures/09-texturing/slides/09-texturing.pdf
+
+[Seite 1]
+Seiten-Metadaten: Bilder=2, Rechtecke=2, Kurven=0, Linien=0
+Interactive Computer Graphics
+Chapter 9 - Texturing
+Summer Term 2026
+Timo Ropinski
+Visual Computing Group
+Institute of Media Informatics
+[Seite 2]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Textures: Sampled Data for Shading
+▪ Textures are sampled data fields used during rendering
+▪ Most common case: 2D image data mapped onto 3D geometry
+▪ Texture values can represent color, transparency, normals, roughness, height, masks, or arbitrary
+lookup data
+Interactive Computer Graphics 19/07/2026 2
+[Seite 3]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Texturing Example
+Interactive Computer Graphics 19/07/2026 3
+[Seite 4]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Texture Mapping
+▪ Texture mapping
+• Application of texture defined in multidimensional texture space to object defined in 3D space
+• Realized through per-fragment operations
+• A texture lookup turns texture coordinates into data used by the shader
+Interactive Computer Graphics 19/07/2026 4
+[Seite 5]
+Seiten-Metadaten: Bilder=3, Rechtecke=4, Kurven=0, Linien=0
+Why Textures Matter
+▪ Geometry defines shape
+▪ Textures define appearance detail
+▪ This separates visual complexity from geometric complexity
+▪ Instead of modeling every scratch, brick, pore, label, or color variation, we store it in texture data
+▪ Textures are efficient
+• Fewer triangles
+• Richer visual detail
+• Reusable material assets
+• Fast GPU sampling and filtering
+Images adapted from Angel and Shreiner: Interactive Computer Graphics, Addison-Wesley, 2015.
+Interactive Computer Graphics 19/07/2026 5
+[Seite 6]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Textures Are More Than Color Images
+▪ Modern rendering usually uses several texture maps per object
+▪ Each map controls one part of the material or shading model
+▪ Textures are therefore general-purpose GPU data sources
+▪ Common texture maps
+• Base color / albedo
+• Normal
+• Roughness
+• Metallic
+• Ambient occlusion
+• Emissive
+• Opacity / masks
+[source]
+Interactive Computer Graphics 19/07/2026 6
+[Seite 7]
+Seiten-Metadaten: Bilder=1, Rechtecke=41, Kurven=23, Linien=0
+Texturing Demo
+Preset Plain Object
+Rotate
+Base color / albedo
+Normal
+Roughness
+Metallic
+Ambient occlusion
+Emissive
+Opacity / masks
+Texture scale 1.25
+Normal strength 0.85
+Light intensity 3.1
+Interactive Computer Graphics 19/07/2026 7
+Extrahierte Tabellen:
+[Tabelle 1]
+ | Preset Plain Object Rotate Base color / albedo Normal Roughness Metallic Ambient occlusion Emissive Opacity / masks Texture scale 1.25 Normal strength 0.85 Light intensity 3.1 | Plain Object
+[Seite 8]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Overview
+9.1 Texture Objects, Texels, Formats, and Color Space
+9.2 Texture Coordinates, UV Mapping, and Wrapping
+9.3 Sampling, Filtering, Mipmaps, and Anisotropy
+9.4 Modern OpenGL Texture Pipeline
+9.5 Normal Mapping
+9.6 Environment Mapping
+9.7 3D Textures and Volume Rendering
+References
+Interactive Computer Graphics 19/07/2026 8
+[Seite 9]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+9.1 Texture Objects, Texels, Formats, and Color Space
+What texture data stores and how the GPU interprets it
+Visual Computing Group
+Institute of Media Informatics
+[Seite 10]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+From Image File to GPU Texture Object
+▪ Texture data starts as image file or generated array
+▪ During loading, data is uploaded to GPU memory
+▪ On the GPU, data becomes a texture object
+▪ The shader accesses it through a sampler
+▪ Pipeline
+• Image file or generated data
+• Upload to GPU
+• Texture object
+• Shader sampler
+• Texture lookup
+▪ File format, texture object, and sampler are distinct concepts
+Interactive Computer Graphics 19/07/2026 10
+[Seite 11]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Texels, Channels, and Meaning
+▪ Texel: smallest sample element of a texture
+▪ In 2D, a texel is analogous to a pixel
+▪ Texels store numeric channel values
+▪ Common channel layouts
+• R, RG, RGB, RGBA
+• Depth
+• Integer labels or IDs
+▪ Channel layout does not define semantic meaning
+• RGB can store color or an encoded normal vector
+• R can store roughness, metallic, height, mask, or density
+• Meaning is defined by shader and material model
+Interactive Computer Graphics 19/07/2026 11
+[Seite 12]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Texture Targets and Dimensionality
+▪ Texture target describes the sampled data domain
+▪ Different targets use different coordinate types
+▪ 1D texture
+s
+• Coordinate
+• Lookup tables or transfer functions
+▪ 2D texture
+(s, t)
+• Coordinates
+• Images and material maps
+▪ 3D texture
+[source]
+(s, t, r)
+• Coordinates
+• Volumes, density fields, procedural data
+Interactive Computer Graphics 19/07/2026 12
+[Seite 13]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Internal Texture Formats
+▪ Internal format defines GPU texel storage
+▪ It specifies channels, precision, and representation
+▪ Examples
+• GL_R8: one 8-bit normalized channel
+• GL_RGBA8: four 8-bit normalized channels
+• GL_RGBA16F: four 16-bit floating-point channels
+• GL_R32F: one 32-bit floating-point channel
+• GL_DEPTH_COMPONENT24: 24-bit depth
+component
+▪ Format choice affects memory consumption
+[source]
+▪ Format choice affects precision and bandwidth
+▪ Format choice affects correct shader
+interpretation
+Interactive Computer Graphics 19/07/2026 13
+[Seite 14]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Numeric Texture Representations
+▪ Texel values can be interpreted differently
+▪ Normalized integer formats
+• Stored as integers
+• Sampled as normalized floats
+255 → 1.0
+• Example:
+▪ Integer formats
+• Stored and sampled as integers
+• Useful for IDs, labels, and counters
+▪ Floating-point formats
+• Store floating-point values directly
+• Useful for HDR, simulations, and render targets
+▪ Sampler type must match the texture representation
+Interactive Computer Graphics 19/07/2026 14
+[Seite 15]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Color Textures vs. Data Textures
+▪ Some textures store perceptual color
+▪ Other textures store numeric shader data
+▪ Color textures
+• Base color / albedo
+• Emissive color
+• Usually decoded as sRGB
+▪ Data textures
+• Normal, roughness, metallic
+• Ambient occlusion, height, masks
+• Must be treated as linear data
+▪ Rule: use sRGB decoding only for color textures
+▪ Wrong color-space handling causes incorrect shading
+Interactive Computer Graphics 19/07/2026 15
+[Seite 16]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+2D Texture Access
+▪ For each fragment, texturecoordinates are interpolated
+▪ During texture access texel values are bilinearly interpolated
+Interactive Computer Graphics 19/07/2026 16
+[Seite 17]
+Seiten-Metadaten: Bilder=1, Rechtecke=5, Kurven=0, Linien=0
+Bilinear Interpolation
+▪ Example: linear interpolation in 2D (=bilinear)
+f = f (s , t )
+▪ Interpolation requires three computations ( Notation: ij ij ij )
+s−s
+f = (1 − α) ⋅ f + α ⋅ f α =
+00
+• 0 00 10 with
+s −s
+10 00
+s−s
+f = (1 − α) ⋅ f + α ⋅ f α =
+00
+• 1 01 11 with
+s −s
+10 00
+t−t
+f (s, t) = (1 − β) ⋅ f + β ⋅ f β =
+00
+• 0 1 with
+t −t
+01 00
+[Seite 18]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Interactive Computer Graphics 19/07/2026 17
+[Seite 19]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=0
+Chapter 9 - Texturing
+Texture Memory Footprint
+▪ Texture memory depends on resolution and format
+memory = width ⋅ height ⋅ bytes per texel
+▪ Example memory costs
+10242
+• RGBA8: 4 MiB
+2
+2048
+• RGBA8: 16 MiB
+2
+4096
+• RGBA8: 64 MiB
+2
+4096
+• RGBA16F: 128 MiB
+▪ Full 2D mipmap chain adds about one third
+4
+memory with mipmaps ≈ ⋅ base level memory
+3
+Interactive Computer Graphics 19/07/2026 18
+[Seite 20]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Texture Compression and Asset Pipelines
+▪ File formats and GPU formats are different concepts
+▪ File formats
+• PNG, JPEG, OpenEXR
+• Used for storage and authoring
+▪ GPU formats
+• GL_RGBA8, GL_SRGB8_ALPHA8
+• GL_RGBA16F
+• BCn / DXT, ETC2, ASTC
+▪ PNG and JPEG are usually decompressed before upload
+▪ GPU compression reduces memory and bandwidth
+Interactive Computer Graphics 19/07/2026 19
+[Seite 21]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Steps Involved in Texturing
+▪ Provide textures (e.g., load from file)
+▪ Configure texture mapping(e.g., border handling, texture coordinates, texture filtering)
+▪ Rendering
+• Fetch texture values (usually by exploiting interpolation)
+• Modify fragment color based on fetched texel value
+Interactive Computer Graphics 19/07/2026 20
+[Seite 22]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+9.2 Texture Coordinates, UV Mapping, and Wrapping
+Aligning texture space with geometry
+Visual Computing Group
+Institute of Media Informatics
+[Seite 23]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Texture Coordinate System 1/2
+▪ Object space: 3D vertices in model coordinate system
+(x, y, z)
+• Coordinate representation:
+▪ Texture space: 1D, 2D, 3D space of texture data
+(s, t, r, q)
+• Coordinate representation :
+▪ Image space: 2D raster representation of image plane
+Interactive Computer Graphics 19/07/2026 22
+[Seite 24]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Texture Coordinate System 2/2
+[0, 1]2
+▪ Texture coordinate system normalized to for 2D textures (analog for 1D and 3D textures)
+s, t, r, q s, t, r, q ∈ [0, 1]
+• Coordinate axes denoted by with
+(s)
+• 1D texture coordinates
+(s, t)
+• 2D texture coordinates
+(s, t, r)
+• 3D texture coordinates
+q
+• serves as homogeneous coordinate
+Interactive Computer Graphics 19/07/2026 23
+[Seite 25]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Texture Coordinate Specification
+▪ 2D texturing
+p = (x, y, z) p = (s, t)
+• For every vertex g of a polygon, texture coordinates t are specified
+p
+• Texture coordinates t are obtained from parametrization algorithms
+p
+• Texture coordinates t are linearly interpolated over a polygon (analogous to Gouraud shading)
+▪ Some geometries have implicit parameterization
+• Various shapes (sphere, disc, cylinder, …): see next slides
+• Regular 2D grids: grid coordinates
+• NURBS: parameter values of the constituent curves
+• …
+Interactive Computer Graphics 19/07/2026 24
+[Seite 26]
+Seiten-Metadaten: Bilder=2, Rechtecke=6, Kurven=0, Linien=0
+Disc Parametrization
+r xy
+▪ Circular disc with radius , centered in the plane
+p = (x, y, z) = (a ⋅ cos(θ), a ⋅ sin(θ), 0) θ ∈ [0, 2π] a ∈ [0, r]
+• g with and
+p = (s, t) ∈ [0, 1]2 s = θ t = a
+• t with and
+2π r
+Interactive Computer Graphics 19/07/2026 25
+[Seite 27]
+Seiten-Metadaten: Bilder=2, Rechtecke=6, Kurven=0, Linien=0
+Cylinder Parametrization
+xy r = 1 h z
+▪ Cylinder based in plane with radius and height along axis (surface is topologically
+two-dimensional and overlap-free)
+p = (x, y, z) = (r ⋅ cos(θ), r ⋅ sin(θ), z) θ ∈ [0, 2π] z ∈ [0, h]
+• g with and
+p = (s, t) ∈ [0, 1]2 s = θ t = z
+• t with and
+2π h
+Interactive Computer Graphics 19/07/2026 26
+[Seite 28]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Two-Part Mapping 1/2
+▪ Texture coordinates for complex geometries are derived from intermediate objects (i.e., geometries
+with inherent parametrization)
+▪ Proceeding
+• Calculate texture coordinates for intermediate object
+p = (x, y, z) p = (s, t) p
+• For each vertex g , texture coordinates t are calculated by projecting g
+p′
+to point g on an intermediate object’s surface
+F
+▪ Two-part mapping function requires two mappings
+F
+• 1 : Object space to intermediate object space
+F
+• 2 : Intermediate object space to texture space
+F (p ) = F (F (p )) = (s, t)
+g 2 1 g
+Interactive Computer Graphics 19/07/2026 27
+[Seite 29]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Two-Part Mapping 2/2
+▪ Two-part mapping has no restrictions wrt. objects to be textured
+▪ Intermediate object must be appropriate for object to be textured
+Interactive Computer Graphics 19/07/2026 28
+[Seite 30]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+Two-Part Mapping Example
+▪ Object: non-convex polyhedron
+▪ Intermediate object: cylinder
+F
+• 1 : Cast rays from object center through vertices to intersect cylinder (projection)
+F
+• 2 : Cylinder parametrization
+F (p ) = F (F (p )) = (s, t)
+g 2 1 g
+Interactive Computer Graphics 19/07/2026 29
+[Seite 31]
+Seiten-Metadaten: Bilder=4, Rechtecke=4, Kurven=0, Linien=0
+Projection Calculation Variations
+O O
+▪ G center through vertices to I
+O O
+▪ G along normal to I
+O O
+▪ I along normal to G
+O O
+▪ G along reflection vector to I
+Interactive Computer Graphics 19/07/2026 30
+[Seite 32]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Texture Coordinate Transformation
+▪ Texture coordinates can be transformed through transformation matrix
+• No restriction regarding matrix coefficients (4x4 matrix)
+▪ Applications
+• Shifting texture coordinates
+• Scaling texture coordinates
+• Rotating texture coordinates
+Interactive Computer Graphics 19/07/2026 31
+[Seite 33]
+Seiten-Metadaten: Bilder=1, Rechtecke=51, Kurven=16, Linien=0
+Demo - Texture Coordinate Transformation
+Stage Transformed Texture
+scaleS 1
+scaleT 1
+offsetS 0
+offsetT 0
+rotation 0
+wrapMode GL_REPEAT
+Show transformed UVs
+Animate offset
+Interactive Computer Graphics 19/07/2026 32
+Extrahierte Tabellen:
+[Tabelle 1]
+ | Stage Transformed Texture scaleS 1 scaleT 1 offsetS 0 offsetT 0 rotation 0 wrapMode GL_REPEAT Show transformed UVs Animate offset | Transformed Texture
+[Seite 34]
+Seiten-Metadaten: Bilder=1, Rechtecke=7, Kurven=0, Linien=0
+Height Field Texturing Example
+▪ Height field represented as triangular mesh
+(x, y) (s, t)
+• Use normalized coordinates as texture coordinates (can be used to map aerial
+image)
+z r
+• Use given height in coordinate as texture coordinate (can be used to color dependent on
+height)
+▪ Texture transformation
+• Translate height field origin to texture coordinate origin
+y
+(s, t) ( x , )
+• Set and scale texture coordinates to
+max(x) max(y)
+r z
+• Set and scale texture coordinate to
+max(z)
+Interactive Computer Graphics 19/07/2026 33
+[Seite 35]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+9.3 Sampling, Filtering, Mipmaps, and Anisotropy
+Reconstructing texture values under magnification and minification
+Visual Computing Group
+Institute of Media Informatics
+[Seite 36]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Forward vs. Inverse Mapping
+▪ Forward mapping - from texture to screen space
+• Object’s surface parameterization
+• Projection transformation
+▪ Inverse mapping - from screen to texture space
+• Find corresponding pre-image/footprintof each pixel in texture
+• Integrate over pre-image
+Interactive Computer Graphics 19/07/2026 35
+[Seite 37]
+Seiten-Metadaten: Bilder=1, Rechtecke=19, Kurven=2, Linien=0
+Forward Mapping
+▪ Maps each texel to screen space
+• Uniform sampling of texture does not guaranteeuniform sampling in screen space
+▪ Forward mapping used for following cases
+• Texture-to-screen mapping difficult to invert
+• Texture image does not fit into memory
+1 for v in range(height): # 'height' of texture
+2 for u in range(width): # 'width' of texture
+3 x = compute_x(u, v)
+4 y = compute_y(u, v)
+5 SCR[x, y] = TEX[u, v]
+Interactive Computer Graphics 19/07/2026 36
+Extrahierte Tabellen:
+[Tabelle 1]
+ | 1
+[Tabelle 2]
+ | 2
+[Tabelle 3]
+ | 3
+[Tabelle 4]
+ | 4
+[Tabelle 5]
+ | 5
+[Seite 38]
+Seiten-Metadaten: Bilder=1, Rechtecke=19, Kurven=2, Linien=0
+Inverse Mapping 1/2
+▪ For each pixel pre-image in texture space is foundand its area is integrated over
+▪ Inverse mapping can be used when
+• Texture image fits into memory
+• Forward mapping can be inverted
+1 for y in range(height): # screen 'height'
+2 for x in range(width): # screen 'width'
+3 u = compute_u(x, y)
+4 v = compute_v(x, y)
+5 SCR[x, y] = TEX[u, v]
+Interactive Computer Graphics 19/07/2026 37
+Extrahierte Tabellen:
+[Tabelle 1]
+ | 1
+[Tabelle 2]
+ | 2
+[Tabelle 3]
+ | 3
+[Tabelle 4]
+ | 4
+[Tabelle 5]
+ | 5
+[Seite 39]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Inverse Mapping 2/2
+▪ Pre-image of square screen pixel intersecting curved surfaceis curvilinear quadrilateral in texture
+space
+▪ Curvilinear quadrilateral often approximated
+• By general quadrilateral
+• By parallelogram
+▪ Alternatively pixel oversampling can be used
+Interactive Computer Graphics 19/07/2026 38
+[Seite 40]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Magnification vs. Minification
+▪ Magnification
+• Map few texels onto many pixels
+• Two filtering approaches
+• Nearest: Take the nearest texel
+• Bilinear interpolation: Interpolation between 4 nearest texels
+▪ Minification
+• Map many texels to one pixel
+• Aliasing: high-frequency signal reconstructionfrom low frequency
+sampling
+• Main filtering approach
+• Average over all associated texels
+• Computationally expensive
+Interactive Computer Graphics 19/07/2026 39
+[Seite 41]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+Nearest vs. Linear Interpolation
+▪ Nearest neighbor interpolation
+(s, t)
+• For coordinates select nearest integer texel
+(int(round(s ⋅ texdim )), int(round(t ⋅ texdim )))
+x y
+• Easy to calculate, prone to aliasing
+▪ (Bi)Linear interpolation
+(s, t)
+• Blend the four integer texel nearest to texture coordinate
+(s ⋅ texdim , t ⋅ texdim )
+• Decimal place of x y specify weights of four texels
+Interactive Computer Graphics 19/07/2026 40
+[Seite 42]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Minification Filtering Requirements
+▪ Preimage integration with insufficient filtering results in aliasing
+artifacts
+Interactive Computer Graphics 19/07/2026 41
+[Seite 43]
+Seiten-Metadaten: Bilder=1, Rechtecke=25, Kurven=9, Linien=0
+Demo - Magnification Filtering: Nearest vs Linear
+Stage Split Comparison
+magFilter GL_NEAREST
+zoom 12
+textureResolution 8x8
+showTexelGrid
+splitView
+Interactive Computer Graphics 19/07/2026 42
+Extrahierte Tabellen:
+[Tabelle 1]
+ | Stage Split Comparison magFilter GL_NEAREST zoom 12 textureResolution 8x8 showTexelGrid splitView | Split Comparison
+[Seite 44]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+MIP Mapping (multum in parvo = ‘much in little’)
+▪ Efficient scheme for sampling texture values
+▪ Representation of a texture at different resolution levels(levels of Detail, LoDs)
+▪ Exploiting a texture pyramid (here: 2D, analog for 1D and 3D)
+• Each pyramid level contains filtered textureof half resolution of previous level
+• Each layer contains only quarter of texelsof previous layer
+• Individual layers are precalculated
+▪ [Image provided by Cmglee under CC through Wikipedia]
+Interactive Computer Graphics 19/07/2026 43
+[Seite 45]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+MIP Map Pyramid 1/2
+2N
+▪ MIP Map-Level 0 : Texture in original size
+2N−1
+▪ MIP Map-Level 1: Texture size
+▪ …
+N 20
+▪ MIP Map-Level : Texture size
+N = 4
+▪ Example:
+Interactive Computer Graphics 19/07/2026 44
+[Seite 46]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+MIP Map Pyramid 2/2
+▪ Example MIP Map
+▪ Self-Contained MIP Map for efficient storage
+Interactive Computer Graphics 19/07/2026 45
+[Seite 47]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+MIP Mapping Memory
+▪ 33% more memory is needed
+Interactive Computer Graphics 19/07/2026 46
+[Seite 48]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+MIP Mapping Procedure
+λ ∈ [0, N ]
+▪ Selection of the resolution levels based on continuous LoD level for a given fragment
+▪ Procedure
+• LoD level calculation
+λ
+• Intra-level interpolation: interpolation within two levels closest to
+• Inter-level interpolation: Interpolation of the results of intra-level interpolation based on
+λ
+decimal places of
+▪ Constant access cost due to precalculation of the texture pyramid (trilinear interpolation - requires
+three interpolations)
+Interactive Computer Graphics 19/07/2026 47
+[Seite 49]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+LoD Calculation 1/2
+▪ Assumptions
+[0, 1]2
+• 2D texture is parametrized with texture coordinates
+M M = 2N
+• 2D texture has texels with (power-of-two texture)
+λ [0, N ]
+• LoD has value range
+k
+▪ Choice of MIP Map level is critical
+k
+• too large - textured image appears blurry (too few texels used)
+k
+• too small - aliasing is not sufficiently reduced
+Interactive Computer Graphics 19/07/2026 48
+[Seite 50]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+LoD Calculation 2/2
+▪ Approximation of the preimage by square
+k
+▪ Calculation of the MIP map level
+A
+• Area of approximating square is
+b = A
+• Length of square’s side is
+k k = log b
+• MIP map level is 2
+Interactive Computer Graphics 19/07/2026 49
+[Seite 51]
+Seiten-Metadaten: Bilder=1, Rechtecke=54, Kurven=22, Linien=0
+Demo - Minification, Mipmaps, and Mipmap Level Visualization
+Stage Minified Floor
+minFilter GL_LINEAR_MIPMAP_LINEAR
+mipmapsEnabled
+lodBias 0
+visualizeMipLevels
+forceLodEnabled
+forcedLod 0
+textureFrequency 24
+cameraDistance 14
+cameraAngle 18
+animateCamera
+splitView
+Interactive Computer Graphics 19/07/2026 50
+Extrahierte Tabellen:
+[Tabelle 1]
+ | Stage Minified Floor minFilter GL_LINEAR_MIPMAP_LINEAR mipmapsEnabled lodBias 0 visualizeMipLevels forceLodEnabled forcedLod 0 textureFrequency 24 cameraDistance 14 cameraAngle 18 animateCamera splitView | Minified Floor
+[Seite 52]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+Anisotropic Filtering
+▪ Approximation of preimage through several squares
+Interactive Computer Graphics 19/07/2026 51
+[Seite 53]
+Seiten-Metadaten: Bilder=1, Rechtecke=39, Kurven=13, Linien=0
+Demo - Anisotropic Filtering
+Stage 1x vs Selected Anisotropy
+anisotropy 16x
+minFilter GL_LINEAR_MIPMAP_LINEAR
+textureFrequency 34
+cameraAngle 10
+cameraDistance 17
+animateCamera
+splitView
+Interactive Computer Graphics 19/07/2026 52
+Extrahierte Tabellen:
+[Tabelle 1]
+ | Stage 1x vs Selected Anisotropy anisotropy 16x minFilter GL_LINEAR_MIPMAP_LINEAR textureFrequency 34 cameraAngle 10 cameraDistance 17 animateCamera splitView | 1x vs Selected Anisotropy
+[Seite 54]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+9.4 Modern OpenGL Texture Pipeline
+Texture objects, sampler uniforms, and shader-based access
+Visual Computing Group
+Institute of Media Informatics
+[Seite 55]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+OpenGL Texturing
+▪ Texturing procedure
+• Fetch interpolated texel value from texture
+• Use texel value to modulate fragment color or depth
+▪ Configuration
+• Per texture
+• Provide texture storage and data
+• Configure texture filtering for minification and magnification
+• Configure texture wrapping
+• Generate mipmaps when mipmapped filters are used
+• Per geometric object
+• Associate texture coordinates with VAO
+• Bind texture object to texture unit
+• Set sampler uniform to texture unit
+Interactive Computer Graphics 19/07/2026 54
+[Seite 56]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+OpenGL Minification & Magnification 1/3
+▪ OpenGL exposes two texture filtering parameters:
+• GL_TEXTURE_MIN_FILTER
+• GL_TEXTURE_MAG_FILTER
+▪ Texture minification (GL_TEXTURE_MIN_FILTER) options
+• GL_NEAREST - nearest neighbor interpolation
+• GL_LINEAR - bilinear interpolation
+• GL_NEAREST_MIPMAP_NEAREST - nearest neighbor mipmap interpolation
+• GL_NEAREST_MIPMAP_LINEAR - linear interpolation of nearest neighbor mipmap interpolation
+• GL_LINEAR_MIPMAP_NEAREST - bilinear mipmap interpolation
+• GL_LINEAR_MIPMAP_LINEAR - trilinear mipmap interpolation
+▪ Texture magnification (GL_TEXTURE_MAG_FILTER) options -GL_NEAREST - nearest neighbor
+interpolation -GL_LINEAR - bilinear interpolation
+Interactive Computer Graphics 19/07/2026 55
+[Seite 57]
+Seiten-Metadaten: Bilder=0, Rechtecke=31, Kurven=2, Linien=0
+OpenGL Minification & Magnification 2/3
+▪ OpenGL bilinear filtering example
+1 glEnable(GL_TEXTURE_2D);
+2 glGenTextures(1, &textureID);
+3 glBindTexture(GL_TEXTURE_2D, textureID);
+4 ...
+5 // Set texture parameters for magnification and minification
+6 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+7 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+8 ...
+9 // Load texture image
+10 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 256, 256, 0,
+11 GL_RGB, GL_UNSIGNED_BYTE, texels);
+Interactive Computer Graphics 19/07/2026 56
+Extrahierte Tabellen:
+[Tabelle 1]
+1 glEnable(GL_TEXTURE_2D); 2 glGenTextures(1, &textureID); 3 glBindTexture(GL_TEXTURE_2D, textureID); 4 ... 5 // Set texture parameters for magnification and minification 6 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); 7 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); 8 ... 9 // Load texture image 10 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 256, 256, 0, 11 GL_RGB, GL_UNSIGNED_BYTE, texels);
+1 glEnable(GL_TEXTURE_2D); 2 glGenTextures(1, &textureID); 3 glBindTexture(GL_TEXTURE_2D, textureID); 4 ... 5 // Set texture parameters for magnification and minification 6 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); 7 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); 8 ... 9 // Load texture image 10 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 256, 256, 0, 11 GL_RGB, GL_UNSIGNED_BYTE, texels);
+[Tabelle 2]
+ | 1
+[Tabelle 3]
+ | 2
+[Tabelle 4]
+ | 3
+[Tabelle 5]
+ | 4
+[Tabelle 6]
+ | 5
+[Tabelle 7]
+ | 6
+[Tabelle 8]
+ | 7
+[Tabelle 9]
+ | 8
+[Tabelle 10]
+ | 9
+[Tabelle 11]
+ | 10
+[Tabelle 12]
+ | 11
+[Seite 58]
+Seiten-Metadaten: Bilder=0, Rechtecke=27, Kurven=2, Linien=0
+OpenGL Minification & Magnification 3/3
+▪ OpenGL mipmapping example
+1 glEnable(GL_TEXTURE_2D);
+2 glGenTextures(1, &textureID);
+3 glBindTexture(GL_TEXTURE_2D, textureID);
+4 ...
+5 // Load and generate mipmaps
+6 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+7 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+8 gluBuild2DMipmaps(GL_TEXTURE_2D, 3, 256, 256,
+9 GL_RGB, GL_UNSIGNED_BYTE, texels);
+Interactive Computer Graphics 19/07/2026 57
+Extrahierte Tabellen:
+[Tabelle 1]
+ | 1
+[Tabelle 2]
+ | 2
+[Tabelle 3]
+ | 3
+[Tabelle 4]
+ | 4
+[Tabelle 5]
+ | 5
+[Tabelle 6]
+ | 6
+[Tabelle 7]
+ | 7
+[Tabelle 8]
+ | 8
+[Tabelle 9]
+ | 9
+[Seite 59]
+Seiten-Metadaten: Bilder=1, Rechtecke=37, Kurven=12, Linien=0
+Demo - Texture Units and Sampler Uniforms
+Stage Combined Sampling
+textureUnit0 Checker
+textureUnit1 Brick
+textureUnit2 UV Test
+baseSamplerUnit 0
+detailSamplerUnit 1
+blendFactor 0.5
+detailScale 4
+showBindings
+Interactive Computer Graphics 19/07/2026 58
+Extrahierte Tabellen:
+[Tabelle 1]
+ | Stage Combined Sampling textureUnit0 Checker textureUnit1 Brick textureUnit2 UV Test baseSamplerUnit 0 detailSamplerUnit 1 blendFactor 0.5 detailScale 4 showBindings | Combined Sampling
+[Seite 60]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Texture Wrapping 1/4
+▪ Texture wrapping specifies border handling behavior when accessing texture outside the
+[0, 1]D
+normalized texture value range
+▪ Texture wrapping mode is part of texture specification, and specified separately for each texture
+dimension
+▪ Two main modes exist
+• Clamping: GL_CLAMP_TO_EDGE, GL_CLAMP_TO_BORDER
+• Repetition: GL_REPEAT, GL_MIRRORED_REPEAT
+Interactive Computer Graphics 19/07/2026 59
+[Seite 61]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+Texture Wrapping 2/4
+▪ GL_CLAMP_TO_EDGE
+• Texture coordinates below 0 become 0
+• Texture coordinates above 1 become 1
+• Results in constant continuation of texture
+▪ GL_CLAMP_TO_BORDER
+• Texture coordinates below 0 become 0
+• Texture coordinates above 1 become 1
+• Coordinates originally outside range mapped to definable border color
+Interactive Computer Graphics 19/07/2026 60
+[Seite 62]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Texture Wrapping 3/4
+▪ GL_REPEAT
+• Texture coordinates ignore digits before decimal point, and use digits after decimal point as
+texture coordinates
+• Results in periodic continuation of normalized texture space
+▪ GL_MIRRORED_REPEAT
+• Texture coordinates ignore digits before decimal point, and digits after decimal point are
+subtracted from 1 in alternating manner before used as texture coordinates
+• Results in periodic, mirrored continuation of normalized texture space
+Interactive Computer Graphics 19/07/2026 61
+[Seite 63]
+Seiten-Metadaten: Bilder=0, Rechtecke=28, Kurven=4, Linien=0
+Texture Wrapping 4/4
+▪ OpenGL code snippets
+1 glTextureParameteri(textureID, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+2 glTextureParameteri(textureID, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
+1 const GLfloat borderColor[] = { 1.0f, 1.0f, 0.0f, 1.0f };
+2
+3 glTextureParameteri(textureID, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+4 glTextureParameteri(textureID, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+5 glTextureParameterfv(textureID, GL_TEXTURE_BORDER_COLOR, borderColor);
+Interactive Computer Graphics 19/07/2026 62
+Extrahierte Tabellen:
+[Tabelle 1]
+ | 1
+[Tabelle 2]
+ | 2
+[Tabelle 3]
+ | 1
+[Tabelle 4]
+ | 2
+[Tabelle 5]
+ | 3
+[Tabelle 6]
+ | 4
+[Tabelle 7]
+ | 5
+[Seite 64]
+Seiten-Metadaten: Bilder=0, Rechtecke=24, Kurven=0, Linien=0
+Texel Value Usage
+▪ Older OpenGL versions support several modes for modulating fragment colors by texel colors
+F
+(today still relevant to reimplement in shader) - is current fragment with calculated color values
+C A T C A
+F and alpha values F - is current texture with color values T and alpha values T (or
+L C A C
+brightness values T ) - R and R are resulting color and alpha values - E is constant
+blending color
+Replace Modulate Decal Blend
+C = C C = C ⋅ C C = C C = (1 − C ) ⋅ C + C ⋅ C
+RGB R T R T F R T R T F T E
+A = A A = A A = A A = A
+R F R F R F R F
+C = C C = C ⋅ C C = (1 − A ) ⋅ C + A ⋅ C C = (1 − C ) ⋅ C + C ⋅ C
+RGBA R T R T F R T F T T R T F T E
+A = A A = A ⋅ A A = A A = A ⋅ A
+R T R T F R F R F T
+C = L C = L ⋅ C C = (1 − L ) ⋅ C + L ⋅ C
+L R T R T F Undefined R T F T E
+A = A A = A A = A
+R F R F R F
+C = L C = L ⋅ C C = (1 − L ) ⋅ C + L ⋅ C
+LA R T R T F Undefined R T F T E
+A = A A = A ⋅ A A = A ⋅ A
+R T R T F R T F
+Interactive Computer Graphics 19/07/2026 63
+[Seite 65]
+Seiten-Metadaten: Bilder=0, Rechtecke=29, Kurven=2, Linien=0
+Texturing in GLSL Shaders 1/3
+▪ Textures are bound to texture units
+▪ Sampler uniforms select the texture unit used by the shader
+1 glBindTextureUnit(0, texture2D);
+2 glBindTextureUnit(1, texture3D);
+3
+4 glUseProgram(p);
+5
+6 GLint tex2DLoc = glGetUniformLocation(p, "texture2D_");
+7 glUniform1i(tex2DLoc, 0);
+8
+9 GLint tex3DLoc = glGetUniformLocation(p, "texture3D_");
+10 glUniform1i(tex3DLoc, 1);
+Interactive Computer Graphics 19/07/2026 64
+Extrahierte Tabellen:
+[Tabelle 1]
+1 glBindTextureUnit(0, texture2D); 2 glBindTextureUnit(1, texture3D); 3 4 glUseProgram(p); 5 6 GLint tex2DLoc = glGetUniformLocation(p, "texture2D_"); 7 glUniform1i(tex2DLoc, 0); 8 9 GLint tex3DLoc = glGetUniformLocation(p, "texture3D_"); 10 glUniform1i(tex3DLoc, 1);
+1 glBindTextureUnit(0, texture2D); 2 glBindTextureUnit(1, texture3D); 3 4 glUseProgram(p); 5 6 GLint tex2DLoc = glGetUniformLocation(p, "texture2D_"); 7 glUniform1i(tex2DLoc, 0); 8 9 GLint tex3DLoc = glGetUniformLocation(p, "texture3D_"); 10 glUniform1i(tex3DLoc, 1);
+[Tabelle 2]
+ | 1
+[Tabelle 3]
+ | 2
+[Tabelle 4]
+ | 3
+[Tabelle 5]
+ | 4
+[Tabelle 6]
+ | 5
+[Tabelle 7]
+ | 6
+[Tabelle 8]
+ | 7
+[Tabelle 9]
+ | 8
+[Tabelle 10]
+ | 9
+[Tabelle 11]
+ | 10
+[Seite 66]
+Seiten-Metadaten: Bilder=0, Rechtecke=31, Kurven=2, Linien=0
+Texturing in GLSL Shaders 2/3
+▪ Vertex Shader
+1 layout(location = 0) in vec3 position;
+2 layout(location = 1) in vec3 texCoord;
+3
+4 out vec3 vTexCoord;
+5
+6 uniform mat4 modelViewProjectionMatrix;
+7
+8 void main() {
+9 vTexCoord = texCoord;
+10 gl_Position = modelViewProjectionMatrix * vec4(position, 1.0);
+11 }
+Interactive Computer Graphics 19/07/2026 65
+Extrahierte Tabellen:
+[Tabelle 1]
+1 layout(location = 0) in vec3 position; 2 layout(location = 1) in vec3 texCoord; 3 4 out vec3 vTexCoord; 5 6 uniform mat4 modelViewProjectionMatrix; 7 8 void main() { 9 vTexCoord = texCoord; 10 gl_Position = modelViewProjectionMatrix * vec4(position, 1.0); 11 }
+1 layout(location = 0) in vec3 position; 2 layout(location = 1) in vec3 texCoord; 3 4 out vec3 vTexCoord; 5 6 uniform mat4 modelViewProjectionMatrix; 7 8 void main() { 9 vTexCoord = texCoord; 10 gl_Position = modelViewProjectionMatrix * vec4(position, 1.0); 11 }
+[Tabelle 2]
+ | 1
+[Tabelle 3]
+ | 2
+[Tabelle 4]
+ | 3
+[Tabelle 5]
+ | 4
+[Tabelle 6]
+ | 5
+[Tabelle 7]
+ | 6
+[Tabelle 8]
+ | 7
+[Tabelle 9]
+ | 8
+[Tabelle 10]
+ | 9
+[Tabelle 11]
+ | 10
+[Tabelle 12]
+ | 11
+[Seite 67]
+Seiten-Metadaten: Bilder=0, Rechtecke=31, Kurven=2, Linien=0
+Texturing in GLSL Shaders 3/3
+▪ Fragment Shader
+1 in vec3 vTexCoord;
+2
+3 out vec4 fragmentColor;
+4
+5 uniform sampler2D texture2D_;
+6 uniform sampler3D texture3D_;
+7
+8 void main() {
+9 vec4 color0 = texture(texture3D_, vTexCoord);
+10 fragmentColor = color0.a * texture(texture2D_, vTexCoord.xy);
+11 }
+Interactive Computer Graphics 19/07/2026 66
+Extrahierte Tabellen:
+[Tabelle 1]
+1 in vec3 vTexCoord; 2 3 out vec4 fragmentColor; 4 5 uniform sampler2D texture2D_; 6 uniform sampler3D texture3D_; 7 8 void main() { 9 vec4 color0 = texture(texture3D_, vTexCoord); 10 fragmentColor = color0.a * texture(texture2D_, vTexCoord.xy); 11 }
+1 in vec3 vTexCoord; 2 3 out vec4 fragmentColor; 4 5 uniform sampler2D texture2D_; 6 uniform sampler3D texture3D_; 7 8 void main() { 9 vec4 color0 = texture(texture3D_, vTexCoord); 10 fragmentColor = color0.a * texture(texture2D_, vTexCoord.xy); 11 }
+[Tabelle 2]
+ | 1
+[Tabelle 3]
+ | 2
+[Tabelle 4]
+ | 3
+[Tabelle 5]
+ | 4
+[Tabelle 6]
+ | 5
+[Tabelle 7]
+ | 6
+[Tabelle 8]
+ | 7
+[Tabelle 9]
+ | 8
+[Tabelle 10]
+ | 9
+[Tabelle 11]
+ | 10
+[Tabelle 12]
+ | 11
+[Seite 68]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+9.5 Normal Mapping
+Encoding surface detail in texture space
+Visual Computing Group
+Institute of Media Informatics
+[Seite 69]
+Seiten-Metadaten: Bilder=4, Rechtecke=4, Kurven=0, Linien=0
+Motivation
+▪ Render content dichotomy
+• Shape: Triangles are used to generate geometric details
+k k k
+• Appearance: Textures are used to generate material variations ( a , d , s )
+▪ Consequences
+• Surface details require large amounts of triangles (which would impact rendering performance)
+• Material details captured by textures do not match geometric details captured by geometry
+Interactive Computer Graphics 19/07/2026 68
+[Seite 70]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Mesh Compression
+[source]
+Interactive Computer Graphics 19/07/2026 69
+[Seite 71]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Normal Mapping 1/2
+▪ Breaks dichotomy by representing geometric details in textures, as texels represent variations in
+surface normals
+⇒
+▪ Normal maps accompany diffuse maps with same resolution Material details and geometric
+details match
+Interactive Computer Graphics 19/07/2026 70
+[Seite 72]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+Normal Mapping 2/2
+k n⃗
+▪ During illumination computation d is fetched from the diffuse map, while is fetched from the
+normal map
+⃗
+I = k ⋅ L k ⋅ L ⋅ max(0, n⃗ ⋅ l ) + k ⋅ L ⋅ max(0, v⃗ ⋅ r )⃗ p
+▪
+a a + d d s s
+Interactive Computer Graphics 19/07/2026 71
+[Seite 73]
+Seiten-Metadaten: Bilder=0, Rechtecke=6, Kurven=0, Linien=0
+Normal Maps
+⇒
+▪ Normal vector components can be positive or negative Components need to be normalized to
+[0, 1] [−1, 1]
+before storage, and rescaled to after texture fetch
+n⃗ ′ := ( n⃗ ) + 0.5
+•
+Before storage:
+2
+′
+(n⃗ ∗2)−1
+• n⃗ :=
+After fetch:
+′
+||(n⃗ ∗2)−1||
+▪ Since normal errors are delicate, normal maps are often stored as OpenEXR high dynamic range
+(HDR) images (*. exr)
+• Readable with OpenEXR Library, FreeImage, DevIL, or stb_image
+Interactive Computer Graphics 19/07/2026 72
+[Seite 74]
+Seiten-Metadaten: Bilder=3, Rechtecke=4, Kurven=0, Linien=0
+Tangent Space
++z
+▪ Normal Map vectors align along axis and need to be transformed into view coordinate system
+before illumination computation
+▪ Tangent coordinate system spanned by
+→
+n
+•
+Normal t
+⃗
+t s
+• Tangent : slope in direction
+⃗
+b t
+•
+Binormal : slope in direction
+Interactive Computer Graphics 19/07/2026 73
+[Seite 75]
+Seiten-Metadaten: Bilder=1, Rechtecke=2, Kurven=0, Linien=0
+TBN Matrix
+▪ TBN matrix (Tangent, Bitangent, and Normal) is an orthonormal matrix, which transforms tangent
+space normal to view space normal
+▪ TBN matrix construction (similar to camera transformation)
+• TBN matrix contains three perpendicular vectors
+⃗
+t
+• First column vector: tangent
+⃗
+b
+•
+Second column vector: bitangent
+→
+n
+•
+Third column vector: normal t
+▪ Vector computation
+→
+n
+•
+t is obtained directly from the surface
+⃗ ⃗
+t b
+•
+and need to be computed
+[Seite 76]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Interactive Computer Graphics 19/07/2026 74
+[Seite 77]
+Seiten-Metadaten: Bilder=2, Rechtecke=2, Kurven=0, Linien=0
+Chapter 9 - Texturing
+Tangent Vector Derivation 1/2
+⃗ ⃗
+t b
+▪
+Observation: triangle edges can be expressed based on basis given by and
+⃗ ⃗
+e ⃗ = Δu ⋅ t + Δv ⋅ b
+0 0 0
+⃗ ⃗
+e ⃗ = Δu ⋅ t + Δv ⋅ b
+1 1 1
+⃗ ⃗
+t b
+▪
+These equations can be written in matrix form to be solved for and
+e e e Δu Δv t t t
+0x 0y 0z 0 0 x y z
+[ ] = [ ] [ ]
+e e e Δu Δv b b b
+1x 1y 1z 1 1 x y z
+[Seite 78]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Interactive Computer Graphics 19/07/2026 75
+[Seite 79]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=0
+Chapter 9 - Texturing
+Tangent Vector Derivation 2/2
+⃗ ⃗
+t b
+▪
+We can solve this matrix for and
+−1
+t t t Δu Δv e e e
+x y z 0 0 0x 0y 0z
+[ ] = [ ] [ ]
+b b b Δu Δv e e e
+x y z 1 1 1x 1y 1z
+t t t 1 Δv −Δv e e e
+x y z 1 0 0x 0y 0z
+[ ] = [ ] [ ]
+b b b Δu Δv − Δu Δv −Δu Δu e e e
+x y z 0 1 1 0 1 0 1x 1y 1z
+▪ Equivalently
+Δv e ⃗ − Δv e ⃗
+⃗ 1 0 0 1
+t =
+Δu Δv − Δu Δv
+0 1 1 0
+−Δu e ⃗ + Δu e ⃗
+⃗ 1 0 0 1
+b =
+Δu Δv − Δu Δv
+0 1 1 0
+[Seite 80]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Interactive Computer Graphics 19/07/2026 76
+[Seite 81]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Chapter 9 - Texturing
+Observations
+→
+⃗ ⃗ ⃗ ⃗
+t b n ⇒ t b
+▪
+and are perpendicular to each other as well as to t only one, or , needs to be
+computed, while the other can be derived through cross product
+⃗ ⃗
+t b ⇒
+▪
+and are the same for all vertices of a planar polygon Need only be computed once per
+polygon/triangle
+▪ TBN matrix can be used in two manners before computing illumination
+T BN
+• Transform tangent space normal with to view space (only one vector needs to be
+transformed)
+T BN −1
+• Transform light & view vector with to tangent space (two vectors need to be
+transformed; more efficient as per triangle)
+Interactive Computer Graphics 19/07/2026 77
+[Seite 82]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+Variations
+▪ Different variations of normal maps exist
+• Bump maps - specify displacement of surface points in normal direction
+⃗
+d
+•
+Vector offset bump maps - offset vector added to normal
+θ
+• Vector rotation bump maps - normal rotated given angle
+Interactive Computer Graphics 19/07/2026 78
+[Seite 83]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+9.6 Environment Mapping
+Sampling directional environment data for reflections and lighting
+Visual Computing Group
+Institute of Media Informatics
+[Seite 84]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Environment Mapping Motivation
+▪ Many reflective and glossy materials show light from their surroundings
+▪ Explicitly tracing all reflection rays is expensive in interactive rendering
+▪ Environment maps provide a compact representation of incident radiance
+▪ Typical use cases
+• mirror-like reflections
+• glossy reflections
+• skyboxes
+• image-based lighting
+Interactive Computer Graphics 19/07/2026 80
+[Seite 85]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+Environment Mapping Process
+▪ Environment mapping simulates reflections by sampling an image of the surrounding scene
+▪ The environment is treated as if it were infinitely far away
+▪ The reflected view direction determines which part of the environment is visible
+[Need for Speed no Limits]
+Interactive Computer Graphics 19/07/2026 81
+[Seite 86]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Environment Mapping Assumptions
+▪ The environment is assumed to be far away
+• translation of the object does not change the sampled environment
+▪ The reflected object does not reflect itself
+▪ Nearby dynamic objects are usually missing
+▪ The approximation works best for
+• distant surroundings
+• small reflective objects
+• moderately rough reflections
+• visually complex environments
+Interactive Computer Graphics 19/07/2026 82
+[Seite 87]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Environment Mapping 2/2
+V N
+▪ At the shaded surface point, the view vector is reflected about the normal
+R
+▪ The resulting reflection vector is used to access the environment map
+R
+▪ is calculated analog to the Phong illumination model
+R = 2 ⋅ (V ⋅ N ) ⋅ N − V
+▪ In GLSL, this is usually computed per fragment
+Interactive Computer Graphics 19/07/2026 83
+[Seite 88]
+Seiten-Metadaten: Bilder=1, Rechtecke=34, Kurven=19, Linien=0
+Demo - Cube-map Reflection Vector
+Stage Reflection Vector
+object Sphere
+showSkybox
+reflectionMode Reflection
+reflectivity 1
+baseColor
+showVectors
+showNormalVector
+showViewVector
+showReflectionVector
+debugCubeFaces
+animateCamera
+Interactive Computer Graphics 19/07/2026 84
+Extrahierte Tabellen:
+[Tabelle 1]
+ | Stage Reflection Vector object Sphere showSkybox reflectionMode Reflection reflectivity 1 baseColor showVectors showNormalVector showViewVector showReflectionVector debugCubeFaces animateCamera | Reflection Vector
+[Seite 89]
+Seiten-Metadaten: Bilder=3, Rechtecke=4, Kurven=0, Linien=0
+Environment Mapping Types 1/2
+▪ Different parameterizations store directional data in different ways
+▪ They differ with respect to
+• distortion
+• filtering behavior
+• hardware support
+• implementation complexity
+Interactive Computer Graphics 19/07/2026 85
+[Seite 90]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Environment Mapping Types 2/2
+▪ Spherical environment maps
+• compact representation in one 2D texture
+• strong distortion near the border
+• difficult filtering and interpolation behavior
+▪ Dual-paraboloid maps
+• avoid six cube faces
+• introduce distortion and seam issues
+• rarely used in modern teaching pipelines
+▪ Cube maps
+• better directional uniformity
+• direct hardware support
+• natural representation for skyboxes, reflections, and IBL
+▪ In modern real-time rendering, cube maps are the standard representation!
+Interactive Computer Graphics 19/07/2026 86
+[Seite 91]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+Spherical Mapping 1/2
+Interactive Computer Graphics 19/07/2026 87
+[Seite 92]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Spherical Mapping 2/2
+Interactive Computer Graphics 19/07/2026 88
+[Seite 93]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+Spherical Environment Mapping
+▪ A sphere map stores the environment as seen in a perfectly reflective sphere
+▪ It was useful before cube maps became widely supported in graphics hardware
+▪ It is mainly relevant today as historical context
+▪ Important limitations
+• non-uniform distortion
+• singularity at the outer border
+• problematic linear interpolation
+Interactive Computer Graphics 19/07/2026 89
+[Seite 94]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Sphere Map Distortion
+▪ Sphere-map texels represent differently sized regions of the environment
+▪ Distortion is especially problematic in the outer region of the map
+▪ Hardware performs linear texture filtering, not spherical interpolation
+▪ For modern real-time graphics, this is one reason cube maps are preferred
+Interactive Computer Graphics 19/07/2026 90
+[Seite 95]
+Seiten-Metadaten: Bilder=1, Rechtecke=39, Kurven=11, Linien=0
+Demo - Environment Map Distortion
+Stage Debug Distortion
+object Sphere
+environmentContent Debug
+mapType Spherical map
+mappingType Reflection
+diffuseColor
+specularity 1
+environmentBlend 0.95
+animateCamera
+Interactive Computer Graphics 19/07/2026 91
+Extrahierte Tabellen:
+[Tabelle 1]
+ | Stage Debug Distortion object Sphere environmentContent Debug mapType Spherical map mappingType Reflection diffuseColor specularity 1 environmentBlend 0.95 animateCamera | Debug Distortion
+[Seite 96]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Sphere Map Interpolation
+▪ Sphere maps represent non-linear images
+▪ Two sphere map texels should be interpolated along an arc
+• Graphics hardware does not support spherical interpolation
+• Interpolation in the inner area is little distorted
+• Interpolation in the outer area is highly distorted
+▪ arc interpolation
+▪ linear interpolation
+Interactive Computer Graphics 19/07/2026 92
+[Seite 97]
+Seiten-Metadaten: Bilder=0, Rechtecke=8, Kurven=0, Linien=0
+Sphere Map Coordinates
+▪ Sphere map texture coordinates are calculated in camera coordinates
+(0, 0, 0)
+• Camera in origin
+V −z +x +y
+• View direction along the -axis ( axis to the right, axis up)
+R V N
+▪ Reflection vectors calculated by mirroring on
+(s, t)
+▪ Texture coordinates in sphere map represented as follows
+R 1 R 1
+x y
+(st) = ( + + )
+2 ⋅ R2 + R2 + (R + 1)2 2 2 ⋅ R2 + R2 + (R + 1)2 2
+x y z x y z
+Interactive Computer Graphics 19/07/2026 93
+[Seite 98]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Cube Environment Mapping
+▪ Cube maps are represented by 6 square textures forming the sides of a cube
+▪ The cube is centered around the shading point or camera
+▪ Each face stores the environment as seen through one side of the cube
+▪ A 3D direction vector is used to select the face and lookup position
+Interactive Computer Graphics 19/07/2026 94
+[Seite 99]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+Cube Mapping Example 1/2
+Interactive Computer Graphics 19/07/2026 95
+[Seite 100]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+Cube Mapping Example 2/2
+Interactive Computer Graphics 19/07/2026 96
+[Seite 101]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+Cube Mapping Distortion
+▪ Cube maps still distort the environment
+▪ The distortion is distributed more uniformly than in sphere maps
+▪ There are no pole singularities
+▪ The main artifacts occur at cube-face boundaries
+Interactive Computer Graphics 19/07/2026 97
+[Seite 102]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Cube Map Texture Coordinates
+R = (R , R , R )
+▪ The reflection vector x y z is used as a 3D lookup direction
+R
+▪ The cube-map face is selected by the major axis of
+• largest absolute component determines the face
+▪ The remaining two components determine the 2D coordinates on that face
+▪ Texture lookup hides most of this logic from the shader programmer
+Interactive Computer Graphics 19/07/2026 98
+[Seite 103]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+Environment Mapping in OpenGL
+▪ In modern OpenGL, reflections are usually stored in a cube map
+• six square images form the faces of a virtual cube
+R
+• reflection vector is used as a 3D texture coordinate
+▪ Typical use cases
+• reflective objects
+• skyboxes
+• image-based lighting
+Environment-mapped Utah teapot; image: George7378, CC BY-SA 3.0. Sphere map vs. cube map illustration.
+Interactive Computer Graphics 19/07/2026 99
+[Seite 104]
+Seiten-Metadaten: Bilder=0, Rechtecke=31, Kurven=2, Linien=0
+Cube Map Texture Object
+▪ Cube maps are OpenGL texture objects with target GL_TEXTURE_CUBE_MAP
+▪ Each face is addressed by a separate cube-map face target
+▪ Use immutable storage for fixed size, format, and mipmap count
+1 GLuint envMap;
+2 glCreateTextures(GL_TEXTURE_CUBE_MAP, 1, &envMap);
+3
+4 glTextureStorage2D(envMap,
+5 mipLevels,
+6 GL_RGB16F,
+7 width,
+8 height);
+9
+10 for (int face = 0; face < 6; ++face) {
+11 glTextureSubImage3D(envMap,
+Interactive Computer Graphics 19/07/2026 100
+Extrahierte Tabellen:
+[Tabelle 1]
+ | 1 GLuint envMap; 2 glCreateTextures(GL_TEXTURE_CUBE_MAP, 1, &envMap); 3 4 glTextureStorage2D(envMap, 5 mipLevels, 6 GL_RGB16F, 7 width, 8 height); 9 10 for (int face = 0; face < 6; ++face) { 11 glTextureSubImage3D(envMap, |  | 
+ | 1 GLuint envMap; 2 glCreateTextures(GL_TEXTURE_CUBE_MAP, 1, &envMap); 3 4 glTextureStorage2D(envMap, 5 mipLevels, 6 GL_RGB16F, 7 width, 8 height); 9 10 for (int face = 0; face < 6; ++face) { 11 glTextureSubImage3D(envMap, |  | 
+ | 11 |  | 
+ | active Computer Graphics 19/07/2026 | 100 | 
+[Tabelle 2]
+ | 1
+[Tabelle 3]
+ | 2
+[Tabelle 4]
+ | 3
+[Tabelle 5]
+ | 4
+[Tabelle 6]
+ | 5
+[Tabelle 7]
+ | 6
+[Tabelle 8]
+ | 7
+[Tabelle 9]
+ | 8
+[Tabelle 10]
+ | 9
+[Tabelle 11]
+ | 10
+[Seite 105]
+Seiten-Metadaten: Bilder=1, Rechtecke=19, Kurven=2, Linien=0
+Sampling Direction
+▪ A cube map is sampled with a 3D direction vector
+▪ The largest absolute component of the direction selects the cube face
+▪ The remaining two components determine the 2D position on that face
+▪ For reflection mapping, use the reflected view vector
+1 vec3 V = normalize(cameraPosition - worldPosition);
+2 vec3 N = normalize(worldNormal);
+3 vec3 R = reflect(-V, N);
+4
+5 vec3 reflectedColor = texture(environmentMap, R).rgb; Cube-map lookup direction
+V N R
+using , , and
+Interactive Computer Graphics 19/07/2026 101
+Extrahierte Tabellen:
+[Tabelle 1]
+ | 1
+[Tabelle 2]
+ | 2
+[Tabelle 3]
+ | 3
+[Tabelle 4]
+ | 4
+[Tabelle 5]
+ | 5
+[Seite 106]
+Seiten-Metadaten: Bilder=0, Rechtecke=25, Kurven=2, Linien=0
+Environment Mapping in GLSL 1/2
+▪ Use samplerCube instead of sampler2D
+▪ Store positions and normals in world space
+▪ Keep the cube map fixed in world space
+• otherwise the reflection appears glued to the camera
+1 // Fragment shader
+2 in vec3 vWorldPosition;
+3 in vec3 vWorldNormal;
+4
+5 out vec4 fragmentColor;
+6
+7 uniform vec3 cameraPosition;
+8 uniform samplerCube environmentMap;
+Interactive Computer Graphics 19/07/2026 102
+Extrahierte Tabellen:
+[Tabelle 1]
+ | 1 // Fragment shader 2 in vec3 vWorldPosition; 3 in vec3 vWorldNormal; 4 5 out vec4 fragmentColor; 6 7 uniform vec3 cameraPosition; 8 uniform samplerCube environmentMap;
+ | 1 // Fragment shader 2 in vec3 vWorldPosition; 3 in vec3 vWorldNormal; 4 5 out vec4 fragmentColor; 6 7 uniform vec3 cameraPosition; 8 uniform samplerCube environmentMap;
+ | 8
+[Tabelle 2]
+ | 1
+[Tabelle 3]
+ | 2
+[Tabelle 4]
+ | 3
+[Tabelle 5]
+ | 4
+[Tabelle 6]
+ | 5
+[Tabelle 7]
+ | 6
+[Tabelle 8]
+ | 7
+[Seite 107]
+Seiten-Metadaten: Bilder=0, Rechtecke=27, Kurven=2, Linien=0
+Environment Mapping in GLSL 2/2
+1 void main()
+2 {
+3 vec3 V = normalize(cameraPosition - vWorldPosition);
+4 vec3 N = normalize(vWorldNormal);
+5 vec3 R = reflect(-V, N);
+6
+7 vec3 env = texture(environmentMap, R).rgb;
+8 fragmentColor = vec4(env, 1.0);
+9 }
+Interactive Computer Graphics 19/07/2026 103
+Extrahierte Tabellen:
+[Tabelle 1]
+ | 1
+[Tabelle 2]
+ | 2
+[Tabelle 3]
+ | 3
+[Tabelle 4]
+ | 4
+[Tabelle 5]
+ | 5
+[Tabelle 6]
+ | 6
+[Tabelle 7]
+ | 7
+[Tabelle 8]
+ | 8
+[Tabelle 9]
+ | 9
+[Seite 108]
+Seiten-Metadaten: Bilder=0, Rechtecke=2, Kurven=0, Linien=0
+Practical Cube-Map Issues
+▪ Cube-map reflections are an approximation
+• environment is assumed to be far away
+• object does not reflect itself
+• other moving objects are usually missing
+▪ Important implementation details
+• use mipmaps for glossy / blurred reflections
+• enable seamless cube-map filtering where available
+• sample color maps in the correct color space
+• use dynamic cube maps only when reflections must update
+[Seite 109]
+Seiten-Metadaten: Bilder=1, Rechtecke=15, Kurven=2, Linien=0
+1 glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
+2
+3 glTextureParameteri(envMap,
+Glass Utah teapot rendering; image: Ronak19, CC
+BY-SA 4.0.
+Interactive Computer Graphics 19/07/2026 104
+Extrahierte Tabellen:
+[Tabelle 1]
+1 glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS); 2 3 glTextureParameteri(envMap, | 
+1 glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS); 2 3 glTextureParameteri(envMap, | 
+[Tabelle 2]
+ | 1
+[Tabelle 3]
+ | 2
+[Tabelle 4]
+ | 3
+[Seite 110]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Chapter 9 - Texturing
+Cube Mapping Pros and Cons
+▪ Advantages
+• direct hardware support
+• limited distortion
+• no pole singularities
+• natural representation for directional data
+• suitable for skyboxes, reflections, and IBL
+▪ Disadvantages
+• seams may occur at cube-face boundaries
+• face orientation must be consistent
+• filtering and compression can reveal edges
+• local reflections are only approximate
+Interactive Computer Graphics 19/07/2026 105
+[Seite 111]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Spherical Environment Mapping Assumptions
+▪ Environment assumed far from object to be textured
+▪ Self-reflection not taken into account
+• Object to be textured assumed a convex shape(even if it is not geometrically convex)
+▪ No other moving objects in the environment
+• Interreflection is not taken into account
+▪ Object to be textured curved as much as possible
+• Visually suppresses distortions
+Interactive Computer Graphics 19/07/2026 106
+[Seite 112]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Spherical Environment Mapping Conclusions
+▪ Advantages
+• Contains panoramic image of an environment in a single texture
+• Filtering and LoD formation takes place within a single texture
+▪ Disadvantages
+• Singularity along the outer disc border
+• Linear interpolation performed by graphics hardware
+• Distortion and filtering problems increase in front half-space
+• 2D texture memory is not fully utilized
+• Generation of panoramic images not supported by graphics hardware
+Interactive Computer Graphics 19/07/2026 107
+[Seite 113]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+9.7 3D Textures and Volume Rendering
+Texturing volumetric data, solid materials, and participating media
+Visual Computing Group
+Institute of Media Informatics
+[Seite 114]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+3D Texturing: Relevant Topics
+▪ Data model
+• Regular voxel grids, channels, formats, memory footprint
+▪ Mapping model
+(s, t, r)
+• Texture coordinates and object-to-texture transformations
+▪ Sampling model
+• Trilinear interpolation, 3D mipmaps, filtering artifacts
+▪ Rendering model
+• Solid texturing, slice-based volume rendering, ray marching
+▪ Appearance model
+• Transfer functions, compositing, gradients, and lighting
+▪ Performance model
+• Step size, empty-space skipping, early termination, bricking
+Interactive Computer Graphics 19/07/2026 109
+[Seite 115]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+3D Texture as a Voxel Grid
+▪ A 3D texture stores samples on a regular three-dimensional grid
+▪ A sample is often called a voxel
+▪ Each voxel can store scalar, vector, or multi-channel data
+• Density, temperature, material ID
+• Color and opacity
+• Vector fields or simulation attributes
+▪ The shader accesses the grid through normalized texture coordinates
+3
+(s, t, r) ∈ [0, 1]
+Interactive Computer Graphics 19/07/2026 110
+[Seite 116]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=0
+Object Space to Texture Space
+▪ 3D texture coordinates are usually derived from object-space position
+▪ For a volume-aligned bounding box
+p − p
+object min
+(s, t, r) =
+p − p
+max min
+▪ A texture-coordinate transformation can translate, scale, or rotate the volume
+▪ This makes the texture behave like material inside the object, not like a 2D decal on the surface
+Interactive Computer Graphics 19/07/2026 111
+[Seite 117]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+3D Texture Access
+▪ For each fragment, texture coordinates are interpolated
+▪ A 3D lookup fetches the neighboring voxel values
+▪ Linear filtering in 3D performs trilinear interpolation
+Interactive Computer Graphics 19/07/2026 112
+[Seite 118]
+Seiten-Metadaten: Bilder=0, Rechtecke=2, Kurven=0, Linien=0
+Trilinear Interpolation
+▪ Trilinear interpolation is linear interpolation along three axes
+▪ It blends the eight voxel values surrounding the lookup position
+▪ Conceptually
+s
+• interpolate along
+t
+• interpolate the results along
+r
+• interpolate the results along
+[Seite 119]
+Seiten-Metadaten: Bilder=1, Rechtecke=4, Kurven=0, Linien=0
+f = (1 − α) ⋅ f + α ⋅ f
+00 000 100
+f = (1 − α) ⋅ f + α ⋅ f
+01 001 101
+f = (1 − α) ⋅ f + α ⋅ f
+10 010 110
+f = (1 − α) ⋅ f + α ⋅ f
+11 011 111
+f = (1 − β) ⋅ f + β ⋅ f
+0 00 10
+f = (1 − β) ⋅ f + β ⋅ f
+1 01 11
+f (s, t, r) = (1 − γ) ⋅ f + γ ⋅ f
+0 1
+Interactive Computer Graphics 19/07/2026 113
+[Seite 120]
+Seiten-Metadaten: Bilder=0, Rechtecke=25, Kurven=0, Linien=0
+Chapter 9 - Texturing
+3D Texture Memory Footprint
+▪ Memory grows cubically with resolution
+memory = w ⋅ h ⋅ d ⋅ bytes per voxel
+Resolution R8 R16F RGBA8 RGBA16F
+1 B/voxel 2 B/voxel 4 B/voxel 8 B/voxel
+1283
+2 MiB 4 MiB 8 MiB 16 MiB
+2563
+16 MiB 32 MiB 64 MiB 128 MiB
+5123
+128 MiB 256 MiB 512 MiB 1 GiB
+10243
+1 GiB 2 GiB 4 GiB 8 GiB
+▪ A full 3D mipmap chain adds about one seventh
+8
+memory with mipmaps ≈ ⋅ base level memory
+7
+Interactive Computer Graphics 19/07/2026 114
+[Seite 121]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+3D Mipmaps and Filtering
+▪ 3D textures can use mipmaps analogously to 2D textures
+▪ Each mip level halves width, height, and depth
+k + 1 k
+▪ Level contains one eighth of the voxels of level
+▪ Useful for
+• reducing aliasing during minification
+• representing multi-scale volume detail
+• accelerating coarse previews or LoD rendering
+▪ Limitation
+• mipmapping averages data values, which can change semantic meaning for labels or sparse
+densities
+Interactive Computer Graphics 19/07/2026 115
+[Seite 122]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+Solid Texturing
+▪ 3D textures can define material throughout the interior of an object
+▪ Surface fragments sample the material at their 3D position
+▪ This avoids seams caused by 2D UV unwrapping
+▪ Useful for materials with volumetric structure
+• wood grain
+• marble
+• stone
+• noise-based procedural detail
+Images adapted from [Kopf et al., SIGGRAPH 2007]
+Interactive Computer Graphics 19/07/2026 116
+[Seite 123]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Volumetric Data as Texture Data
+▪ Volume data is often represented as a scalar field
+ρ = f (x, y, z)
+▪ Examples
+• CT or MRI intensity
+• smoke density
+• cloud water content
+• scientific simulation values
+▪ Store the scalar field in a 3D texture
+▪ The shader converts sampled values into visual appearance
+Interactive Computer Graphics 19/07/2026 117
+[Seite 124]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Transfer Functions
+▪ A transfer function maps data values to optical properties
+T (ρ) = (c, α)
+c
+▪ Color emphasizes material classes or value ranges
+α
+▪ Opacity controls which structures become visible
+▪ Common choices
+→
+• 1D transfer function: scalar value color and opacity
+→
+• 2D transfer function: value and gradient magnitude color and opacity
+▪ Transfer-function design is often the central interaction in volume rendering
+Interactive Computer Graphics 19/07/2026 118
+[Seite 125]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=0
+Volume Rendering with 3D Textures
+▪ 3D grid data is stored in a 3D texture
+▪ Slice-based volume rendering draws proxy geometry through the volume
+▪ Slices are usually orthogonal to the view direction
+▪ Each slice samples the 3D texture and applies the transfer function
+▪ Slices are blended back to front or front to back
+Interactive Computer Graphics 19/07/2026 119
+[Seite 126]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Front-to-Back Alpha Compositing
+▪ Volume rendering approximates absorption and emission along a ray
+c α
+▪ For a sample with color i and opacity i
+C = C + (1 − α ) ⋅ α ⋅ c
+out in in i i
+α = α + (1 − α ) ⋅ α
+out in in i
+▪ Front-to-back compositing enables early ray termination
+▪ Stop when accumulated opacity is close to one
+Interactive Computer Graphics 19/07/2026 120
+[Seite 127]
+Seiten-Metadaten: Bilder=0, Rechtecke=25, Kurven=2, Linien=0
+Ray Marching Volume Rendering
+▪ Instead of drawing slices, cast one ray per fragment through the volume
+▪ Repeatedly sample the 3D texture along the ray
+▪ Apply the transfer function at every sample
+▪ Composite samples until the ray exits the volume or becomes opaque
+1 for (float t = tEntry; t < tExit; t += stepSize) {
+2 vec3 p = rayOrigin + t * rayDirection;
+3 float rho = texture(volumeTex, p).r;
+4 vec4 sample = texture(transferTex, rho);
+5 color.rgb += (1.0 - color.a) * sample.a * sample.rgb;
+6 color.a += (1.0 - color.a) * sample.a;
+7 if (color.a > 0.98) break;
+8 }
+Interactive Computer Graphics 19/07/2026 121
+Extrahierte Tabellen:
+[Tabelle 1]
+ | 1 for (float t = tEntry; t < tExit; t += stepSize) { 2 vec3 p = rayOrigin + t * rayDirection; 3 float rho = texture(volumeTex, p).r; 4 vec4 sample = texture(transferTex, rho); 5 color.rgb += (1.0 - color.a) * sample.a * sample.rgb; 6 color.a += (1.0 - color.a) * sample.a; 7 if (color.a > 0.98) break; 8 }
+ | 1 for (float t = tEntry; t < tExit; t += stepSize) { 2 vec3 p = rayOrigin + t * rayDirection; 3 float rho = texture(volumeTex, p).r; 4 vec4 sample = texture(transferTex, rho); 5 color.rgb += (1.0 - color.a) * sample.a * sample.rgb; 6 color.a += (1.0 - color.a) * sample.a; 7 if (color.a > 0.98) break; 8 }
+ | 8
+[Tabelle 2]
+ | 1
+[Tabelle 3]
+ | 2
+[Tabelle 4]
+ | 3
+[Tabelle 5]
+ | 4
+[Tabelle 6]
+ | 5
+[Tabelle 7]
+ | 6
+[Tabelle 8]
+ | 7
+[Seite 128]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Gradients and Volume Lighting
+▪ Gradients estimate local orientation in the scalar field
+▪ Central differences approximate the gradient
+ρ(x + Δ, y, z) − ρ(x − Δ, y, z)
+⎡ ⎤
+∇ρ ≈ ⎢ ρ(x, y + Δ, z) − ρ(x, y − Δ, z) ⎥
+⎣ ⎦
+ρ(x, y, z + Δ) − ρ(x, y, z − Δ)
+▪ The normalized gradient can be used like a surface normal
+▪ This enables Phong-like or physically based lighting effects inside the volume
+Interactive Computer Graphics 19/07/2026 122
+[Seite 129]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Quality and Performance Trade-Offs
+▪ Step size
+• smaller steps improve quality but increase cost
+• larger steps are faster but can miss thin structures
+▪ Opacity correction
+• keeps appearance stable when step size changes
+▪ Acceleration
+• early ray termination
+• empty-space skipping
+• bricking and paging for large volumes
+• lower-resolution mip levels for previews
+▪ Main trade-off: image quality versus samples per ray
+Interactive Computer Graphics 19/07/2026 123
+[Seite 130]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+3D Texturing Takeaways
+▪ 3D textures generalize 2D texture lookup from surfaces to volumes
+▪ They are useful for solid materials, volumetric effects, and sampled scientific data
+▪ Trilinear interpolation provides smooth access to voxel grids
+▪ Volume rendering turns sampled data into color and opacity along viewing rays
+▪ Transfer functions and compositing determine what becomes visible
+▪ Performance is dominated by memory footprint and number of samples
+Interactive Computer Graphics 19/07/2026 124
+[Seite 131]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+Chapter Summary
+▪ Textures are sampled GPU data sources used by shaders
+• Color, opacity, normals, roughness, height, masks, and volume density
+▪ Texture coordinates define where texture data is sampled
+(s, t, r)
+• UV mapping, texture transformations, and 3D coordinates
+▪ Texture formats, channel semantics, and color space determine correct interpretation
+• Color textures use sRGB decoding; data textures stay linear
+▪ Filtering, mipmapping, and anisotropy control reconstruction quality
+• They reduce aliasing during magnification and minification
+▪ Specialized texture mappings add appearance detail without adding geometry
+• Normal mapping, environment mapping, material texture stacks
+▪ 3D textures extend texturing from surfaces to volumes
+• Voxels, transfer functions, ray marching, compositing, and gradients
+Interactive Computer Graphics 19/07/2026 125
+[Seite 132]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+References
+Literature and other sources used in this chapter
+Visual Computing Group
+Institute of Media Informatics
+[Seite 133]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=0
+References
+▪ Text Books
+• J. Foley, A. van Dam, S. Fine”Computer Graphics: Principles and Practice (3About Edition)“,
+Addison-Wesley 2013.
+• T. Akenine-Möller, E. Haines: Real-Time Rendering, Addison-Wesley.
+• P. Shirley, M. AshikhminS. Marschner: Fundamentals of Computer Graphics (3rd ed. Edition), AK
+Peters 2009. (Chapter 11: Texture Mapping)
+▪ Others
+• Mark J. Kilgard: A Practical and Robust Bump mapping Technique for Today‘s GPUs
+Interactive Computer Graphics 19/07/2026 127
+Chapter 9 - Texturing

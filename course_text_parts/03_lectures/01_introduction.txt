@@ -1,0 +1,630 @@
+Kapitel 01: Introduction - Moodle-Seite
+---------------------------------------
+Quelle: lectures/01-introduction/index.html
+
+Moodle Lernplattform Universität Ulm - Interaktive Computergrafik 
+Moodle Lernplattform Universität Ulm
+Interaktive Computergrafik 
+CS8165.001-SS26 
+Chap01 - Introduction (15.04.26)
+Diese Seite ist Teil des Inhalts, der von Chap01 - Introduction (15.04.26) am Dienstag, 25. August 2026, 20:30 heruntergeladen wurde. Beachten Sie, dass einige Inhalte und alle Dateien, die größer als 2 GB sind, nicht heruntergeladen werden. 
+Dateien und Verzeichnisse 
+01-introduction.pdf 
+Diese Datei ist Teil des Inhalts, der am Dienstag, 25. August 2026, 20:30 von Maksym Morozov von Interaktive Computergrafik heruntergeladen wurde.
+
+Externe Links:
+- Moodle Lernplattform Universität Ulm: https://moodle.uni-ulm.de
+- Chap01 - Introduction (15.04.26): https://moodle.uni-ulm.de/mod/resource/view.php?id=1015650
+- Interaktive Computergrafik: https://moodle.uni-ulm.de/course/view.php?id=77076
+
+Kapitel 01: Introduction - Folien
+---------------------------------
+Quelle: lectures/01-introduction/slides/01-introduction.pdf
+
+[Seite 1]
+Seiten-Metadaten: Bilder=2, Rechtecke=2, Kurven=0, Linien=0
+Interactive Computer Graphics
+Chapter 1 – Introduction
+Summer Term 2026
+Timo Ropinski
+Visual Computing Group
+Institute of Media Informatics
+[Seite 2]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Course Learning Outcomes
+ Understand theoretical foundations of interactive computer graphics
+ Learn to program computer graphics applications using OpenGL
+ Learn to realize efficient computer graphics applications on the GPU
+ Implement your own computer graphics project
+[Image Credits: Wikipedia User Mimigu] [Crassin et al., PG2011]
+Interactive Computer Graphics
+15/04/2026 2
+Chapter 1 – Introduction
+[Seite 3]
+Seiten-Metadaten: Bilder=5, Rechtecke=4, Kurven=0, Linien=1
+Real-Time Rendering Contest Results 1/3
+Students: Frank Richter, Manuel Herbert Güntzel
+Interactive Computer Graphics
+15/04/2026
+Chapter 1 – Introduction
+[Seite 4]
+Seiten-Metadaten: Bilder=5, Rechtecke=4, Kurven=0, Linien=1
+Real-Time Rendering Contest Results 2/3
+Students: Andreas Rottach, Matthias Englert
+Interactive Computer Graphics
+15/04/2026 4
+Chapter 1 – Introduction
+[Seite 5]
+Seiten-Metadaten: Bilder=5, Rechtecke=4, Kurven=0, Linien=1
+Real-Time Rendering Contest Results 3/3
+Students: Jan Eric Haßler, Kai Viktor Freissler
+Interactive Computer Graphics
+15/04/2026 5
+Chapter 1 – Introduction
+[Seite 6]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+1.1 Course Organization
+Details about the lecture course
+Visual Computing Group
+Institute of Media Informatics
+6
+[Seite 7]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=3, Linien=1
+Teachers
+ Lectures
+Timo Ropinski
+timo.ropinski@uni-ulm.de
+Office hours upon request
+ Exercises
+Poonam Aditya Sawant
+poonam.poonam@uni-ulm.de aditaya.sawant@uni-ulm.de
+Office hours upon request
+Interactive Computer Graphics
+15/04/2026 7
+Chapter 1 – Introduction
+[Seite 8]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Course Format
+ Lectures
+(cid:127) Tuesday (14-16) and every other Wednesdays (12-14)
+(cid:127) Room O28/1002
+(cid:127) Specific dates/modalities in Moodle (password: ICG26SUMMER )
+(cid:127) Lecture slides
+(cid:127) Available before lecture in Moodle
+(cid:127) Will be in general not self-explanatory
+Interactive Computer Graphics
+15/04/2026 8
+Chapter 1 – Introduction
+[Seite 9]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Course Format
+ Exercises
+(cid:127) Every other Wednesday (12-14)
+(cid:127) Room O28/1002
+(cid:127) Programming in C/C++ (introduction available upon request)
+(cid:127) Enroll in Moodle
+Interactive Computer Graphics
+15/04/2026 9
+Chapter 1 – Introduction
+[Seite 10]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Exercises
+ Exercise
+(cid:127) Exercise 1 – Rendering Pipeline
+(cid:127) Exercise 2 – Primitive Types and Shaders
+(cid:127) Exercise 3 – Geometric Transformations
+(cid:127) Exercise 4 – Projection and Clipping
+(cid:127) Exercise 5 – Rasterization
+(cid:127) Project Exercise – Real-Time Rendering Contest
+ Exercise sheets cover theory and practice
+(cid:127) New exercises released on Tuesday evenings 6pm
+(cid:127) Hand in by another Tuesday evenings 23:55pm
+ Exercise solutions to be submitted by teams of two students
+Interactive Computer Graphics
+15/04/2026 10
+Chapter 1 – Introduction
+[Seite 11]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Successful Course Completion
+ Pass the oral/written exam
+(cid:127) Dates to be announced
+ „Notenbonus“ possible
+(cid:127) 50% success rate of exercise solutions for n-1 sheets
+(cid:127) Only running solutions are marked
+ Presentation of the solution for one exercise
+(cid:127) Detailed derivation of the solution
+(cid:127) Addressing questions of fellow students
+Interactive Computer Graphics
+15/04/2026 11
+Chapter 1 – Introduction
+[Seite 12]
+Seiten-Metadaten: Bilder=1, Rechtecke=5, Kurven=0, Linien=1
+Course Overview
+ Chapter 1 – Introduction
+Background
+ Chapter 2 – The Rendering Pipeline
+ Chapter 3 – Geometric Transformations
+ Chapter 4 – Geometric Projection
+ Chapter 5 – Clipping
+Journey along the
+ Chapter 6 – Rasterization
+Rendering Pipeline
+ Chapter 7 – Visibility Determination
+ Chapter 8 – Illumination and Shading
+ Chapter 9 – Texturing
+ Chapter 10 – Real-Time Shadows
+Lighting Effects
+ Chapter 11 – Ray Tracing
+Interactive Computer Graphics
+15/04/2026 12
+Chapter 1 – Introduction
+Extrahierte Tabellen:
+[Tabelle 1]
+Chapter 3 – Geometric Transformations Chapter 4 – Geometric Projection Chapter 5 – Clipping Journey along the Chapter 6 – Rasterization Rendering Pipeline Chapter 7 – Visibility Determination Chapter 8 – Illumination and Shading Chapter 9 – Texturing
+Chapter 10 – Real-Time Shadows Lighting Effects Chapter 11 – Ray Tracing
+[Seite 13]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Literature
+ P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics
+(4th Edition), AK Peters 2016.
+ D. Shreiner, G. Sellers, J. Kessenich, B. Licea-Kane: OpenGL Programming
+Guide: The Official Guide to Learning OpenGL
+(8th Edition), Addison-Wesley 2013.
+ References provided at end of each
+chapter
+Interactive Computer Graphics
+15/04/2026 13
+Chapter 1 – Introduction
+[Seite 14]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=1, Linien=1
+Relevant Chapters and Link to Lecture Course
+ Chapter 1: Introduction
+ Chapter 3: Raster Images (Our Chapter 1)
+ Chapter 19: Color
+ Chapter 8: The Graphics Pipeline (Our Chapter 2)
+ Chapter 6: Transformation Matrices (Our Chapter 3)
+ Chapter 7: Viewing (Our Chapter 4)
+ Chapter 10: Surface Shading (Our Chapter 8)
+ Chapter 11: Texture Mapping (Our Chapter 9)
+ Chapter 4: Ray Tracing (Our Chapter 11)
+ For self study
+(cid:127) Chapter 2: Miscellaneous Math
+(cid:127) Chapter 5: Linear Algebra
+Interactive Computer Graphics
+15/04/2026 14
+Chapter 1 – Introduction
+[Seite 15]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Chapter Outline
+(1.1 Course Organization)
+1.2 Computer Graphics Overview
+1.3 Pixel-based Representations
+1.4 3D Models
+1.5 Algorithmic Paradigms
+References
+Interactive Computer Graphics
+15/04/2026 15
+Chapter 1 – Introduction
+[Seite 16]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+1.2 Computer Graphics Overview
+Relation of the field with respect to other disciplines
+Visual Computing Group
+Institute of Media Informatics
+16
+[Seite 17]
+Seiten-Metadaten: Bilder=7, Rechtecke=6, Kurven=5, Linien=1
+Computer Graphics History
+ Origins in art
+(cid:127) Perspective, color, etc.
+ Computer graphics milestones [Reichardt, 1968]
+(cid:127) 1960 – „Computer Graphics“, William Fetter (Boeing)
+(cid:127) 1962 – Spacewars, Steve Russel (MIT) Computer
+Graphics
+(cid:127) 1963 – Simulation of a two-giro gravity
+attitude control system, Edward Zajac (Bell)
+(cid:127) 1963 – Sketchpad, Ivan Sutherland (MIT)
+(cid:127) 1964 – Boeing Man, William Fetter (Boeing)
+(cid:127) 1966 – Head Mounted Display, Ivan Sutherland (MIT)
+(cid:127) 1968 – Ray Casting, Arthur Appel (IBM)
+(cid:127) 1979 – Ray Tracing, Turner Whitted (Bell) William Fetter (1963)
+[Photo by Brant Fetter provided through Wikimedia]
+Interactive Computer Graphics
+15/04/2026 17
+Chapter 1 – Introduction
+[Seite 18]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Computer Graphics History
+Sutherland, Utah (1970) Wireframe
+Interactive Computer Graphics
+15/04/2026 18
+Chapter 1 – Introduction
+[Seite 19]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Computer Graphics History
+Sutherland, Utah (1970) Turner Whitted, Siggraph (1979)
+Interactive Computer Graphics
+15/04/2026 19
+Chapter 1 – Introduction
+[Seite 20]
+Seiten-Metadaten: Bilder=6, Rechtecke=3, Kurven=0, Linien=1
+Computer Graphics History
+The Abyss (1989) Terminator 2 (1991) Jurassic Park (1993)
+Interactive Computer Graphics
+15/04/2026 20
+Chapter 1 – Introduction
+[Seite 21]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Computer Graphics History
+Ikea (2014)
+Interactive Computer Graphics
+15/04/2026 21
+Chapter 1 – Introduction
+[Seite 22]
+Seiten-Metadaten: Bilder=0, Rechtecke=8, Kurven=10, Linien=1
+Related Disciplines
+ Human-Computer Interaction
+ Virtual and Augmented Reality
+ Visualization
+ Image Processing
+ Computer Vision
+ 3D Scanning
+Human-Computer Interaction
+Computer Vision Virtual Reality
+3D Scanning Model Image Human
+Computer Graphics Visualization
+Image Processing
+Interactive Computer Graphics
+15/04/2026 22
+Chapter 1 – Introduction
+Extrahierte Tabellen:
+[Tabelle 1]
+Image
+[Seite 23]
+Seiten-Metadaten: Bilder=8, Rechtecke=3, Kurven=0, Linien=1
+Applications
+ Computer games
+ Animation movies
+ Special effects in movies
+ CAD/CAM [CryEngine 5.7, CryTek 2022]
+ Simulation
+[Terminator 2, Tri-Star Pictures 1991] [Toy Story, Pixar 1995] [Avatar: Way of Water, 20th Century 2022]
+Interactive Computer Graphics
+15/04/2026 23
+Chapter 1 – Introduction
+[Seite 24]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+1.3 Pixel-based Representations
+What is a pixel?
+Visual Computing Group
+Institute of Media Informatics
+[Seite 25]
+Seiten-Metadaten: Bilder=4, Rechtecke=404, Kurven=2, Linien=1
+Raster Images
+[„Bibliothek“ by press office Ulm University]
+Interactive Computer Graphics
+15/04/2026 25
+Chapter 1 – Introduction
+[Seite 26]
+Seiten-Metadaten: Bilder=3, Rechtecke=6, Kurven=0, Linien=1
+Pixel
+ Name derived from Word for Picture Element
+ Pixel is a sample with associated sample values (=pixel components)
+(cid:127) Color
+(cid:127) Transparency (=alpha value)
+(cid:127) Depth (i.e., distance from viewer (=z value))
+(cid:127) …
+ Each sample value stored at given precision
+(bit depth)
+(cid:127) e.g. 24 Bit color, 8 Bit alpha + 24 Bit depth
+Interactive Computer Graphics
+15/04/2026 26
+Chapter 1 – Introduction
+[Seite 27]
+Seiten-Metadaten: Bilder=3, Rechtecke=7, Kurven=0, Linien=1
+Color
+ In real world color is given
+by color spectrum Day Light Light Bulb
+Fluorescent Tube White LED
+ In computer graphics color is represented through color models
+(cid:127) RGB color model (additive)
+(cid:127) CMYK color model (subtractive)
+(cid:127) HSV color model (user-centered)
+RGB CMYK
+Interactive Computer Graphics
+15/04/2026 27
+Chapter 1 – Introduction
+[Seite 28]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+LCD Raster Screen
+ Liquid crystal displays exist since the 90s and enable flat screens
+ Liquid crystals affect the polarization of light
+ Based on polarization, subpixel visibility is regulated
+Interactive Computer Graphics
+15/04/2026 28
+Chapter 1 – Introduction
+[Seite 29]
+Seiten-Metadaten: Bilder=0, Rechtecke=4, Kurven=0, Linien=1
+Raster Image Sizes
+ Assume a raster image with 1024x768 pixels and 24 Bit color depth
+(cid:127) How many different colors can be represented?
+(cid:127) 224 = 28 (cid:521) 28 (cid:521) 28 = 16.777.216
+(cid:127) How much memory does the image need?
+(cid:127) 1024 (cid:521) 768 (cid:521) 24 = 18.874.368𝑏 = 2.359.296𝐵 = 2,25𝑀i𝐵
+(cid:127) How long is each image visible at a frame rate of 30Hz?
+1.000𝑚𝑠
+(cid:127) = 33,33𝑚𝑠
+30
+(cid:127) How much image data needs to be generated per second?
+(cid:127) 2,25𝑀i𝐵 (cid:521) 30 = 67,5𝑀i𝐵
+Interactive Computer Graphics
+15/04/2026 29
+Chapter 1 – Introduction
+[Seite 30]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+1.4 3D Models
+Modeling with triangles and other geometric primitives
+Visual Computing Group
+Institute of Media Informatics
+[Seite 31]
+Seiten-Metadaten: Bilder=3, Rechtecke=3, Kurven=2, Linien=1
+3D Model Types
+ Models specify the structures to be displayed
+ Three commonly used model types exist
+(cid:127) Implicit surfaces
+(cid:127) Polygonal models
+(cid:127) Volumetric models
+𝑐 = (𝑥 , 𝑦 , 𝑧 )
+𝑐 𝑐 𝑐
+𝑓 𝑥, 𝑦, 𝑧 = (𝑥 − 𝑥 )2+(𝑦 − 𝑦 )2+(𝑧 − 𝑧 )2−𝑟2
+𝑐 𝑐 𝑐
+Interactive Computer Graphics
+15/04/2026 31
+Chapter 1 – Introduction
+[Seite 32]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=8, Linien=1
+Implicit Surfaces
+ Set of all points that fulfill 𝑓 𝑥, 𝑦, 𝑧 = 0
+ All points with 𝑓 𝑥, 𝑦, 𝑧 < 0 define solid bound by 𝑓 𝑥, 𝑦, 𝑧 = 0
+ Display possibilities
+(cid:127) Search for null points
+(cid:127) Approximate with polygons
+(cid:127) Rasterize
+ Not all objects can be represented
+𝑐 = (𝑥 , 𝑦 , 𝑧 )
+𝑐 𝑐 𝑐
+through implicit surfaces
+𝑓 𝑥, 𝑦, 𝑧 = (𝑥 − 𝑥 )2+(𝑦 − 𝑦 )2+(𝑧 − 𝑧 )2−𝑟2
+𝑐 𝑐 𝑐
+Interactive Computer Graphics
+15/04/2026 32
+Chapter 1 – Introduction
+[Seite 33]
+Seiten-Metadaten: Bilder=6, Rechtecke=18, Kurven=12, Linien=1
+Quadrics
+ Surfaces represented by quadric equations
+Ellipsoid Single Hyperboloid Double Hyperboloid
+𝑥2 𝑦2 𝑧2 𝑥2 𝑦2 𝑧2 𝑥2 𝑦2 𝑧2
+𝑓 𝑥, 𝑦, 𝑧 = + + − 1 𝑓 𝑥, 𝑦, 𝑧 = + − − 1 𝑓 𝑥, 𝑦, 𝑧 = + − + 1
+𝛼2 𝛽2 𝛾2 𝛼2 𝛽2 𝛾2 𝛼2 𝛽2 𝛾2
+Elliptic Paraboloid Hyperbolic Paraboloid Elliptic Cone
+𝑥2 𝑦2 𝑥2 𝑦2 𝑥2 𝑦2
+𝑓 𝑥, 𝑦, 𝑧 = + − 𝑧 𝑓 𝑥, 𝑦, 𝑧 = − + − 𝑧 𝑓 𝑥, 𝑦, 𝑧 = + − 𝑧2
+𝛼2 𝛽2 𝛼2 𝛽2 𝛼2 𝛽2
+[Eldar Sultanow: Implicit Surfaces]
+Interactive Computer Graphics
+15/04/2026 33
+Chapter 1 – Introduction
+[Seite 34]
+Seiten-Metadaten: Bilder=4, Rechtecke=3, Kurven=0, Linien=1
+Object Representation
+Point Cloud (3D Scan) Binary Data (MRT) Signed Distance Fields (SDF) Meshes
+Interactive Computer Graphics
+15/04/2026 34
+Chapter 1 – Introduction
+[Seite 35]
+Seiten-Metadaten: Bilder=2, Rechtecke=4, Kurven=0, Linien=1
+Polygonal Models 1/3
+ Surface representation is approximated by polygons
+(cid:127) Polygons are made up of vertices and edges
+Interactive Computer Graphics
+15/04/2026 35
+Chapter 1 – Introduction
+[Seite 36]
+Seiten-Metadaten: Bilder=1, Rechtecke=3, Kurven=0, Linien=1
+Polygonal Models 1/4
+ Surface representation is approximated by polygons (mostly triangles/quads)
+(cid:127) Polygons are made up of vertices and edges
+Valence / Degree Adjacent Edges 1-Ring Neighborhood
+Interactive Computer Graphics
+15/04/2026 36
+Chapter 1 – Introduction
+[Seite 37]
+Seiten-Metadaten: Bilder=5, Rechtecke=6, Kurven=0, Linien=1
+Polygonal Models 2/4
+ Surface representation are often approximated by triangular polygons
+(cid:127) Triangles consist of three vertices and three edges
+ Display achieved through rendering by raster conversion of triangles
+Interactive Computer Graphics
+15/04/2026 37
+Chapter 1 – Introduction
+[Seite 38]
+Seiten-Metadaten: Bilder=5, Rechtecke=3, Kurven=0, Linien=1
+Polygonal Models 3/4
+ Various attributes are associated with vertices of a polygonal model
+(cid:127) Colors
+(cid:127) Material properties
+(cid:127) Textures
+(cid:127) …
+Interactive Computer Graphics
+15/04/2026 38
+Chapter 1 – Introduction
+[Seite 39]
+Seiten-Metadaten: Bilder=1, Rechtecke=8, Kurven=14, Linien=1
+Polygonal Models 4/4
+ Surface normal required in many cases
+ Normal is calculated through cross product:
+ Example use cases
+𝑎 𝑏 − 𝑎 𝑏
+2 3 3 2
+(cid:127) Illumination – determin𝑎e⃗ ×su𝑏rf=ace 𝑎or𝑏ien−ta𝑎tio𝑏n relative to light source
+3 1 1 3
+(cid:127) Culling – remove surfaces oriente𝑎d a𝑏w−ay𝑎 fro𝑏m the camera
+1 2 2 1 𝑎⃗ × 𝑏
+𝑎⃗ × 𝑏
+𝑎⃗
+𝑏
+𝑎⃗
+𝑏
+Interactive Computer Graphics
+15/04/2026 39
+Chapter 1 – Introduction
+[Seite 40]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Volumetric Models
+ Space filling object representation through voxels (volume elements)
+ Display possibilities
+(cid:127) Rendering of extracted surfaces
+(cid:127) Direct rendering through specialized algorithms
+Interactive Computer Graphics
+15/04/2026 40
+Chapter 1 – Introduction
+[Seite 41]
+Seiten-Metadaten: Bilder=3, Rechtecke=3, Kurven=0, Linien=1
+Model Generation
+ Polygonal models are generated through 3D scanning or 3D modeling
+(e.g., LIDAR, Blender, Cinema 4D, Maya)
+ Volumetric models are generated through imaging or simulation
+(e.g., CT, MRI, PET, CFD, seismic surveys)
+Interactive Computer Graphics
+15/04/2026 41
+Chapter 1 – Introduction
+[Seite 42]
+Seiten-Metadaten: Bilder=0, Rechtecke=15, Kurven=14, Linien=1
+Coordinate Systems
+ Three main coordinate system exist
+(cid:127) Model coordinate system – model specified in own coordinate system
+(cid:127) World coordinate system – models arranged in common coordinate system
+(cid:127) Eye/camera coordinate system – model in relation to camera
+ To transfer between coordinate systems,
+models can be translated, rotated or scaled
+𝑦
+𝑦
+𝑥 𝑥
+Model Coordinate System World Coordinate System
+Interactive Computer Graphics
+15/04/2026 42
+Chapter 1 – Introduction
+[Seite 43]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=1, Linien=1
+Rendering
+ Rendering is the process to generate raster images from 3D models
+ During rendering several steps are necessary
+(cid:127) Coordinate system transformation
+(cid:127) Visibility determination
+(cid:127) Illumination
+(cid:127) Texturing
+(cid:127) …
+Interactive Computer Graphics
+15/04/2026 43
+Chapter 1 – Introduction
+[Seite 44]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+1.5 Algorithmic Paradigms
+Frequently found algorithm strategies
+Visual Computing Group
+Institute of Media Informatics
+[Seite 45]
+Seiten-Metadaten: Bilder=3, Rechtecke=3, Kurven=0, Linien=1
+Photorealistic Rendering
+ Goal: simulate reality
+[Embree Ray Tracing Website - http://embree.github.io/] [Maisch & Ropinski, Eurographics 2017] [Hendrik vann Jenssen]
+Interactive Computer Graphics
+15/04/2026 45
+Chapter 1 – Introduction
+[Seite 46]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=1
+Non-Photorealistic Rendering (NPR)
+ Goal: abstract reality
+[Suggestive contour line drawings, DeCarlo 2003]
+Interactive Computer Graphics
+15/04/2026 46
+Chapter 1 – Introduction
+[Seite 47]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Image-Based Algorithms
+ Number of computations direct proportional to number of pixels
+for all Pixels do {
+for all SceneObjects do {
+…
+}
+}
+ Benefits
+(cid:127) Easy implementation
+(cid:127) Easy realization of shadows and reflections
+since all objects accessible in inner loop
+ Downsides
+(cid:127) Time intensive computations
+Interactive Computer Graphics
+15/04/2026 47
+Chapter 1 – Introduction
+[Seite 48]
+Seiten-Metadaten: Bilder=0, Rechtecke=5, Kurven=0, Linien=1
+Object-Based Algorithms
+ Number of computations direct proportional to number of 3D models
+for all SceneObjects do {
+for all Pixels do {
+…
+}
+}
+ Benefits
+(cid:127) Fast computation
+ Downsides
+(cid:127) Difficult implementation
+(cid:127) Difficult realization of shadows and reflections
+since only single object accessible in inner loop
+Interactive Computer Graphics
+15/04/2026 48
+Chapter 1 – Introduction
+[Seite 49]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+Chapter Summary
+ Raster images are formed of pixels to which colors, transparencies and depth
+are assigned
+ In interactive computer graphics 3D models are mostly approximated by
+polygonal models
+ Most frequent building blocks of polygonal models are triangles,
+which are formed of vertices and edges
+ Rendering translates 3D models into raster images
+Interactive Computer Graphics
+15/04/2026 49
+Chapter 1 – Introduction
+[Seite 50]
+Seiten-Metadaten: Bilder=2, Rechtecke=3, Kurven=0, Linien=0
+References
+Literature and other sources used in this chapter
+Visual Computing Group
+Institute of Media Informatics
+[Seite 51]
+Seiten-Metadaten: Bilder=0, Rechtecke=3, Kurven=0, Linien=1
+References
+ Text Books
+(cid:127) P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics (4th Edition), AK
+Peters 2016. (Chapters 1, 3 & 21)
+ Research Publications for Image References
+(cid:127) Crassin, Cyril, Fabrice Neyret, Miguel Sainz, Simon Green, and Elmar Eisemann. "Interactive
+indirect illumination using voxel cone tracing." In Computer Graphics Forum, vol. 30, no. 7, pp.
+1921-1930. Oxford, UK: Blackwell Publishing Ltd, 2011.
+(cid:127) Maisch, Sebastian, and Timo Ropinski. "Spatial Adjacency Maps for Translucency Simulation
+under General Illumination." In Computer Graphics Forum, vol. 36, no. 2, pp. 443-453. 2017.
+(cid:127) Reichardt, Jasia. “Cybernetic Serendipity. The Computer and the Arts.” Studio International,
+London (1968).
+ YouTube Videos
+(cid:127) Spacewar! (MIT 1962)
+(cid:127) Simulation of a two-giro gravity attitude control system - Edward Zajac
+(cid:127) Sketchpad
+(cid:127) Ivan Sutherland - Head Mounted Display
+(cid:127) Quest: A Long Ray's Journey Into Light
+Interactive Computer Graphics
+15/04/2026 51
+Chapter 1 – Introduction
