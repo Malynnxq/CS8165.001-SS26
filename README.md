@@ -16,9 +16,11 @@ Private backup of the Moodle course export `CS8165.001-SS26_1787682614.zip`.
 - `course_build_audit.json` - machine-readable coverage report for source files, PDF pages, chunks, and validation checks
 - `study_pack/` - exam-preparation pack with chapter guides, formula checklist, visual review guide, exam drill, Anki TSV, study plan, and reusable AI prompts
 - `practice_pack/` - interactive practice pack with cloze texts, matching tables, MC questions, sequencing tasks, math/algorithm drills, diagram prompts, OpenGL drills, and a roadmap from 0 to exam-ready
+- `overprep_pack/` - closed-format overpreparation pack with MC/mock exams, mistake log, concept-confusion pairs, diagram label workbook, OpenGL debugging drills, one-pagers, spaced repetition, and final readiness checklist
 - `scripts/build_course_text.py` - reproducible exporter for rebuilding `course_full_text.txt`
 - `scripts/build_study_pack.py` - reproducible generator for rebuilding `study_pack/`
 - `scripts/build_practice_pack.py` - reproducible generator for rebuilding `practice_pack/`
+- `scripts/build_overprep_pack.py` - reproducible generator for rebuilding `overprep_pack/`
 
 ## AI Study Files
 
@@ -73,7 +75,23 @@ Use these for active learning and copy-paste generators:
 7. **Visuals:** Use `study_pack/visual_review_guide.md` and `practice_pack/diagram_graphics_prompts.md`; open the original PDF pages for diagrams.
 8. **OpenGL/Software:** Use `practice_pack/opengl_software_drills.md` and inspect `course_text_parts/05_opengl_starter_project.txt`.
 9. **Exam Simulation:** Use `study_pack/exam_drill.md`, `practice_pack/multiple_choice.md`, and `practice_pack/sequencing_tasks.md`.
-10. **Final Pass:** Revisit every weak spot until you can explain it with definition, pipeline role, diagram, algorithm/formula, and typical pitfall.
+10. **Closed-Format Overprep:** Use `overprep_pack/mock_exams/`, `overprep_pack/concept_confusion_pairs.md`, and `overprep_pack/closed_format_oral_exam_mode.md`. Prefer selecting, matching, filling, ordering, and labeling over vague open answers.
+11. **Mistake Repair:** Log every wrong answer in `overprep_pack/mistake_log.md` and reset it into the spaced-repetition schedule.
+12. **Final Pass:** Use `overprep_pack/final_readiness_checklist.md`. Revisit every weak spot until you can explain it with definition, pipeline role, diagram, algorithm/formula, OpenGL relation, and typical pitfall.
+
+## Closed-Format Overprep
+
+Use this if you dislike open mock-exam essays:
+
+- `overprep_pack/mock_exams/` - 3 closed-format mock exams
+- `overprep_pack/mistake_log.md` - structured error tracking
+- `overprep_pack/closed_format_oral_exam_mode.md` - AI examiner prompt that avoids broad essay questions
+- `overprep_pack/concept_confusion_pairs.md` - clipping vs culling, fragment vs pixel, etc.
+- `overprep_pack/diagram_label_workbook.md` - drawing tasks as label checklists
+- `overprep_pack/code_reading_debugging_drills.md` - OpenGL/software debugging MC
+- `overprep_pack/one_pager_cheat_sheets.md` - chapter one-pagers
+- `overprep_pack/spaced_repetition_schedule.md`
+- `overprep_pack/final_readiness_checklist.md`
 
 ## Lecture Slides
 
@@ -110,4 +128,10 @@ To rebuild the interactive practice pack:
 
 ```powershell
 python scripts/build_practice_pack.py
+```
+
+To rebuild the closed-format overprep pack:
+
+```powershell
+python scripts/build_overprep_pack.py
 ```
