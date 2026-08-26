@@ -1,0 +1,108 @@
+{
+  "pack": "lecture_readers",
+  "language": "English",
+  "lecture_count": 10,
+  "lectures": [
+    {
+      "id": "01",
+      "title": "Introduction",
+      "source": "course_text_parts/03_lectures/01_introduction.txt",
+      "source_exists": true,
+      "markdown": "markdown/01_introduction_reader.md",
+      "pdf": "pdf/01_introduction_reader.pdf",
+      "sections": 5,
+      "source_pages": 51
+    },
+    {
+      "id": "02",
+      "title": "Rendering Pipeline",
+      "source": "course_text_parts/03_lectures/02_rendering-pipeline.txt",
+      "source_exists": true,
+      "markdown": "markdown/02_rendering-pipeline_reader.md",
+      "pdf": "pdf/02_rendering-pipeline_reader.pdf",
+      "sections": 5,
+      "source_pages": 94
+    },
+    {
+      "id": "03",
+      "title": "Geometric Transformations",
+      "source": "course_text_parts/03_lectures/03_geometric-transformations.txt",
+      "source_exists": true,
+      "markdown": "markdown/03_geometric-transformations_reader.md",
+      "pdf": "pdf/03_geometric-transformations_reader.pdf",
+      "sections": 5,
+      "source_pages": 54
+    },
+    {
+      "id": "04",
+      "title": "Geometric Projection",
+      "source": "course_text_parts/03_lectures/04_geometric-projection.txt",
+      "source_exists": true,
+      "markdown": "markdown/04_geometric-projection_reader.md",
+      "pdf": "pdf/04_geometric-projection_reader.pdf",
+      "sections": 5,
+      "source_pages": 61
+    },
+    {
+      "id": "05",
+      "title": "Clipping",
+      "source": "course_text_parts/03_lectures/05_clipping.txt",
+      "source_exists": true,
+      "markdown": "markdown/05_clipping_reader.md",
+      "pdf": "pdf/05_clipping_reader.pdf",
+      "sections": 4,
+      "source_pages": 56
+    },
+    {
+      "id": "06",
+      "title": "Rasterization",
+      "source": "course_text_parts/03_lectures/06_rasterization.txt",
+      "source_exists": true,
+      "markdown": "markdown/06_rasterization_reader.md",
+      "pdf": "pdf/06_rasterization_reader.pdf",
+      "sections": 5,
+      "source_pages": 61
+    },
+    {
+      "id": "07",
+      "title": "Visibility Determination",
+      "source": "course_text_parts/03_lectures/07_visibility-determination.txt",
+      "source_exists": true,
+      "markdown": "markdown/07_visibility-determination_reader.md",
+      "pdf": "pdf/07_visibility-determination_reader.pdf",
+      "sections": 5,
+      "source_pages": 69
+    },
+    {
+      "id": "08",
+      "title": "Local Illumination",
+      "source": "course_text_parts/03_lectures/08_local-illumination.txt",
+      "source_exists": true,
+      "markdown": "markdown/08_local-illumination_reader.md",
+      "pdf": "pdf/08_local-illumination_reader.pdf",
+      "sections": 5,
+      "source_pages": 62
+    },
+    {
+      "id": "09",
+      "title": "Texturing",
+      "source": "course_text_parts/03_lectures/09_texturing.txt",
+      "source_exists": true,
+      "markdown": "markdown/09_texturing_reader.md",
+      "pdf": "pdf/09_texturing_reader.pdf",
+      "sections": 6,
+      "source_pages": 133
+    },
+    {
+      "id": "10",
+      "title": "Shadows",
+      "source": "course_text_parts/03_lectures/10_shadows.txt",
+      "source_exists": true,
+      "markdown": "markdown/10_shadows_reader.md",
+      "pdf": "pdf/10_shadows_reader.pdf",
+      "sections": 5,
+      "source_pages": 60
+    }
+  ],
+  "combined_pdf": "pdf/CS8165_complete_lecture_readers.pdf"
+}

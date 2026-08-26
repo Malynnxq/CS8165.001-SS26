@@ -19,11 +19,13 @@ Private backup of the Moodle course export `CS8165.001-SS26_1787682614.zip`.
 - `practice_pack/repetition_variants/` - repeated practice rounds with the same concepts but different wording and task layouts
 - `overprep_pack/` - closed-format overpreparation pack with MC/mock exams, mistake log, concept-confusion pairs, diagram label workbook, OpenGL debugging drills, one-pagers, spaced repetition, and final readiness checklist
 - `reader_pack/` - readable original-language narrative reader, PDF, clickable workbook, and language audit
+- `lecture_readers/` - readable commented version for each individual lecture, with one PDF per lecture and one combined PDF
 - `scripts/build_course_text.py` - reproducible exporter for rebuilding `course_full_text.txt`
 - `scripts/build_study_pack.py` - reproducible generator for rebuilding `study_pack/`
 - `scripts/build_practice_pack.py` - reproducible generator for rebuilding `practice_pack/`
 - `scripts/build_overprep_pack.py` - reproducible generator for rebuilding `overprep_pack/`
 - `scripts/build_reader_pack.py` - reproducible generator for rebuilding `reader_pack/`
+- `scripts/build_lecture_readers.py` - reproducible generator for rebuilding `lecture_readers/`
 
 ## Language Policy
 
@@ -31,6 +33,7 @@ Private backup of the Moodle course export `CS8165.001-SS26_1787682614.zip`.
 - The lecture/course content is primarily English, so `reader_pack/` is written in English.
 - German Moodle interface text or notices remain German only when they are original source text.
 - Some older helper files contain German study instructions because they were generated from German user requests. For original-language AI input, start with `reader_pack/narrative_reader.md` and the matching source chunks in `course_text_parts/03_lectures/`.
+- For human-readable lecture study, start with `lecture_readers/pdf/CS8165_complete_lecture_readers.pdf` or the individual files in `lecture_readers/markdown/`.
 
 ## AI Study Files
 
@@ -55,6 +58,9 @@ Start here:
 - `reader_pack/icg_narrative_reader.pdf`
 - `reader_pack/interactive_workbook.html`
 - `reader_pack/language_audit.md`
+- `lecture_readers/README.md`
+- `lecture_readers/pdf/CS8165_complete_lecture_readers.pdf`
+- `lecture_readers/markdown/`
 - `study_pack/README.md`
 - `study_pack/ai_prompts.md`
 - `study_pack/chapter_guides/`
@@ -84,11 +90,11 @@ Use these for active learning and copy-paste generators:
 ## Roadmap From 0 To Exam-Ready
 
 1. **Setup:** Open `course_build_audit.json` and confirm all checks are `true`.
-2. **Readable Start:** Read `reader_pack/narrative_reader.md` or browse `reader_pack/icg_narrative_reader.pdf`.
-3. **Clickable Check:** Open `reader_pack/interactive_workbook.html` and answer the closed checks chapter by chapter.
+2. **Readable Start:** Read `lecture_readers/pdf/CS8165_complete_lecture_readers.pdf` or the individual lecture PDFs.
+3. **Chapter Companion:** Use `reader_pack/narrative_reader.md` as the shorter overview and `reader_pack/interactive_workbook.html` for clickable checks.
 4. **Orientation:** Read `course_text_parts/00_START_HERE.txt`, then `study_pack/README.md`.
-5. **Core Understanding:** Work through `study_pack/chapter_guides/` from chapter 01 to 10.
-6. **Raw Source Check:** For each chapter, load the matching file from `course_text_parts/03_lectures/`.
+5. **Core Understanding:** Work through `lecture_readers/markdown/` and `study_pack/chapter_guides/` from chapter 01 to 10.
+6. **Raw Source Check:** For each lecture, load the matching file from `course_text_parts/03_lectures/`.
 7. **Active Recall:** Use `practice_pack/cloze_source_texts.md`, `practice_pack/matching_pairs.tsv`, and `study_pack/flashcards_anki.tsv`.
 8. **Non-Boring Repetition:** Use `practice_pack/repetition_variants/round_01`, then `round_02`, then `round_03`. These repeat the same concepts with changed wording and task surfaces.
 9. **Math/Algorithms:** Work through `study_pack/formulas_and_derivations.md` and `practice_pack/math_algorithm_drills.md`.
@@ -160,4 +166,10 @@ To rebuild the original-language reader pack:
 
 ```powershell
 python scripts/build_reader_pack.py
+```
+
+To rebuild the detailed lecture readers and PDFs:
+
+```powershell
+python scripts/build_lecture_readers.py
 ```
