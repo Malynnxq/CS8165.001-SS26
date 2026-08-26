@@ -678,7 +678,7 @@ def useful_slide_line(line: str) -> bool:
 
 def choose_slide_title(lines: list[str]) -> str:
     if not lines:
-        return "Untitled slide"
+        return "Visual or title slide"
     for line in lines:
         if line.startswith("-"):
             continue
@@ -753,66 +753,79 @@ def slide_comment(category: str, title: str, clue: str) -> str:
 
 def professor_explanation(category: str, title: str, clue: str) -> str:
     cue_sentence = f"On the slide, the concrete items are: {clue.rstrip('.;:')}"
+    if clue.startswith("No object-level text was extracted"):
+        return (
+            f"The slide '{title}' is primarily a visual, title, transition, or diagram page rather than a text-heavy concept slide. "
+            f"Its role is to place the next concept into the lecture flow and give a visual anchor for the topic that follows. "
+            f"{cue_sentence}. In the surrounding lecture sequence, this kind of page usually marks a shift of attention: from one pipeline stage to another, from a general idea to an algorithm, or from theory to an implementation detail."
+        )
     explanations = {
         "outline": (
-            f"The outline '{title}' states the structure of the lecture. It introduces the major objects and methods in the order in which they depend on each other. "
-            f"The first items usually define the problem, the middle items introduce the algorithms or API mechanisms, and the final items show consequences or references. "
-            f"{cue_sentence}. The content is therefore a dependency chain, not a set of unrelated headings."
+            f"The outline '{title}' gives the lecture its internal logic. The listed topics are the objects that will be connected during the chapter: first the problem space, then the mathematical or algorithmic tools, then the implementation consequences. "
+            f"{cue_sentence}. The order matters because later items rely on earlier definitions. For example, an OpenGL mechanism is much easier to understand once the corresponding pipeline object or mathematical operation has already been introduced. "
+            f"The outline is therefore a compact dependency graph of the lecture rather than a collection of isolated labels."
         ),
         "organization": (
-            f"The slide '{title}' describes course objects such as lectures, exercises, projects, teachers, dates, or required tools. "
-            f"These objects define how the graphics concepts are practiced: lecture material provides theory, exercise sheets turn the same theory into C/C++ or OpenGL work, "
-            f"and project tasks combine several pipeline stages. {cue_sentence}. The important object relation is between course topic, programming exercise, and assessed skill."
+            f"The slide '{title}' describes the practical objects of the course: lectures, exercise sheets, programming tasks, project work, teachers, dates, tools, or submission structure. "
+            f"These objects are part of the learning system around the graphics content. The lecture introduces a concept, the exercise turns it into code or a calculation, and the project combines several such concepts into a working renderer. "
+            f"{cue_sentence}. The important relation is between topic, practice format, and skill. A rendering concept that appears in an exercise is not just background vocabulary; it becomes something that can be recognized in C/C++ code, OpenGL calls, shader inputs, or debugging situations."
         ),
         "pipeline": (
-            f"The slide '{title}' explains object-based rendering as a conversion chain. A model supplies geometric objects such as vertices or primitives. "
-            f"The geometry stage transforms and assembles those objects. Rasterization turns primitives into fragments, and fragment operations decide which fragments update pixels in the framebuffer. "
-            f"{cue_sentence}. The essential relation is that every stage changes the representation of the same scene information."
+            f"The slide '{title}' explains rendering as a chain of object transformations. At the beginning there is scene information: models, vertices, primitives, attributes, camera state, and rendering state. "
+            f"The geometry part of the pipeline changes where the objects are and how they are represented; vertices become positioned data, vertices are assembled into primitives, and primitives are prepared for conversion to the image grid. "
+            f"{cue_sentence}. The important story is that the same scene information changes form several times. A triangle is first model data, then transformed geometry, then a projected primitive, then a set of fragments, and finally only some of those fragments become pixel updates. "
+            f"This is why the pipeline is not just a drawing diagram; it is the explanation for where image errors can enter."
         ),
         "opengl": (
-            f"The slide '{title}' describes the OpenGL side of the rendering pipeline. OpenGL represents rendering through objects such as contexts, buffers, vertex arrays, shaders, textures, samplers, and framebuffers. "
-            f"At draw time, the currently bound objects and state determine what data reaches the GPU and how the pipeline processes it. "
-            f"{cue_sentence}. The concrete relation is between API state, GPU resource, shader input, and final rendering result."
+            f"The slide '{title}' explains how OpenGL exposes the rendering pipeline through explicit objects and state. A context owns the current rendering state; buffers hold vertex, index, texture, or pixel data; shader programs define programmable processing; textures and samplers provide sampled data; framebuffers receive the result. "
+            f"OpenGL does not render from intention, it renders from the objects that are bound and the state that is active at the moment of the draw call. "
+            f"{cue_sentence}. The concrete relation is API command, GPU resource, shader interface, and visible result. A small mismatch in this relation, such as a wrong buffer layout, missing uniform, wrong texture unit, or disabled depth test, can produce a perfectly valid draw call with a completely wrong image."
         ),
         "transform": (
-            f"The slide '{title}' explains how geometric objects change coordinate systems. A point, vector, normal, or local coordinate frame is multiplied by a transformation matrix or affected by an affine operation. "
-            f"Translations move positions, rotations change orientation, scaling changes size, and composed matrices combine several such effects. "
-            f"{cue_sentence}. The object-level relation is input coordinate space, transformation object, and output coordinate space."
+            f"The slide '{title}' explains how geometric objects move through coordinate systems. A point has a location, a vector has a direction and magnitude, a normal describes surface orientation, and a coordinate frame defines how these quantities are measured. "
+            f"A transformation matrix changes the description of these objects: translation moves points, rotation changes orientation, scaling changes size, and composition combines several operations into one matrix product. "
+            f"{cue_sentence}. The central relation is source space, transformation, and target space. In computer graphics this relation is everywhere: object space becomes world space, world space becomes view space, and view space becomes clip space. "
+            f"A formula is only meaningful after the two coordinate spaces around it are clear."
         ),
         "projection": (
-            f"The slide '{title}' explains how camera geometry maps 3D positions toward a 2D image. The projection matrix maps view-space objects into clip space. "
-            f"Perspective projection uses the homogeneous component so that the perspective divide makes distant objects appear smaller; orthographic projection preserves apparent size. "
-            f"{cue_sentence}. The object-level chain is camera/view volume, projection matrix, clip coordinates, normalized device coordinates, and viewport coordinates."
+            f"The slide '{title}' explains how camera geometry turns a 3D scene into image coordinates. In view space, objects are described relative to the camera. The projection matrix then maps that camera-centered geometry into clip space, where the viewing volume and clipping boundaries can be handled consistently. "
+            f"Perspective projection uses the homogeneous coordinate so that the later divide by w creates foreshortening: farther objects occupy less image space. Orthographic projection removes that depth-based size change and keeps parallel structures visually parallel. "
+            f"{cue_sentence}. The object chain is view-space position, projection matrix, clip coordinate, normalized device coordinate, and viewport coordinate. The slide is therefore connecting camera setup, visual appearance, and the numeric coordinate pipeline that rasterization later consumes."
         ),
         "clipping": (
-            f"The slide '{title}' explains clipping as a boundary operation on geometric primitives. Lines or polygons are compared with clipping boundaries. "
-            f"Parts inside the valid region are kept, parts outside are discarded, and primitives crossing a boundary receive new intersection vertices. "
-            f"{cue_sentence}. The objects involved are the primitive, the clipping boundary, inside/outside classification, and the resulting clipped primitive."
+            f"The slide '{title}' explains clipping as a geometric boundary operation. A line segment, polygon, or triangle is compared with a window, plane, or volume. "
+            f"The part inside the valid region survives, the part outside is removed, and a primitive crossing the boundary receives newly computed intersection points. "
+            f"{cue_sentence}. The objects involved are the original primitive, the clipping boundary, an inside/outside classification, intersection points, and the resulting clipped primitive. "
+            f"The core idea is not simply deleting geometry; clipping can reshape geometry so that the rasterizer receives only the meaningful visible portion."
         ),
         "rasterization": (
-            f"The slide '{title}' explains the conversion from continuous geometry to a discrete sample grid. A mathematical line, triangle, or region is tested against pixel/sample positions. "
-            f"Covered samples become fragments, and attributes such as depth, color, normals, or texture coordinates can be interpolated across the primitive. "
-            f"{cue_sentence}. Rasterization creates fragment candidates; later tests decide whether those candidates become visible pixel updates."
+            f"The slide '{title}' explains the moment where continuous geometry becomes a discrete image problem. A mathematical line or triangle is not made of pixels, but the screen is a grid of samples. "
+            f"Rasterization decides which samples are covered by the projected primitive and creates fragments for those samples. At the same time, values attached to the primitive, such as depth, color, normals, or texture coordinates, are interpolated so that each fragment has the data needed for shading. "
+            f"{cue_sentence}. The important distinction is that rasterization creates candidates. A fragment exists because a primitive covered a sample, but final visibility still depends on depth testing, stencil testing, blending, masking, and framebuffer operations."
         ),
         "visibility": (
-            f"The slide '{title}' explains visibility as the decision of which surface is seen from the current viewpoint. Some methods compare or sort objects, some subdivide image regions, "
-            f"some cast rays, and the depth buffer compares per-fragment depth values. {cue_sentence}. The object-level relation is viewpoint, candidate surface, visibility test, and visible result."
+            f"The slide '{title}' explains the problem of deciding which surface is actually visible from the current viewpoint. Many primitives can project to the same image region, but only the nearest relevant surface should determine the opaque color at a pixel. "
+            f"Different algorithms solve this relation in different spaces: object-space methods sort or split geometry, image-space methods subdivide regions, ray methods query visibility along viewing rays, and the depth buffer compares per-fragment depth values. "
+            f"{cue_sentence}. The object-level relation is viewpoint, candidate surface, visibility rule, and visible result. This relation is the reason that fragment generation and final pixel color are not the same thing."
         ),
         "illumination": (
-            f"The slide '{title}' explains local illumination at a surface point. The surface normal defines orientation, the light vector defines incoming light, the view vector defines the observer, "
-            f"and material parameters scale ambient, diffuse, or specular terms. {cue_sentence}. The object-level relation is light source, surface point, material response, and computed color."
+            f"The slide '{title}' explains how a visible surface point receives color from local lighting. The surface normal gives the orientation of the surface. The light vector gives the direction from which illumination arrives. "
+            f"The view vector connects the surface point to the observer, and the material parameters decide how strongly the surface reacts with ambient, diffuse, or specular reflection. "
+            f"{cue_sentence}. The object-level relation is light source, surface point, normal, material response, and computed color. The visual behavior changes when any of these objects changes: a rotated normal changes diffuse brightness, a different view vector moves the specular highlight, and different material coefficients change the perceived surface type."
         ),
         "texturing": (
-            f"The slide '{title}' explains textures as sampled data used by shaders. A fragment carries texture coordinates, a texture object stores texels, sampler state defines wrapping and filtering, "
-            f"and the shader interprets the fetched value as color, normal, material data, depth, or another field. {cue_sentence}. The object-level relation is coordinate, texture memory, sampling rule, and shader use."
+            f"The slide '{title}' explains textures as sampled data fields used during shading. A texture is not only a picture; it is a structured array of texels that can store color, normals, depth, material values, environment data, or volume data. "
+            f"A fragment supplies texture coordinates, the texture object supplies stored samples, sampler state controls wrapping and filtering, and the shader decides what the fetched value means. "
+            f"{cue_sentence}. The object-level relation is coordinate, texture memory, sampling rule, and shader interpretation. This relation explains why texture bugs often look visual but originate from data addressing, filtering state, mipmap completeness, or a mismatch between stored values and shader expectations."
         ),
         "shadows": (
-            f"The slide '{title}' explains shadows as visibility from the light source. An occluder blocks light, a receiver shows the missing illumination, and an algorithm such as a projected shadow, shadow volume, "
-            f"light map, or shadow map represents that blocking relation. {cue_sentence}. The object-level relation is light, occluder, receiver, stored visibility information, and resulting shadow."
+            f"The slide '{title}' explains a shadow as a visibility relation from the light source. A surface point is lit when the light can reach it directly, and it is shadowed when another object blocks the path from the light to that point. "
+            f"The central objects are therefore the light, the occluder, the receiver, and some representation of light-space visibility. Depending on the method, that representation can be projected geometry, a precomputed light map, a shadow volume, or a shadow map storing depth from the light. "
+            f"{cue_sentence}. The object-level relation is light, blocker, receiver, stored visibility information, and the darkened region visible in the final camera image."
         ),
         "general": (
-            f"The slide '{title}' introduces a concrete graphics object, operation, or relation. The named terms describe input data, a processing step, and an output used elsewhere in the rendering workflow. "
-            f"{cue_sentence}. The object-level relation is therefore input, operation, output, and the later graphics stage that consumes the output."
+            f"The slide '{title}' introduces a graphics object, operation, or relation that belongs to the rendering workflow. The named terms describe what data enters the step, what operation changes or classifies that data, and what result is passed onward. "
+            f"{cue_sentence}. The object-level relation is input, operation, output, and later use. This is the basic shape of most computer graphics concepts: data is represented in one form, processed by a rule or algorithm, and then consumed by the next stage of image generation."
         ),
     }
     return explanations[category]
