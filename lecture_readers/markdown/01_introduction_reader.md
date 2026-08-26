@@ -24,7 +24,9 @@ Every extracted slide page gets its own reading note. This is the part to use wh
 
 Source cue: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image.
 
-Commentary: This slide is about Untitled slide. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image.
+Professor-style explanation: For 'Untitled slide', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Untitled slide. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image.
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -34,7 +36,9 @@ Check yourself: Can you turn 'Untitled slide' into a causal sentence instead of 
 
 Source cue: - Learn to program computer graphics applications using OpenGL / - Learn to realize efficient computer graphics applications on the GPU / - Implement your own computer graphics project / [Image Credits: Wikipedia User Mimigu] [Crassin et al., PG2011]
 
-Commentary: This slide is about Course Learning Outcomes. Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: - Learn to program computer graphics applications using OpenGL / - Learn to realize efficient computer graphics applications on the GPU / - Implement your own computer graphics project / [Image Credits: Wikipedia User Mimigu] [Crassin et al., PG2011]
+Professor-style explanation: Here I would pause and connect the course logistics to your learning strategy. 'Course Learning Outcomes' is not a graphics algorithm, but it tells you how the course expects you to practice. The slide gives us this anchor: - Learn to program computer graphics applications using OpenGL / - Learn to realize efficient computer graphics applications on the GPU / - Implement your own computer graphics project / [Image Credits: Wikipedia User Mimigu] [Crassin et al., PG2011]. The practical message is: when a topic appears in lectures and exercises, you should be able to explain it conceptually and recognize it in code.
+
+Technical commentary: This slide is about Course Learning Outcomes. Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: - Learn to program computer graphics applications using OpenGL / - Learn to realize efficient computer graphics applications on the GPU / - Implement your own computer graphics project / [Image Credits: Wikipedia User Mimigu] [Crassin et al., PG2011]
 
 Why it matters: Course logistics often reveal which topics are practiced, assessed, or expected in code.
 
@@ -44,7 +48,9 @@ Check yourself: Can you connect 'Course Learning Outcomes' to an exercise, proje
 
 Source cue: Students: Frank Richter, Manuel Herbert Güntzel
 
-Commentary: This slide is about Real-Time Rendering Contest Results 1/3. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: Students: Frank Richter, Manuel Herbert Güntzel
+Professor-style explanation: For 'Real-Time Rendering Contest Results 1/3', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: Students: Frank Richter, Manuel Herbert Güntzel. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Real-Time Rendering Contest Results 1/3. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: Students: Frank Richter, Manuel Herbert Güntzel
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -54,7 +60,9 @@ Check yourself: Can you turn 'Real-Time Rendering Contest Results 1/3' into a ca
 
 Source cue: Students: Andreas Rottach, Matthias Englert
 
-Commentary: This slide is about Real-Time Rendering Contest Results 2/3. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: Students: Andreas Rottach, Matthias Englert
+Professor-style explanation: For 'Real-Time Rendering Contest Results 2/3', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: Students: Andreas Rottach, Matthias Englert. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Real-Time Rendering Contest Results 2/3. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: Students: Andreas Rottach, Matthias Englert
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -64,7 +72,9 @@ Check yourself: Can you turn 'Real-Time Rendering Contest Results 2/3' into a ca
 
 Source cue: Students: Jan Eric Haßler, Kai Viktor Freissler
 
-Commentary: This slide is about Real-Time Rendering Contest Results 3/3. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: Students: Jan Eric Haßler, Kai Viktor Freissler
+Professor-style explanation: For 'Real-Time Rendering Contest Results 3/3', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: Students: Jan Eric Haßler, Kai Viktor Freissler. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Real-Time Rendering Contest Results 3/3. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: Students: Jan Eric Haßler, Kai Viktor Freissler
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -74,7 +84,9 @@ Check yourself: Can you turn 'Real-Time Rendering Contest Results 3/3' into a ca
 
 Source cue: Details about the lecture course
 
-Commentary: This slide is about 1.1 Course Organization. Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: Details about the lecture course
+Professor-style explanation: Here I would pause and connect the course logistics to your learning strategy. '1.1 Course Organization' is not a graphics algorithm, but it tells you how the course expects you to practice. The slide gives us this anchor: Details about the lecture course. The practical message is: when a topic appears in lectures and exercises, you should be able to explain it conceptually and recognize it in code.
+
+Technical commentary: This slide is about 1.1 Course Organization. Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: Details about the lecture course
 
 Why it matters: Course logistics often reveal which topics are practiced, assessed, or expected in code.
 
@@ -84,7 +96,9 @@ Check yourself: Can you connect '1.1 Course Organization' to an exercise, projec
 
 Source cue: - Lectures / timo.ropinski@uni-ulm.de / Office hours upon request / - Exercises / Poonam Aditya Sawant
 
-Commentary: This slide is about Teachers. Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: - Lectures / timo.ropinski@uni-ulm.de / Office hours upon request / - Exercises / Poonam Aditya Sawant
+Professor-style explanation: Here I would pause and connect the course logistics to your learning strategy. 'Teachers' is not a graphics algorithm, but it tells you how the course expects you to practice. The slide gives us this anchor: - Lectures / timo.ropinski@uni-ulm.de / Office hours upon request / - Exercises / Poonam Aditya Sawant. The practical message is: when a topic appears in lectures and exercises, you should be able to explain it conceptually and recognize it in code.
+
+Technical commentary: This slide is about Teachers. Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: - Lectures / timo.ropinski@uni-ulm.de / Office hours upon request / - Exercises / Poonam Aditya Sawant
 
 Why it matters: Course logistics often reveal which topics are practiced, assessed, or expected in code.
 
@@ -94,7 +108,9 @@ Check yourself: Can you connect 'Teachers' to an exercise, project task, or exam
 
 Source cue: - Lectures / - Tuesday (14-16) and every other Wednesdays (12-14) / - Room O28/1002 / - Specific dates/modalities in Moodle (password: ICG26SUMMER ) / - Lecture slides
 
-Commentary: This slide is about Course Format. Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: - Lectures / - Tuesday (14-16) and every other Wednesdays (12-14) / - Room O28/1002 / - Specific dates/modalities in Moodle (password: ICG26SUMMER ) / - Lecture slides
+Professor-style explanation: Here I would pause and connect the course logistics to your learning strategy. 'Course Format' is not a graphics algorithm, but it tells you how the course expects you to practice. The slide gives us this anchor: - Lectures / - Tuesday (14-16) and every other Wednesdays (12-14) / - Room O28/1002 / - Specific dates/modalities in Moodle (password: ICG26SUMMER ) / - Lecture slides. The practical message is: when a topic appears in lectures and exercises, you should be able to explain it conceptually and recognize it in code.
+
+Technical commentary: This slide is about Course Format. Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: - Lectures / - Tuesday (14-16) and every other Wednesdays (12-14) / - Room O28/1002 / - Specific dates/modalities in Moodle (password: ICG26SUMMER ) / - Lecture slides
 
 Why it matters: Course logistics often reveal which topics are practiced, assessed, or expected in code.
 
@@ -104,7 +120,9 @@ Check yourself: Can you connect 'Course Format' to an exercise, project task, or
 
 Source cue: - Exercises / - Every other Wednesday (12-14) / - Room O28/1002 / - Programming in C/C++ (introduction available upon request) / - Enroll in Moodle
 
-Commentary: This slide is about Course Format. Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: - Exercises / - Every other Wednesday (12-14) / - Room O28/1002 / - Programming in C/C++ (introduction available upon request) / - Enroll in Moodle
+Professor-style explanation: Here I would pause and connect the course logistics to your learning strategy. 'Course Format' is not a graphics algorithm, but it tells you how the course expects you to practice. The slide gives us this anchor: - Exercises / - Every other Wednesday (12-14) / - Room O28/1002 / - Programming in C/C++ (introduction available upon request) / - Enroll in Moodle. The practical message is: when a topic appears in lectures and exercises, you should be able to explain it conceptually and recognize it in code.
+
+Technical commentary: This slide is about Course Format. Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: - Exercises / - Every other Wednesday (12-14) / - Room O28/1002 / - Programming in C/C++ (introduction available upon request) / - Enroll in Moodle
 
 Why it matters: Course logistics often reveal which topics are practiced, assessed, or expected in code.
 
@@ -114,7 +132,9 @@ Check yourself: Can you connect 'Course Format' to an exercise, project task, or
 
 Source cue: - Exercise / - Exercise 1 – Rendering Pipeline / - Exercise 2 – Primitive Types and Shaders / - Exercise 3 – Geometric Transformations / - Exercise 4 – Projection and Clipping
 
-Commentary: This slide is about Exercises. Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: - Exercise / - Exercise 1 – Rendering Pipeline / - Exercise 2 – Primitive Types and Shaders / - Exercise 3 – Geometric Transformations / - Exercise 4 – Projection and Clipping
+Professor-style explanation: Here I would pause and connect the course logistics to your learning strategy. 'Exercises' is not a graphics algorithm, but it tells you how the course expects you to practice. The slide gives us this anchor: - Exercise / - Exercise 1 – Rendering Pipeline / - Exercise 2 – Primitive Types and Shaders / - Exercise 3 – Geometric Transformations / - Exercise 4 – Projection and Clipping. The practical message is: when a topic appears in lectures and exercises, you should be able to explain it conceptually and recognize it in code.
+
+Technical commentary: This slide is about Exercises. Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: - Exercise / - Exercise 1 – Rendering Pipeline / - Exercise 2 – Primitive Types and Shaders / - Exercise 3 – Geometric Transformations / - Exercise 4 – Projection and Clipping
 
 Why it matters: Course logistics often reveal which topics are practiced, assessed, or expected in code.
 
@@ -124,7 +144,9 @@ Check yourself: Can you connect 'Exercises' to an exercise, project task, or exa
 
 Source cue: - Pass the oral/written exam / - Dates to be announced / - „Notenbonus“ possible / - 50% success rate of exercise solutions for n-1 sheets / - Only running solutions are marked
 
-Commentary: This slide is about Successful Course Completion. Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: - Pass the oral/written exam / - Dates to be announced / - „Notenbonus“ possible / - 50% success rate of exercise solutions for n-1 sheets / - Only running solutions are marked
+Professor-style explanation: Here I would pause and connect the course logistics to your learning strategy. 'Successful Course Completion' is not a graphics algorithm, but it tells you how the course expects you to practice. The slide gives us this anchor: - Pass the oral/written exam / - Dates to be announced / - „Notenbonus“ possible / - 50% success rate of exercise solutions for n-1 sheets / - Only running solutions are marked. The practical message is: when a topic appears in lectures and exercises, you should be able to explain it conceptually and recognize it in code.
+
+Technical commentary: This slide is about Successful Course Completion. Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: - Pass the oral/written exam / - Dates to be announced / - „Notenbonus“ possible / - 50% success rate of exercise solutions for n-1 sheets / - Only running solutions are marked
 
 Why it matters: Course logistics often reveal which topics are practiced, assessed, or expected in code.
 
@@ -134,7 +156,9 @@ Check yourself: Can you connect 'Successful Course Completion' to an exercise, p
 
 Source cue: Background / Journey along the / Rendering Pipeline / Lighting Effects / Extrahierte Tabellen:
 
-Commentary: This slide is about Course Overview. Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: Background / Journey along the / Rendering Pipeline / Lighting Effects / Extrahierte Tabellen:
+Professor-style explanation: Here I would pause and connect the course logistics to your learning strategy. 'Course Overview' is not a graphics algorithm, but it tells you how the course expects you to practice. The slide gives us this anchor: Background / Journey along the / Rendering Pipeline / Lighting Effects / Extrahierte Tabellen. The practical message is: when a topic appears in lectures and exercises, you should be able to explain it conceptually and recognize it in code.
+
+Technical commentary: This slide is about Course Overview. Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: Background / Journey along the / Rendering Pipeline / Lighting Effects / Extrahierte Tabellen:
 
 Why it matters: Course logistics often reveal which topics are practiced, assessed, or expected in code.
 
@@ -144,7 +168,9 @@ Check yourself: Can you connect 'Course Overview' to an exercise, project task, 
 
 Source cue: - P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics / (4th Edition), AK Peters 2016. / - D. Shreiner, G. Sellers, J. Kessenich, B. Licea-Kane: OpenGL Programming / Guide: The Official Guide to Learning OpenGL / (8th Edition), Addison-Wesley 2013.
 
-Commentary: This slide is about Literature. Read it as concrete API state and GPU data movement. Ask which object is bound, which shader stage consumes it, and which state affects the draw call. The visible cue is: - P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics / (4th Edition), AK Peters 2016. / - D. Shreiner, G. Sellers, J. Kessenich, B. Licea-Kane: OpenGL Programming / Guide: The Official Guide to Learning OpenGL / (8th Edition), Addison-Wesley 2013.
+Professor-style explanation: On this slide, I would emphasize that OpenGL is a controlled state machine around the GPU pipeline. 'Literature' is not about one magic render call; it is about objects, bindings, shader interfaces, buffers, and state being consistent at draw time. The slide gives us this anchor: - P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics / (4th Edition), AK Peters 2016. / - D. Shreiner, G. Sellers, J. Kessenich, B. Licea-Kane: OpenGL Programming / Guide: The Official Guide to Learning OpenGL / (8th Edition), Addison-Wesley 2013. If the output is wrong, you inspect which object owns the data, which shader consumes it, and which state changes the result.
+
+Technical commentary: This slide is about Literature. Read it as concrete API state and GPU data movement. Ask which object is bound, which shader stage consumes it, and which state affects the draw call. The visible cue is: - P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics / (4th Edition), AK Peters 2016. / - D. Shreiner, G. Sellers, J. Kessenich, B. Licea-Kane: OpenGL Programming / Guide: The Official Guide to Learning OpenGL / (8th Edition), Addison-Wesley 2013.
 
 Why it matters: OpenGL bugs are usually state, binding, shader-interface, or buffer-layout bugs, so API details matter.
 
@@ -154,7 +180,9 @@ Check yourself: Can you name the OpenGL object, state, shader stage, or buffer i
 
 Source cue: - For self study
 
-Commentary: This slide is about Relevant Chapters and Link to Lecture Course. Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: - For self study
+Professor-style explanation: Here I would pause and connect the course logistics to your learning strategy. 'Relevant Chapters and Link to Lecture Course' is not a graphics algorithm, but it tells you how the course expects you to practice. The slide gives us this anchor: - For self study. The practical message is: when a topic appears in lectures and exercises, you should be able to explain it conceptually and recognize it in code.
+
+Technical commentary: This slide is about Relevant Chapters and Link to Lecture Course. Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: - For self study
 
 Why it matters: Course logistics often reveal which topics are practiced, assessed, or expected in code.
 
@@ -164,7 +192,9 @@ Check yourself: Can you connect 'Relevant Chapters and Link to Lecture Course' t
 
 Source cue: 1.2 Computer Graphics Overview / 1.3 Pixel-based Representations / 1.4 3D Models / 1.5 Algorithmic Paradigms
 
-Commentary: This slide is about (1.1 Course Organization). Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: 1.2 Computer Graphics Overview / 1.3 Pixel-based Representations / 1.4 3D Models / 1.5 Algorithmic Paradigms
+Professor-style explanation: Here I would pause and connect the course logistics to your learning strategy. '(1.1 Course Organization)' is not a graphics algorithm, but it tells you how the course expects you to practice. The slide gives us this anchor: 1.2 Computer Graphics Overview / 1.3 Pixel-based Representations / 1.4 3D Models / 1.5 Algorithmic Paradigms. The practical message is: when a topic appears in lectures and exercises, you should be able to explain it conceptually and recognize it in code.
+
+Technical commentary: This slide is about (1.1 Course Organization). Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect. The visible cue is: 1.2 Computer Graphics Overview / 1.3 Pixel-based Representations / 1.4 3D Models / 1.5 Algorithmic Paradigms
 
 Why it matters: Course logistics often reveal which topics are practiced, assessed, or expected in code.
 
@@ -174,7 +204,9 @@ Check yourself: Can you connect '(1.1 Course Organization)' to an exercise, proj
 
 Source cue: Relation of the field with respect to other disciplines
 
-Commentary: This slide is about 1.2 Computer Graphics Overview. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: Relation of the field with respect to other disciplines
+Professor-style explanation: For '1.2 Computer Graphics Overview', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: Relation of the field with respect to other disciplines. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about 1.2 Computer Graphics Overview. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: Relation of the field with respect to other disciplines
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -184,7 +216,9 @@ Check yourself: Can you turn '1.2 Computer Graphics Overview' into a causal sent
 
 Source cue: - Origins in art / - Perspective, color, etc. / - Computer graphics milestones [Reichardt, 1968] / - 1960 – „Computer Graphics“, William Fetter (Boeing) / - 1962 – Spacewars, Steve Russel (MIT) Computer
 
-Commentary: This slide is about Computer Graphics History. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Origins in art / - Perspective, color, etc. / - Computer graphics milestones [Reichardt, 1968] / - 1960 – „Computer Graphics“, William Fetter (Boeing) / - 1962 – Spacewars, Steve Russel (MIT) Computer
+Professor-style explanation: This slide should be read as camera geometry. With 'Computer Graphics History', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Origins in art / - Perspective, color, etc. / - Computer graphics milestones [Reichardt, 1968] / - 1960 – „Computer Graphics“, William Fetter (Boeing) / - 1962 – Spacewars, Steve Russel (MIT) Computer. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Computer Graphics History. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Origins in art / - Perspective, color, etc. / - Computer graphics milestones [Reichardt, 1968] / - 1960 – „Computer Graphics“, William Fetter (Boeing) / - 1962 – Spacewars, Steve Russel (MIT) Computer
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -194,7 +228,9 @@ Check yourself: Can you explain how 'Computer Graphics History' changes position
 
 Source cue: Sutherland, Utah (1970) Wireframe
 
-Commentary: This slide is about Computer Graphics History. Read it as boundary logic. Identify what is inside, what is outside, what can be trivially accepted/rejected, and where intersections are created. The visible cue is: Sutherland, Utah (1970) Wireframe
+Professor-style explanation: For 'Computer Graphics History', think of a boundary test. The renderer does not want arbitrary geometry continuing forever; it needs to decide what part of a primitive is inside the valid region. The slide gives us this anchor: Sutherland, Utah (1970) Wireframe. A good explanation says which object is tested, which boundary is used, whether the primitive is accepted, rejected, or cut, and where new intersection points may appear.
+
+Technical commentary: This slide is about Computer Graphics History. Read it as boundary logic. Identify what is inside, what is outside, what can be trivially accepted/rejected, and where intersections are created. The visible cue is: Sutherland, Utah (1970) Wireframe
 
 Why it matters: Clipping decides what geometry is allowed to reach rasterization and can create new boundary vertices.
 
@@ -204,7 +240,9 @@ Check yourself: Can you decide what is accepted, rejected, or newly intersected 
 
 Source cue: Sutherland, Utah (1970) Turner Whitted, Siggraph (1979)
 
-Commentary: This slide is about Computer Graphics History. Read it as boundary logic. Identify what is inside, what is outside, what can be trivially accepted/rejected, and where intersections are created. The visible cue is: Sutherland, Utah (1970) Turner Whitted, Siggraph (1979)
+Professor-style explanation: For 'Computer Graphics History', think of a boundary test. The renderer does not want arbitrary geometry continuing forever; it needs to decide what part of a primitive is inside the valid region. The slide gives us this anchor: Sutherland, Utah (1970) Turner Whitted, Siggraph (1979). A good explanation says which object is tested, which boundary is used, whether the primitive is accepted, rejected, or cut, and where new intersection points may appear.
+
+Technical commentary: This slide is about Computer Graphics History. Read it as boundary logic. Identify what is inside, what is outside, what can be trivially accepted/rejected, and where intersections are created. The visible cue is: Sutherland, Utah (1970) Turner Whitted, Siggraph (1979)
 
 Why it matters: Clipping decides what geometry is allowed to reach rasterization and can create new boundary vertices.
 
@@ -214,7 +252,9 @@ Check yourself: Can you decide what is accepted, rejected, or newly intersected 
 
 Source cue: The Abyss (1989) Terminator 2 (1991) Jurassic Park (1993)
 
-Commentary: This slide is about Computer Graphics History. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: The Abyss (1989) Terminator 2 (1991) Jurassic Park (1993)
+Professor-style explanation: For 'Computer Graphics History', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: The Abyss (1989) Terminator 2 (1991) Jurassic Park (1993). Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Computer Graphics History. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: The Abyss (1989) Terminator 2 (1991) Jurassic Park (1993)
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -224,7 +264,9 @@ Check yourself: Can you turn 'Computer Graphics History' into a causal sentence 
 
 Source cue: Ikea (2014)
 
-Commentary: This slide is about Computer Graphics History. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: Ikea (2014)
+Professor-style explanation: For 'Computer Graphics History', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: Ikea (2014). Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Computer Graphics History. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: Ikea (2014)
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -234,7 +276,9 @@ Check yourself: Can you turn 'Computer Graphics History' into a causal sentence 
 
 Source cue: - Human-Computer Interaction / - Virtual and Augmented Reality / - Visualization / - Image Processing / - Computer Vision
 
-Commentary: This slide is about Related Disciplines. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Human-Computer Interaction / - Virtual and Augmented Reality / - Visualization / - Image Processing / - Computer Vision
+Professor-style explanation: For 'Related Disciplines', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: - Human-Computer Interaction / - Virtual and Augmented Reality / - Visualization / - Image Processing / - Computer Vision. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Related Disciplines. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Human-Computer Interaction / - Virtual and Augmented Reality / - Visualization / - Image Processing / - Computer Vision
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -244,7 +288,9 @@ Check yourself: Can you turn 'Related Disciplines' into a causal sentence instea
 
 Source cue: - Computer games / - Animation movies / - Special effects in movies / - CAD/CAM [CryEngine 5.7, CryTek 2022] / - Simulation
 
-Commentary: This slide is about Applications. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Computer games / - Animation movies / - Special effects in movies / - CAD/CAM [CryEngine 5.7, CryTek 2022] / - Simulation
+Professor-style explanation: For 'Applications', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: - Computer games / - Animation movies / - Special effects in movies / - CAD/CAM [CryEngine 5.7, CryTek 2022] / - Simulation. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Applications. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Computer games / - Animation movies / - Special effects in movies / - CAD/CAM [CryEngine 5.7, CryTek 2022] / - Simulation
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -254,7 +300,9 @@ Check yourself: Can you turn 'Applications' into a causal sentence instead of re
 
 Source cue: What is a pixel?
 
-Commentary: This slide is about 1.3 Pixel-based Representations. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: What is a pixel?
+Professor-style explanation: For '1.3 Pixel-based Representations', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: What is a pixel?. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about 1.3 Pixel-based Representations. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: What is a pixel?
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -264,7 +312,9 @@ Check yourself: Can you turn '1.3 Pixel-based Representations' into a causal sen
 
 Source cue: [„Bibliothek“ by press office Ulm University]
 
-Commentary: This slide is about Raster Images. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: [„Bibliothek“ by press office Ulm University]
+Professor-style explanation: Here the lecture moves from continuous geometry to a discrete grid. 'Raster Images' asks which pixels or samples are covered by an ideal mathematical primitive. The slide gives us this anchor: [„Bibliothek“ by press office Ulm University]. The key spoken explanation is: rasterization creates fragment candidates and interpolated values, but it does not by itself guarantee that a fragment becomes the final visible pixel.
+
+Technical commentary: This slide is about Raster Images. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: [„Bibliothek“ by press office Ulm University]
 
 Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
 
@@ -274,7 +324,9 @@ Check yourself: Can you explain which samples/fragments are generated by 'Raster
 
 Source cue: - Name derived from Word for Picture Element / - Pixel is a sample with associated sample values (=pixel components) / - Color / - Transparency (=alpha value) / - Depth (i.e., distance from viewer (=z value))
 
-Commentary: This slide is about Pixel. Read it as an occlusion decision. Decide whether the method reasons about objects, image regions, rays, or per-fragment depth comparisons. The visible cue is: - Name derived from Word for Picture Element / - Pixel is a sample with associated sample values (=pixel components) / - Color / - Transparency (=alpha value) / - Depth (i.e., distance from viewer (=z value))
+Professor-style explanation: With 'Pixel', the question is no longer just whether geometry exists, but whether it is visible from a viewpoint. The slide gives us this anchor: - Name derived from Word for Picture Element / - Pixel is a sample with associated sample values (=pixel components) / - Color / - Transparency (=alpha value) / - Depth (i.e., distance from viewer (=z value)). Explain the method by naming its decision space: does it compare objects, split image regions, cast rays, or compare per-fragment depth values? That tells you what it can handle well.
+
+Technical commentary: This slide is about Pixel. Read it as an occlusion decision. Decide whether the method reasons about objects, image regions, rays, or per-fragment depth comparisons. The visible cue is: - Name derived from Word for Picture Element / - Pixel is a sample with associated sample values (=pixel components) / - Color / - Transparency (=alpha value) / - Depth (i.e., distance from viewer (=z value))
 
 Why it matters: Visibility decides which generated candidates are actually seen from the current viewpoint.
 
@@ -284,7 +336,9 @@ Check yourself: Can you decide whether 'Pixel' works per object, per image regio
 
 Source cue: - In real world color is given / by color spectrum Day Light Light Bulb / Fluorescent Tube White LED / - In computer graphics color is represented through color models / - RGB color model (additive)
 
-Commentary: This slide is about Color. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - In real world color is given / by color spectrum Day Light Light Bulb / Fluorescent Tube White LED / - In computer graphics color is represented through color models / - RGB color model (additive)
+Professor-style explanation: This slide belongs to local shading. For 'Color', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - In real world color is given / by color spectrum Day Light Light Bulb / Fluorescent Tube White LED / - In computer graphics color is represented through color models / - RGB color model (additive). The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Color. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - In real world color is given / by color spectrum Day Light Light Bulb / Fluorescent Tube White LED / - In computer graphics color is represented through color models / - RGB color model (additive)
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -294,7 +348,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Liquid crystal displays exist since the 90s and enable flat screens / - Liquid crystals affect the polarization of light / - Based on polarization, subpixel visibility is regulated
 
-Commentary: This slide is about LCD Raster Screen. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Liquid crystal displays exist since the 90s and enable flat screens / - Liquid crystals affect the polarization of light / - Based on polarization, subpixel visibility is regulated
+Professor-style explanation: Here the lecture moves from continuous geometry to a discrete grid. 'LCD Raster Screen' asks which pixels or samples are covered by an ideal mathematical primitive. The slide gives us this anchor: - Liquid crystal displays exist since the 90s and enable flat screens / - Liquid crystals affect the polarization of light / - Based on polarization, subpixel visibility is regulated. The key spoken explanation is: rasterization creates fragment candidates and interpolated values, but it does not by itself guarantee that a fragment becomes the final visible pixel.
+
+Technical commentary: This slide is about LCD Raster Screen. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Liquid crystal displays exist since the 90s and enable flat screens / - Liquid crystals affect the polarization of light / - Based on polarization, subpixel visibility is regulated
 
 Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
 
@@ -304,7 +360,9 @@ Check yourself: Can you explain which samples/fragments are generated by 'LCD Ra
 
 Source cue: - Assume a raster image with 1024x768 pixels and 24 Bit color depth / - How many different colors can be represented? / - 224 = 28 (cid:521) 28 (cid:521) 28 = 16.777.216 / - How much memory does the image need? / - 1024 (cid:521) 768 (cid:521) 24 = 18.874.368𝑏 = 2.359.296𝐵 = 2,25𝑀i𝐵
 
-Commentary: This slide is about Raster Image Sizes. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Assume a raster image with 1024x768 pixels and 24 Bit color depth / - How many different colors can be represented? / - 224 = 28 (cid:521) 28 (cid:521) 28 = 16.777.216 / - How much memory does the image need? / - 1024 (cid:521) 768 (cid:521) 24 = 18.874.368𝑏 = 2.359.296𝐵 = 2,25𝑀i𝐵
+Professor-style explanation: Here the lecture moves from continuous geometry to a discrete grid. 'Raster Image Sizes' asks which pixels or samples are covered by an ideal mathematical primitive. The slide gives us this anchor: - Assume a raster image with 1024x768 pixels and 24 Bit color depth / - How many different colors can be represented? / - 224 = 28 (cid:521) 28 (cid:521) 28 = 16.777.216 / - How much memory does the image need? / - 1024 (cid:521) 768 (cid:521) 24 = 18.874.368𝑏 = 2.359.296𝐵 = 2,25𝑀i𝐵. The key spoken explanation is: rasterization creates fragment candidates and interpolated values, but it does not by itself guarantee that a fragment becomes the final visible pixel.
+
+Technical commentary: This slide is about Raster Image Sizes. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Assume a raster image with 1024x768 pixels and 24 Bit color depth / - How many different colors can be represented? / - 224 = 28 (cid:521) 28 (cid:521) 28 = 16.777.216 / - How much memory does the image need? / - 1024 (cid:521) 768 (cid:521) 24 = 18.874.368𝑏 = 2.359.296𝐵 = 2,25𝑀i𝐵
 
 Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
 
@@ -314,7 +372,9 @@ Check yourself: Can you explain which samples/fragments are generated by 'Raster
 
 Source cue: Modeling with triangles and other geometric primitives
 
-Commentary: This slide is about 1.4 3D Models. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: Modeling with triangles and other geometric primitives
+Professor-style explanation: Here the lecture moves from continuous geometry to a discrete grid. '1.4 3D Models' asks which pixels or samples are covered by an ideal mathematical primitive. The slide gives us this anchor: Modeling with triangles and other geometric primitives. The key spoken explanation is: rasterization creates fragment candidates and interpolated values, but it does not by itself guarantee that a fragment becomes the final visible pixel.
+
+Technical commentary: This slide is about 1.4 3D Models. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: Modeling with triangles and other geometric primitives
 
 Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
 
@@ -324,7 +384,9 @@ Check yourself: Can you explain which samples/fragments are generated by '1.4 3D
 
 Source cue: - Models specify the structures to be displayed / - Three commonly used model types exist / - Implicit surfaces / - Polygonal models / - Volumetric models
 
-Commentary: This slide is about 3D Model Types. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Models specify the structures to be displayed / - Three commonly used model types exist / - Implicit surfaces / - Polygonal models / - Volumetric models
+Professor-style explanation: For '3D Model Types', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: - Models specify the structures to be displayed / - Three commonly used model types exist / - Implicit surfaces / - Polygonal models / - Volumetric models. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about 3D Model Types. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Models specify the structures to be displayed / - Three commonly used model types exist / - Implicit surfaces / - Polygonal models / - Volumetric models
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -334,7 +396,9 @@ Check yourself: Can you turn '3D Model Types' into a causal sentence instead of 
 
 Source cue: - Set of all points that fulfill 𝑓 x, y, z = 0 / - All points with 𝑓 x, y, z < 0 define solid bound by 𝑓 x, y, z = 0 / - Display possibilities / - Search for null points / - Approximate with polygons
 
-Commentary: This slide is about Implicit Surfaces. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Set of all points that fulfill 𝑓 x, y, z = 0 / - All points with 𝑓 x, y, z < 0 define solid bound by 𝑓 x, y, z = 0 / - Display possibilities / - Search for null points / - Approximate with polygons
+Professor-style explanation: For 'Implicit Surfaces', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: - Set of all points that fulfill 𝑓 x, y, z = 0 / - All points with 𝑓 x, y, z < 0 define solid bound by 𝑓 x, y, z = 0 / - Display possibilities / - Search for null points / - Approximate with polygons. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Implicit Surfaces. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Set of all points that fulfill 𝑓 x, y, z = 0 / - All points with 𝑓 x, y, z < 0 define solid bound by 𝑓 x, y, z = 0 / - Display possibilities / - Search for null points / - Approximate with polygons
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -344,7 +408,9 @@ Check yourself: Can you turn 'Implicit Surfaces' into a causal sentence instead 
 
 Source cue: - Surfaces represented by quadric equations / Ellipsoid Single Hyperboloid Double Hyperboloid / x2 y2 z2 x2 y2 z2 x2 y2 z2 / 𝑓 x, y, z = + + − 1 𝑓 x, y, z = + − − 1 𝑓 x, y, z = + − + 1 / 𝛼2 𝛽2 𝛾2 𝛼2 𝛽2 𝛾2 𝛼2 𝛽2 𝛾2
 
-Commentary: This slide is about Quadrics. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Surfaces represented by quadric equations / Ellipsoid Single Hyperboloid Double Hyperboloid / x2 y2 z2 x2 y2 z2 x2 y2 z2 / 𝑓 x, y, z = + + − 1 𝑓 x, y, z = + − − 1 𝑓 x, y, z = + − + 1 / 𝛼2 𝛽2 𝛾2 𝛼2 𝛽2 𝛾2 𝛼2 𝛽2 𝛾2
+Professor-style explanation: For 'Quadrics', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: - Surfaces represented by quadric equations / Ellipsoid Single Hyperboloid Double Hyperboloid / x2 y2 z2 x2 y2 z2 x2 y2 z2 / 𝑓 x, y, z = + + − 1 𝑓 x, y, z = + − − 1 𝑓 x, y, z = + − + 1 / 𝛼2 𝛽2 𝛾2 𝛼2 𝛽2 𝛾2 𝛼2 𝛽2 𝛾2. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Quadrics. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Surfaces represented by quadric equations / Ellipsoid Single Hyperboloid Double Hyperboloid / x2 y2 z2 x2 y2 z2 x2 y2 z2 / 𝑓 x, y, z = + + − 1 𝑓 x, y, z = + − − 1 𝑓 x, y, z = + − + 1 / 𝛼2 𝛽2 𝛾2 𝛼2 𝛽2 𝛾2 𝛼2 𝛽2 𝛾2
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -354,7 +420,9 @@ Check yourself: Can you turn 'Quadrics' into a causal sentence instead of repeat
 
 Source cue: Point Cloud (3D Scan) Binary Data (MRT) Signed Distance Fields (SDF) Meshes
 
-Commentary: This slide is about Object Representation. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: Point Cloud (3D Scan) Binary Data (MRT) Signed Distance Fields (SDF) Meshes
+Professor-style explanation: For 'Object Representation', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: Point Cloud (3D Scan) Binary Data (MRT) Signed Distance Fields (SDF) Meshes. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Object Representation. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: Point Cloud (3D Scan) Binary Data (MRT) Signed Distance Fields (SDF) Meshes
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -364,7 +432,9 @@ Check yourself: Can you turn 'Object Representation' into a causal sentence inst
 
 Source cue: - Surface representation is approximated by polygons / - Polygons are made up of vertices and edges
 
-Commentary: This slide is about Polygonal Models 1/3. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Surface representation is approximated by polygons / - Polygons are made up of vertices and edges
+Professor-style explanation: For 'Polygonal Models 1/3', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: - Surface representation is approximated by polygons / - Polygons are made up of vertices and edges. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Polygonal Models 1/3. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Surface representation is approximated by polygons / - Polygons are made up of vertices and edges
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -374,7 +444,9 @@ Check yourself: Can you turn 'Polygonal Models 1/3' into a causal sentence inste
 
 Source cue: - Surface representation is approximated by polygons (mostly triangles/quads) / - Polygons are made up of vertices and edges / Valence / Degree Adjacent Edges 1-Ring Neighborhood
 
-Commentary: This slide is about Polygonal Models 1/4. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Surface representation is approximated by polygons (mostly triangles/quads) / - Polygons are made up of vertices and edges / Valence / Degree Adjacent Edges 1-Ring Neighborhood
+Professor-style explanation: Here the lecture moves from continuous geometry to a discrete grid. 'Polygonal Models 1/4' asks which pixels or samples are covered by an ideal mathematical primitive. The slide gives us this anchor: - Surface representation is approximated by polygons (mostly triangles/quads) / - Polygons are made up of vertices and edges / Valence / Degree Adjacent Edges 1-Ring Neighborhood. The key spoken explanation is: rasterization creates fragment candidates and interpolated values, but it does not by itself guarantee that a fragment becomes the final visible pixel.
+
+Technical commentary: This slide is about Polygonal Models 1/4. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Surface representation is approximated by polygons (mostly triangles/quads) / - Polygons are made up of vertices and edges / Valence / Degree Adjacent Edges 1-Ring Neighborhood
 
 Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
 
@@ -384,7 +456,9 @@ Check yourself: Can you explain which samples/fragments are generated by 'Polygo
 
 Source cue: - Surface representation are often approximated by triangular polygons / - Triangles consist of three vertices and three edges / - Display achieved through rendering by raster conversion of triangles
 
-Commentary: This slide is about Polygonal Models 2/4. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Surface representation are often approximated by triangular polygons / - Triangles consist of three vertices and three edges / - Display achieved through rendering by raster conversion of triangles
+Professor-style explanation: Here the lecture moves from continuous geometry to a discrete grid. 'Polygonal Models 2/4' asks which pixels or samples are covered by an ideal mathematical primitive. The slide gives us this anchor: - Surface representation are often approximated by triangular polygons / - Triangles consist of three vertices and three edges / - Display achieved through rendering by raster conversion of triangles. The key spoken explanation is: rasterization creates fragment candidates and interpolated values, but it does not by itself guarantee that a fragment becomes the final visible pixel.
+
+Technical commentary: This slide is about Polygonal Models 2/4. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Surface representation are often approximated by triangular polygons / - Triangles consist of three vertices and three edges / - Display achieved through rendering by raster conversion of triangles
 
 Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
 
@@ -394,7 +468,9 @@ Check yourself: Can you explain which samples/fragments are generated by 'Polygo
 
 Source cue: - Various attributes are associated with vertices of a polygonal model / - Colors / - Material properties / - Textures / - …
 
-Commentary: This slide is about Polygonal Models 3/4. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Various attributes are associated with vertices of a polygonal model / - Colors / - Material properties / - Textures / - …
+Professor-style explanation: This slide belongs to local shading. For 'Polygonal Models 3/4', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Various attributes are associated with vertices of a polygonal model / - Colors / - Material properties / - Textures / - …. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Polygonal Models 3/4. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Various attributes are associated with vertices of a polygonal model / - Colors / - Material properties / - Textures / - …
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -404,7 +480,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Surface normal required in many cases / - Normal is calculated through cross product: / - Example use cases / 𝑎 𝑏 − 𝑎 𝑏 / 2 3 3 2
 
-Commentary: This slide is about Polygonal Models 4/4. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Surface normal required in many cases / - Normal is calculated through cross product: / - Example use cases / 𝑎 𝑏 − 𝑎 𝑏 / 2 3 3 2
+Professor-style explanation: This slide belongs to local shading. For 'Polygonal Models 4/4', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Surface normal required in many cases / - Normal is calculated through cross product: / - Example use cases / 𝑎 𝑏 − 𝑎 𝑏 / 2 3 3 2. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Polygonal Models 4/4. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Surface normal required in many cases / - Normal is calculated through cross product: / - Example use cases / 𝑎 𝑏 − 𝑎 𝑏 / 2 3 3 2
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -414,7 +492,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Space filling object representation through voxels (volume elements) / - Display possibilities / - Rendering of extracted surfaces / - Direct rendering through specialized algorithms
 
-Commentary: This slide is about Volumetric Models. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Space filling object representation through voxels (volume elements) / - Display possibilities / - Rendering of extracted surfaces / - Direct rendering through specialized algorithms
+Professor-style explanation: Here the lecture moves from continuous geometry to a discrete grid. 'Volumetric Models' asks which pixels or samples are covered by an ideal mathematical primitive. The slide gives us this anchor: - Space filling object representation through voxels (volume elements) / - Display possibilities / - Rendering of extracted surfaces / - Direct rendering through specialized algorithms. The key spoken explanation is: rasterization creates fragment candidates and interpolated values, but it does not by itself guarantee that a fragment becomes the final visible pixel.
+
+Technical commentary: This slide is about Volumetric Models. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Space filling object representation through voxels (volume elements) / - Display possibilities / - Rendering of extracted surfaces / - Direct rendering through specialized algorithms
 
 Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
 
@@ -424,7 +504,9 @@ Check yourself: Can you explain which samples/fragments are generated by 'Volume
 
 Source cue: - Polygonal models are generated through 3D scanning or 3D modeling / (e.g., LIDAR, Blender, Cinema 4D, Maya) / - Volumetric models are generated through imaging or simulation / (e.g., CT, MRI, PET, CFD, seismic surveys)
 
-Commentary: This slide is about Model Generation. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Polygonal models are generated through 3D scanning or 3D modeling / (e.g., LIDAR, Blender, Cinema 4D, Maya) / - Volumetric models are generated through imaging or simulation / (e.g., CT, MRI, PET, CFD, seismic surveys)
+Professor-style explanation: For 'Model Generation', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: - Polygonal models are generated through 3D scanning or 3D modeling / (e.g., LIDAR, Blender, Cinema 4D, Maya) / - Volumetric models are generated through imaging or simulation / (e.g., CT, MRI, PET, CFD, seismic surveys). Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Model Generation. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Polygonal models are generated through 3D scanning or 3D modeling / (e.g., LIDAR, Blender, Cinema 4D, Maya) / - Volumetric models are generated through imaging or simulation / (e.g., CT, MRI, PET, CFD, seismic surveys)
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -434,7 +516,9 @@ Check yourself: Can you turn 'Model Generation' into a causal sentence instead o
 
 Source cue: - Three main coordinate system exist / - Model coordinate system – model specified in own coordinate system / - World coordinate system – models arranged in common coordinate system / - Eye/camera coordinate system – model in relation to camera / - To transfer between coordinate systems,
 
-Commentary: This slide is about Coordinate Systems. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Three main coordinate system exist / - Model coordinate system – model specified in own coordinate system / - World coordinate system – models arranged in common coordinate system / - Eye/camera coordinate system – model in relation to camera / - To transfer between coordinate systems,
+Professor-style explanation: For 'Coordinate Systems', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - Three main coordinate system exist / - Model coordinate system – model specified in own coordinate system / - World coordinate system – models arranged in common coordinate system / - Eye/camera coordinate system – model in relation to camera / - To transfer between coordinate systems,. The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Coordinate Systems. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Three main coordinate system exist / - Model coordinate system – model specified in own coordinate system / - World coordinate system – models arranged in common coordinate system / - Eye/camera coordinate system – model in relation to camera / - To transfer between coordinate systems,
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -444,7 +528,9 @@ Check yourself: Can you state the coordinate space before and after 'Coordinate 
 
 Source cue: - Rendering is the process to generate raster images from 3D models / - During rendering several steps are necessary / - Coordinate system transformation / - Visibility determination / - Illumination
 
-Commentary: This slide is about Rendering. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Rendering is the process to generate raster images from 3D models / - During rendering several steps are necessary / - Coordinate system transformation / - Visibility determination / - Illumination
+Professor-style explanation: For 'Rendering', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - Rendering is the process to generate raster images from 3D models / - During rendering several steps are necessary / - Coordinate system transformation / - Visibility determination / - Illumination. The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Rendering. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Rendering is the process to generate raster images from 3D models / - During rendering several steps are necessary / - Coordinate system transformation / - Visibility determination / - Illumination
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -454,7 +540,9 @@ Check yourself: Can you state the coordinate space before and after 'Rendering'?
 
 Source cue: Frequently found algorithm strategies
 
-Commentary: This slide is about 1.5 Algorithmic Paradigms. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: Frequently found algorithm strategies
+Professor-style explanation: For '1.5 Algorithmic Paradigms', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: Frequently found algorithm strategies. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about 1.5 Algorithmic Paradigms. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: Frequently found algorithm strategies
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -464,7 +552,9 @@ Check yourself: Can you turn '1.5 Algorithmic Paradigms' into a causal sentence 
 
 Source cue: - Goal: simulate reality / [Embree Ray Tracing Website - http://embree.github.io/] [Maisch & Ropinski, Eurographics 2017] [Hendrik vann Jenssen]
 
-Commentary: This slide is about Photorealistic Rendering. Read it as an occlusion decision. Decide whether the method reasons about objects, image regions, rays, or per-fragment depth comparisons. The visible cue is: - Goal: simulate reality / [Embree Ray Tracing Website - http://embree.github.io/] [Maisch & Ropinski, Eurographics 2017] [Hendrik vann Jenssen]
+Professor-style explanation: With 'Photorealistic Rendering', the question is no longer just whether geometry exists, but whether it is visible from a viewpoint. The slide gives us this anchor: - Goal: simulate reality / [Embree Ray Tracing Website - http://embree.github.io/] [Maisch & Ropinski, Eurographics 2017] [Hendrik vann Jenssen]. Explain the method by naming its decision space: does it compare objects, split image regions, cast rays, or compare per-fragment depth values? That tells you what it can handle well.
+
+Technical commentary: This slide is about Photorealistic Rendering. Read it as an occlusion decision. Decide whether the method reasons about objects, image regions, rays, or per-fragment depth comparisons. The visible cue is: - Goal: simulate reality / [Embree Ray Tracing Website - http://embree.github.io/] [Maisch & Ropinski, Eurographics 2017] [Hendrik vann Jenssen]
 
 Why it matters: Visibility decides which generated candidates are actually seen from the current viewpoint.
 
@@ -474,7 +564,9 @@ Check yourself: Can you decide whether 'Photorealistic Rendering' works per obje
 
 Source cue: - Goal: abstract reality / [Suggestive contour line drawings, DeCarlo 2003]
 
-Commentary: This slide is about Non-Photorealistic Rendering (NPR). Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Goal: abstract reality / [Suggestive contour line drawings, DeCarlo 2003]
+Professor-style explanation: Here the lecture moves from continuous geometry to a discrete grid. 'Non-Photorealistic Rendering (NPR)' asks which pixels or samples are covered by an ideal mathematical primitive. The slide gives us this anchor: - Goal: abstract reality / [Suggestive contour line drawings, DeCarlo 2003]. The key spoken explanation is: rasterization creates fragment candidates and interpolated values, but it does not by itself guarantee that a fragment becomes the final visible pixel.
+
+Technical commentary: This slide is about Non-Photorealistic Rendering (NPR). Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Goal: abstract reality / [Suggestive contour line drawings, DeCarlo 2003]
 
 Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
 
@@ -484,7 +576,9 @@ Check yourself: Can you explain which samples/fragments are generated by 'Non-Ph
 
 Source cue: - Number of computations direct proportional to number of pixels / for all Pixels do { / for all SceneObjects do { / - Benefits / - Easy implementation
 
-Commentary: This slide is about Image-Based Algorithms. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Number of computations direct proportional to number of pixels / for all Pixels do { / for all SceneObjects do { / - Benefits / - Easy implementation
+Professor-style explanation: For 'Image-Based Algorithms', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: - Number of computations direct proportional to number of pixels / for all Pixels do { / for all SceneObjects do { / - Benefits / - Easy implementation. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Image-Based Algorithms. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Number of computations direct proportional to number of pixels / for all Pixels do { / for all SceneObjects do { / - Benefits / - Easy implementation
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -494,7 +588,9 @@ Check yourself: Can you turn 'Image-Based Algorithms' into a causal sentence ins
 
 Source cue: - Number of computations direct proportional to number of 3D models / for all SceneObjects do { / for all Pixels do { / - Benefits / - Fast computation
 
-Commentary: This slide is about Object-Based Algorithms. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Number of computations direct proportional to number of 3D models / for all SceneObjects do { / for all Pixels do { / - Benefits / - Fast computation
+Professor-style explanation: For 'Object-Based Algorithms', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: - Number of computations direct proportional to number of 3D models / for all SceneObjects do { / for all Pixels do { / - Benefits / - Fast computation. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Object-Based Algorithms. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Number of computations direct proportional to number of 3D models / for all SceneObjects do { / for all Pixels do { / - Benefits / - Fast computation
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -504,7 +600,9 @@ Check yourself: Can you turn 'Object-Based Algorithms' into a causal sentence in
 
 Source cue: - Raster images are formed of pixels to which colors, transparencies and depth / are assigned / polygonal models / - Most frequent building blocks of polygonal models are triangles, / which are formed of vertices and edges
 
-Commentary: This slide is about are assigned. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Raster images are formed of pixels to which colors, transparencies and depth / are assigned / polygonal models / - Most frequent building blocks of polygonal models are triangles, / which are formed of vertices and edges
+Professor-style explanation: Here the lecture moves from continuous geometry to a discrete grid. 'are assigned' asks which pixels or samples are covered by an ideal mathematical primitive. The slide gives us this anchor: - Raster images are formed of pixels to which colors, transparencies and depth / are assigned / polygonal models / - Most frequent building blocks of polygonal models are triangles, / which are formed of vertices and edges. The key spoken explanation is: rasterization creates fragment candidates and interpolated values, but it does not by itself guarantee that a fragment becomes the final visible pixel.
+
+Technical commentary: This slide is about are assigned. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Raster images are formed of pixels to which colors, transparencies and depth / are assigned / polygonal models / - Most frequent building blocks of polygonal models are triangles, / which are formed of vertices and edges
 
 Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
 
@@ -514,7 +612,9 @@ Check yourself: Can you explain which samples/fragments are generated by 'are as
 
 Source cue: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image.
 
-Commentary: This slide is about Literature and other sources used in this chapter. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image.
+Professor-style explanation: For 'Literature and other sources used in this chapter', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Literature and other sources used in this chapter. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image.
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -524,7 +624,9 @@ Check yourself: Can you turn 'Literature and other sources used in this chapter'
 
 Source cue: - Text Books / - P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics (4th Edition), AK / Peters 2016. (Chapters 1, 3 & 21) / - Crassin, Cyril, Fabrice Neyret, Miguel Sainz, Simon Green, and Elmar Eisemann. "Interactive / indirect illumination using voxel cone tracing." In Computer Graphics Forum, vol. 30, no. 7, pp.
 
-Commentary: This slide is about Peters 2016. (Chapters 1, 3 & 21). Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Text Books / - P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics (4th Edition), AK / Peters 2016. (Chapters 1, 3 & 21) / - Crassin, Cyril, Fabrice Neyret, Miguel Sainz, Simon Green, and Elmar Eisemann. "Interactive / indirect illumination using voxel cone tracing." In Computer Graphics Forum, vol. 30, no. 7, pp.
+Professor-style explanation: This slide belongs to local shading. For 'Peters 2016. (Chapters 1, 3 & 21)', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Text Books / - P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics (4th Edition), AK / Peters 2016. (Chapters 1, 3 & 21) / - Crassin, Cyril, Fabrice Neyret, Miguel Sainz, Simon Green, and Elmar Eisemann. "Interactive / indirect illumination using voxel cone tracing." In Computer Graphics Forum, vol. 30, no. 7, pp. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Peters 2016. (Chapters 1, 3 & 21). Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Text Books / - P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics (4th Edition), AK / Peters 2016. (Chapters 1, 3 & 21) / - Crassin, Cyril, Fabrice Neyret, Miguel Sainz, Simon Green, and Elmar Eisemann. "Interactive / indirect illumination using voxel cone tracing." In Computer Graphics Forum, vol. 30, no. 7, pp.
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 

@@ -24,7 +24,9 @@ Every extracted slide page gets its own reading note. This is the part to use wh
 
 Source cue: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image.
 
-Commentary: This slide is about Untitled slide. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image.
+Professor-style explanation: For 'Untitled slide', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Untitled slide. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image.
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -34,7 +36,9 @@ Check yourself: Can you turn 'Untitled slide' into a causal sentence instead of 
 
 Source cue: - To compute the 2D representation of a 3D model on the screen, / it needs to be projected, whereby it loses its z-coordinates / - Depending on the projection type, the object might get skewed / (perspective shortening) / - Projection can also be expressed as a matrix multiplication,
 
-Commentary: This slide is about Projecting 3D Models. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - To compute the 2D representation of a 3D model on the screen, / it needs to be projected, whereby it loses its z-coordinates / - Depending on the projection type, the object might get skewed / (perspective shortening) / - Projection can also be expressed as a matrix multiplication,
+Professor-style explanation: For 'Projecting 3D Models', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - To compute the 2D representation of a 3D model on the screen, / it needs to be projected, whereby it loses its z-coordinates / - Depending on the projection type, the object might get skewed / (perspective shortening) / - Projection can also be expressed as a matrix multiplication,. The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Projecting 3D Models. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - To compute the 2D representation of a 3D model on the screen, / it needs to be projected, whereby it loses its z-coordinates / - Depending on the projection type, the object might get skewed / (perspective shortening) / - Projection can also be expressed as a matrix multiplication,
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -44,7 +48,9 @@ Check yourself: Can you state the coordinate space before and after 'Projecting 
 
 Source cue: 4.2 Planar Projections / 4.3 Camera Modeling / 4.4 Specifying Projections in OpenGL / 4.5 Perspective Projection Derivation / 4.6 Orthographic Projection Derivation
 
-Commentary: This slide is about 4.1 Linear Perspective. Read it as concrete API state and GPU data movement. Ask which object is bound, which shader stage consumes it, and which state affects the draw call. The visible cue is: 4.2 Planar Projections / 4.3 Camera Modeling / 4.4 Specifying Projections in OpenGL / 4.5 Perspective Projection Derivation / 4.6 Orthographic Projection Derivation
+Professor-style explanation: On this slide, I would emphasize that OpenGL is a controlled state machine around the GPU pipeline. '4.1 Linear Perspective' is not about one magic render call; it is about objects, bindings, shader interfaces, buffers, and state being consistent at draw time. The slide gives us this anchor: 4.2 Planar Projections / 4.3 Camera Modeling / 4.4 Specifying Projections in OpenGL / 4.5 Perspective Projection Derivation / 4.6 Orthographic Projection Derivation. If the output is wrong, you inspect which object owns the data, which shader consumes it, and which state changes the result.
+
+Technical commentary: This slide is about 4.1 Linear Perspective. Read it as concrete API state and GPU data movement. Ask which object is bound, which shader stage consumes it, and which state affects the draw call. The visible cue is: 4.2 Planar Projections / 4.3 Camera Modeling / 4.4 Specifying Projections in OpenGL / 4.5 Perspective Projection Derivation / 4.6 Orthographic Projection Derivation
 
 Why it matters: OpenGL bugs are usually state, binding, shader-interface, or buffer-layout bugs, so API details matter.
 
@@ -54,7 +60,9 @@ Check yourself: Can you name the OpenGL object, state, shader stage, or buffer i
 
 Source cue: Discovery of perspective distortion in art
 
-Commentary: This slide is about 4.1 Linear Perspective. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: Discovery of perspective distortion in art
+Professor-style explanation: This slide should be read as camera geometry. With '4.1 Linear Perspective', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: Discovery of perspective distortion in art. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about 4.1 Linear Perspective. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: Discovery of perspective distortion in art
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -64,7 +72,9 @@ Check yourself: Can you explain how '4.1 Linear Perspective' changes positions b
 
 Source cue: - What is wrong in this image? / William Hogarth: / False Perspective, 1754 / Satire on False Perspective / William Hogarth (1753)
 
-Commentary: This slide is about Linear Perspective. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - What is wrong in this image? / William Hogarth: / False Perspective, 1754 / Satire on False Perspective / William Hogarth (1753)
+Professor-style explanation: This slide should be read as camera geometry. With 'Linear Perspective', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - What is wrong in this image? / William Hogarth: / False Perspective, 1754 / Satire on False Perspective / William Hogarth (1753). Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Linear Perspective. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - What is wrong in this image? / William Hogarth: / False Perspective, 1754 / Satire on False Perspective / William Hogarth (1753)
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -74,7 +84,9 @@ Check yourself: Can you explain how 'Linear Perspective' changes positions befor
 
 Source cue: - Projection: method for imaging objects using parallel or central beams / - Perspective: / "The science which teaches how to represent tri-dimensional objects / on a bi-dimensional surface, so that the perspective image coincides with / the one which is given by direct vision.“
 
-Commentary: This slide is about Drawing by Projecting. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Projection: method for imaging objects using parallel or central beams / - Perspective: / "The science which teaches how to represent tri-dimensional objects / on a bi-dimensional surface, so that the perspective image coincides with / the one which is given by direct vision.“
+Professor-style explanation: This slide should be read as camera geometry. With 'Drawing by Projecting', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Projection: method for imaging objects using parallel or central beams / - Perspective: / "The science which teaches how to represent tri-dimensional objects / on a bi-dimensional surface, so that the perspective image coincides with / the one which is given by direct vision.“. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Drawing by Projecting. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Projection: method for imaging objects using parallel or central beams / - Perspective: / "The science which teaches how to represent tri-dimensional objects / on a bi-dimensional surface, so that the perspective image coincides with / the one which is given by direct vision.“
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -84,7 +96,9 @@ Check yourself: Can you explain how 'Drawing by Projecting' changes positions be
 
 Source cue: - Before the Renaissance, pictures often had a religious / and symbolic character / - Perspective was not understood: / accordingly, they seem 2-dimensional / Fresco from an Egyptian grave
 
-Commentary: This slide is about Projection in the Arts 1/5. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Before the Renaissance, pictures often had a religious / and symbolic character / - Perspective was not understood: / accordingly, they seem 2-dimensional / Fresco from an Egyptian grave
+Professor-style explanation: This slide should be read as camera geometry. With 'Projection in the Arts 1/5', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Before the Renaissance, pictures often had a religious / and symbolic character / - Perspective was not understood: / accordingly, they seem 2-dimensional / Fresco from an Egyptian grave. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Projection in the Arts 1/5. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Before the Renaissance, pictures often had a religious / and symbolic character / - Perspective was not understood: / accordingly, they seem 2-dimensional / Fresco from an Egyptian grave
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -94,7 +108,9 @@ Check yourself: Can you explain how 'Projection in the Arts 1/5' changes positio
 
 Source cue: - Techniques to simulate space: / - Shaded round volumetric shapes / - Spatial depth through converging lines / Giotto di Bondone / (1266-1337, Florence)
 
-Commentary: This slide is about Projection in the Arts 2/5. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Techniques to simulate space: / - Shaded round volumetric shapes / - Spatial depth through converging lines / Giotto di Bondone / (1266-1337, Florence)
+Professor-style explanation: This slide should be read as camera geometry. With 'Projection in the Arts 2/5', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Techniques to simulate space: / - Shaded round volumetric shapes / - Spatial depth through converging lines / Giotto di Bondone / (1266-1337, Florence). Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Projection in the Arts 2/5. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Techniques to simulate space: / - Shaded round volumetric shapes / - Spatial depth through converging lines / Giotto di Bondone / (1266-1337, Florence)
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -104,7 +120,9 @@ Check yourself: Can you explain how 'Projection in the Arts 2/5' changes positio
 
 Source cue: - Renaissance (1400-1700) / - New emphasis on the importance of personal views and interpretation of / the world, power of observation, especially of nature / (astronomy, anatomy, botany, ...) / - Universe as a clockwork:
 
-Commentary: This slide is about Projection in the Arts 3/5. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Renaissance (1400-1700) / - New emphasis on the importance of personal views and interpretation of / the world, power of observation, especially of nature / (astronomy, anatomy, botany, ...) / - Universe as a clockwork:
+Professor-style explanation: This slide should be read as camera geometry. With 'Projection in the Arts 3/5', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Renaissance (1400-1700) / - New emphasis on the importance of personal views and interpretation of / the world, power of observation, especially of nature / (astronomy, anatomy, botany, ...) / - Universe as a clockwork. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Projection in the Arts 3/5. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Renaissance (1400-1700) / - New emphasis on the importance of personal views and interpretation of / the world, power of observation, especially of nature / (astronomy, anatomy, botany, ...) / - Universe as a clockwork:
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -114,7 +132,9 @@ Check yourself: Can you explain how 'Projection in the Arts 3/5' changes positio
 
 Source cue: - Examples from the Renaissance
 
-Commentary: This slide is about Projection in the Arts 4/5. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Examples from the Renaissance
+Professor-style explanation: This slide should be read as camera geometry. With 'Projection in the Arts 4/5', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Examples from the Renaissance. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Projection in the Arts 4/5. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Examples from the Renaissance
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -124,7 +144,9 @@ Check yourself: Can you explain how 'Projection in the Arts 4/5' changes positio
 
 Source cue: - Examples from the Renaissance / The Last Supper / Leonardo da Vinci (1498)
 
-Commentary: This slide is about Projection in the Arts 4/5. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Examples from the Renaissance / The Last Supper / Leonardo da Vinci (1498)
+Professor-style explanation: This slide should be read as camera geometry. With 'Projection in the Arts 4/5', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Examples from the Renaissance / The Last Supper / Leonardo da Vinci (1498). Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Projection in the Arts 4/5. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Examples from the Renaissance / The Last Supper / Leonardo da Vinci (1498)
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -134,7 +156,9 @@ Check yourself: Can you explain how 'Projection in the Arts 4/5' changes positio
 
 Source cue: - "The Invention of the Painting" (1830) by Karl Friedrich Schinkel (1781-1841): / - An image based on a legend by Pliny the Elder / - Tracing the shadow contours on a drawing surface
 
-Commentary: This slide is about Projection in the Arts 5/5. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - "The Invention of the Painting" (1830) by Karl Friedrich Schinkel (1781-1841): / - An image based on a legend by Pliny the Elder / - Tracing the shadow contours on a drawing surface
+Professor-style explanation: This slide should be read as camera geometry. With 'Projection in the Arts 5/5', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - "The Invention of the Painting" (1830) by Karl Friedrich Schinkel (1781-1841): / - An image based on a legend by Pliny the Elder / - Tracing the shadow contours on a drawing surface. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Projection in the Arts 5/5. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - "The Invention of the Painting" (1830) by Karl Friedrich Schinkel (1781-1841): / - An image based on a legend by Pliny the Elder / - Tracing the shadow contours on a drawing surface
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -144,7 +168,9 @@ Check yourself: Can you explain how 'Projection in the Arts 5/5' changes positio
 
 Source cue: - M. C. Escher (1898 – 1972)
 
-Commentary: This slide is about Projection in the Arts 6/5. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - M. C. Escher (1898 – 1972)
+Professor-style explanation: This slide should be read as camera geometry. With 'Projection in the Arts 6/5', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - M. C. Escher (1898 – 1972). Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Projection in the Arts 6/5. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - M. C. Escher (1898 – 1972)
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -154,7 +180,9 @@ Check yourself: Can you explain how 'Projection in the Arts 6/5' changes positio
 
 Source cue: - Filippo Brunelleschi (1377-1446): / Systematic method for obtaining / a perspective projection
 
-Commentary: This slide is about Projection Technics 1/3. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Filippo Brunelleschi (1377-1446): / Systematic method for obtaining / a perspective projection
+Professor-style explanation: This slide should be read as camera geometry. With 'Projection Technics 1/3', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Filippo Brunelleschi (1377-1446): / Systematic method for obtaining / a perspective projection. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Projection Technics 1/3. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Filippo Brunelleschi (1377-1446): / Systematic method for obtaining / a perspective projection
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -164,7 +192,9 @@ Check yourself: Can you explain how 'Projection Technics 1/3' changes positions 
 
 Source cue: The Delivery of the Keys / Perugino (1482)
 
-Commentary: This slide is about Projection Technics 1/3. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: The Delivery of the Keys / Perugino (1482)
+Professor-style explanation: This slide should be read as camera geometry. With 'Projection Technics 1/3', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: The Delivery of the Keys / Perugino (1482). Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Projection Technics 1/3. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: The Delivery of the Keys / Perugino (1482)
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -174,7 +204,9 @@ Check yourself: Can you explain how 'Projection Technics 1/3' changes positions 
 
 Source cue: - Formal description of the perspective projection / - Leone Batista Alberti (1404-1472): / First essay on the subject of "La Pittura" (1435) / - "A painting [the projection plane] is the intersection of a visual pyramid [view / frustum] at a given distance, with a fixed center [center of projection] and a
 
-Commentary: This slide is about Projection Technics 2/3. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Formal description of the perspective projection / - Leone Batista Alberti (1404-1472): / First essay on the subject of "La Pittura" (1435) / - "A painting [the projection plane] is the intersection of a visual pyramid [view / frustum] at a given distance, with a fixed center [center of projection] and a
+Professor-style explanation: This slide should be read as camera geometry. With 'Projection Technics 2/3', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Formal description of the perspective projection / - Leone Batista Alberti (1404-1472): / First essay on the subject of "La Pittura" (1435) / - "A painting [the projection plane] is the intersection of a visual pyramid [view / frustum] at a given distance, with a fixed center [center of projection] and a. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Projection Technics 2/3. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Formal description of the perspective projection / - Leone Batista Alberti (1404-1472): / First essay on the subject of "La Pittura" (1435) / - "A painting [the projection plane] is the intersection of a visual pyramid [view / frustum] at a given distance, with a fixed center [center of projection] and a
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -184,7 +216,9 @@ Check yourself: Can you explain how 'Projection Technics 2/3' changes positions 
 
 Source cue: - Albrecht Dürer (1471-1528): / Geometric and mechanical / description of the concept / of similar triangles / - Construction of several
 
-Commentary: This slide is about Projection Technics 3/3. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Albrecht Dürer (1471-1528): / Geometric and mechanical / description of the concept / of similar triangles / - Construction of several
+Professor-style explanation: This slide should be read as camera geometry. With 'Projection Technics 3/3', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Albrecht Dürer (1471-1528): / Geometric and mechanical / description of the concept / of similar triangles / - Construction of several. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Projection Technics 3/3. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Albrecht Dürer (1471-1528): / Geometric and mechanical / description of the concept / of similar triangles / - Construction of several
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -194,7 +228,9 @@ Check yourself: Can you explain how 'Projection Technics 3/3' changes positions 
 
 Source cue: - Camera Obscura
 
-Commentary: This slide is about Projection Technics 3/3. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Camera Obscura
+Professor-style explanation: This slide should be read as camera geometry. With 'Projection Technics 3/3', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Camera Obscura. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Projection Technics 3/3. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Camera Obscura
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -204,7 +240,9 @@ Check yourself: Can you explain how 'Projection Technics 3/3' changes positions 
 
 Source cue: Perspective and parallel projections
 
-Commentary: This slide is about 4.2 Planar Projections. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: Perspective and parallel projections
+Professor-style explanation: This slide should be read as camera geometry. With '4.2 Planar Projections', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: Perspective and parallel projections. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about 4.2 Planar Projections. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: Perspective and parallel projections
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -214,7 +252,9 @@ Check yourself: Can you explain how '4.2 Planar Projections' changes positions b
 
 Source cue: - Method of mapping objects onto a screen using projectors / - Planar geometric projections / - Projection beams are straight lines / - Projection surface is a plane / (image plane, picture plane,
 
-Commentary: This slide is about Geometric Projections. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Method of mapping objects onto a screen using projectors / - Planar geometric projections / - Projection beams are straight lines / - Projection surface is a plane / (image plane, picture plane,
+Professor-style explanation: This slide should be read as camera geometry. With 'Geometric Projections', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Method of mapping objects onto a screen using projectors / - Planar geometric projections / - Projection beams are straight lines / - Projection surface is a plane / (image plane, picture plane,. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Geometric Projections. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Method of mapping objects onto a screen using projectors / - Planar geometric projections / - Projection beams are straight lines / - Projection surface is a plane / (image plane, picture plane,
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -224,7 +264,9 @@ Check yourself: Can you explain how 'Geometric Projections' changes positions be
 
 Source cue: - Perspective projection (= central projection) / - Established by projection center / (COP, center of projection) / - Perspective reduction: The size of the projection / of an object decreases with increasing distance
 
-Commentary: This slide is about Projection Types 1/2. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Perspective projection (= central projection) / - Established by projection center / (COP, center of projection) / - Perspective reduction: The size of the projection / of an object decreases with increasing distance
+Professor-style explanation: This slide should be read as camera geometry. With 'Projection Types 1/2', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Perspective projection (= central projection) / - Established by projection center / (COP, center of projection) / - Perspective reduction: The size of the projection / of an object decreases with increasing distance. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Projection Types 1/2. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Perspective projection (= central projection) / - Established by projection center / (COP, center of projection) / - Perspective reduction: The size of the projection / of an object decreases with increasing distance
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -234,7 +276,9 @@ Check yourself: Can you explain how 'Projection Types 1/2' changes positions bef
 
 Source cue: Planar geometric Projections / Parallel Perspective / Orthographic Oblique 1-Point / 2-Point / Top Axonometric
 
-Commentary: This slide is about Projection Types 2/2. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: Planar geometric Projections / Parallel Perspective / Orthographic Oblique 1-Point / 2-Point / Top Axonometric
+Professor-style explanation: This slide should be read as camera geometry. With 'Projection Types 2/2', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: Planar geometric Projections / Parallel Perspective / Orthographic Oblique 1-Point / 2-Point / Top Axonometric. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Projection Types 2/2. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: Planar geometric Projections / Parallel Perspective / Orthographic Oblique 1-Point / 2-Point / Top Axonometric
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -244,7 +288,9 @@ Check yourself: Can you explain how 'Projection Types 2/2' changes positions bef
 
 Source cue: - Orthographic projections often used for / construction drawings of machines and parts / - Main views: Front view, top view and side view / - Advantages / - Accurate length and angle measurements possible
 
-Commentary: This slide is about Orthographic Projections. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Orthographic projections often used for / construction drawings of machines and parts / - Main views: Front view, top view and side view / - Advantages / - Accurate length and angle measurements possible
+Professor-style explanation: This slide should be read as camera geometry. With 'Orthographic Projections', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Orthographic projections often used for / construction drawings of machines and parts / - Main views: Front view, top view and side view / - Advantages / - Accurate length and angle measurements possible. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Orthographic Projections. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Orthographic projections often used for / construction drawings of machines and parts / - Main views: Front view, top view and side view / - Advantages / - Accurate length and angle measurements possible
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -254,7 +300,9 @@ Check yourself: Can you explain how 'Orthographic Projections' changes positions
 
 Source cue: - Projection beams perpendicular to the projection plane / Isometric / - Projection plane not perpendicular to a coordinate axis / - Visible effects / - Several perpendicular surfaces visible
 
-Commentary: This slide is about Axonometric Projections. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Projection beams perpendicular to the projection plane / Isometric / - Projection plane not perpendicular to a coordinate axis / - Visible effects / - Several perpendicular surfaces visible
+Professor-style explanation: For 'Axonometric Projections', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - Projection beams perpendicular to the projection plane / Isometric / - Projection plane not perpendicular to a coordinate axis / - Visible effects / - Several perpendicular surfaces visible. The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Axonometric Projections. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Projection beams perpendicular to the projection plane / Isometric / - Projection plane not perpendicular to a coordinate axis / - Visible effects / - Several perpendicular surfaces visible
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -264,7 +312,9 @@ Check yourself: Can you state the coordinate space before and after 'Axonometric
 
 Source cue: - Applications in illustrations, furniture design, ... / - Advantages / - Communicate spatial impression in a single view / - Same length ratios along the main axes / - Disadvantages
 
-Commentary: This slide is about Isometric Projections. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Applications in illustrations, furniture design, ... / - Advantages / - Communicate spatial impression in a single view / - Same length ratios along the main axes / - Disadvantages
+Professor-style explanation: This slide should be read as camera geometry. With 'Isometric Projections', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Applications in illustrations, furniture design, ... / - Advantages / - Communicate spatial impression in a single view / - Same length ratios along the main axes / - Disadvantages. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Isometric Projections. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Applications in illustrations, furniture design, ... / - Advantages / - Communicate spatial impression in a single view / - Same length ratios along the main axes / - Disadvantages
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -274,7 +324,9 @@ Check yourself: Can you explain how 'Isometric Projections' changes positions be
 
 Source cue: - Projection rays not perpendicular to the projection plane / - Common: 𝛼 = 30° / - Cavalier projection α a' / - 𝛼 = 45°, i.e., tan (𝛼) = 1 / a' projectors
 
-Commentary: This slide is about Oblique Projection 1/2. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Projection rays not perpendicular to the projection plane / - Common: 𝛼 = 30° / - Cavalier projection α a' / - 𝛼 = 45°, i.e., tan (𝛼) = 1 / a' projectors
+Professor-style explanation: This slide should be read as camera geometry. With 'Oblique Projection 1/2', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Projection rays not perpendicular to the projection plane / - Common: 𝛼 = 30° / - Cavalier projection α a' / - 𝛼 = 45°, i.e., tan (𝛼) = 1 / a' projectors. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Oblique Projection 1/2. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Projection rays not perpendicular to the projection plane / - Common: 𝛼 = 30° / - Cavalier projection α a' / - 𝛼 = 45°, i.e., tan (𝛼) = 1 / a' projectors
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -284,7 +336,9 @@ Check yourself: Can you explain how 'Oblique Projection 1/2' changes positions b
 
 Source cue: - Advantages / - Can accurately represent the shape of a boundary surface / of an object for accurate measurements / - Missing foreshortening simplifies comparison of sizes / - Gives a good impression of the 3D appearance
 
-Commentary: This slide is about Oblique Projection 2/2. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Advantages / - Can accurately represent the shape of a boundary surface / of an object for accurate measurements / - Missing foreshortening simplifies comparison of sizes / - Gives a good impression of the 3D appearance
+Professor-style explanation: This slide should be read as camera geometry. With 'Oblique Projection 2/2', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Advantages / - Can accurately represent the shape of a boundary surface / of an object for accurate measurements / - Missing foreshortening simplifies comparison of sizes / - Gives a good impression of the 3D appearance. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Oblique Projection 2/2. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Advantages / - Can accurately represent the shape of a boundary surface / of an object for accurate measurements / - Missing foreshortening simplifies comparison of sizes / - Gives a good impression of the 3D appearance
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -294,7 +348,9 @@ Check yourself: Can you explain how 'Oblique Projection 2/2' changes positions b
 
 Source cue: - Assumption: Object surface of greatest interest lies parallel to a main plane / - Direction of projection: DOP (direction of projection) / - Normal of the projection plane: VPN (view plane normal) / - Top view (orthographic) / - VPN || Main axis, DOP || VPN
 
-Commentary: This slide is about Properties of Parallel Projections. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Assumption: Object surface of greatest interest lies parallel to a main plane / - Direction of projection: DOP (direction of projection) / - Normal of the projection plane: VPN (view plane normal) / - Top view (orthographic) / - VPN || Main axis, DOP || VPN
+Professor-style explanation: This slide should be read as camera geometry. With 'Properties of Parallel Projections', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Assumption: Object surface of greatest interest lies parallel to a main plane / - Direction of projection: DOP (direction of projection) / - Normal of the projection plane: VPN (view plane normal) / - Top view (orthographic) / - VPN || Main axis, DOP || VPN. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Properties of Parallel Projections. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Assumption: Object surface of greatest interest lies parallel to a main plane / - Direction of projection: DOP (direction of projection) / - Normal of the projection plane: VPN (view plane normal) / - Top view (orthographic) / - VPN || Main axis, DOP || VPN
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -304,7 +360,9 @@ Check yourself: Can you explain how 'Properties of Parallel Projections' changes
 
 Source cue: - Properties / - Communicate realistic views of three-dimensional objects / and give a spatial impression / - Distort objects in perspective view / - Scaling of objects is lost
 
-Commentary: This slide is about Perspective Projections 1/3. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Properties / - Communicate realistic views of three-dimensional objects / and give a spatial impression / - Distort objects in perspective view / - Scaling of objects is lost
+Professor-style explanation: This slide should be read as camera geometry. With 'Perspective Projections 1/3', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Properties / - Communicate realistic views of three-dimensional objects / and give a spatial impression / - Distort objects in perspective view / - Scaling of objects is lost. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Perspective Projections 1/3. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Properties / - Communicate realistic views of three-dimensional objects / and give a spatial impression / - Distort objects in perspective view / - Scaling of objects is lost
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -314,7 +372,9 @@ Check yourself: Can you explain how 'Perspective Projections 1/3' changes positi
 
 Source cue: - Vanishing points / - For rectangular objects (e.g., axis parallel cubes) whose surface normals / are parallel to the x-, y-, or z-axis, the number of vanishing points is equal / to the number of coordinate axes intersected by the projection plane / 1-Point Perspective 2-Point Perspective 3-Point Perspective
 
-Commentary: This slide is about Perspective Projections 2/3. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Vanishing points / - For rectangular objects (e.g., axis parallel cubes) whose surface normals / are parallel to the x-, y-, or z-axis, the number of vanishing points is equal / to the number of coordinate axes intersected by the projection plane / 1-Point Perspective 2-Point Perspective 3-Point Perspective
+Professor-style explanation: For 'Perspective Projections 2/3', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - Vanishing points / - For rectangular objects (e.g., axis parallel cubes) whose surface normals / are parallel to the x-, y-, or z-axis, the number of vanishing points is equal / to the number of coordinate axes intersected by the projection plane / 1-Point Perspective 2-Point Perspective 3-Point Perspective. The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Perspective Projections 2/3. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Vanishing points / - For rectangular objects (e.g., axis parallel cubes) whose surface normals / are parallel to the x-, y-, or z-axis, the number of vanishing points is equal / to the number of coordinate axes intersected by the projection plane / 1-Point Perspective 2-Point Perspective 3-Point Perspective
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -324,7 +384,9 @@ Check yourself: Can you state the coordinate space before and after 'Perspective
 
 Source cue: - What happens if the cube is rotated so that its surface normals are not / parallel to the coordinate axes? / - Although the projection plane intersects only one coordinate axis, in this case / you get 3 vanishing points
 
-Commentary: This slide is about Perspective Projections 3/3. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - What happens if the cube is rotated so that its surface normals are not / parallel to the coordinate axes? / - Although the projection plane intersects only one coordinate axis, in this case / you get 3 vanishing points
+Professor-style explanation: For 'Perspective Projections 3/3', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - What happens if the cube is rotated so that its surface normals are not / parallel to the coordinate axes? / - Although the projection plane intersects only one coordinate axis, in this case / you get 3 vanishing points. The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Perspective Projections 3/3. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - What happens if the cube is rotated so that its surface normals are not / parallel to the coordinate axes? / - Although the projection plane intersects only one coordinate axis, in this case / you get 3 vanishing points
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -334,7 +396,9 @@ Check yourself: Can you state the coordinate space before and after 'Perspective
 
 Source cue: Orientation of the camera and definition of the view volume
 
-Commentary: This slide is about 4.3 Camera Modeling. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: Orientation of the camera and definition of the view volume
+Professor-style explanation: This slide should be read as camera geometry. With '4.3 Camera Modeling', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: Orientation of the camera and definition of the view volume. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about 4.3 Camera Modeling. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: Orientation of the camera and definition of the view volume
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -344,7 +408,9 @@ Check yourself: Can you explain how '4.3 Camera Modeling' changes positions befo
 
 Source cue: - Application of planar geometric projections, represented by 4 × 4 matrices, / to project a 3D scene onto a projection screen, i.e., the canvas / - Basic camera parameters / - Camera position / - Camera orientation
 
-Commentary: This slide is about Camera Modeling. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Application of planar geometric projections, represented by 4 × 4 matrices, / to project a 3D scene onto a projection screen, i.e., the canvas / - Basic camera parameters / - Camera position / - Camera orientation
+Professor-style explanation: This slide should be read as camera geometry. With 'Camera Modeling', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Application of planar geometric projections, represented by 4 × 4 matrices, / to project a 3D scene onto a projection screen, i.e., the canvas / - Basic camera parameters / - Camera position / - Camera orientation. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Camera Modeling. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Application of planar geometric projections, represented by 4 × 4 matrices, / to project a 3D scene onto a projection screen, i.e., the canvas / - Basic camera parameters / - Camera position / - Camera orientation
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -354,7 +420,9 @@ Check yourself: Can you explain how 'Camera Modeling' changes positions before r
 
 Source cue: - Objects that are within the view volume are visible for the camera / - Conical viewing volume / - Clipping the scene objects against a conical viewing volume is expensive / (solving quadratic equations) / - Frustum - rectangular viewing volume
 
-Commentary: This slide is about View Volume. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Objects that are within the view volume are visible for the camera / - Conical viewing volume / - Clipping the scene objects against a conical viewing volume is expensive / (solving quadratic equations) / - Frustum - rectangular viewing volume
+Professor-style explanation: This slide should be read as camera geometry. With 'View Volume', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Objects that are within the view volume are visible for the camera / - Conical viewing volume / - Clipping the scene objects against a conical viewing volume is expensive / (solving quadratic equations) / - Frustum - rectangular viewing volume. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about View Volume. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Objects that are within the view volume are visible for the camera / - Conical viewing volume / - Clipping the scene objects against a conical viewing volume is expensive / (solving quadratic equations) / - Frustum - rectangular viewing volume
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -364,7 +432,9 @@ Check yourself: Can you explain how 'View Volume' changes positions before raste
 
 Source cue: - Specified by Height Angle, Aspect Ratio, / Near Plane Distance and Far Plane Distance / - Examples of Aspect Ratio / - NTSC 4 : 3, HDTV 16 : 9 / - Cinema 2.35 : 1, 2.39 : 1, 2.40 : 1, or 2.55 : 1
 
-Commentary: This slide is about Projection Specification. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Specified by Height Angle, Aspect Ratio, / Near Plane Distance and Far Plane Distance / - Examples of Aspect Ratio / - NTSC 4 : 3, HDTV 16 : 9 / - Cinema 2.35 : 1, 2.39 : 1, 2.40 : 1, or 2.55 : 1
+Professor-style explanation: This slide should be read as camera geometry. With 'Projection Specification', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Specified by Height Angle, Aspect Ratio, / Near Plane Distance and Far Plane Distance / - Examples of Aspect Ratio / - NTSC 4 : 3, HDTV 16 : 9 / - Cinema 2.35 : 1, 2.39 : 1, 2.40 : 1, or 2.55 : 1. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Projection Specification. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Specified by Height Angle, Aspect Ratio, / Near Plane Distance and Far Plane Distance / - Examples of Aspect Ratio / - NTSC 4 : 3, HDTV 16 : 9 / - Cinema 2.35 : 1, 2.39 : 1, 2.40 : 1, or 2.55 : 1
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -374,7 +444,9 @@ Check yourself: Can you explain how 'Projection Specification' changes positions
 
 Source cue: - Parallel projection: no viewing angle as rays are parallel / - Perspective projection: / viewing angle determines perspective distortion in the image / - Specification / - Through the viewing angle in height (field of view in y, fovy)
 
-Commentary: This slide is about View Angle. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Parallel projection: no viewing angle as rays are parallel / - Perspective projection: / viewing angle determines perspective distortion in the image / - Specification / - Through the viewing angle in height (field of view in y, fovy)
+Professor-style explanation: This slide should be read as camera geometry. With 'View Angle', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Parallel projection: no viewing angle as rays are parallel / - Perspective projection: / viewing angle determines perspective distortion in the image / - Specification / - Through the viewing angle in height (field of view in y, fovy). Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about View Angle. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Parallel projection: no viewing angle as rays are parallel / - Perspective projection: / viewing angle determines perspective distortion in the image / - Specification / - Through the viewing angle in height (field of view in y, fovy)
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -384,7 +456,9 @@ Check yourself: Can you explain how 'View Angle' changes positions before raster
 
 Source cue: - Position of the planes is determined by the distance along the look vector: / near distance and far distance / - Near plane hides objects that are behind or too close to the camera / - Far plane hides objects that are too far away (and may be hard to spot) / ⇒ Reduction of rendering overhead
 
-Commentary: This slide is about Clipping Planes. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Position of the planes is determined by the distance along the look vector: / near distance and far distance / - Near plane hides objects that are behind or too close to the camera / - Far plane hides objects that are too far away (and may be hard to spot) / ⇒ Reduction of rendering overhead
+Professor-style explanation: This slide should be read as camera geometry. With 'Clipping Planes', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Position of the planes is determined by the distance along the look vector: / near distance and far distance / - Near plane hides objects that are behind or too close to the camera / - Far plane hides objects that are too far away (and may be hard to spot) / ⇒ Reduction of rendering overhead. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Clipping Planes. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Position of the planes is determined by the distance along the look vector: / near distance and far distance / - Near plane hides objects that are behind or too close to the camera / - Far plane hides objects that are too far away (and may be hard to spot) / ⇒ Reduction of rendering overhead
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -394,7 +468,9 @@ Check yourself: Can you explain how 'Clipping Planes' changes positions before r
 
 Source cue: Functions to describe the view volume
 
-Commentary: This slide is about 4.4 Specifying Projections in OpenGL. Read it as concrete API state and GPU data movement. Ask which object is bound, which shader stage consumes it, and which state affects the draw call. The visible cue is: Functions to describe the view volume
+Professor-style explanation: On this slide, I would emphasize that OpenGL is a controlled state machine around the GPU pipeline. '4.4 Specifying Projections in OpenGL' is not about one magic render call; it is about objects, bindings, shader interfaces, buffers, and state being consistent at draw time. The slide gives us this anchor: Functions to describe the view volume. If the output is wrong, you inspect which object owns the data, which shader consumes it, and which state changes the result.
+
+Technical commentary: This slide is about 4.4 Specifying Projections in OpenGL. Read it as concrete API state and GPU data movement. Ask which object is bound, which shader stage consumes it, and which state affects the draw call. The visible cue is: Functions to describe the view volume
 
 Why it matters: OpenGL bugs are usually state, binding, shader-interface, or buffer-layout bugs, so API details matter.
 
@@ -404,7 +480,9 @@ Check yourself: Can you name the OpenGL object, state, shader stage, or buffer i
 
 Source cue: - Convenient generation of perspective projection matrix with GLM / - glm::perspective(fovy, aspect, near, far) / h –n –f / aspect  / fovy fovy
 
-Commentary: This slide is about Projection Matrix Generation 1/3. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Convenient generation of perspective projection matrix with GLM / - glm::perspective(fovy, aspect, near, far) / h –n –f / aspect  / fovy fovy
+Professor-style explanation: For 'Projection Matrix Generation 1/3', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - Convenient generation of perspective projection matrix with GLM / - glm::perspective(fovy, aspect, near, far) / h –n –f / aspect  / fovy fovy. The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Projection Matrix Generation 1/3. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Convenient generation of perspective projection matrix with GLM / - glm::perspective(fovy, aspect, near, far) / h –n –f / aspect  / fovy fovy
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -414,7 +492,9 @@ Check yourself: Can you state the coordinate space before and after 'Projection 
 
 Source cue: - Alternative generation of perspective projection matrix with GLM / - glm::frustum(left, right, bottom, top, near, far) / (r, t, –n) / z = –f (far plane) / (l, b, –n)
 
-Commentary: This slide is about Projection Matrix Generation 2/3. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Alternative generation of perspective projection matrix with GLM / - glm::frustum(left, right, bottom, top, near, far) / (r, t, –n) / z = –f (far plane) / (l, b, –n)
+Professor-style explanation: For 'Projection Matrix Generation 2/3', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - Alternative generation of perspective projection matrix with GLM / - glm::frustum(left, right, bottom, top, near, far) / (r, t, –n) / z = –f (far plane) / (l, b, –n). The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Projection Matrix Generation 2/3. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Alternative generation of perspective projection matrix with GLM / - glm::frustum(left, right, bottom, top, near, far) / (r, t, –n) / z = –f (far plane) / (l, b, –n)
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -424,7 +504,9 @@ Check yourself: Can you state the coordinate space before and after 'Projection 
 
 Source cue: - Implementation of glm:perspective / detail::tmat4x4<T> perspective(T const & fovy, T const & aspect, / T const & near, T const & far) { / T const & l, r, b, t; / t = n * tan(fovy * M_PI / 360.0);
 
-Commentary: This slide is about Projection Matrix Generation 3/3. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Implementation of glm:perspective / detail::tmat4x4<T> perspective(T const & fovy, T const & aspect, / T const & near, T const & far) { / T const & l, r, b, t; / t = n * tan(fovy * M_PI / 360.0);
+Professor-style explanation: For 'Projection Matrix Generation 3/3', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - Implementation of glm:perspective / detail::tmat4x4<T> perspective(T const & fovy, T const & aspect, / T const & near, T const & far) { / T const & l, r, b, t; / t = n * tan(fovy * M_PI / 360.0). The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Projection Matrix Generation 3/3. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Implementation of glm:perspective / detail::tmat4x4<T> perspective(T const & fovy, T const & aspect, / T const & near, T const & far) { / T const & l, r, b, t; / t = n * tan(fovy * M_PI / 360.0);
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -434,7 +516,9 @@ Check yourself: Can you state the coordinate space before and after 'Projection 
 
 Source cue: - Convenient generation of parallel projection matrix with GLM / - glm::ortho(left, right, bottom, top, near, far) / (r, t, –f) / z = –f (far plane) / z = –n (near plane)
 
-Commentary: This slide is about Orthographic Matrix Specification. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Convenient generation of parallel projection matrix with GLM / - glm::ortho(left, right, bottom, top, near, far) / (r, t, –f) / z = –f (far plane) / z = –n (near plane)
+Professor-style explanation: For 'Orthographic Matrix Specification', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - Convenient generation of parallel projection matrix with GLM / - glm::ortho(left, right, bottom, top, near, far) / (r, t, –f) / z = –f (far plane) / z = –n (near plane). The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Orthographic Matrix Specification. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Convenient generation of parallel projection matrix with GLM / - glm::ortho(left, right, bottom, top, near, far) / (r, t, –f) / z = –f (far plane) / z = –n (near plane)
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -444,7 +528,9 @@ Check yourself: Can you state the coordinate space before and after 'Orthographi
 
 Source cue: Step-wise transformation of a cuboid into a cube
 
-Commentary: This slide is about 4.5 Orthographic Projection Derivation. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: Step-wise transformation of a cuboid into a cube
+Professor-style explanation: For '4.5 Orthographic Projection Derivation', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: Step-wise transformation of a cuboid into a cube. The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about 4.5 Orthographic Projection Derivation. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: Step-wise transformation of a cuboid into a cube
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -454,7 +540,9 @@ Check yourself: Can you state the coordinate space before and after '4.5 Orthogr
 
 Source cue: - Canonical view volume – simplest possible view volume / - Cube centered at the origin / - Cube faces x = ±1, y = ±1, z = ±1 / - Defined in a left-handed coordinate system (LHS) / (1, 1, 1)
 
-Commentary: This slide is about Canonical View Volume. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Canonical view volume – simplest possible view volume / - Cube centered at the origin / - Cube faces x = ±1, y = ±1, z = ±1 / - Defined in a left-handed coordinate system (LHS) / (1, 1, 1)
+Professor-style explanation: For 'Canonical View Volume', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - Canonical view volume – simplest possible view volume / - Cube centered at the origin / - Cube faces x = ±1, y = ±1, z = ±1 / - Defined in a left-handed coordinate system (LHS) / (1, 1, 1). The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Canonical View Volume. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Canonical view volume – simplest possible view volume / - Cube centered at the origin / - Cube faces x = ±1, y = ±1, z = ±1 / - Defined in a left-handed coordinate system (LHS) / (1, 1, 1)
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -464,7 +552,9 @@ Check yourself: Can you state the coordinate space before and after 'Canonical V
 
 Source cue: - Transform right-handed view volume specified as [𝑙, 𝑟] × [𝑏, 𝑡] × [– 𝑛, – 𝑓] / into left-handed canonical view volume – 1, 1 × – 1, 1 × – 1, 1 / and then create the projected image by neglecting z-values / (r, t, –f) / (1, 1, 1)
 
-Commentary: This slide is about Orthographic Projection 1/4. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Transform right-handed view volume specified as [𝑙, 𝑟] × [𝑏, 𝑡] × [– 𝑛, – 𝑓] / into left-handed canonical view volume – 1, 1 × – 1, 1 × – 1, 1 / and then create the projected image by neglecting z-values / (r, t, –f) / (1, 1, 1)
+Professor-style explanation: For 'Orthographic Projection 1/4', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - Transform right-handed view volume specified as [𝑙, 𝑟] × [𝑏, 𝑡] × [– 𝑛, – 𝑓] / into left-handed canonical view volume – 1, 1 × – 1, 1 × – 1, 1 / and then create the projected image by neglecting z-values / (r, t, –f) / (1, 1, 1). The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Orthographic Projection 1/4. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Transform right-handed view volume specified as [𝑙, 𝑟] × [𝑏, 𝑡] × [– 𝑛, – 𝑓] / into left-handed canonical view volume – 1, 1 × – 1, 1 × – 1, 1 / and then create the projected image by neglecting z-values / (r, t, –f) / (1, 1, 1)
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -474,7 +564,9 @@ Check yourself: Can you state the coordinate space before and after 'Orthographi
 
 Source cue: - Let 𝑝(x, y, z) be a model point and 𝑞(x′, y′, z′) its transformed point / - The desired pixel (x , y ) results from orthographic projection of 𝑞 / 𝑝 𝑝 / onto the plane z = −1: x = x‘ and y = y′ / 𝑝 𝑝
 
-Commentary: This slide is about Orthographic Projection 2/4. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Let 𝑝(x, y, z) be a model point and 𝑞(x′, y′, z′) its transformed point / - The desired pixel (x , y ) results from orthographic projection of 𝑞 / 𝑝 𝑝 / onto the plane z = −1: x = x‘ and y = y′ / 𝑝 𝑝
+Professor-style explanation: For 'Orthographic Projection 2/4', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - Let 𝑝(x, y, z) be a model point and 𝑞(x′, y′, z′) its transformed point / - The desired pixel (x , y ) results from orthographic projection of 𝑞 / 𝑝 𝑝 / onto the plane z = −1: x = x‘ and y = y′ / 𝑝 𝑝. The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Orthographic Projection 2/4. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Let 𝑝(x, y, z) be a model point and 𝑞(x′, y′, z′) its transformed point / - The desired pixel (x , y ) results from orthographic projection of 𝑞 / 𝑝 𝑝 / onto the plane z = −1: x = x‘ and y = y′ / 𝑝 𝑝
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -484,7 +576,9 @@ Check yourself: Can you state the coordinate space before and after 'Orthographi
 
 Source cue: - Step 2, scale cuboid from step 1 into cube / - Original cuboid bounds are / 𝑟 − 𝑙 𝑟 − 𝑙 𝑡 − 𝑏 𝑡 − 𝑏 𝑓 − 𝑛 𝑓 − 𝑛 / − , × − , × − , / 2 2 2 2 2 2
 
-Commentary: This slide is about Orthographic Projection 3/4. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Step 2, scale cuboid from step 1 into cube / - Original cuboid bounds are / 𝑟 − 𝑙 𝑟 − 𝑙 𝑡 − 𝑏 𝑡 − 𝑏 𝑓 − 𝑛 𝑓 − 𝑛 / − , × − , × − , / 2 2 2 2 2 2
+Professor-style explanation: This slide should be read as camera geometry. With 'Orthographic Projection 3/4', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Step 2, scale cuboid from step 1 into cube / - Original cuboid bounds are / 𝑟 − 𝑙 𝑟 − 𝑙 𝑡 − 𝑏 𝑡 − 𝑏 𝑓 − 𝑛 𝑓 − 𝑛 / − , × − , × − , / 2 2 2 2 2 2. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Orthographic Projection 3/4. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Step 2, scale cuboid from step 1 into cube / - Original cuboid bounds are / 𝑟 − 𝑙 𝑟 − 𝑙 𝑡 − 𝑏 𝑡 − 𝑏 𝑓 − 𝑛 𝑓 − 𝑛 / − , × − , × − , / 2 2 2 2 2 2
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -494,7 +588,9 @@ Check yourself: Can you explain how 'Orthographic Projection 3/4' changes positi
 
 Source cue: - Multiplication of all orthographic projection matrices results in / 2 𝑟 + 𝑙 / 0 0 − / 𝑟 − 𝑙 𝑟 − 𝑙 / 2 𝑡 + 𝑏
 
-Commentary: This slide is about Orthographic Projection 4/4. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Multiplication of all orthographic projection matrices results in / 2 𝑟 + 𝑙 / 0 0 − / 𝑟 − 𝑙 𝑟 − 𝑙 / 2 𝑡 + 𝑏
+Professor-style explanation: This slide should be read as camera geometry. With 'Orthographic Projection 4/4', the question is how a 3D view becomes coordinates that can be clipped, divided, mapped to the viewport, and rasterized. The slide gives us this anchor: - Multiplication of all orthographic projection matrices results in / 2 𝑟 + 𝑙 / 0 0 − / 𝑟 − 𝑙 𝑟 − 𝑙 / 2 𝑡 + 𝑏. Keep separate the camera/view transform, the projection matrix, the perspective divide, and the final viewport transform; many mistakes come from blending these steps together.
+
+Technical commentary: This slide is about Orthographic Projection 4/4. Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations. The visible cue is: - Multiplication of all orthographic projection matrices results in / 2 𝑟 + 𝑙 / 0 0 − / 𝑟 − 𝑙 𝑟 − 𝑙 / 2 𝑡 + 𝑏
 
 Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
 
@@ -504,7 +600,9 @@ Check yourself: Can you explain how 'Orthographic Projection 4/4' changes positi
 
 Source cue: Step-wise transformation of a frustum into a cube
 
-Commentary: This slide is about 4.6 Perspective Projection Derivation. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: Step-wise transformation of a frustum into a cube
+Professor-style explanation: For '4.6 Perspective Projection Derivation', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: Step-wise transformation of a frustum into a cube. The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about 4.6 Perspective Projection Derivation. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: Step-wise transformation of a frustum into a cube
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -514,7 +612,9 @@ Check yourself: Can you state the coordinate space before and after '4.6 Perspec
 
 Source cue: - Transform view volume created by glm::frustum or glm::perspective into / canonical view volume / and then create the projected image by neglecting z-values / (1, 1, 1) / (–1,–1,–1)
 
-Commentary: This slide is about Perspective Projection. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Transform view volume created by glm::frustum or glm::perspective into / canonical view volume / and then create the projected image by neglecting z-values / (1, 1, 1) / (–1,–1,–1)
+Professor-style explanation: For 'Perspective Projection', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - Transform view volume created by glm::frustum or glm::perspective into / canonical view volume / and then create the projected image by neglecting z-values / (1, 1, 1) / (–1,–1,–1). The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Perspective Projection. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Transform view volume created by glm::frustum or glm::perspective into / canonical view volume / and then create the projected image by neglecting z-values / (1, 1, 1) / (–1,–1,–1)
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -524,7 +624,9 @@ Check yourself: Can you state the coordinate space before and after 'Perspective
 
 Source cue: - After the perspective projection, z-values shall be mapped as follows / - All z-values lying on the near plane shall have a value of -1 / - All z-values lying on the far plane shall have a value of 1 / - The following matrix 𝑃 allows modification of the depth values / and assures the flip (left-handed to right-handed conversion)
 
-Commentary: This slide is about Transformation of z-Values 1/2. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - After the perspective projection, z-values shall be mapped as follows / - All z-values lying on the near plane shall have a value of -1 / - All z-values lying on the far plane shall have a value of 1 / - The following matrix 𝑃 allows modification of the depth values / and assures the flip (left-handed to right-handed conversion)
+Professor-style explanation: For 'Transformation of z-Values 1/2', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - After the perspective projection, z-values shall be mapped as follows / - All z-values lying on the near plane shall have a value of -1 / - All z-values lying on the far plane shall have a value of 1 / - The following matrix 𝑃 allows modification of the depth values / and assures the flip (left-handed to right-handed conversion). The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Transformation of z-Values 1/2. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - After the perspective projection, z-values shall be mapped as follows / - All z-values lying on the near plane shall have a value of -1 / - All z-values lying on the far plane shall have a value of 1 / - The following matrix 𝑃 allows modification of the depth values / and assures the flip (left-handed to right-handed conversion)
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -534,7 +636,9 @@ Check yourself: Can you state the coordinate space before and after 'Transformat
 
 Source cue: - Choosing values for 𝑎 and 𝑏 in 𝑃 / - 𝑎 and 𝑏 must fulfill the following / −𝑎𝑛 + 𝑏 / 𝑃 ⋅ 0 0 −𝑛 1 𝑇 = 0 0 −𝑎𝑛 + 𝑏 𝑛 𝑇 0 0 =(cid:3549) 0 0 −1 / ÷𝑤 𝑛
 
-Commentary: This slide is about Transformation of z-Values 2/2. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Choosing values for 𝑎 and 𝑏 in 𝑃 / - 𝑎 and 𝑏 must fulfill the following / −𝑎𝑛 + 𝑏 / 𝑃 ⋅ 0 0 −𝑛 1 𝑇 = 0 0 −𝑎𝑛 + 𝑏 𝑛 𝑇 0 0 =(cid:3549) 0 0 −1 / ÷𝑤 𝑛
+Professor-style explanation: For 'Transformation of z-Values 2/2', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - Choosing values for 𝑎 and 𝑏 in 𝑃 / - 𝑎 and 𝑏 must fulfill the following / −𝑎𝑛 + 𝑏 / 𝑃 ⋅ 0 0 −𝑛 1 𝑇 = 0 0 −𝑎𝑛 + 𝑏 𝑛 𝑇 0 0 =(cid:3549) 0 0 −1 / ÷𝑤 𝑛. The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Transformation of z-Values 2/2. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Choosing values for 𝑎 and 𝑏 in 𝑃 / - 𝑎 and 𝑏 must fulfill the following / −𝑎𝑛 + 𝑏 / 𝑃 ⋅ 0 0 −𝑛 1 𝑇 = 0 0 −𝑎𝑛 + 𝑏 𝑛 𝑇 0 0 =(cid:3549) 0 0 −1 / ÷𝑤 𝑛
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -544,7 +648,9 @@ Check yourself: Can you state the coordinate space before and after 'Transformat
 
 Source cue: - Derivation so far leaves us with the following matrix / which only changes z-coordinates / 1 0 0 0 / 0 1 0 0 / - 𝑃 = 𝑓+𝑛 2𝑛𝑓
 
-Commentary: This slide is about Transformation of x- and y-Values 1/2. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Derivation so far leaves us with the following matrix / which only changes z-coordinates / 1 0 0 0 / 0 1 0 0 / - 𝑃 = 𝑓+𝑛 2𝑛𝑓
+Professor-style explanation: For 'Transformation of x- and y-Values 1/2', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - Derivation so far leaves us with the following matrix / which only changes z-coordinates / 1 0 0 0 / 0 1 0 0 / - 𝑃 = 𝑓+𝑛 2𝑛𝑓. The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Transformation of x- and y-Values 1/2. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Derivation so far leaves us with the following matrix / which only changes z-coordinates / 1 0 0 0 / 0 1 0 0 / - 𝑃 = 𝑓+𝑛 2𝑛𝑓
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -554,7 +660,9 @@ Check yourself: Can you state the coordinate space before and after 'Transformat
 
 Source cue: - To transform p to the coordinates (1,0,-1), the following equation must hold / 𝛼 tan / 𝛼 𝑛 ⋅ tan / 𝑛 ⋅ tan 2 / 2 2 1
 
-Commentary: This slide is about Transformation of x- and y-Values 2/2. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - To transform p to the coordinates (1,0,-1), the following equation must hold / 𝛼 tan / 𝛼 𝑛 ⋅ tan / 𝑛 ⋅ tan 2 / 2 2 1
+Professor-style explanation: For 'Transformation of x- and y-Values 2/2', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - To transform p to the coordinates (1,0,-1), the following equation must hold / 𝛼 tan / 𝛼 𝑛 ⋅ tan / 𝑛 ⋅ tan 2 / 2 2 1. The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Transformation of x- and y-Values 2/2. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - To transform p to the coordinates (1,0,-1), the following equation must hold / 𝛼 tan / 𝛼 𝑛 ⋅ tan / 𝑛 ⋅ tan 2 / 2 2 1
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -564,7 +672,9 @@ Check yourself: Can you state the coordinate space before and after 'Transformat
 
 Source cue: Mapping the normalized device coordinates to the screen
 
-Commentary: This slide is about 4.7 Viewport Transformation. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: Mapping the normalized device coordinates to the screen
+Professor-style explanation: For '4.7 Viewport Transformation', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: Mapping the normalized device coordinates to the screen. The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about 4.7 Viewport Transformation. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: Mapping the normalized device coordinates to the screen
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -574,7 +684,9 @@ Check yourself: Can you state the coordinate space before and after '4.7 Viewpor
 
 Source cue: - Mapping of the viewing plane on a drawing surface / - Define the pixel rectangle to be mapped to / - Initially, this rectangle is the size of the entire canvas / - glViewport(GLint x, GLint y, GLsizei width, GLsizei height) / - When window size changes, adjust the aspect ratio to avoid distortion
 
-Commentary: This slide is about Screen Coordinate Mapping. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Mapping of the viewing plane on a drawing surface / - Define the pixel rectangle to be mapped to / - Initially, this rectangle is the size of the entire canvas / - glViewport(GLint x, GLint y, GLsizei width, GLsizei height) / - When window size changes, adjust the aspect ratio to avoid distortion
+Professor-style explanation: For 'Screen Coordinate Mapping', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - Mapping of the viewing plane on a drawing surface / - Define the pixel rectangle to be mapped to / - Initially, this rectangle is the size of the entire canvas / - glViewport(GLint x, GLint y, GLsizei width, GLsizei height) / - When window size changes, adjust the aspect ratio to avoid distortion. The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Screen Coordinate Mapping. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Mapping of the viewing plane on a drawing surface / - Define the pixel rectangle to be mapped to / - Initially, this rectangle is the size of the entire canvas / - glViewport(GLint x, GLint y, GLsizei width, GLsizei height) / - When window size changes, adjust the aspect ratio to avoid distortion
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -584,7 +696,9 @@ Check yourself: Can you state the coordinate space before and after 'Screen Coor
 
 Source cue: - Specification of the viewport parameters by glm::perspective / Projection / glm::frustum / transformation / - glViewport(x, y, w, h) glm::ortho
 
-Commentary: This slide is about Viewport Transformation 1/2. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Specification of the viewport parameters by glm::perspective / Projection / glm::frustum / transformation / - glViewport(x, y, w, h) glm::ortho
+Professor-style explanation: For 'Viewport Transformation 1/2', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - Specification of the viewport parameters by glm::perspective / Projection / glm::frustum / transformation / - glViewport(x, y, w, h) glm::ortho. The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Viewport Transformation 1/2. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Specification of the viewport parameters by glm::perspective / Projection / glm::frustum / transformation / - glViewport(x, y, w, h) glm::ortho
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -594,7 +708,9 @@ Check yourself: Can you state the coordinate space before and after 'Viewport Tr
 
 Source cue: - Viewport transformation is a 2D transformation defined as 𝑝 = 𝑀 ⋅ 𝑝 with / 𝑠 𝑠 𝑁 / Δx Δy / - 𝑀 = 𝑇 x , y ⋅ 𝑆 𝑆 , 𝑆 ⋅ 𝑇 −x , −y / 𝑠 𝑆𝑚𝑖𝑛 𝑆𝑚𝑖𝑛 𝑁𝑚𝑖𝑛 𝑁𝑚𝑖𝑛
 
-Commentary: This slide is about Viewport Transformation 2/2. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Viewport transformation is a 2D transformation defined as 𝑝 = 𝑀 ⋅ 𝑝 with / 𝑠 𝑠 𝑁 / Δx Δy / - 𝑀 = 𝑇 x , y ⋅ 𝑆 𝑆 , 𝑆 ⋅ 𝑇 −x , −y / 𝑠 𝑆𝑚𝑖𝑛 𝑆𝑚𝑖𝑛 𝑁𝑚𝑖𝑛 𝑁𝑚𝑖𝑛
+Professor-style explanation: For 'Viewport Transformation 2/2', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, vector, or normal starts and where it should end. The slide gives us this anchor: - Viewport transformation is a 2D transformation defined as 𝑝 = 𝑀 ⋅ 𝑝 with / 𝑠 𝑠 𝑁 / Δx Δy / - 𝑀 = 𝑇 x , y ⋅ 𝑆 𝑆 , 𝑆 ⋅ 𝑇 −x , −y / 𝑠 𝑆𝑚𝑖𝑛 𝑆𝑚𝑖𝑛 𝑁𝑚𝑖𝑛 𝑁𝑚𝑖𝑛. The professor-level way to read this slide is to narrate the movement: model space to world space, world to view, view to clip, or whichever step the slide is showing.
+
+Technical commentary: This slide is about Viewport Transformation 2/2. Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas. The visible cue is: - Viewport transformation is a 2D transformation defined as 𝑝 = 𝑀 ⋅ 𝑝 with / 𝑠 𝑠 𝑁 / Δx Δy / - 𝑀 = 𝑇 x , y ⋅ 𝑆 𝑆 , 𝑆 ⋅ 𝑇 −x , −y / 𝑠 𝑆𝑚𝑖𝑛 𝑆𝑚𝑖𝑛 𝑁𝑚𝑖𝑛 𝑁𝑚𝑖𝑛
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -604,7 +720,9 @@ Check yourself: Can you state the coordinate space before and after 'Viewport Tr
 
 Source cue: - Projection has its origins in the arts / - Based on the deformation of the initial view volume to the canonical view / volume, we can differentiate different projection types / - In OpenGL two main projection types exist / - Perspective projection results in perspective shortening
 
-Commentary: This slide is about volume, we can differentiate different projection types. Read it as concrete API state and GPU data movement. Ask which object is bound, which shader stage consumes it, and which state affects the draw call. The visible cue is: - Projection has its origins in the arts / - Based on the deformation of the initial view volume to the canonical view / volume, we can differentiate different projection types / - In OpenGL two main projection types exist / - Perspective projection results in perspective shortening
+Professor-style explanation: On this slide, I would emphasize that OpenGL is a controlled state machine around the GPU pipeline. 'volume, we can differentiate different projection types' is not about one magic render call; it is about objects, bindings, shader interfaces, buffers, and state being consistent at draw time. The slide gives us this anchor: - Projection has its origins in the arts / - Based on the deformation of the initial view volume to the canonical view / volume, we can differentiate different projection types / - In OpenGL two main projection types exist / - Perspective projection results in perspective shortening. If the output is wrong, you inspect which object owns the data, which shader consumes it, and which state changes the result.
+
+Technical commentary: This slide is about volume, we can differentiate different projection types. Read it as concrete API state and GPU data movement. Ask which object is bound, which shader stage consumes it, and which state affects the draw call. The visible cue is: - Projection has its origins in the arts / - Based on the deformation of the initial view volume to the canonical view / volume, we can differentiate different projection types / - In OpenGL two main projection types exist / - Perspective projection results in perspective shortening
 
 Why it matters: OpenGL bugs are usually state, binding, shader-interface, or buffer-layout bugs, so API details matter.
 
@@ -614,7 +732,9 @@ Check yourself: Can you name the OpenGL object, state, shader stage, or buffer i
 
 Source cue: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image.
 
-Commentary: This slide is about Literature and other sources used in this chapter. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image.
+Professor-style explanation: For 'Literature and other sources used in this chapter', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Literature and other sources used in this chapter. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image.
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -624,7 +744,9 @@ Check yourself: Can you turn 'Literature and other sources used in this chapter'
 
 Source cue: - J. Foley, A. van Dam, S. Feiner: Computer Graphics: Principles and Practice (3rd / - P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics
 
-Commentary: This slide is about - Text Books. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - J. Foley, A. van Dam, S. Feiner: Computer Graphics: Principles and Practice (3rd / - P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics
+Professor-style explanation: For '- Text Books', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: - J. Foley, A. van Dam, S. Feiner: Computer Graphics: Principles and Practice (3rd / - P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about - Text Books. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - J. Foley, A. van Dam, S. Feiner: Computer Graphics: Principles and Practice (3rd / - P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 

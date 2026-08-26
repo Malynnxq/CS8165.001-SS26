@@ -1,6 +1,6 @@
 # Lecture Readers
 
-This folder contains a readable version of every lecture. The raw slide extraction is still the source of truth, but these files add the missing explanatory commentary that makes the material usable for human study. Every extracted slide page has its own commentary block with a source cue, explanation, relevance note, and check question.
+This folder contains a readable version of every lecture. The raw slide extraction is still the source of truth, but these files add the missing explanatory commentary that makes the material usable for human study. Every extracted slide page has its own commentary block with a source cue, professor-style explanation, technical commentary, relevance note, and check question.
 
 Language: English. The lecture material is primarily English, so the generated commentary stays in English.
 

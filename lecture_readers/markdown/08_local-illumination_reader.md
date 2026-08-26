@@ -24,7 +24,9 @@ Every extracted slide page gets its own reading note. This is the part to use wh
 
 Source cue: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image.
 
-Commentary: This slide is about Untitled slide. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image.
+Professor-style explanation: For 'Untitled slide', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Untitled slide. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image.
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -34,7 +36,9 @@ Check yourself: Can you turn 'Untitled slide' into a causal sentence instead of 
 
 Source cue: - Illumination is the process of simulating light interactions in a virtual scene / - Requires light and material properties / - Achieved through illumination model / - Essential for scene perception / without iIllumination with illumination
 
-Commentary: This slide is about Local Illumination. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Illumination is the process of simulating light interactions in a virtual scene / - Requires light and material properties / - Achieved through illumination model / - Essential for scene perception / without iIllumination with illumination
+Professor-style explanation: This slide belongs to local shading. For 'Local Illumination', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Illumination is the process of simulating light interactions in a virtual scene / - Requires light and material properties / - Achieved through illumination model / - Essential for scene perception / without iIllumination with illumination. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Local Illumination. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Illumination is the process of simulating light interactions in a virtual scene / - Requires light and material properties / - Achieved through illumination model / - Essential for scene perception / without iIllumination with illumination
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -44,7 +48,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: 8.2 Light Sources / 8.3 Material Models / 8.4 Phong Illumination Model / 8.5 Shading
 
-Commentary: This slide is about 8.1 Physics of Light. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: 8.2 Light Sources / 8.3 Material Models / 8.4 Phong Illumination Model / 8.5 Shading
+Professor-style explanation: This slide belongs to local shading. For '8.1 Physics of Light', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: 8.2 Light Sources / 8.3 Material Models / 8.4 Phong Illumination Model / 8.5 Shading. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about 8.1 Physics of Light. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: 8.2 Light Sources / 8.3 Material Models / 8.4 Phong Illumination Model / 8.5 Shading
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -54,7 +60,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: Understanding light in the real world
 
-Commentary: This slide is about 8.1 Physics of Light. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: Understanding light in the real world
+Professor-style explanation: This slide belongs to local shading. For '8.1 Physics of Light', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: Understanding light in the real world. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about 8.1 Physics of Light. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: Understanding light in the real world
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -64,7 +72,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Electromagnetic radiation is defined by a spectrum of wavelengths / Wave length λ / - Visible light is subset of electromagnetic spectrum between 400 and 700nm, / which humans perceive as colors
 
-Commentary: This slide is about Electromagnetic Radiation. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Electromagnetic radiation is defined by a spectrum of wavelengths / Wave length λ / - Visible light is subset of electromagnetic spectrum between 400 and 700nm, / which humans perceive as colors
+Professor-style explanation: This slide belongs to local shading. For 'Electromagnetic Radiation', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Electromagnetic radiation is defined by a spectrum of wavelengths / Wave length λ / - Visible light is subset of electromagnetic spectrum between 400 and 700nm, / which humans perceive as colors. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Electromagnetic Radiation. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Electromagnetic radiation is defined by a spectrum of wavelengths / Wave length λ / - Visible light is subset of electromagnetic spectrum between 400 and 700nm, / which humans perceive as colors
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -74,7 +84,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: 1000 nm / Infrared / Radio / 700 nm / TV Red
 
-Commentary: This slide is about Visible Light. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: 1000 nm / Infrared / Radio / 700 nm / TV Red
+Professor-style explanation: This slide belongs to local shading. For 'Visible Light', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: 1000 nm / Infrared / Radio / 700 nm / TV Red. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Visible Light. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: 1000 nm / Infrared / Radio / 700 nm / TV Red
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -84,7 +96,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: 1000 nm / Infrared / Radio / 700 nm / TV Red
 
-Commentary: This slide is about Visible Light. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: 1000 nm / Infrared / Radio / 700 nm / TV Red
+Professor-style explanation: This slide belongs to local shading. For 'Visible Light', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: 1000 nm / Infrared / Radio / 700 nm / TV Red. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Visible Light. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: 1000 nm / Infrared / Radio / 700 nm / TV Red
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -94,7 +108,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Different light sources have different light spectra / - Intensity differs based on wavelength in visible spectrum / [http://www.micro.magnet.fsu.edu/optics/lightandcolor/sources.html]
 
-Commentary: This slide is about Light Spectra. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Different light sources have different light spectra / - Intensity differs based on wavelength in visible spectrum / [http://www.micro.magnet.fsu.edu/optics/lightandcolor/sources.html]
+Professor-style explanation: This slide belongs to local shading. For 'Light Spectra', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Different light sources have different light spectra / - Intensity differs based on wavelength in visible spectrum / [http://www.micro.magnet.fsu.edu/optics/lightandcolor/sources.html]. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Light Spectra. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Different light sources have different light spectra / - Intensity differs based on wavelength in visible spectrum / [http://www.micro.magnet.fsu.edu/optics/lightandcolor/sources.html]
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -104,7 +120,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - A continuous spectrum emitted by a black body at a certain temperature / Steel / > 1570 K / 820 K / Stars
 
-Commentary: This slide is about Black-Body Radiation. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - A continuous spectrum emitted by a black body at a certain temperature / Steel / > 1570 K / 820 K / Stars
+Professor-style explanation: For 'Black-Body Radiation', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: - A continuous spectrum emitted by a black body at a certain temperature / Steel / > 1570 K / 820 K / Stars. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Black-Body Radiation. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - A continuous spectrum emitted by a black body at a certain temperature / Steel / > 1570 K / 820 K / Stars
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -114,7 +132,9 @@ Check yourself: Can you turn 'Black-Body Radiation' into a causal sentence inste
 
 Source cue: Stars / https://www.tec-science.com/thermodynamics/temperature/black-body-radiation/ 23/06/2026 10
 
-Commentary: This slide is about Black-Body Radiation. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: Stars / https://www.tec-science.com/thermodynamics/temperature/black-body-radiation/ 23/06/2026 10
+Professor-style explanation: For 'Black-Body Radiation', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: Stars / https://www.tec-science.com/thermodynamics/temperature/black-body-radiation/ 23/06/2026 10. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Black-Body Radiation. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: Stars / https://www.tec-science.com/thermodynamics/temperature/black-body-radiation/ 23/06/2026 10
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -124,7 +144,9 @@ Check yourself: Can you turn 'Black-Body Radiation' into a causal sentence inste
 
 Source cue: - Light spectra are represented as spectral density functions / - Spectral density functions provide the light intensity (=energy) per wavelength / 400 Wavelength λ (nm) 700 / ygrenE / 400 Wavelength λ (nm) 700
 
-Commentary: This slide is about Spectral Density Function (SDF). Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Light spectra are represented as spectral density functions / - Spectral density functions provide the light intensity (=energy) per wavelength / 400 Wavelength λ (nm) 700 / ygrenE / 400 Wavelength λ (nm) 700
+Professor-style explanation: This slide belongs to local shading. For 'Spectral Density Function (SDF)', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Light spectra are represented as spectral density functions / - Spectral density functions provide the light intensity (=energy) per wavelength / 400 Wavelength λ (nm) 700 / ygrenE / 400 Wavelength λ (nm) 700. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Spectral Density Function (SDF). Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Light spectra are represented as spectral density functions / - Spectral density functions provide the light intensity (=energy) per wavelength / 400 Wavelength λ (nm) 700 / ygrenE / 400 Wavelength λ (nm) 700
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -134,7 +156,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Humans perceive light spectra / as differently colored lights / - Often described using three / main properties (HSL/HSV model) / - Hue - primary color tone
 
-Commentary: This slide is about Light Perception. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Humans perceive light spectra / as differently colored lights / - Often described using three / main properties (HSL/HSV model) / - Hue - primary color tone
+Professor-style explanation: This slide belongs to local shading. For 'Light Perception', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Humans perceive light spectra / as differently colored lights / - Often described using three / main properties (HSL/HSV model) / - Hue - primary color tone. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Light Perception. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Humans perceive light spectra / as differently colored lights / - Often described using three / main properties (HSL/HSV model) / - Hue - primary color tone
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -144,7 +168,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Shape of an SDF depicts how humans perceive represented light / - Hue: dominant wavelength / - Saturation: % of energy in dom. wavelength / - Luminance: total energy (SDF integral) / 400 Wavelength λ (nm) 700
 
-Commentary: This slide is about Interpreting SDFs. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Shape of an SDF depicts how humans perceive represented light / - Hue: dominant wavelength / - Saturation: % of energy in dom. wavelength / - Luminance: total energy (SDF integral) / 400 Wavelength λ (nm) 700
+Professor-style explanation: This slide belongs to local shading. For 'Interpreting SDFs', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Shape of an SDF depicts how humans perceive represented light / - Hue: dominant wavelength / - Saturation: % of energy in dom. wavelength / - Luminance: total energy (SDF integral) / 400 Wavelength λ (nm) 700. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Interpreting SDFs. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Shape of an SDF depicts how humans perceive represented light / - Hue: dominant wavelength / - Saturation: % of energy in dom. wavelength / - Luminance: total energy (SDF integral) / 400 Wavelength λ (nm) 700
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -154,7 +180,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - In spectral rendering SDFs are discretized as arrays / - Cell number represents differentiable wavelength ranges / - Cell values represent energy per wavelength range / - Much more frequently SDFs are represented as three-channel color / - HSL values are derived from SDF
 
-Commentary: This slide is about Representing SDFs. Read it as an occlusion decision. Decide whether the method reasons about objects, image regions, rays, or per-fragment depth comparisons. The visible cue is: - In spectral rendering SDFs are discretized as arrays / - Cell number represents differentiable wavelength ranges / - Cell values represent energy per wavelength range / - Much more frequently SDFs are represented as three-channel color / - HSL values are derived from SDF
+Professor-style explanation: With 'Representing SDFs', the question is no longer just whether geometry exists, but whether it is visible from a viewpoint. The slide gives us this anchor: - In spectral rendering SDFs are discretized as arrays / - Cell number represents differentiable wavelength ranges / - Cell values represent energy per wavelength range / - Much more frequently SDFs are represented as three-channel color / - HSL values are derived from SDF. Explain the method by naming its decision space: does it compare objects, split image regions, cast rays, or compare per-fragment depth values? That tells you what it can handle well.
+
+Technical commentary: This slide is about Representing SDFs. Read it as an occlusion decision. Decide whether the method reasons about objects, image regions, rays, or per-fragment depth comparisons. The visible cue is: - In spectral rendering SDFs are discretized as arrays / - Cell number represents differentiable wavelength ranges / - Cell values represent energy per wavelength range / - Much more frequently SDFs are represented as three-channel color / - HSL values are derived from SDF
 
 Why it matters: Visibility decides which generated candidates are actually seen from the current viewpoint.
 
@@ -164,7 +192,9 @@ Check yourself: Can you decide whether 'Representing SDFs' works per object, per
 
 Source cue: How to represent light sources in computer graphics
 
-Commentary: This slide is about 8.2 Light Sources. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: How to represent light sources in computer graphics
+Professor-style explanation: This slide belongs to local shading. For '8.2 Light Sources', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: How to represent light sources in computer graphics. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about 8.2 Light Sources. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: How to represent light sources in computer graphics
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -174,7 +204,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - All light sources have a RGB color property representing their SDF / - Light sources are also defined through their location, orientation and extent / within a virtual scene / - Different light source types omit different spatial properties / - Light sources have no associated geometry
 
-Commentary: This slide is about Light Sources. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - All light sources have a RGB color property representing their SDF / - Light sources are also defined through their location, orientation and extent / within a virtual scene / - Different light source types omit different spatial properties / - Light sources have no associated geometry
+Professor-style explanation: This slide belongs to local shading. For 'Light Sources', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - All light sources have a RGB color property representing their SDF / - Light sources are also defined through their location, orientation and extent / within a virtual scene / - Different light source types omit different spatial properties / - Light sources have no associated geometry. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Light Sources. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - All light sources have a RGB color property representing their SDF / - Light sources are also defined through their location, orientation and extent / within a virtual scene / - Different light source types omit different spatial properties / - Light sources have no associated geometry
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -184,7 +216,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Point light sources 𝐿 = 𝑃, 𝐶 have a geometric center 𝑃 = (x, y, z) / and radiate light with color 𝐶 = (𝑅, 𝐺, 𝐵) evenly in all directions
 
-Commentary: This slide is about Point Light Sources. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Point light sources 𝐿 = 𝑃, 𝐶 have a geometric center 𝑃 = (x, y, z) / and radiate light with color 𝐶 = (𝑅, 𝐺, 𝐵) evenly in all directions
+Professor-style explanation: This slide belongs to local shading. For 'Point Light Sources', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Point light sources 𝐿 = 𝑃, 𝐶 have a geometric center 𝑃 = (x, y, z) / and radiate light with color 𝐶 = (𝑅, 𝐺, 𝐵) evenly in all directions. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Point Light Sources. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Point light sources 𝐿 = 𝑃, 𝐶 have a geometric center 𝑃 = (x, y, z) / and radiate light with color 𝐶 = (𝑅, 𝐺, 𝐵) evenly in all directions
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -194,7 +228,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Special point light source with geometric center / - Radiation of light restricted to a cone-shaped area with its tip in the center / - Specified by cut-off angle and exponents for the decrease / of brightness with distance to the center / (spot light exponent)
 
-Commentary: This slide is about Cone Light Sources. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Special point light source with geometric center / - Radiation of light restricted to a cone-shaped area with its tip in the center / - Specified by cut-off angle and exponents for the decrease / of brightness with distance to the center / (spot light exponent)
+Professor-style explanation: This slide belongs to local shading. For 'Cone Light Sources', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Special point light source with geometric center / - Radiation of light restricted to a cone-shaped area with its tip in the center / - Specified by cut-off angle and exponents for the decrease / of brightness with distance to the center / (spot light exponent). The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Cone Light Sources. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Special point light source with geometric center / - Radiation of light restricted to a cone-shaped area with its tip in the center / - Specified by cut-off angle and exponents for the decrease / of brightness with distance to the center / (spot light exponent)
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -204,7 +240,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Light attenuation is inversely proportional to the square / of the distance 𝑑 between the light source and the object / - Attenuation factor / 𝑓 = min , 1 / 𝑎𝑡𝑡 𝑐 + 𝑐 ⋅ 𝑑 + 𝑐 ⋅ 𝑑2
 
-Commentary: This slide is about Light Attenuation. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Light attenuation is inversely proportional to the square / of the distance 𝑑 between the light source and the object / - Attenuation factor / 𝑓 = min , 1 / 𝑎𝑡𝑡 𝑐 + 𝑐 ⋅ 𝑑 + 𝑐 ⋅ 𝑑2
+Professor-style explanation: This slide belongs to local shading. For 'Light Attenuation', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Light attenuation is inversely proportional to the square / of the distance 𝑑 between the light source and the object / - Attenuation factor / 𝑓 = min , 1 / 𝑎𝑡𝑡 𝑐 + 𝑐 ⋅ 𝑑 + 𝑐 ⋅ 𝑑2. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Light Attenuation. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Light attenuation is inversely proportional to the square / of the distance 𝑑 between the light source and the object / - Attenuation factor / 𝑓 = min , 1 / 𝑎𝑡𝑡 𝑐 + 𝑐 ⋅ 𝑑 + 𝑐 ⋅ 𝑑2
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -214,7 +252,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Light source with geometric center and geometric extension / - Mostly of planar shape / - Transmission of light over the entire surface analogous to a point light source
 
-Commentary: This slide is about Area Light Sources. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Light source with geometric center and geometric extension / - Mostly of planar shape / - Transmission of light over the entire surface analogous to a point light source
+Professor-style explanation: This slide belongs to local shading. For 'Area Light Sources', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Light source with geometric center and geometric extension / - Mostly of planar shape / - Transmission of light over the entire surface analogous to a point light source. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Area Light Sources. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Light source with geometric center and geometric extension / - Mostly of planar shape / - Transmission of light over the entire surface analogous to a point light source
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -224,7 +264,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Infinity-far away imaginary light source / - Light rays run parallel and evenly throughout the scene, / direction is specified as a vector / - Light intensity does not diminish / with increasing distance
 
-Commentary: This slide is about Directed Light. Read it as an occlusion decision. Decide whether the method reasons about objects, image regions, rays, or per-fragment depth comparisons. The visible cue is: - Infinity-far away imaginary light source / - Light rays run parallel and evenly throughout the scene, / direction is specified as a vector / - Light intensity does not diminish / with increasing distance
+Professor-style explanation: With 'Directed Light', the question is no longer just whether geometry exists, but whether it is visible from a viewpoint. The slide gives us this anchor: - Infinity-far away imaginary light source / - Light rays run parallel and evenly throughout the scene, / direction is specified as a vector / - Light intensity does not diminish / with increasing distance. Explain the method by naming its decision space: does it compare objects, split image regions, cast rays, or compare per-fragment depth values? That tells you what it can handle well.
+
+Technical commentary: This slide is about Directed Light. Read it as an occlusion decision. Decide whether the method reasons about objects, image regions, rays, or per-fragment depth comparisons. The visible cue is: - Infinity-far away imaginary light source / - Light rays run parallel and evenly throughout the scene, / direction is specified as a vector / - Light intensity does not diminish / with increasing distance
 
 Why it matters: Visibility decides which generated candidates are actually seen from the current viewpoint.
 
@@ -234,7 +276,9 @@ Check yourself: Can you decide whether 'Directed Light' works per object, per im
 
 Source cue: - Simple case: Local lighting / - Consideration of direct illumination by light sources / (without obstacles or reflection) / - Simplified light models approximate / real lighting effect
 
-Commentary: This slide is about Local vs. Gobal Illumination. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Simple case: Local lighting / - Consideration of direct illumination by light sources / (without obstacles or reflection) / - Simplified light models approximate / real lighting effect
+Professor-style explanation: This slide belongs to local shading. For 'Local vs. Gobal Illumination', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Simple case: Local lighting / - Consideration of direct illumination by light sources / (without obstacles or reflection) / - Simplified light models approximate / real lighting effect. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Local vs. Gobal Illumination. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Simple case: Local lighting / - Consideration of direct illumination by light sources / (without obstacles or reflection) / - Simplified light models approximate / real lighting effect
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -244,7 +288,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Undirected light rays, evenly distributed / - Light intensity constant, regardless of distance / - Simulates general room brightness (basic brightness)
 
-Commentary: This slide is about Ambient Light. Read it as an occlusion decision. Decide whether the method reasons about objects, image regions, rays, or per-fragment depth comparisons. The visible cue is: - Undirected light rays, evenly distributed / - Light intensity constant, regardless of distance / - Simulates general room brightness (basic brightness)
+Professor-style explanation: With 'Ambient Light', the question is no longer just whether geometry exists, but whether it is visible from a viewpoint. The slide gives us this anchor: - Undirected light rays, evenly distributed / - Light intensity constant, regardless of distance / - Simulates general room brightness (basic brightness). Explain the method by naming its decision space: does it compare objects, split image regions, cast rays, or compare per-fragment depth values? That tells you what it can handle well.
+
+Technical commentary: This slide is about Ambient Light. Read it as an occlusion decision. Decide whether the method reasons about objects, image regions, rays, or per-fragment depth comparisons. The visible cue is: - Undirected light rays, evenly distributed / - Light intensity constant, regardless of distance / - Simulates general room brightness (basic brightness)
 
 Why it matters: Visibility decides which generated candidates are actually seen from the current viewpoint.
 
@@ -254,7 +300,9 @@ Check yourself: Can you decide whether 'Ambient Light' works per object, per ima
 
 Source cue: How to represent materials in computer graphics
 
-Commentary: This slide is about 8.3 Material Models. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: How to represent materials in computer graphics
+Professor-style explanation: This slide belongs to local shading. For '8.3 Material Models', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: How to represent materials in computer graphics. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about 8.3 Material Models. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: How to represent materials in computer graphics
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -264,7 +312,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Material models capture the different properties of materials / - Materials can have a wide variety of appearances / - Different groups of materials can be classified / based on appearance / - Metal – shiny and specular appearance
 
-Commentary: This slide is about Material Models. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Material models capture the different properties of materials / - Materials can have a wide variety of appearances / - Different groups of materials can be classified / based on appearance / - Metal – shiny and specular appearance
+Professor-style explanation: This slide belongs to local shading. For 'Material Models', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Material models capture the different properties of materials / - Materials can have a wide variety of appearances / - Different groups of materials can be classified / based on appearance / - Metal – shiny and specular appearance. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Material Models. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Material models capture the different properties of materials / - Materials can have a wide variety of appearances / - Different groups of materials can be classified / based on appearance / - Metal – shiny and specular appearance
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -274,7 +324,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Material models specify the material properties for an infinitesimal surface / - No material variance with respect to location is supported / (i.e., structures such as wood grain cannot be represented) / - Textures are able to support material variance with respect to location
 
-Commentary: This slide is about Materials vs. Textures. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Material models specify the material properties for an infinitesimal surface / - No material variance with respect to location is supported / (i.e., structures such as wood grain cannot be represented) / - Textures are able to support material variance with respect to location
+Professor-style explanation: This slide belongs to local shading. For 'Materials vs. Textures', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Material models specify the material properties for an infinitesimal surface / - No material variance with respect to location is supported / (i.e., structures such as wood grain cannot be represented) / - Textures are able to support material variance with respect to location. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Materials vs. Textures. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Material models specify the material properties for an infinitesimal surface / - No material variance with respect to location is supported / (i.e., structures such as wood grain cannot be represented) / - Textures are able to support material variance with respect to location
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -284,7 +336,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Material appearance is influenced by three wavelength-dependent effects / - Reflection – light energy bounces off / - Absorption – light energy is reduced / - Transmission – light passes through the object (refraction occurs) / R = reflected energy
 
-Commentary: This slide is about Light Material Interaction 1/3. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Material appearance is influenced by three wavelength-dependent effects / - Reflection – light energy bounces off / - Absorption – light energy is reduced / - Transmission – light passes through the object (refraction occurs) / R = reflected energy
+Professor-style explanation: This slide belongs to local shading. For 'Light Material Interaction 1/3', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Material appearance is influenced by three wavelength-dependent effects / - Reflection – light energy bounces off / - Absorption – light energy is reduced / - Transmission – light passes through the object (refraction occurs) / R = reflected energy. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Light Material Interaction 1/3. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Material appearance is influenced by three wavelength-dependent effects / - Reflection – light energy bounces off / - Absorption – light energy is reduced / - Transmission – light passes through the object (refraction occurs) / R = reflected energy
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -294,7 +348,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Material properties determine weight of the individual effects / opaque colored material opaque black material / A > 0 , T = 0, R > 0 A = I ,T = 0, R = 0 / perfect mirror material transparent material / A = 0, T = 0, R = I A ~= 0, R ~= 0, T ~= I
 
-Commentary: This slide is about Light Material Interaction 2/3. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Material properties determine weight of the individual effects / opaque colored material opaque black material / A > 0 , T = 0, R > 0 A = I ,T = 0, R = 0 / perfect mirror material transparent material / A = 0, T = 0, R = I A ~= 0, R ~= 0, T ~= I
+Professor-style explanation: This slide belongs to local shading. For 'Light Material Interaction 2/3', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Material properties determine weight of the individual effects / opaque colored material opaque black material / A > 0 , T = 0, R > 0 A = I ,T = 0, R = 0 / perfect mirror material transparent material / A = 0, T = 0, R = I A ~= 0, R ~= 0, T ~= I. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Light Material Interaction 2/3. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Material properties determine weight of the individual effects / opaque colored material opaque black material / A > 0 , T = 0, R > 0 A = I ,T = 0, R = 0 / perfect mirror material transparent material / A = 0, T = 0, R = I A ~= 0, R ~= 0, T ~= I
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -304,7 +360,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Light-material interaction described by the Spectral Response Function (SRF) / 400 Wavelength λ (nm) 700 / ygrenE / 100% / All pass Filter ( ideal, real)
 
-Commentary: This slide is about Light Material Interaction 3/3. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Light-material interaction described by the Spectral Response Function (SRF) / 400 Wavelength λ (nm) 700 / ygrenE / 100% / All pass Filter ( ideal, real)
+Professor-style explanation: This slide belongs to local shading. For 'Light Material Interaction 3/3', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Light-material interaction described by the Spectral Response Function (SRF) / 400 Wavelength λ (nm) 700 / ygrenE / 100% / All pass Filter ( ideal, real). The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Light Material Interaction 3/3. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Light-material interaction described by the Spectral Response Function (SRF) / 400 Wavelength λ (nm) 700 / ygrenE / 100% / All pass Filter ( ideal, real)
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -314,7 +372,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Light-material interaction results are the product of the SDF and SRF / 100% × 100% / SDF SRF / 0% 0% / 400 Wavelength λ (nm) 700 400 Wavelength λ (nm) 700
 
-Commentary: This slide is about Reflection = SDF x SRF. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Light-material interaction results are the product of the SDF and SRF / 100% × 100% / SDF SRF / 0% 0% / 400 Wavelength λ (nm) 700 400 Wavelength λ (nm) 700
+Professor-style explanation: This slide belongs to local shading. For 'Reflection = SDF x SRF', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Light-material interaction results are the product of the SDF and SRF / 100% × 100% / SDF SRF / 0% 0% / 400 Wavelength λ (nm) 700 400 Wavelength λ (nm) 700. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Reflection = SDF x SRF. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Light-material interaction results are the product of the SDF and SRF / 100% × 100% / SDF SRF / 0% 0% / 400 Wavelength λ (nm) 700 400 Wavelength λ (nm) 700
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -324,7 +384,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - All light sources can be described by their Spectral Density Functions / - Natural light: sun, fire, ... / - Artificial light: light bulb, laser, neon tube, LED, ... / - All material properties can be described by Spectral Response Functions / - Glass, Water: SRF for transmission
 
-Commentary: This slide is about Reflection Modeling 1/2. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - All light sources can be described by their Spectral Density Functions / - Natural light: sun, fire, ... / - Artificial light: light bulb, laser, neon tube, LED, ... / - All material properties can be described by Spectral Response Functions / - Glass, Water: SRF for transmission
+Professor-style explanation: This slide belongs to local shading. For 'Reflection Modeling 1/2', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - All light sources can be described by their Spectral Density Functions / - Natural light: sun, fire, ... / - Artificial light: light bulb, laser, neon tube, LED, ... / - All material properties can be described by Spectral Response Functions / - Glass, Water: SRF for transmission. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Reflection Modeling 1/2. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - All light sources can be described by their Spectral Density Functions / - Natural light: sun, fire, ... / - Artificial light: light bulb, laser, neon tube, LED, ... / - All material properties can be described by Spectral Response Functions / - Glass, Water: SRF for transmission
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -334,7 +396,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Synthetic and natural objects are in general not self-emitting / - Light is reflected at its surfaces, i.e., re-emitted into the scene / - Reflection is dependent on surface properties / - Rough surface: scattering of light / - Smooth surface: reflection of light
 
-Commentary: This slide is about Reflection Modeling 2/2. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Synthetic and natural objects are in general not self-emitting / - Light is reflected at its surfaces, i.e., re-emitted into the scene / - Reflection is dependent on surface properties / - Rough surface: scattering of light / - Smooth surface: reflection of light
+Professor-style explanation: This slide belongs to local shading. For 'Reflection Modeling 2/2', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Synthetic and natural objects are in general not self-emitting / - Light is reflected at its surfaces, i.e., re-emitted into the scene / - Reflection is dependent on surface properties / - Rough surface: scattering of light / - Smooth surface: reflection of light. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Reflection Modeling 2/2. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Synthetic and natural objects are in general not self-emitting / - Light is reflected at its surfaces, i.e., re-emitted into the scene / - Reflection is dependent on surface properties / - Rough surface: scattering of light / - Smooth surface: reflection of light
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -344,7 +408,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: Determining the color of vertices
 
-Commentary: This slide is about 8.4 Phong Illumination Model. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: Determining the color of vertices
+Professor-style explanation: This slide belongs to local shading. For '8.4 Phong Illumination Model', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: Determining the color of vertices. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about 8.4 Phong Illumination Model. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: Determining the color of vertices
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -354,7 +420,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Light reflections are / - Dependent on the position of the observer / „... position of the observer...“ / - Dependent on the material properties of the surface / „… the specular properties of the object.“ Photo
 
-Commentary: This slide is about Empirical Observations. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Light reflections are / - Dependent on the position of the observer / „... position of the observer...“ / - Dependent on the material properties of the surface / „… the specular properties of the object.“ Photo
+Professor-style explanation: This slide belongs to local shading. For 'Empirical Observations', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Light reflections are / - Dependent on the position of the observer / „... position of the observer...“ / - Dependent on the material properties of the surface / „… the specular properties of the object.“ Photo. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Empirical Observations. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Light reflections are / - Dependent on the position of the observer / „... position of the observer...“ / - Dependent on the material properties of the surface / „… the specular properties of the object.“ Photo
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -364,7 +432,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Illumination models calculate the color of scene objects / based on the following properties / - Location – Position 𝑃 = (x, y, z) of the selected point 𝑃 / - Orientation – normal direction 𝑁 = (𝑛 , 𝑛 , 𝑛 ) of surface in 𝑃 / x y z
 
-Commentary: This slide is about Illumination Models. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Illumination models calculate the color of scene objects / based on the following properties / - Location – Position 𝑃 = (x, y, z) of the selected point 𝑃 / - Orientation – normal direction 𝑁 = (𝑛 , 𝑛 , 𝑛 ) of surface in 𝑃 / x y z
+Professor-style explanation: This slide belongs to local shading. For 'Illumination Models', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Illumination models calculate the color of scene objects / based on the following properties / - Location – Position 𝑃 = (x, y, z) of the selected point 𝑃 / - Orientation – normal direction 𝑁 = (𝑛 , 𝑛 , 𝑛 ) of surface in 𝑃 / x y z. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Illumination Models. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Illumination models calculate the color of scene objects / based on the following properties / - Location – Position 𝑃 = (x, y, z) of the selected point 𝑃 / - Orientation – normal direction 𝑁 = (𝑛 , 𝑛 , 𝑛 ) of surface in 𝑃 / x y z
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -374,7 +444,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: thgiL / Diffuse Intensity 1/3 / - Simulation of light reflections on diffuse surfaces / - Model assumption / - Diffuse light reflections are non-directional (scattering)
 
-Commentary: This slide is about yaR. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: thgiL / Diffuse Intensity 1/3 / - Simulation of light reflections on diffuse surfaces / - Model assumption / - Diffuse light reflections are non-directional (scattering)
+Professor-style explanation: This slide belongs to local shading. For 'yaR', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: thgiL / Diffuse Intensity 1/3 / - Simulation of light reflections on diffuse surfaces / - Model assumption / - Diffuse light reflections are non-directional (scattering). The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about yaR. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: thgiL / Diffuse Intensity 1/3 / - Simulation of light reflections on diffuse surfaces / - Model assumption / - Diffuse light reflections are non-directional (scattering)
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -384,7 +456,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Equation / 𝐼 = 𝑙𝑘⋅ 𝑛⋅ 𝐿 ⋅ max( 0, ) / 𝑑𝑖𝑓𝑓𝑢𝑠𝑒 𝑑 𝑑 / - 𝑘 diffuse material properties (surface dependent) / - 𝐿 diffuse light intensity (light source dependent)
 
-Commentary: This slide is about Diffuse Intensity 2/3. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Equation / 𝐼 = 𝑙𝑘⋅ 𝑛⋅ 𝐿 ⋅ max( 0, ) / 𝑑𝑖𝑓𝑓𝑢𝑠𝑒 𝑑 𝑑 / - 𝑘 diffuse material properties (surface dependent) / - 𝐿 diffuse light intensity (light source dependent)
+Professor-style explanation: This slide belongs to local shading. For 'Diffuse Intensity 2/3', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Equation / 𝐼 = 𝑙𝑘⋅ 𝑛⋅ 𝐿 ⋅ max( 0, ) / 𝑑𝑖𝑓𝑓𝑢𝑠𝑒 𝑑 𝑑 / - 𝑘 diffuse material properties (surface dependent) / - 𝐿 diffuse light intensity (light source dependent). The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Diffuse Intensity 2/3. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Equation / 𝐼 = 𝑙𝑘⋅ 𝑛⋅ 𝐿 ⋅ max( 0, ) / 𝑑𝑖𝑓𝑓𝑢𝑠𝑒 𝑑 𝑑 / - 𝑘 diffuse material properties (surface dependent) / - 𝐿 diffuse light intensity (light source dependent)
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -394,7 +468,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: 𝐼 = 𝑘 ⋅ 𝐿 ⋅ 𝑚𝑎x(0, 𝑙⃗ ⋅ 𝑛) / 𝑑𝑖𝑓𝑓𝑢𝑠𝑒 𝑑 𝑑 / https://bit.ly/2XFhbcM / Extrahierte Tabellen: / [Tabelle 1]
 
-Commentary: This slide is about Diffuse Intensity 3/3. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: 𝐼 = 𝑘 ⋅ 𝐿 ⋅ 𝑚𝑎x(0, 𝑙⃗ ⋅ 𝑛) / 𝑑𝑖𝑓𝑓𝑢𝑠𝑒 𝑑 𝑑 / https://bit.ly/2XFhbcM / Extrahierte Tabellen: / [Tabelle 1]
+Professor-style explanation: For 'Diffuse Intensity 3/3', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: 𝐼 = 𝑘 ⋅ 𝐿 ⋅ 𝑚𝑎x(0, 𝑙⃗ ⋅ 𝑛) / 𝑑𝑖𝑓𝑓𝑢𝑠𝑒 𝑑 𝑑 / https://bit.ly/2XFhbcM / Extrahierte Tabellen: / [Tabelle 1]. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Diffuse Intensity 3/3. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: 𝐼 = 𝑘 ⋅ 𝐿 ⋅ 𝑚𝑎x(0, 𝑙⃗ ⋅ 𝑛) / 𝑑𝑖𝑓𝑓𝑢𝑠𝑒 𝑑 𝑑 / https://bit.ly/2XFhbcM / Extrahierte Tabellen: / [Tabelle 1]
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -404,7 +480,9 @@ Check yourself: Can you turn 'Diffuse Intensity 3/3' into a causal sentence inst
 
 Source cue: - Simulation of the general room brightness / - Indirect light incidence or multiple reflections / - Model assumptions / - Constant influence on all scene objects / - No influence of position or alignment
 
-Commentary: This slide is about Ambient Intensity 1/2. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Simulation of the general room brightness / - Indirect light incidence or multiple reflections / - Model assumptions / - Constant influence on all scene objects / - No influence of position or alignment
+Professor-style explanation: This slide belongs to local shading. For 'Ambient Intensity 1/2', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Simulation of the general room brightness / - Indirect light incidence or multiple reflections / - Model assumptions / - Constant influence on all scene objects / - No influence of position or alignment. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Ambient Intensity 1/2. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Simulation of the general room brightness / - Indirect light incidence or multiple reflections / - Model assumptions / - Constant influence on all scene objects / - No influence of position or alignment
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -414,7 +492,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: 𝐼 = 𝑘 ⋅ 𝐿 / 𝑎𝑚𝑏𝑖𝑒𝑛𝑡 𝑎 𝑎 / https://bit.ly/2XGn61n / Extrahierte Tabellen: / [Tabelle 1]
 
-Commentary: This slide is about Ambient Intensity 2/2. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: 𝐼 = 𝑘 ⋅ 𝐿 / 𝑎𝑚𝑏𝑖𝑒𝑛𝑡 𝑎 𝑎 / https://bit.ly/2XGn61n / Extrahierte Tabellen: / [Tabelle 1]
+Professor-style explanation: For 'Ambient Intensity 2/2', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: 𝐼 = 𝑘 ⋅ 𝐿 / 𝑎𝑚𝑏𝑖𝑒𝑛𝑡 𝑎 𝑎 / https://bit.ly/2XGn61n / Extrahierte Tabellen: / [Tabelle 1]. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Ambient Intensity 2/2. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: 𝐼 = 𝑘 ⋅ 𝐿 / 𝑎𝑚𝑏𝑖𝑒𝑛𝑡 𝑎 𝑎 / https://bit.ly/2XGn61n / Extrahierte Tabellen: / [Tabelle 1]
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -424,7 +504,9 @@ Check yourself: Can you turn 'Ambient Intensity 2/2' into a causal sentence inst
 
 Source cue: - Simulation of light reflections on specular surfaces / - Model assumption / - Reflection of light are directed (reflection) / - Observations / - Reflections of light are observer-dependent
 
-Commentary: This slide is about Specular Intensity 1/3. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Simulation of light reflections on specular surfaces / - Model assumption / - Reflection of light are directed (reflection) / - Observations / - Reflections of light are observer-dependent
+Professor-style explanation: This slide belongs to local shading. For 'Specular Intensity 1/3', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Simulation of light reflections on specular surfaces / - Model assumption / - Reflection of light are directed (reflection) / - Observations / - Reflections of light are observer-dependent. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Specular Intensity 1/3. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Simulation of light reflections on specular surfaces / - Model assumption / - Reflection of light are directed (reflection) / - Observations / - Reflections of light are observer-dependent
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -434,7 +516,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Calculation of the reflection vector / - Incidence angle corresponds to exit angle / - Equation / ⃗ ⃗ / 𝑟⃗ = 2𝑛 ⋅⋅ 𝑛 ⋅ 𝑙 − 𝑙
 
-Commentary: This slide is about Reflection Vector 𝑟⃗. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Calculation of the reflection vector / - Incidence angle corresponds to exit angle / - Equation / ⃗ ⃗ / 𝑟⃗ = 2𝑛 ⋅⋅ 𝑛 ⋅ 𝑙 − 𝑙
+Professor-style explanation: For 'Reflection Vector 𝑟⃗', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: - Calculation of the reflection vector / - Incidence angle corresponds to exit angle / - Equation / ⃗ ⃗ / 𝑟⃗ = 2𝑛 ⋅⋅ 𝑛 ⋅ 𝑙 − 𝑙. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Reflection Vector 𝑟⃗. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: - Calculation of the reflection vector / - Incidence angle corresponds to exit angle / - Equation / ⃗ ⃗ / 𝑟⃗ = 2𝑛 ⋅⋅ 𝑛 ⋅ 𝑙 − 𝑙
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -444,7 +528,9 @@ Check yourself: Can you turn 'Reflection Vector 𝑟⃗' into a causal sentence 
 
 Source cue: - Equation / 𝐼 = 𝑘𝑟⃗ ⋅ ⋅𝑣⃗ 𝐿 ⋅ max( 0, ) / 𝑠𝑝𝑒𝑐𝑢𝑙𝑎𝑟 𝑠 𝑠 / - 𝑘 specular material properties (surface dependant) / - 𝐿 specular light intensity (light source dependent)
 
-Commentary: This slide is about Specular Intensity 2/3. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Equation / 𝐼 = 𝑘𝑟⃗ ⋅ ⋅𝑣⃗ 𝐿 ⋅ max( 0, ) / 𝑠𝑝𝑒𝑐𝑢𝑙𝑎𝑟 𝑠 𝑠 / - 𝑘 specular material properties (surface dependant) / - 𝐿 specular light intensity (light source dependent)
+Professor-style explanation: This slide belongs to local shading. For 'Specular Intensity 2/3', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Equation / 𝐼 = 𝑘𝑟⃗ ⋅ ⋅𝑣⃗ 𝐿 ⋅ max( 0, ) / 𝑠𝑝𝑒𝑐𝑢𝑙𝑎𝑟 𝑠 𝑠 / - 𝑘 specular material properties (surface dependant) / - 𝐿 specular light intensity (light source dependent). The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Specular Intensity 2/3. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Equation / 𝐼 = 𝑘𝑟⃗ ⋅ ⋅𝑣⃗ 𝐿 ⋅ max( 0, ) / 𝑠𝑝𝑒𝑐𝑢𝑙𝑎𝑟 𝑠 𝑠 / - 𝑘 specular material properties (surface dependant) / - 𝐿 specular light intensity (light source dependent)
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -454,7 +540,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - 𝑝 influences fall off of specular highlight (𝑝 ∊ [1, 𝑀] mit 𝑀 ≈ 100) / 𝑝 = 1 / 𝑚𝑎x(0, 𝑟⃗ ⋅ 𝑣⃗)1 / 𝑝 = 5 / 𝑚𝑎x(0, 𝑟⃗ ⋅ 𝑣⃗)5
 
-Commentary: This slide is about Specular Exponent 𝑝. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - 𝑝 influences fall off of specular highlight (𝑝 ∊ [1, 𝑀] mit 𝑀 ≈ 100) / 𝑝 = 1 / 𝑚𝑎x(0, 𝑟⃗ ⋅ 𝑣⃗)1 / 𝑝 = 5 / 𝑚𝑎x(0, 𝑟⃗ ⋅ 𝑣⃗)5
+Professor-style explanation: This slide belongs to local shading. For 'Specular Exponent 𝑝', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - 𝑝 influences fall off of specular highlight (𝑝 ∊ [1, 𝑀] mit 𝑀 ≈ 100) / 𝑝 = 1 / 𝑚𝑎x(0, 𝑟⃗ ⋅ 𝑣⃗)1 / 𝑝 = 5 / 𝑚𝑎x(0, 𝑟⃗ ⋅ 𝑣⃗)5. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Specular Exponent 𝑝. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - 𝑝 influences fall off of specular highlight (𝑝 ∊ [1, 𝑀] mit 𝑀 ≈ 100) / 𝑝 = 1 / 𝑚𝑎x(0, 𝑟⃗ ⋅ 𝑣⃗)1 / 𝑝 = 5 / 𝑚𝑎x(0, 𝑟⃗ ⋅ 𝑣⃗)5
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -464,7 +552,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: 𝑟⃗ = 2 ⋅ 𝑛 ⋅ 𝑛 ⋅ 𝑙⃗ − 𝑙⃗ / https://bit.ly/2XbPc7s 𝐼 = 𝑘 ⋅ 𝐿 ⋅ 𝑚𝑎x(0, 𝑟⃗ ⋅ 𝑣⃗)𝑝 / 𝑠𝑝𝑒𝑐𝑢𝑙𝑎𝑟 𝑠 𝑠 / Extrahierte Tabellen: / [Tabelle 1]
 
-Commentary: This slide is about Specular Intensity 3/3. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: 𝑟⃗ = 2 ⋅ 𝑛 ⋅ 𝑛 ⋅ 𝑙⃗ − 𝑙⃗ / https://bit.ly/2XbPc7s 𝐼 = 𝑘 ⋅ 𝐿 ⋅ 𝑚𝑎x(0, 𝑟⃗ ⋅ 𝑣⃗)𝑝 / 𝑠𝑝𝑒𝑐𝑢𝑙𝑎𝑟 𝑠 𝑠 / Extrahierte Tabellen: / [Tabelle 1]
+Professor-style explanation: For 'Specular Intensity 3/3', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: 𝑟⃗ = 2 ⋅ 𝑛 ⋅ 𝑛 ⋅ 𝑙⃗ − 𝑙⃗ / https://bit.ly/2XbPc7s 𝐼 = 𝑘 ⋅ 𝐿 ⋅ 𝑚𝑎x(0, 𝑟⃗ ⋅ 𝑣⃗)𝑝 / 𝑠𝑝𝑒𝑐𝑢𝑙𝑎𝑟 𝑠 𝑠 / Extrahierte Tabellen: / [Tabelle 1]. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Specular Intensity 3/3. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: 𝑟⃗ = 2 ⋅ 𝑛 ⋅ 𝑛 ⋅ 𝑙⃗ − 𝑙⃗ / https://bit.ly/2XbPc7s 𝐼 = 𝑘 ⋅ 𝐿 ⋅ 𝑚𝑎x(0, 𝑟⃗ ⋅ 𝑣⃗)𝑝 / 𝑠𝑝𝑒𝑐𝑢𝑙𝑎𝑟 𝑠 𝑠 / Extrahierte Tabellen: / [Tabelle 1]
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -474,7 +564,9 @@ Check yourself: Can you turn 'Specular Intensity 3/3' into a causal sentence ins
 
 Source cue: - Alternative simulation of specular relfections / - Replace mirror direction 𝑟⃗ with Halfway-Vector ℎ / - ℎ = 𝑙 + 𝑣⃗ / - ℎ is halfway between 𝑙 and 𝑣⃗ / - Equation
 
-Commentary: This slide is about Blinn-Phong Illumination Model 1/2. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Alternative simulation of specular relfections / - Replace mirror direction 𝑟⃗ with Halfway-Vector ℎ / - ℎ = 𝑙 + 𝑣⃗ / - ℎ is halfway between 𝑙 and 𝑣⃗ / - Equation
+Professor-style explanation: This slide belongs to local shading. For 'Blinn-Phong Illumination Model 1/2', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Alternative simulation of specular relfections / - Replace mirror direction 𝑟⃗ with Halfway-Vector ℎ / - ℎ = 𝑙 + 𝑣⃗ / - ℎ is halfway between 𝑙 and 𝑣⃗ / - Equation. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Blinn-Phong Illumination Model 1/2. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Alternative simulation of specular relfections / - Replace mirror direction 𝑟⃗ with Halfway-Vector ℎ / - ℎ = 𝑙 + 𝑣⃗ / - ℎ is halfway between 𝑙 and 𝑣⃗ / - Equation
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -484,7 +576,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: ℎ = 𝑙⃗ + 𝑣⃗ / https://bit.ly/2ICDwBD 𝐼 = 𝑘 ⋅ 𝐿 ⋅ 𝑚𝑎x(0, ℎ ⋅ 𝑛)𝑝 / 𝑠𝑝𝑒𝑐𝑢𝑙𝑎𝑟 𝑠 𝑠 / Extrahierte Tabellen: / [Tabelle 1]
 
-Commentary: This slide is about Blinn-Phong Illumination Model 2/2. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: ℎ = 𝑙⃗ + 𝑣⃗ / https://bit.ly/2ICDwBD 𝐼 = 𝑘 ⋅ 𝐿 ⋅ 𝑚𝑎x(0, ℎ ⋅ 𝑛)𝑝 / 𝑠𝑝𝑒𝑐𝑢𝑙𝑎𝑟 𝑠 𝑠 / Extrahierte Tabellen: / [Tabelle 1]
+Professor-style explanation: This slide belongs to local shading. For 'Blinn-Phong Illumination Model 2/2', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: ℎ = 𝑙⃗ + 𝑣⃗ / https://bit.ly/2ICDwBD 𝐼 = 𝑘 ⋅ 𝐿 ⋅ 𝑚𝑎x(0, ℎ ⋅ 𝑛)𝑝 / 𝑠𝑝𝑒𝑐𝑢𝑙𝑎𝑟 𝑠 𝑠 / Extrahierte Tabellen: / [Tabelle 1]. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Blinn-Phong Illumination Model 2/2. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: ℎ = 𝑙⃗ + 𝑣⃗ / https://bit.ly/2ICDwBD 𝐼 = 𝑘 ⋅ 𝐿 ⋅ 𝑚𝑎x(0, ℎ ⋅ 𝑛)𝑝 / 𝑠𝑝𝑒𝑐𝑢𝑙𝑎𝑟 𝑠 𝑠 / Extrahierte Tabellen: / [Tabelle 1]
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -494,7 +588,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Additive combination of all factors / 𝐼 = 𝑘 ⋅ 𝐿 / 𝑎𝑚𝑏𝑖𝑒𝑛𝑡 𝑎 𝑎 / 𝐼 = 𝑘 ⋅ 𝐿 ⋅ max 0, 𝑛 ⋅ 𝑙 / 𝑑𝑖𝑓𝑓𝑢𝑠𝑒 𝑑 𝑑
 
-Commentary: This slide is about Phong Illumination Model. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Additive combination of all factors / 𝐼 = 𝑘 ⋅ 𝐿 / 𝑎𝑚𝑏𝑖𝑒𝑛𝑡 𝑎 𝑎 / 𝐼 = 𝑘 ⋅ 𝐿 ⋅ max 0, 𝑛 ⋅ 𝑙 / 𝑑𝑖𝑓𝑓𝑢𝑠𝑒 𝑑 𝑑
+Professor-style explanation: This slide belongs to local shading. For 'Phong Illumination Model', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Additive combination of all factors / 𝐼 = 𝑘 ⋅ 𝐿 / 𝑎𝑚𝑏𝑖𝑒𝑛𝑡 𝑎 𝑎 / 𝐼 = 𝑘 ⋅ 𝐿 ⋅ max 0, 𝑛 ⋅ 𝑙 / 𝑑𝑖𝑓𝑓𝑢𝑠𝑒 𝑑 𝑑. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Phong Illumination Model. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Additive combination of all factors / 𝐼 = 𝑘 ⋅ 𝐿 / 𝑎𝑚𝑏𝑖𝑒𝑛𝑡 𝑎 𝑎 / 𝐼 = 𝑘 ⋅ 𝐿 ⋅ max 0, 𝑛 ⋅ 𝑙 / 𝑑𝑖𝑓𝑓𝑢𝑠𝑒 𝑑 𝑑
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -504,7 +600,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Additive combination of all factors / 𝐼 = 𝑘 ⋅ 𝐿 / 𝑎𝑚𝑏𝑖𝑒𝑛𝑡 𝑎 𝑎 / 𝐼 = 𝑘 ⋅ 𝐿 ⋅ max 0, 𝑛 ⋅ 𝑙 / 𝑑𝑖𝑓𝑓𝑢𝑠𝑒 𝑑 𝑑
 
-Commentary: This slide is about Phong Illumination Model. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Additive combination of all factors / 𝐼 = 𝑘 ⋅ 𝐿 / 𝑎𝑚𝑏𝑖𝑒𝑛𝑡 𝑎 𝑎 / 𝐼 = 𝑘 ⋅ 𝐿 ⋅ max 0, 𝑛 ⋅ 𝑙 / 𝑑𝑖𝑓𝑓𝑢𝑠𝑒 𝑑 𝑑
+Professor-style explanation: This slide belongs to local shading. For 'Phong Illumination Model', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Additive combination of all factors / 𝐼 = 𝑘 ⋅ 𝐿 / 𝑎𝑚𝑏𝑖𝑒𝑛𝑡 𝑎 𝑎 / 𝐼 = 𝑘 ⋅ 𝐿 ⋅ max 0, 𝑛 ⋅ 𝑙 / 𝑑𝑖𝑓𝑓𝑢𝑠𝑒 𝑑 𝑑. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Phong Illumination Model. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Additive combination of all factors / 𝐼 = 𝑘 ⋅ 𝐿 / 𝑎𝑚𝑏𝑖𝑒𝑛𝑡 𝑎 𝑎 / 𝐼 = 𝑘 ⋅ 𝐿 ⋅ max 0, 𝑛 ⋅ 𝑙 / 𝑑𝑖𝑓𝑓𝑢𝑠𝑒 𝑑 𝑑
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -514,7 +612,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: Coloring triangles when using vertex-based illumination
 
-Commentary: This slide is about 8.5 Shading. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: Coloring triangles when using vertex-based illumination
+Professor-style explanation: Here the lecture moves from continuous geometry to a discrete grid. '8.5 Shading' asks which pixels or samples are covered by an ideal mathematical primitive. The slide gives us this anchor: Coloring triangles when using vertex-based illumination. The key spoken explanation is: rasterization creates fragment candidates and interpolated values, but it does not by itself guarantee that a fragment becomes the final visible pixel.
+
+Technical commentary: This slide is about 8.5 Shading. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: Coloring triangles when using vertex-based illumination
 
 Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
 
@@ -524,7 +624,9 @@ Check yourself: Can you explain which samples/fragments are generated by '8.5 Sh
 
 Source cue: - Illumination model usually applied in the fragment stage / - Vertex-based illumination also possible to save compute / - Requires to spread the illumination information of the vertices / over the triangle / Flat Gouroud Phong
 
-Commentary: This slide is about Shading. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Illumination model usually applied in the fragment stage / - Vertex-based illumination also possible to save compute / - Requires to spread the illumination information of the vertices / over the triangle / Flat Gouroud Phong
+Professor-style explanation: Here the lecture moves from continuous geometry to a discrete grid. 'Shading' asks which pixels or samples are covered by an ideal mathematical primitive. The slide gives us this anchor: - Illumination model usually applied in the fragment stage / - Vertex-based illumination also possible to save compute / - Requires to spread the illumination information of the vertices / over the triangle / Flat Gouroud Phong. The key spoken explanation is: rasterization creates fragment candidates and interpolated values, but it does not by itself guarantee that a fragment becomes the final visible pixel.
+
+Technical commentary: This slide is about Shading. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Illumination model usually applied in the fragment stage / - Vertex-based illumination also possible to save compute / - Requires to spread the illumination information of the vertices / over the triangle / Flat Gouroud Phong
 
 Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
 
@@ -534,7 +636,9 @@ Check yourself: Can you explain which samples/fragments are generated by 'Shadin
 
 Source cue: - Tasks of shading procedures / - Colorize surfaces based on colors calculated by illumination model / - Shading is closely linked to the rasterization process and integrated into it / - Distribute lighting and shading / - Calculate light intensity for surface points
 
-Commentary: This slide is about Shading Computation. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Tasks of shading procedures / - Colorize surfaces based on colors calculated by illumination model / - Shading is closely linked to the rasterization process and integrated into it / - Distribute lighting and shading / - Calculate light intensity for surface points
+Professor-style explanation: Here the lecture moves from continuous geometry to a discrete grid. 'Shading Computation' asks which pixels or samples are covered by an ideal mathematical primitive. The slide gives us this anchor: - Tasks of shading procedures / - Colorize surfaces based on colors calculated by illumination model / - Shading is closely linked to the rasterization process and integrated into it / - Distribute lighting and shading / - Calculate light intensity for surface points. The key spoken explanation is: rasterization creates fragment candidates and interpolated values, but it does not by itself guarantee that a fragment becomes the final visible pixel.
+
+Technical commentary: This slide is about Shading Computation. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Tasks of shading procedures / - Colorize surfaces based on colors calculated by illumination model / - Shading is closely linked to the rasterization process and integrated into it / - Distribute lighting and shading / - Calculate light intensity for surface points
 
 Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
 
@@ -544,7 +648,9 @@ Check yourself: Can you explain which samples/fragments are generated by 'Shadin
 
 Source cue: - Operation / - Calling the lighting model for a single point of a surface / (e.g., polygon center) / - Shading of the entire polygon in the determined intensity / - Useful if the following assumptions apply
 
-Commentary: This slide is about Flat Shading. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Operation / - Calling the lighting model for a single point of a surface / (e.g., polygon center) / - Shading of the entire polygon in the determined intensity / - Useful if the following assumptions apply
+Professor-style explanation: This slide belongs to local shading. For 'Flat Shading', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Operation / - Calling the lighting model for a single point of a surface / (e.g., polygon center) / - Shading of the entire polygon in the determined intensity / - Useful if the following assumptions apply. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Flat Shading. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Operation / - Calling the lighting model for a single point of a surface / (e.g., polygon center) / - Shading of the entire polygon in the determined intensity / - Useful if the following assumptions apply
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -554,7 +660,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Shading method for polygons based on the interpolation / of intensity values a t the polygon vertices / - Requirements / - Area decomposition in polygons (usually triangles) / - Normals for polygon corners (vertex normals)
 
-Commentary: This slide is about Gouraud Shading 1/5. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Shading method for polygons based on the interpolation / of intensity values a t the polygon vertices / - Requirements / - Area decomposition in polygons (usually triangles) / - Normals for polygon corners (vertex normals)
+Professor-style explanation: Here the lecture moves from continuous geometry to a discrete grid. 'Gouraud Shading 1/5' asks which pixels or samples are covered by an ideal mathematical primitive. The slide gives us this anchor: - Shading method for polygons based on the interpolation / of intensity values a t the polygon vertices / - Requirements / - Area decomposition in polygons (usually triangles) / - Normals for polygon corners (vertex normals). The key spoken explanation is: rasterization creates fragment candidates and interpolated values, but it does not by itself guarantee that a fragment becomes the final visible pixel.
+
+Technical commentary: This slide is about Gouraud Shading 1/5. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Shading method for polygons based on the interpolation / of intensity values a t the polygon vertices / - Requirements / - Area decomposition in polygons (usually triangles) / - Normals for polygon corners (vertex normals)
 
 Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
 
@@ -564,7 +672,9 @@ Check yourself: Can you explain which samples/fragments are generated by 'Gourau
 
 Source cue: - Proceeding / - Compute intensity values 𝑙 for polygon corners 𝑣 / 𝑖 𝑖 / - Linear interpolation of the intensity values a long the edges / - Linear interpolation of the intensity values a long the scanlines
 
-Commentary: This slide is about Gouraud Shading 2/5. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Proceeding / - Compute intensity values 𝑙 for polygon corners 𝑣 / 𝑖 𝑖 / - Linear interpolation of the intensity values a long the edges / - Linear interpolation of the intensity values a long the scanlines
+Professor-style explanation: Here the lecture moves from continuous geometry to a discrete grid. 'Gouraud Shading 2/5' asks which pixels or samples are covered by an ideal mathematical primitive. The slide gives us this anchor: - Proceeding / - Compute intensity values 𝑙 for polygon corners 𝑣 / 𝑖 𝑖 / - Linear interpolation of the intensity values a long the edges / - Linear interpolation of the intensity values a long the scanlines. The key spoken explanation is: rasterization creates fragment candidates and interpolated values, but it does not by itself guarantee that a fragment becomes the final visible pixel.
+
+Technical commentary: This slide is about Gouraud Shading 2/5. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Proceeding / - Compute intensity values 𝑙 for polygon corners 𝑣 / 𝑖 𝑖 / - Linear interpolation of the intensity values a long the edges / - Linear interpolation of the intensity values a long the scanlines
 
 Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
 
@@ -574,7 +684,9 @@ Check yourself: Can you explain which samples/fragments are generated by 'Gourau
 
 Source cue: - Shading at conceptually smooth transitions / - Geometrically "hard" edges instead of conceptually "soft" edges / - Gouraud shading can create visually smooth transitions / through smooth shading / - Example: 𝑃 / 𝑃 smooth transition, 𝑃 / 𝑃 hard transition
 
-Commentary: This slide is about Gouraud Shading 3/5. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Shading at conceptually smooth transitions / - Geometrically "hard" edges instead of conceptually "soft" edges / - Gouraud shading can create visually smooth transitions / through smooth shading / - Example: 𝑃 / 𝑃 smooth transition, 𝑃 / 𝑃 hard transition
+Professor-style explanation: This slide belongs to local shading. For 'Gouraud Shading 3/5', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Shading at conceptually smooth transitions / - Geometrically "hard" edges instead of conceptually "soft" edges / - Gouraud shading can create visually smooth transitions / through smooth shading / - Example: 𝑃 / 𝑃 smooth transition, 𝑃 / 𝑃 hard transition. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Gouraud Shading 3/5. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Shading at conceptually smooth transitions / - Geometrically "hard" edges instead of conceptually "soft" edges / - Gouraud shading can create visually smooth transitions / through smooth shading / - Example: 𝑃 / 𝑃 smooth transition, 𝑃 / 𝑃 hard transition
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -584,7 +696,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - interpolation problems / - The shading inside a triangle results from interpolation / - Intensity fluctuations in the interior are not taken into account / - Intensity fluctuations can only be considered by finer tessellation / - Example: Spotlight shines into the interior of a triangle
 
-Commentary: This slide is about Gouraud Shading 4/5. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - interpolation problems / - The shading inside a triangle results from interpolation / - Intensity fluctuations in the interior are not taken into account / - Intensity fluctuations can only be considered by finer tessellation / - Example: Spotlight shines into the interior of a triangle
+Professor-style explanation: Here the lecture moves from continuous geometry to a discrete grid. 'Gouraud Shading 4/5' asks which pixels or samples are covered by an ideal mathematical primitive. The slide gives us this anchor: - interpolation problems / - The shading inside a triangle results from interpolation / - Intensity fluctuations in the interior are not taken into account / - Intensity fluctuations can only be considered by finer tessellation / - Example: Spotlight shines into the interior of a triangle. The key spoken explanation is: rasterization creates fragment candidates and interpolated values, but it does not by itself guarantee that a fragment becomes the final visible pixel.
+
+Technical commentary: This slide is about Gouraud Shading 4/5. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - interpolation problems / - The shading inside a triangle results from interpolation / - Intensity fluctuations in the interior are not taken into account / - Intensity fluctuations can only be considered by finer tessellation / - Example: Spotlight shines into the interior of a triangle
 
 Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
 
@@ -594,7 +708,9 @@ Check yourself: Can you explain which samples/fragments are generated by 'Gourau
 
 Source cue: - Interpolation problems / - Contiguous polygons that do not fully share the same edges / will be shaded differently
 
-Commentary: This slide is about Gouraud Shading 5/5. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Interpolation problems / - Contiguous polygons that do not fully share the same edges / will be shaded differently
+Professor-style explanation: This slide belongs to local shading. For 'Gouraud Shading 5/5', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Interpolation problems / - Contiguous polygons that do not fully share the same edges / will be shaded differently. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Gouraud Shading 5/5. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Interpolation problems / - Contiguous polygons that do not fully share the same edges / will be shaded differently
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 
@@ -604,7 +720,9 @@ Check yourself: Can you identify the normal, light vector, view vector, and mate
 
 Source cue: - Interpolation of the corner normals instead of the corner intensities / - Proceeding / - Calculation of the corner normals / - Interpolation of the normals between the corners / - Interpolation between the endpoints of a scanline
 
-Commentary: This slide is about Phong Shading 1/2. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Interpolation of the corner normals instead of the corner intensities / - Proceeding / - Calculation of the corner normals / - Interpolation of the normals between the corners / - Interpolation between the endpoints of a scanline
+Professor-style explanation: Here the lecture moves from continuous geometry to a discrete grid. 'Phong Shading 1/2' asks which pixels or samples are covered by an ideal mathematical primitive. The slide gives us this anchor: - Interpolation of the corner normals instead of the corner intensities / - Proceeding / - Calculation of the corner normals / - Interpolation of the normals between the corners / - Interpolation between the endpoints of a scanline. The key spoken explanation is: rasterization creates fragment candidates and interpolated values, but it does not by itself guarantee that a fragment becomes the final visible pixel.
+
+Technical commentary: This slide is about Phong Shading 1/2. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Interpolation of the corner normals instead of the corner intensities / - Proceeding / - Calculation of the corner normals / - Interpolation of the normals between the corners / - Interpolation between the endpoints of a scanline
 
 Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
 
@@ -614,7 +732,9 @@ Check yourself: Can you explain which samples/fragments are generated by 'Phong 
 
 Source cue: - Advantages / - Pixel-based (i.e., image-precise) evaluation of the light sources / - Highly focused highlights at corners are not interpolated over the edge / - Highlights inside a triangle can be displayed / - Disadvantage
 
-Commentary: This slide is about Phong Shading 2/2. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Advantages / - Pixel-based (i.e., image-precise) evaluation of the light sources / - Highly focused highlights at corners are not interpolated over the edge / - Highlights inside a triangle can be displayed / - Disadvantage
+Professor-style explanation: Here the lecture moves from continuous geometry to a discrete grid. 'Phong Shading 2/2' asks which pixels or samples are covered by an ideal mathematical primitive. The slide gives us this anchor: - Advantages / - Pixel-based (i.e., image-precise) evaluation of the light sources / - Highly focused highlights at corners are not interpolated over the edge / - Highlights inside a triangle can be displayed / - Disadvantage. The key spoken explanation is: rasterization creates fragment candidates and interpolated values, but it does not by itself guarantee that a fragment becomes the final visible pixel.
+
+Technical commentary: This slide is about Phong Shading 2/2. Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives. The visible cue is: - Advantages / - Pixel-based (i.e., image-precise) evaluation of the light sources / - Highly focused highlights at corners are not interpolated over the edge / - Highlights inside a triangle can be displayed / - Disadvantage
 
 Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
 
@@ -624,7 +744,9 @@ Check yourself: Can you explain which samples/fragments are generated by 'Phong 
 
 Source cue: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image.
 
-Commentary: This slide is about Literature and other sources used in this chapter. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image.
+Professor-style explanation: For 'Literature and other sources used in this chapter', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. The slide gives us this anchor: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later.
+
+Technical commentary: This slide is about Literature and other sources used in this chapter. Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it. The visible cue is: The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image.
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -634,7 +756,9 @@ Check yourself: Can you turn 'Literature and other sources used in this chapter'
 
 Source cue: - Zum Lesen - Zum Ausprobieren / Marschner, Steve und Peter Shirley: / - Simulation von drei / Fundamentals of Computer Graphics, / ausgewählten Materialien
 
-Commentary: This slide is about Lesen und Ausprobieren. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Zum Lesen - Zum Ausprobieren / Marschner, Steve und Peter Shirley: / - Simulation von drei / Fundamentals of Computer Graphics, / ausgewählten Materialien
+Professor-style explanation: This slide belongs to local shading. For 'Lesen und Ausprobieren', imagine one visible surface point and ask how bright or colored it should become. The slide gives us this anchor: - Zum Lesen - Zum Ausprobieren / Marschner, Steve und Peter Shirley: / - Simulation von drei / Fundamentals of Computer Graphics, / ausgewählten Materialien. The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment.
+
+Technical commentary: This slide is about Lesen und Ausprobieren. Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated. The visible cue is: - Zum Lesen - Zum Ausprobieren / Marschner, Steve und Peter Shirley: / - Simulation von drei / Fundamentals of Computer Graphics, / ausgewählten Materialien
 
 Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
 

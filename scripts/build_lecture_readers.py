@@ -629,6 +629,7 @@ def extract_slide_summaries(rel: str) -> list[dict[str, str]]:
                 "title": title,
                 "cue": clue,
                 "category": category,
+                "professor": professor_explanation(category, title, clue),
                 "commentary": slide_comment(category, title, clue),
                 "why": slide_why(category),
                 "check": slide_check(category, title),
@@ -750,6 +751,74 @@ def slide_comment(category: str, title: str, clue: str) -> str:
     return prefix + comments[category] + f" The visible cue is: {clue}"
 
 
+def professor_explanation(category: str, title: str, clue: str) -> str:
+    cue_sentence = f"The slide gives us this anchor: {clue.rstrip('.;:')}"
+    explanations = {
+        "outline": (
+            f"Let us use '{title}' as the map for the lecture. Do not learn this slide as a list. "
+            f"Read it as a promise about the order of ideas: first we introduce the problem, then the tools, "
+            f"then the consequences for rendering or implementation. {cue_sentence}. While studying, keep asking "
+            f"which later concept depends on each item in this outline."
+        ),
+        "organization": (
+            f"Here I would pause and connect the course logistics to your learning strategy. '{title}' is not a graphics "
+            f"algorithm, but it tells you how the course expects you to practice. {cue_sentence}. The practical message is: "
+            f"when a topic appears in lectures and exercises, you should be able to explain it conceptually and recognize it in code."
+        ),
+        "pipeline": (
+            f"For '{title}', imagine following one piece of scene data through the renderer. It starts as model or application data, "
+            f"then passes through transformations, primitive processing, rasterization, fragment processing, tests, and finally the framebuffer. "
+            f"{cue_sentence}. The important point is that each stage changes the representation, so debugging means asking where the representation first became wrong."
+        ),
+        "opengl": (
+            f"On this slide, I would emphasize that OpenGL is a controlled state machine around the GPU pipeline. '{title}' is not about one magic render call; "
+            f"it is about objects, bindings, shader interfaces, buffers, and state being consistent at draw time. {cue_sentence}. If the output is wrong, "
+            f"you inspect which object owns the data, which shader consumes it, and which state changes the result."
+        ),
+        "transform": (
+            f"For '{title}', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, "
+            f"vector, or normal starts and where it should end. {cue_sentence}. The professor-level way to read this slide is to narrate the movement: "
+            f"model space to world space, world to view, view to clip, or whichever step the slide is showing."
+        ),
+        "projection": (
+            f"This slide should be read as camera geometry. With '{title}', the question is how a 3D view becomes coordinates that can be clipped, divided, "
+            f"mapped to the viewport, and rasterized. {cue_sentence}. Keep separate the camera/view transform, the projection matrix, the perspective divide, "
+            f"and the final viewport transform; many mistakes come from blending these steps together."
+        ),
+        "clipping": (
+            f"For '{title}', think of a boundary test. The renderer does not want arbitrary geometry continuing forever; it needs to decide what part of a primitive "
+            f"is inside the valid region. {cue_sentence}. A good explanation says which object is tested, which boundary is used, whether the primitive is accepted, "
+            f"rejected, or cut, and where new intersection points may appear."
+        ),
+        "rasterization": (
+            f"Here the lecture moves from continuous geometry to a discrete grid. '{title}' asks which pixels or samples are covered by an ideal mathematical primitive. "
+            f"{cue_sentence}. The key spoken explanation is: rasterization creates fragment candidates and interpolated values, but it does not by itself guarantee "
+            f"that a fragment becomes the final visible pixel."
+        ),
+        "visibility": (
+            f"With '{title}', the question is no longer just whether geometry exists, but whether it is visible from a viewpoint. {cue_sentence}. Explain the method by "
+            f"naming its decision space: does it compare objects, split image regions, cast rays, or compare per-fragment depth values? That tells you what it can handle well."
+        ),
+        "illumination": (
+            f"This slide belongs to local shading. For '{title}', imagine one visible surface point and ask how bright or colored it should become. {cue_sentence}. "
+            f"The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment."
+        ),
+        "texturing": (
+            f"For '{title}', stop thinking of a texture as only a picture. Think of it as sampled data that the shader can query. {cue_sentence}. The explanation is: "
+            f"a fragment has coordinates, OpenGL state and sampler settings define how to fetch data, filtering decides how samples are reconstructed, and the shader decides what the value means."
+        ),
+        "shadows": (
+            f"On '{title}', translate the visual effect into a visibility question from the light. A point is lit if the light can see it and shadowed if something blocks that path. "
+            f"{cue_sentence}. A solid explanation names the occluder, receiver, light-space representation, and the approximation or artifact introduced by the method."
+        ),
+        "general": (
+            f"For '{title}', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. "
+            f"{cue_sentence}. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later."
+        ),
+    }
+    return explanations[category]
+
+
 def slide_why(category: str) -> str:
     reasons = {
         "outline": "Outlines tell you the dependency order. They are the safest way to avoid learning isolated bullet points.",
@@ -826,7 +895,9 @@ def lecture_markdown(lecture: dict) -> str:
                 "",
                 f"Source cue: {slide['cue']}",
                 "",
-                f"Commentary: {slide['commentary']}",
+                f"Professor-style explanation: {slide['professor']}",
+                "",
+                f"Technical commentary: {slide['commentary']}",
                 "",
                 f"Why it matters: {slide['why']}",
                 "",
@@ -968,7 +1039,8 @@ def lecture_story(lecture: dict, styles, include_title: bool):
             [
                 [paragraph(f"Page {slide['page']}", styles["BodyText"]), paragraph(slide["title"], styles["BodyText"])],
                 [paragraph("Source cue", styles["BodyText"]), paragraph(slide["cue"], styles["BodyText"])],
-                [paragraph("Commentary", styles["BodyText"]), paragraph(slide["commentary"], styles["BodyText"])],
+                [paragraph("Professor-style explanation", styles["BodyText"]), paragraph(slide["professor"], styles["BodyText"])],
+                [paragraph("Technical commentary", styles["BodyText"]), paragraph(slide["commentary"], styles["BodyText"])],
                 [paragraph("Why it matters", styles["BodyText"]), paragraph(slide["why"], styles["BodyText"])],
                 [paragraph("Check yourself", styles["BodyText"]), paragraph(slide["check"], styles["BodyText"])],
             ],
@@ -1061,7 +1133,7 @@ def write_readme() -> None:
     lines = [
         "# Lecture Readers",
         "",
-        "This folder contains a readable version of every lecture. The raw slide extraction is still the source of truth, but these files add the missing explanatory commentary that makes the material usable for human study. Every extracted slide page has its own commentary block with a source cue, explanation, relevance note, and check question.",
+        "This folder contains a readable version of every lecture. The raw slide extraction is still the source of truth, but these files add the missing explanatory commentary that makes the material usable for human study. Every extracted slide page has its own commentary block with a source cue, professor-style explanation, technical commentary, relevance note, and check question.",
         "",
         "Language: English. The lecture material is primarily English, so the generated commentary stays in English.",
         "",
