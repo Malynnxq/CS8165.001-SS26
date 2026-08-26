@@ -4,6 +4,7 @@ import html
 import json
 import re
 import shutil
+import unicodedata
 from pathlib import Path
 
 
@@ -639,14 +640,31 @@ def extract_slide_summaries(rel: str) -> list[dict[str, str]]:
 
 
 def clean_line(line: str) -> str:
-    return (
-        line.replace("(cid:127)", "-")
-        .replace("", "-")
-        .replace("𝑥", "x")
-        .replace("𝑦", "y")
-        .replace("𝑧", "z")
-        .strip()
-    )
+    line = unicodedata.normalize("NFKC", line)
+    replacements = {
+        "(cid:127)": "-",
+        "(cid:521)": "x",
+        "(cid:520)": "x",
+        "(cid:3)": " ",
+        "": "-",
+        "–": "-",
+        "—": "-",
+        "„": '"',
+        "“": '"',
+        "”": '"',
+        "’": "'",
+        " o f ": " of ",
+    }
+    for old, new in replacements.items():
+        line = line.replace(old, new)
+    line = re.sub(r"\(cid:\d+\)", "", line)
+    line = re.sub(r"\b224\s*=\s*28\s*x\s*28\s*x\s*28\b", "2^24 = 2^8 x 2^8 x 2^8", line)
+    line = re.sub(r"\b24 Bit\b", "24-bit", line)
+    line = re.sub(r"\b18\.874\.368b\b", "18,874,368 bits", line)
+    line = re.sub(r"\b2\.359\.296B\b", "2,359,296 bytes", line)
+    line = re.sub(r"\b2,25MiB\b", "2.25 MiB", line)
+    line = re.sub(r"\s+", " ", line)
+    return line.strip()
 
 
 def useful_slide_line(line: str) -> bool:
@@ -703,7 +721,18 @@ def content_cue(lines: list[str], title: str) -> str:
 
 
 def slide_category(title: str, clue: str) -> str:
+    title_text = title.lower()
     text = f"{title} {clue}".lower()
+    if any(token in title_text for token in ["references", "literature", "sources used"]):
+        return "reference"
+    if any(token in title_text for token in ["history", "milestone", "contest result"]):
+        return "history"
+    if any(token in title_text for token in ["raster image", "pixel-based", "color depth", "image size", "memory"]):
+        return "pixeldata"
+    if any(token in title_text for token in ["3d model", "models", "modeling", "geometric primitive"]):
+        return "model"
+    if any(token in text for token in ["cast ray", "castray", "ray march", "ray casting", "ray tracing"]):
+        return "visibility"
     if "outline" in text:
         return "outline"
     if "course" in text or "teacher" in text or "exercise" in text:
@@ -714,14 +743,14 @@ def slide_category(title: str, clue: str) -> str:
         return "opengl"
     if "transform" in text or "matrix" in text or "coordinate" in text:
         return "transform"
-    if "projection" in text or "camera" in text or "viewport" in text or "perspective" in text or "orthographic" in text:
-        return "projection"
     if "clipping" in text or "cohen" in text or "sutherland" in text or "cyrus" in text or "weiler" in text or "greiner" in text:
         return "clipping"
     if "raster" in text or "scanline" in text or "triangle" in text or "line " in text or "filling" in text:
         return "rasterization"
     if "visibility" in text or "depth" in text or "z-buffer" in text or "ray" in text or "bsp" in text or "warnock" in text:
         return "visibility"
+    if "projection" in text or "camera" in text or "viewport" in text or "perspective" in text or "orthographic" in text:
+        return "projection"
     if "light" in text or "illumination" in text or "phong" in text or "material" in text or "shading" in text or "normal" in text:
         return "illumination"
     if "texture" in text or "mipmap" in text or "sampling" in text or "filter" in text or "uv" in text or "environment" in text:
@@ -736,6 +765,10 @@ def slide_comment(category: str, title: str, clue: str) -> str:
     comments = {
         "outline": "The listed items define the lecture sequence: the topic begins with a problem statement, introduces the required objects or algorithms, and then connects them to rendering or implementation consequences.",
         "organization": "The slide connects lecture theory with exercise work, programming practice, and assessment expectations. The named dates, exercises, or course components indicate where the concept will reappear.",
+        "history": "The slide places the technical topic into the historical development of computer graphics, showing how artistic perspective, display technology, interaction, and rendering algorithms evolved together.",
+        "pixeldata": "The slide describes image data as discrete samples: pixels, color channels, bit depth, memory layout, and the amount of storage needed for a raster image.",
+        "model": "The slide describes scene objects before rendering: geometric models, primitives, vertices, topology, attributes, and the representation used as input to the pipeline.",
+        "reference": "The slide lists source material or chapter references that support the technical content and give names for further reading.",
         "pipeline": "Scene or model data moves through a sequence of representations: vertices, primitives, fragments, tests, and framebuffer updates. Each named object is one stage in that conversion.",
         "opengl": "The OpenGL objects and calls shown here control GPU state, bound resources, shader interfaces, buffer contents, or framebuffer access at draw time.",
         "transform": "The transformation objects on the slide move points, vectors, or coordinate frames from one space into another using matrices or affine operations.",
@@ -764,6 +797,25 @@ def professor_explanation(category: str, title: str, clue: str) -> str:
             f"The outline '{title}' gives the lecture its internal logic. The listed topics are the objects that will be connected during the chapter: first the problem space, then the mathematical or algorithmic tools, then the implementation consequences. "
             f"{cue_sentence}. The order matters because later items rely on earlier definitions. For example, an OpenGL mechanism is much easier to understand once the corresponding pipeline object or mathematical operation has already been introduced. "
             f"The outline is therefore a compact dependency graph of the lecture rather than a collection of isolated labels."
+        ),
+        "history": (
+            f"The slide '{title}' explains the historical background behind the graphics concept. Computer graphics did not appear as one finished pipeline; it developed from older ideas such as artistic perspective, color representation, display hardware, interactive systems, and increasingly programmable rendering algorithms. "
+            f"The historical objects on the slide are people, systems, dates, or milestones, and each milestone marks a capability that later became normal in graphics software. "
+            f"{cue_sentence}. This history matters because it shows why the course combines mathematics, image representation, hardware acceleration, and interaction. Modern real-time rendering is the result of these threads converging into a pipeline that can generate images fast enough for user input."
+        ),
+        "pixeldata": (
+            f"The slide '{title}' explains raster images as concrete stored data. A raster image is a rectangular grid of pixels. Each pixel stores one or more channel values, such as red, green, blue, and sometimes alpha. "
+            f"Color depth tells us how many bits are available per pixel or per channel, and that immediately determines both the number of representable colors and the memory footprint of the image. "
+            f"{cue_sentence}. The object relation is pixel count, bits per pixel, color range, and memory size. This is why a simple image-resolution question is also a performance question: more pixels and more bits mean more memory traffic, more storage, and more work for display or image-processing operations."
+        ),
+        "model": (
+            f"The slide '{title}' explains how scene objects exist before they are rendered. A 3D model is not an image yet; it is a structured description of geometry and attributes. "
+            f"The central objects are vertices, edges, faces, triangles or other primitives, and sometimes additional data such as normals, texture coordinates, colors, materials, or connectivity. "
+            f"{cue_sentence}. This matters because the rendering pipeline needs this representation as input. The model describes what exists in the scene, while later stages decide where it appears, which parts are visible, how it is sampled into fragments, and how it is shaded into final pixel colors."
+        ),
+        "reference": (
+            f"The slide '{title}' collects the source material behind the chapter. References are not rendering objects themselves, but they identify the books, papers, or external resources from which the lecture's terminology and algorithms are drawn. "
+            f"{cue_sentence}. In practical terms, a reference slide marks the boundary of the chapter and tells us where the formal definitions, derivations, or extended examples can be found if a topic needs more depth than the lecture slides provide."
         ),
         "organization": (
             f"The slide '{title}' describes the practical objects of the course: lectures, exercise sheets, programming tasks, project work, teachers, dates, tools, or submission structure. "
@@ -835,6 +887,10 @@ def slide_why(category: str) -> str:
     reasons = {
         "outline": "Outlines tell you the dependency order. They are the safest way to avoid learning isolated bullet points.",
         "organization": "Course logistics often reveal which topics are practiced, assessed, or expected in code.",
+        "history": "Historical slides explain why the current pipeline exists and which older problems led to modern graphics concepts.",
+        "pixeldata": "Pixel-data slides connect visual output to memory size, bandwidth, precision, and image-processing cost.",
+        "model": "Model slides explain the input objects that later transformations, projection, rasterization, and shading operate on.",
+        "reference": "Reference slides provide the source trail for definitions, algorithms, and deeper explanations.",
         "pipeline": "Pipeline understanding lets you localize rendering errors instead of guessing randomly.",
         "opengl": "OpenGL bugs are usually state, binding, shader-interface, or buffer-layout bugs, so API details matter.",
         "transform": "A wrong coordinate-space assumption can make correct formulas produce wrong images.",
@@ -854,6 +910,10 @@ def slide_check(category: str, title: str) -> str:
     checks = {
         "outline": f"Can you explain where '{title}' fits in the lecture order and what later section depends on it?",
         "organization": f"Can you connect '{title}' to an exercise, project task, or exam-preparation action?",
+        "history": f"Can you name the graphics capability or idea represented by '{title}' and why it mattered historically?",
+        "pixeldata": f"Can you compute or explain the pixel count, color depth, or memory relation in '{title}'?",
+        "model": f"Can you name the geometric objects and attributes represented by '{title}' before rendering begins?",
+        "reference": f"Can you identify which source or topic '{title}' points to for deeper study?",
         "pipeline": f"Can you name the input and output representation for '{title}' in the rendering pipeline?",
         "opengl": f"Can you name the OpenGL object, state, shader stage, or buffer involved in '{title}'?",
         "transform": f"Can you state the coordinate space before and after '{title}'?",

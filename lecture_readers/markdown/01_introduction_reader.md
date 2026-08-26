@@ -48,37 +48,37 @@ Check yourself: Can you connect 'Course Learning Outcomes' to an exercise, proje
 
 Source cue: Students: Frank Richter, Manuel Herbert Güntzel
 
-Professor-style explanation: The slide 'Real-Time Rendering Contest Results 1/3' introduces a graphics object, operation, or relation that belongs to the rendering workflow. The named terms describe what data enters the step, what operation changes or classifies that data, and what result is passed onward. On the slide, the concrete items are: Students: Frank Richter, Manuel Herbert Güntzel. The object-level relation is input, operation, output, and later use. This is the basic shape of most computer graphics concepts: data is represented in one form, processed by a rule or algorithm, and then consumed by the next stage of image generation.
+Professor-style explanation: The slide 'Real-Time Rendering Contest Results 1/3' explains the historical background behind the graphics concept. Computer graphics did not appear as one finished pipeline; it developed from older ideas such as artistic perspective, color representation, display hardware, interactive systems, and increasingly programmable rendering algorithms. The historical objects on the slide are people, systems, dates, or milestones, and each milestone marks a capability that later became normal in graphics software. On the slide, the concrete items are: Students: Frank Richter, Manuel Herbert Güntzel. This history matters because it shows why the course combines mathematics, image representation, hardware acceleration, and interaction. Modern real-time rendering is the result of these threads converging into a pipeline that can generate images fast enough for user input.
 
-Technical commentary: This slide is about Real-Time Rendering Contest Results 1/3. The slide names a concrete relation between input data, an operation, and an output that another graphics stage can consume. Concrete items shown: Students: Frank Richter, Manuel Herbert Güntzel
+Technical commentary: This slide is about Real-Time Rendering Contest Results 1/3. The slide places the technical topic into the historical development of computer graphics, showing how artistic perspective, display technology, interaction, and rendering algorithms evolved together. Concrete items shown: Students: Frank Richter, Manuel Herbert Güntzel
 
-Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
+Why it matters: Historical slides explain why the current pipeline exists and which older problems led to modern graphics concepts.
 
-Check yourself: Can you turn 'Real-Time Rendering Contest Results 1/3' into a causal sentence instead of repeating the slide title?
+Check yourself: Can you name the graphics capability or idea represented by 'Real-Time Rendering Contest Results 1/3' and why it mattered historically?
 
 ### Page 4 - Real-Time Rendering Contest Results 2/3
 
 Source cue: Students: Andreas Rottach, Matthias Englert
 
-Professor-style explanation: The slide 'Real-Time Rendering Contest Results 2/3' introduces a graphics object, operation, or relation that belongs to the rendering workflow. The named terms describe what data enters the step, what operation changes or classifies that data, and what result is passed onward. On the slide, the concrete items are: Students: Andreas Rottach, Matthias Englert. The object-level relation is input, operation, output, and later use. This is the basic shape of most computer graphics concepts: data is represented in one form, processed by a rule or algorithm, and then consumed by the next stage of image generation.
+Professor-style explanation: The slide 'Real-Time Rendering Contest Results 2/3' explains the historical background behind the graphics concept. Computer graphics did not appear as one finished pipeline; it developed from older ideas such as artistic perspective, color representation, display hardware, interactive systems, and increasingly programmable rendering algorithms. The historical objects on the slide are people, systems, dates, or milestones, and each milestone marks a capability that later became normal in graphics software. On the slide, the concrete items are: Students: Andreas Rottach, Matthias Englert. This history matters because it shows why the course combines mathematics, image representation, hardware acceleration, and interaction. Modern real-time rendering is the result of these threads converging into a pipeline that can generate images fast enough for user input.
 
-Technical commentary: This slide is about Real-Time Rendering Contest Results 2/3. The slide names a concrete relation between input data, an operation, and an output that another graphics stage can consume. Concrete items shown: Students: Andreas Rottach, Matthias Englert
+Technical commentary: This slide is about Real-Time Rendering Contest Results 2/3. The slide places the technical topic into the historical development of computer graphics, showing how artistic perspective, display technology, interaction, and rendering algorithms evolved together. Concrete items shown: Students: Andreas Rottach, Matthias Englert
 
-Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
+Why it matters: Historical slides explain why the current pipeline exists and which older problems led to modern graphics concepts.
 
-Check yourself: Can you turn 'Real-Time Rendering Contest Results 2/3' into a causal sentence instead of repeating the slide title?
+Check yourself: Can you name the graphics capability or idea represented by 'Real-Time Rendering Contest Results 2/3' and why it mattered historically?
 
 ### Page 5 - Real-Time Rendering Contest Results 3/3
 
 Source cue: Students: Jan Eric Haßler, Kai Viktor Freissler
 
-Professor-style explanation: The slide 'Real-Time Rendering Contest Results 3/3' introduces a graphics object, operation, or relation that belongs to the rendering workflow. The named terms describe what data enters the step, what operation changes or classifies that data, and what result is passed onward. On the slide, the concrete items are: Students: Jan Eric Haßler, Kai Viktor Freissler. The object-level relation is input, operation, output, and later use. This is the basic shape of most computer graphics concepts: data is represented in one form, processed by a rule or algorithm, and then consumed by the next stage of image generation.
+Professor-style explanation: The slide 'Real-Time Rendering Contest Results 3/3' explains the historical background behind the graphics concept. Computer graphics did not appear as one finished pipeline; it developed from older ideas such as artistic perspective, color representation, display hardware, interactive systems, and increasingly programmable rendering algorithms. The historical objects on the slide are people, systems, dates, or milestones, and each milestone marks a capability that later became normal in graphics software. On the slide, the concrete items are: Students: Jan Eric Haßler, Kai Viktor Freissler. This history matters because it shows why the course combines mathematics, image representation, hardware acceleration, and interaction. Modern real-time rendering is the result of these threads converging into a pipeline that can generate images fast enough for user input.
 
-Technical commentary: This slide is about Real-Time Rendering Contest Results 3/3. The slide names a concrete relation between input data, an operation, and an output that another graphics stage can consume. Concrete items shown: Students: Jan Eric Haßler, Kai Viktor Freissler
+Technical commentary: This slide is about Real-Time Rendering Contest Results 3/3. The slide places the technical topic into the historical development of computer graphics, showing how artistic perspective, display technology, interaction, and rendering algorithms evolved together. Concrete items shown: Students: Jan Eric Haßler, Kai Viktor Freissler
 
-Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
+Why it matters: Historical slides explain why the current pipeline exists and which older problems led to modern graphics concepts.
 
-Check yourself: Can you turn 'Real-Time Rendering Contest Results 3/3' into a causal sentence instead of repeating the slide title?
+Check yourself: Can you name the graphics capability or idea represented by 'Real-Time Rendering Contest Results 3/3' and why it mattered historically?
 
 ### Page 6 - 1.1 Course Organization
 
@@ -130,11 +130,11 @@ Check yourself: Can you connect 'Course Format' to an exercise, project task, or
 
 ### Page 10 - Exercises
 
-Source cue: - Exercise / - Exercise 1 – Rendering Pipeline / - Exercise 2 – Primitive Types and Shaders / - Exercise 3 – Geometric Transformations / - Exercise 4 – Projection and Clipping
+Source cue: - Exercise / - Exercise 1 - Rendering Pipeline / - Exercise 2 - Primitive Types and Shaders / - Exercise 3 - Geometric Transformations / - Exercise 4 - Projection and Clipping
 
-Professor-style explanation: The slide 'Exercises' describes the practical objects of the course: lectures, exercise sheets, programming tasks, project work, teachers, dates, tools, or submission structure. These objects are part of the learning system around the graphics content. The lecture introduces a concept, the exercise turns it into code or a calculation, and the project combines several such concepts into a working renderer. On the slide, the concrete items are: - Exercise / - Exercise 1 – Rendering Pipeline / - Exercise 2 – Primitive Types and Shaders / - Exercise 3 – Geometric Transformations / - Exercise 4 – Projection and Clipping. The important relation is between topic, practice format, and skill. A rendering concept that appears in an exercise is not just background vocabulary; it becomes something that can be recognized in C/C++ code, OpenGL calls, shader inputs, or debugging situations.
+Professor-style explanation: The slide 'Exercises' describes the practical objects of the course: lectures, exercise sheets, programming tasks, project work, teachers, dates, tools, or submission structure. These objects are part of the learning system around the graphics content. The lecture introduces a concept, the exercise turns it into code or a calculation, and the project combines several such concepts into a working renderer. On the slide, the concrete items are: - Exercise / - Exercise 1 - Rendering Pipeline / - Exercise 2 - Primitive Types and Shaders / - Exercise 3 - Geometric Transformations / - Exercise 4 - Projection and Clipping. The important relation is between topic, practice format, and skill. A rendering concept that appears in an exercise is not just background vocabulary; it becomes something that can be recognized in C/C++ code, OpenGL calls, shader inputs, or debugging situations.
 
-Technical commentary: This slide is about Exercises. The slide connects lecture theory with exercise work, programming practice, and assessment expectations. The named dates, exercises, or course components indicate where the concept will reappear. Concrete items shown: - Exercise / - Exercise 1 – Rendering Pipeline / - Exercise 2 – Primitive Types and Shaders / - Exercise 3 – Geometric Transformations / - Exercise 4 – Projection and Clipping
+Technical commentary: This slide is about Exercises. The slide connects lecture theory with exercise work, programming practice, and assessment expectations. The named dates, exercises, or course components indicate where the concept will reappear. Concrete items shown: - Exercise / - Exercise 1 - Rendering Pipeline / - Exercise 2 - Primitive Types and Shaders / - Exercise 3 - Geometric Transformations / - Exercise 4 - Projection and Clipping
 
 Why it matters: Course logistics often reveal which topics are practiced, assessed, or expected in code.
 
@@ -142,11 +142,11 @@ Check yourself: Can you connect 'Exercises' to an exercise, project task, or exa
 
 ### Page 11 - Successful Course Completion
 
-Source cue: - Pass the oral/written exam / - Dates to be announced / - „Notenbonus“ possible / - 50% success rate of exercise solutions for n-1 sheets / - Only running solutions are marked
+Source cue: - Pass the oral/written exam / - Dates to be announced / - "Notenbonus" possible / - 50% success rate of exercise solutions for n-1 sheets / - Only running solutions are marked
 
-Professor-style explanation: The slide 'Successful Course Completion' describes the practical objects of the course: lectures, exercise sheets, programming tasks, project work, teachers, dates, tools, or submission structure. These objects are part of the learning system around the graphics content. The lecture introduces a concept, the exercise turns it into code or a calculation, and the project combines several such concepts into a working renderer. On the slide, the concrete items are: - Pass the oral/written exam / - Dates to be announced / - „Notenbonus“ possible / - 50% success rate of exercise solutions for n-1 sheets / - Only running solutions are marked. The important relation is between topic, practice format, and skill. A rendering concept that appears in an exercise is not just background vocabulary; it becomes something that can be recognized in C/C++ code, OpenGL calls, shader inputs, or debugging situations.
+Professor-style explanation: The slide 'Successful Course Completion' describes the practical objects of the course: lectures, exercise sheets, programming tasks, project work, teachers, dates, tools, or submission structure. These objects are part of the learning system around the graphics content. The lecture introduces a concept, the exercise turns it into code or a calculation, and the project combines several such concepts into a working renderer. On the slide, the concrete items are: - Pass the oral/written exam / - Dates to be announced / - "Notenbonus" possible / - 50% success rate of exercise solutions for n-1 sheets / - Only running solutions are marked. The important relation is between topic, practice format, and skill. A rendering concept that appears in an exercise is not just background vocabulary; it becomes something that can be recognized in C/C++ code, OpenGL calls, shader inputs, or debugging situations.
 
-Technical commentary: This slide is about Successful Course Completion. The slide connects lecture theory with exercise work, programming practice, and assessment expectations. The named dates, exercises, or course components indicate where the concept will reappear. Concrete items shown: - Pass the oral/written exam / - Dates to be announced / - „Notenbonus“ possible / - 50% success rate of exercise solutions for n-1 sheets / - Only running solutions are marked
+Technical commentary: This slide is about Successful Course Completion. The slide connects lecture theory with exercise work, programming practice, and assessment expectations. The named dates, exercises, or course components indicate where the concept will reappear. Concrete items shown: - Pass the oral/written exam / - Dates to be announced / - "Notenbonus" possible / - 50% success rate of exercise solutions for n-1 sheets / - Only running solutions are marked
 
 Why it matters: Course logistics often reveal which topics are practiced, assessed, or expected in code.
 
@@ -168,13 +168,13 @@ Check yourself: Can you connect 'Course Overview' to an exercise, project task, 
 
 Source cue: - P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics / (4th Edition), AK Peters 2016. / - D. Shreiner, G. Sellers, J. Kessenich, B. Licea-Kane: OpenGL Programming / Guide: The Official Guide to Learning OpenGL / (8th Edition), Addison-Wesley 2013.
 
-Professor-style explanation: The slide 'Literature' explains how OpenGL exposes the rendering pipeline through explicit objects and state. A context owns the current rendering state; buffers hold vertex, index, texture, or pixel data; shader programs define programmable processing; textures and samplers provide sampled data; framebuffers receive the result. OpenGL does not render from intention, it renders from the objects that are bound and the state that is active at the moment of the draw call. On the slide, the concrete items are: - P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics / (4th Edition), AK Peters 2016. / - D. Shreiner, G. Sellers, J. Kessenich, B. Licea-Kane: OpenGL Programming / Guide: The Official Guide to Learning OpenGL / (8th Edition), Addison-Wesley 2013. The concrete relation is API command, GPU resource, shader interface, and visible result. A small mismatch in this relation, such as a wrong buffer layout, missing uniform, wrong texture unit, or disabled depth test, can produce a perfectly valid draw call with a completely wrong image.
+Professor-style explanation: The slide 'Literature' collects the source material behind the chapter. References are not rendering objects themselves, but they identify the books, papers, or external resources from which the lecture's terminology and algorithms are drawn. On the slide, the concrete items are: - P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics / (4th Edition), AK Peters 2016. / - D. Shreiner, G. Sellers, J. Kessenich, B. Licea-Kane: OpenGL Programming / Guide: The Official Guide to Learning OpenGL / (8th Edition), Addison-Wesley 2013. In practical terms, a reference slide marks the boundary of the chapter and tells us where the formal definitions, derivations, or extended examples can be found if a topic needs more depth than the lecture slides provide.
 
-Technical commentary: This slide is about Literature. The OpenGL objects and calls shown here control GPU state, bound resources, shader interfaces, buffer contents, or framebuffer access at draw time. Concrete items shown: - P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics / (4th Edition), AK Peters 2016. / - D. Shreiner, G. Sellers, J. Kessenich, B. Licea-Kane: OpenGL Programming / Guide: The Official Guide to Learning OpenGL / (8th Edition), Addison-Wesley 2013.
+Technical commentary: This slide is about Literature. The slide lists source material or chapter references that support the technical content and give names for further reading. Concrete items shown: - P. Shirley, M. Ashikhmin, S. Marschner: Fundamentals of Computer Graphics / (4th Edition), AK Peters 2016. / - D. Shreiner, G. Sellers, J. Kessenich, B. Licea-Kane: OpenGL Programming / Guide: The Official Guide to Learning OpenGL / (8th Edition), Addison-Wesley 2013.
 
-Why it matters: OpenGL bugs are usually state, binding, shader-interface, or buffer-layout bugs, so API details matter.
+Why it matters: Reference slides provide the source trail for definitions, algorithms, and deeper explanations.
 
-Check yourself: Can you name the OpenGL object, state, shader stage, or buffer involved in 'Literature'?
+Check yourself: Can you identify which source or topic 'Literature' points to for deeper study?
 
 ### Page 14 - Relevant Chapters and Link to Lecture Course
 
@@ -214,63 +214,63 @@ Check yourself: Can you turn '1.2 Computer Graphics Overview' into a causal sent
 
 ### Page 17 - Computer Graphics History
 
-Source cue: - Origins in art / - Perspective, color, etc. / - Computer graphics milestones [Reichardt, 1968] / - 1960 – „Computer Graphics“, William Fetter (Boeing) / - 1962 – Spacewars, Steve Russel (MIT) Computer
+Source cue: - Origins in art / - Perspective, color, etc. / - Computer graphics milestones [Reichardt, 1968] / - 1960 - "Computer Graphics", William Fetter (Boeing) / - 1962 - Spacewars, Steve Russel (MIT) Computer
 
-Professor-style explanation: The slide 'Computer Graphics History' explains how camera geometry turns a 3D scene into image coordinates. In view space, objects are described relative to the camera. The projection matrix then maps that camera-centered geometry into clip space, where the viewing volume and clipping boundaries can be handled consistently. Perspective projection uses the homogeneous coordinate so that the later divide by w creates foreshortening: farther objects occupy less image space. Orthographic projection removes that depth-based size change and keeps parallel structures visually parallel. On the slide, the concrete items are: - Origins in art / - Perspective, color, etc. / - Computer graphics milestones [Reichardt, 1968] / - 1960 – „Computer Graphics“, William Fetter (Boeing) / - 1962 – Spacewars, Steve Russel (MIT) Computer. The object chain is view-space position, projection matrix, clip coordinate, normalized device coordinate, and viewport coordinate. The slide is therefore connecting camera setup, visual appearance, and the numeric coordinate pipeline that rasterization later consumes.
+Professor-style explanation: The slide 'Computer Graphics History' explains the historical background behind the graphics concept. Computer graphics did not appear as one finished pipeline; it developed from older ideas such as artistic perspective, color representation, display hardware, interactive systems, and increasingly programmable rendering algorithms. The historical objects on the slide are people, systems, dates, or milestones, and each milestone marks a capability that later became normal in graphics software. On the slide, the concrete items are: - Origins in art / - Perspective, color, etc. / - Computer graphics milestones [Reichardt, 1968] / - 1960 - "Computer Graphics", William Fetter (Boeing) / - 1962 - Spacewars, Steve Russel (MIT) Computer. This history matters because it shows why the course combines mathematics, image representation, hardware acceleration, and interaction. Modern real-time rendering is the result of these threads converging into a pipeline that can generate images fast enough for user input.
 
-Technical commentary: This slide is about Computer Graphics History. The projection objects on the slide convert view-space geometry into clip coordinates, normalized coordinates, and finally screen-related positions. Concrete items shown: - Origins in art / - Perspective, color, etc. / - Computer graphics milestones [Reichardt, 1968] / - 1960 – „Computer Graphics“, William Fetter (Boeing) / - 1962 – Spacewars, Steve Russel (MIT) Computer
+Technical commentary: This slide is about Computer Graphics History. The slide places the technical topic into the historical development of computer graphics, showing how artistic perspective, display technology, interaction, and rendering algorithms evolved together. Concrete items shown: - Origins in art / - Perspective, color, etc. / - Computer graphics milestones [Reichardt, 1968] / - 1960 - "Computer Graphics", William Fetter (Boeing) / - 1962 - Spacewars, Steve Russel (MIT) Computer
 
-Why it matters: Projection controls both image composition and depth precision, so it affects visibility and rasterization later.
+Why it matters: Historical slides explain why the current pipeline exists and which older problems led to modern graphics concepts.
 
-Check yourself: Can you explain how 'Computer Graphics History' changes positions before rasterization?
+Check yourself: Can you name the graphics capability or idea represented by 'Computer Graphics History' and why it mattered historically?
 
 ### Page 18 - Computer Graphics History
 
 Source cue: Sutherland, Utah (1970) Wireframe
 
-Professor-style explanation: The slide 'Computer Graphics History' explains clipping as a geometric boundary operation. A line segment, polygon, or triangle is compared with a window, plane, or volume. The part inside the valid region survives, the part outside is removed, and a primitive crossing the boundary receives newly computed intersection points. On the slide, the concrete items are: Sutherland, Utah (1970) Wireframe. The objects involved are the original primitive, the clipping boundary, an inside/outside classification, intersection points, and the resulting clipped primitive. The core idea is not simply deleting geometry; clipping can reshape geometry so that the rasterizer receives only the meaningful visible portion.
+Professor-style explanation: The slide 'Computer Graphics History' explains the historical background behind the graphics concept. Computer graphics did not appear as one finished pipeline; it developed from older ideas such as artistic perspective, color representation, display hardware, interactive systems, and increasingly programmable rendering algorithms. The historical objects on the slide are people, systems, dates, or milestones, and each milestone marks a capability that later became normal in graphics software. On the slide, the concrete items are: Sutherland, Utah (1970) Wireframe. This history matters because it shows why the course combines mathematics, image representation, hardware acceleration, and interaction. Modern real-time rendering is the result of these threads converging into a pipeline that can generate images fast enough for user input.
 
-Technical commentary: This slide is about Computer Graphics History. The clipping objects on the slide classify geometry against boundaries and produce accepted, rejected, or newly intersected primitive pieces. Concrete items shown: Sutherland, Utah (1970) Wireframe
+Technical commentary: This slide is about Computer Graphics History. The slide places the technical topic into the historical development of computer graphics, showing how artistic perspective, display technology, interaction, and rendering algorithms evolved together. Concrete items shown: Sutherland, Utah (1970) Wireframe
 
-Why it matters: Clipping decides what geometry is allowed to reach rasterization and can create new boundary vertices.
+Why it matters: Historical slides explain why the current pipeline exists and which older problems led to modern graphics concepts.
 
-Check yourself: Can you decide what is accepted, rejected, or newly intersected in 'Computer Graphics History'?
+Check yourself: Can you name the graphics capability or idea represented by 'Computer Graphics History' and why it mattered historically?
 
 ### Page 19 - Computer Graphics History
 
 Source cue: Sutherland, Utah (1970) Turner Whitted, Siggraph (1979)
 
-Professor-style explanation: The slide 'Computer Graphics History' explains clipping as a geometric boundary operation. A line segment, polygon, or triangle is compared with a window, plane, or volume. The part inside the valid region survives, the part outside is removed, and a primitive crossing the boundary receives newly computed intersection points. On the slide, the concrete items are: Sutherland, Utah (1970) Turner Whitted, Siggraph (1979). The objects involved are the original primitive, the clipping boundary, an inside/outside classification, intersection points, and the resulting clipped primitive. The core idea is not simply deleting geometry; clipping can reshape geometry so that the rasterizer receives only the meaningful visible portion.
+Professor-style explanation: The slide 'Computer Graphics History' explains the historical background behind the graphics concept. Computer graphics did not appear as one finished pipeline; it developed from older ideas such as artistic perspective, color representation, display hardware, interactive systems, and increasingly programmable rendering algorithms. The historical objects on the slide are people, systems, dates, or milestones, and each milestone marks a capability that later became normal in graphics software. On the slide, the concrete items are: Sutherland, Utah (1970) Turner Whitted, Siggraph (1979). This history matters because it shows why the course combines mathematics, image representation, hardware acceleration, and interaction. Modern real-time rendering is the result of these threads converging into a pipeline that can generate images fast enough for user input.
 
-Technical commentary: This slide is about Computer Graphics History. The clipping objects on the slide classify geometry against boundaries and produce accepted, rejected, or newly intersected primitive pieces. Concrete items shown: Sutherland, Utah (1970) Turner Whitted, Siggraph (1979)
+Technical commentary: This slide is about Computer Graphics History. The slide places the technical topic into the historical development of computer graphics, showing how artistic perspective, display technology, interaction, and rendering algorithms evolved together. Concrete items shown: Sutherland, Utah (1970) Turner Whitted, Siggraph (1979)
 
-Why it matters: Clipping decides what geometry is allowed to reach rasterization and can create new boundary vertices.
+Why it matters: Historical slides explain why the current pipeline exists and which older problems led to modern graphics concepts.
 
-Check yourself: Can you decide what is accepted, rejected, or newly intersected in 'Computer Graphics History'?
+Check yourself: Can you name the graphics capability or idea represented by 'Computer Graphics History' and why it mattered historically?
 
 ### Page 20 - Computer Graphics History
 
 Source cue: The Abyss (1989) Terminator 2 (1991) Jurassic Park (1993)
 
-Professor-style explanation: The slide 'Computer Graphics History' introduces a graphics object, operation, or relation that belongs to the rendering workflow. The named terms describe what data enters the step, what operation changes or classifies that data, and what result is passed onward. On the slide, the concrete items are: The Abyss (1989) Terminator 2 (1991) Jurassic Park (1993). The object-level relation is input, operation, output, and later use. This is the basic shape of most computer graphics concepts: data is represented in one form, processed by a rule or algorithm, and then consumed by the next stage of image generation.
+Professor-style explanation: The slide 'Computer Graphics History' explains the historical background behind the graphics concept. Computer graphics did not appear as one finished pipeline; it developed from older ideas such as artistic perspective, color representation, display hardware, interactive systems, and increasingly programmable rendering algorithms. The historical objects on the slide are people, systems, dates, or milestones, and each milestone marks a capability that later became normal in graphics software. On the slide, the concrete items are: The Abyss (1989) Terminator 2 (1991) Jurassic Park (1993). This history matters because it shows why the course combines mathematics, image representation, hardware acceleration, and interaction. Modern real-time rendering is the result of these threads converging into a pipeline that can generate images fast enough for user input.
 
-Technical commentary: This slide is about Computer Graphics History. The slide names a concrete relation between input data, an operation, and an output that another graphics stage can consume. Concrete items shown: The Abyss (1989) Terminator 2 (1991) Jurassic Park (1993)
+Technical commentary: This slide is about Computer Graphics History. The slide places the technical topic into the historical development of computer graphics, showing how artistic perspective, display technology, interaction, and rendering algorithms evolved together. Concrete items shown: The Abyss (1989) Terminator 2 (1991) Jurassic Park (1993)
 
-Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
+Why it matters: Historical slides explain why the current pipeline exists and which older problems led to modern graphics concepts.
 
-Check yourself: Can you turn 'Computer Graphics History' into a causal sentence instead of repeating the slide title?
+Check yourself: Can you name the graphics capability or idea represented by 'Computer Graphics History' and why it mattered historically?
 
 ### Page 21 - Computer Graphics History
 
 Source cue: Ikea (2014)
 
-Professor-style explanation: The slide 'Computer Graphics History' introduces a graphics object, operation, or relation that belongs to the rendering workflow. The named terms describe what data enters the step, what operation changes or classifies that data, and what result is passed onward. On the slide, the concrete items are: Ikea (2014). The object-level relation is input, operation, output, and later use. This is the basic shape of most computer graphics concepts: data is represented in one form, processed by a rule or algorithm, and then consumed by the next stage of image generation.
+Professor-style explanation: The slide 'Computer Graphics History' explains the historical background behind the graphics concept. Computer graphics did not appear as one finished pipeline; it developed from older ideas such as artistic perspective, color representation, display hardware, interactive systems, and increasingly programmable rendering algorithms. The historical objects on the slide are people, systems, dates, or milestones, and each milestone marks a capability that later became normal in graphics software. On the slide, the concrete items are: Ikea (2014). This history matters because it shows why the course combines mathematics, image representation, hardware acceleration, and interaction. Modern real-time rendering is the result of these threads converging into a pipeline that can generate images fast enough for user input.
 
-Technical commentary: This slide is about Computer Graphics History. The slide names a concrete relation between input data, an operation, and an output that another graphics stage can consume. Concrete items shown: Ikea (2014)
+Technical commentary: This slide is about Computer Graphics History. The slide places the technical topic into the historical development of computer graphics, showing how artistic perspective, display technology, interaction, and rendering algorithms evolved together. Concrete items shown: Ikea (2014)
 
-Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
+Why it matters: Historical slides explain why the current pipeline exists and which older problems led to modern graphics concepts.
 
-Check yourself: Can you turn 'Computer Graphics History' into a causal sentence instead of repeating the slide title?
+Check yourself: Can you name the graphics capability or idea represented by 'Computer Graphics History' and why it mattered historically?
 
 ### Page 22 - Related Disciplines
 
@@ -300,25 +300,25 @@ Check yourself: Can you turn 'Applications' into a causal sentence instead of re
 
 Source cue: What is a pixel?
 
-Professor-style explanation: The slide '1.3 Pixel-based Representations' introduces a graphics object, operation, or relation that belongs to the rendering workflow. The named terms describe what data enters the step, what operation changes or classifies that data, and what result is passed onward. On the slide, the concrete items are: What is a pixel?. The object-level relation is input, operation, output, and later use. This is the basic shape of most computer graphics concepts: data is represented in one form, processed by a rule or algorithm, and then consumed by the next stage of image generation.
+Professor-style explanation: The slide '1.3 Pixel-based Representations' explains raster images as concrete stored data. A raster image is a rectangular grid of pixels. Each pixel stores one or more channel values, such as red, green, blue, and sometimes alpha. Color depth tells us how many bits are available per pixel or per channel, and that immediately determines both the number of representable colors and the memory footprint of the image. On the slide, the concrete items are: What is a pixel?. The object relation is pixel count, bits per pixel, color range, and memory size. This is why a simple image-resolution question is also a performance question: more pixels and more bits mean more memory traffic, more storage, and more work for display or image-processing operations.
 
-Technical commentary: This slide is about 1.3 Pixel-based Representations. The slide names a concrete relation between input data, an operation, and an output that another graphics stage can consume. Concrete items shown: What is a pixel?
+Technical commentary: This slide is about 1.3 Pixel-based Representations. The slide describes image data as discrete samples: pixels, color channels, bit depth, memory layout, and the amount of storage needed for a raster image. Concrete items shown: What is a pixel?
 
-Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
+Why it matters: Pixel-data slides connect visual output to memory size, bandwidth, precision, and image-processing cost.
 
-Check yourself: Can you turn '1.3 Pixel-based Representations' into a causal sentence instead of repeating the slide title?
+Check yourself: Can you compute or explain the pixel count, color depth, or memory relation in '1.3 Pixel-based Representations'?
 
 ### Page 25 - Raster Images
 
-Source cue: [„Bibliothek“ by press office Ulm University]
+Source cue: ["Bibliothek" by press office Ulm University]
 
-Professor-style explanation: The slide 'Raster Images' explains the moment where continuous geometry becomes a discrete image problem. A mathematical line or triangle is not made of pixels, but the screen is a grid of samples. Rasterization decides which samples are covered by the projected primitive and creates fragments for those samples. At the same time, values attached to the primitive, such as depth, color, normals, or texture coordinates, are interpolated so that each fragment has the data needed for shading. On the slide, the concrete items are: [„Bibliothek“ by press office Ulm University]. The important distinction is that rasterization creates candidates. A fragment exists because a primitive covered a sample, but final visibility still depends on depth testing, stencil testing, blending, masking, and framebuffer operations.
+Professor-style explanation: The slide 'Raster Images' explains raster images as concrete stored data. A raster image is a rectangular grid of pixels. Each pixel stores one or more channel values, such as red, green, blue, and sometimes alpha. Color depth tells us how many bits are available per pixel or per channel, and that immediately determines both the number of representable colors and the memory footprint of the image. On the slide, the concrete items are: ["Bibliothek" by press office Ulm University]. The object relation is pixel count, bits per pixel, color range, and memory size. This is why a simple image-resolution question is also a performance question: more pixels and more bits mean more memory traffic, more storage, and more work for display or image-processing operations.
 
-Technical commentary: This slide is about Raster Images. The rasterization objects on the slide convert ideal geometric primitives into covered samples or fragments with interpolated attributes. Concrete items shown: [„Bibliothek“ by press office Ulm University]
+Technical commentary: This slide is about Raster Images. The slide describes image data as discrete samples: pixels, color channels, bit depth, memory layout, and the amount of storage needed for a raster image. Concrete items shown: ["Bibliothek" by press office Ulm University]
 
-Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
+Why it matters: Pixel-data slides connect visual output to memory size, bandwidth, precision, and image-processing cost.
 
-Check yourself: Can you explain which samples/fragments are generated by 'Raster Images'?
+Check yourself: Can you compute or explain the pixel count, color depth, or memory relation in 'Raster Images'?
 
 ### Page 26 - Pixel
 
@@ -358,47 +358,47 @@ Check yourself: Can you explain which samples/fragments are generated by 'LCD Ra
 
 ### Page 29 - Raster Image Sizes
 
-Source cue: - Assume a raster image with 1024x768 pixels and 24 Bit color depth / - How many different colors can be represented? / - 224 = 28 (cid:521) 28 (cid:521) 28 = 16.777.216 / - How much memory does the image need? / - 1024 (cid:521) 768 (cid:521) 24 = 18.874.368𝑏 = 2.359.296𝐵 = 2,25𝑀i𝐵
+Source cue: - Assume a raster image with 1024x768 pixels and 24-bit color depth / - How many different colors can be represented? / - 2^24 = 2^8 x 2^8 x 2^8 = 16.777.216 / - How much memory does the image need? / - 1024 x 768 x 24 = 18,874,368 bits = 2,359,296 bytes = 2.25 MiB
 
-Professor-style explanation: The slide 'Raster Image Sizes' explains the moment where continuous geometry becomes a discrete image problem. A mathematical line or triangle is not made of pixels, but the screen is a grid of samples. Rasterization decides which samples are covered by the projected primitive and creates fragments for those samples. At the same time, values attached to the primitive, such as depth, color, normals, or texture coordinates, are interpolated so that each fragment has the data needed for shading. On the slide, the concrete items are: - Assume a raster image with 1024x768 pixels and 24 Bit color depth / - How many different colors can be represented? / - 224 = 28 (cid:521) 28 (cid:521) 28 = 16.777.216 / - How much memory does the image need? / - 1024 (cid:521) 768 (cid:521) 24 = 18.874.368𝑏 = 2.359.296𝐵 = 2,25𝑀i𝐵. The important distinction is that rasterization creates candidates. A fragment exists because a primitive covered a sample, but final visibility still depends on depth testing, stencil testing, blending, masking, and framebuffer operations.
+Professor-style explanation: The slide 'Raster Image Sizes' explains raster images as concrete stored data. A raster image is a rectangular grid of pixels. Each pixel stores one or more channel values, such as red, green, blue, and sometimes alpha. Color depth tells us how many bits are available per pixel or per channel, and that immediately determines both the number of representable colors and the memory footprint of the image. On the slide, the concrete items are: - Assume a raster image with 1024x768 pixels and 24-bit color depth / - How many different colors can be represented? / - 2^24 = 2^8 x 2^8 x 2^8 = 16.777.216 / - How much memory does the image need? / - 1024 x 768 x 24 = 18,874,368 bits = 2,359,296 bytes = 2.25 MiB. The object relation is pixel count, bits per pixel, color range, and memory size. This is why a simple image-resolution question is also a performance question: more pixels and more bits mean more memory traffic, more storage, and more work for display or image-processing operations.
 
-Technical commentary: This slide is about Raster Image Sizes. The rasterization objects on the slide convert ideal geometric primitives into covered samples or fragments with interpolated attributes. Concrete items shown: - Assume a raster image with 1024x768 pixels and 24 Bit color depth / - How many different colors can be represented? / - 224 = 28 (cid:521) 28 (cid:521) 28 = 16.777.216 / - How much memory does the image need? / - 1024 (cid:521) 768 (cid:521) 24 = 18.874.368𝑏 = 2.359.296𝐵 = 2,25𝑀i𝐵
+Technical commentary: This slide is about Raster Image Sizes. The slide describes image data as discrete samples: pixels, color channels, bit depth, memory layout, and the amount of storage needed for a raster image. Concrete items shown: - Assume a raster image with 1024x768 pixels and 24-bit color depth / - How many different colors can be represented? / - 2^24 = 2^8 x 2^8 x 2^8 = 16.777.216 / - How much memory does the image need? / - 1024 x 768 x 24 = 18,874,368 bits = 2,359,296 bytes = 2.25 MiB
 
-Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
+Why it matters: Pixel-data slides connect visual output to memory size, bandwidth, precision, and image-processing cost.
 
-Check yourself: Can you explain which samples/fragments are generated by 'Raster Image Sizes'?
+Check yourself: Can you compute or explain the pixel count, color depth, or memory relation in 'Raster Image Sizes'?
 
 ### Page 30 - 1.4 3D Models
 
 Source cue: Modeling with triangles and other geometric primitives
 
-Professor-style explanation: The slide '1.4 3D Models' explains the moment where continuous geometry becomes a discrete image problem. A mathematical line or triangle is not made of pixels, but the screen is a grid of samples. Rasterization decides which samples are covered by the projected primitive and creates fragments for those samples. At the same time, values attached to the primitive, such as depth, color, normals, or texture coordinates, are interpolated so that each fragment has the data needed for shading. On the slide, the concrete items are: Modeling with triangles and other geometric primitives. The important distinction is that rasterization creates candidates. A fragment exists because a primitive covered a sample, but final visibility still depends on depth testing, stencil testing, blending, masking, and framebuffer operations.
+Professor-style explanation: The slide '1.4 3D Models' explains how scene objects exist before they are rendered. A 3D model is not an image yet; it is a structured description of geometry and attributes. The central objects are vertices, edges, faces, triangles or other primitives, and sometimes additional data such as normals, texture coordinates, colors, materials, or connectivity. On the slide, the concrete items are: Modeling with triangles and other geometric primitives. This matters because the rendering pipeline needs this representation as input. The model describes what exists in the scene, while later stages decide where it appears, which parts are visible, how it is sampled into fragments, and how it is shaded into final pixel colors.
 
-Technical commentary: This slide is about 1.4 3D Models. The rasterization objects on the slide convert ideal geometric primitives into covered samples or fragments with interpolated attributes. Concrete items shown: Modeling with triangles and other geometric primitives
+Technical commentary: This slide is about 1.4 3D Models. The slide describes scene objects before rendering: geometric models, primitives, vertices, topology, attributes, and the representation used as input to the pipeline. Concrete items shown: Modeling with triangles and other geometric primitives
 
-Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
+Why it matters: Model slides explain the input objects that later transformations, projection, rasterization, and shading operate on.
 
-Check yourself: Can you explain which samples/fragments are generated by '1.4 3D Models'?
+Check yourself: Can you name the geometric objects and attributes represented by '1.4 3D Models' before rendering begins?
 
 ### Page 31 - 3D Model Types
 
 Source cue: - Models specify the structures to be displayed / - Three commonly used model types exist / - Implicit surfaces / - Polygonal models / - Volumetric models
 
-Professor-style explanation: The slide '3D Model Types' introduces a graphics object, operation, or relation that belongs to the rendering workflow. The named terms describe what data enters the step, what operation changes or classifies that data, and what result is passed onward. On the slide, the concrete items are: - Models specify the structures to be displayed / - Three commonly used model types exist / - Implicit surfaces / - Polygonal models / - Volumetric models. The object-level relation is input, operation, output, and later use. This is the basic shape of most computer graphics concepts: data is represented in one form, processed by a rule or algorithm, and then consumed by the next stage of image generation.
+Professor-style explanation: The slide '3D Model Types' explains how scene objects exist before they are rendered. A 3D model is not an image yet; it is a structured description of geometry and attributes. The central objects are vertices, edges, faces, triangles or other primitives, and sometimes additional data such as normals, texture coordinates, colors, materials, or connectivity. On the slide, the concrete items are: - Models specify the structures to be displayed / - Three commonly used model types exist / - Implicit surfaces / - Polygonal models / - Volumetric models. This matters because the rendering pipeline needs this representation as input. The model describes what exists in the scene, while later stages decide where it appears, which parts are visible, how it is sampled into fragments, and how it is shaded into final pixel colors.
 
-Technical commentary: This slide is about 3D Model Types. The slide names a concrete relation between input data, an operation, and an output that another graphics stage can consume. Concrete items shown: - Models specify the structures to be displayed / - Three commonly used model types exist / - Implicit surfaces / - Polygonal models / - Volumetric models
+Technical commentary: This slide is about 3D Model Types. The slide describes scene objects before rendering: geometric models, primitives, vertices, topology, attributes, and the representation used as input to the pipeline. Concrete items shown: - Models specify the structures to be displayed / - Three commonly used model types exist / - Implicit surfaces / - Polygonal models / - Volumetric models
 
-Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
+Why it matters: Model slides explain the input objects that later transformations, projection, rasterization, and shading operate on.
 
-Check yourself: Can you turn '3D Model Types' into a causal sentence instead of repeating the slide title?
+Check yourself: Can you name the geometric objects and attributes represented by '3D Model Types' before rendering begins?
 
 ### Page 32 - Implicit Surfaces
 
-Source cue: - Set of all points that fulfill 𝑓 x, y, z = 0 / - All points with 𝑓 x, y, z < 0 define solid bound by 𝑓 x, y, z = 0 / - Display possibilities / - Search for null points / - Approximate with polygons
+Source cue: - Set of all points that fulfill f x, y, z = 0 / - All points with f x, y, z < 0 define solid bound by f x, y, z = 0 / - Display possibilities / - Search for null points / - Approximate with polygons
 
-Professor-style explanation: The slide 'Implicit Surfaces' introduces a graphics object, operation, or relation that belongs to the rendering workflow. The named terms describe what data enters the step, what operation changes or classifies that data, and what result is passed onward. On the slide, the concrete items are: - Set of all points that fulfill 𝑓 x, y, z = 0 / - All points with 𝑓 x, y, z < 0 define solid bound by 𝑓 x, y, z = 0 / - Display possibilities / - Search for null points / - Approximate with polygons. The object-level relation is input, operation, output, and later use. This is the basic shape of most computer graphics concepts: data is represented in one form, processed by a rule or algorithm, and then consumed by the next stage of image generation.
+Professor-style explanation: The slide 'Implicit Surfaces' introduces a graphics object, operation, or relation that belongs to the rendering workflow. The named terms describe what data enters the step, what operation changes or classifies that data, and what result is passed onward. On the slide, the concrete items are: - Set of all points that fulfill f x, y, z = 0 / - All points with f x, y, z < 0 define solid bound by f x, y, z = 0 / - Display possibilities / - Search for null points / - Approximate with polygons. The object-level relation is input, operation, output, and later use. This is the basic shape of most computer graphics concepts: data is represented in one form, processed by a rule or algorithm, and then consumed by the next stage of image generation.
 
-Technical commentary: This slide is about Implicit Surfaces. The slide names a concrete relation between input data, an operation, and an output that another graphics stage can consume. Concrete items shown: - Set of all points that fulfill 𝑓 x, y, z = 0 / - All points with 𝑓 x, y, z < 0 define solid bound by 𝑓 x, y, z = 0 / - Display possibilities / - Search for null points / - Approximate with polygons
+Technical commentary: This slide is about Implicit Surfaces. The slide names a concrete relation between input data, an operation, and an output that another graphics stage can consume. Concrete items shown: - Set of all points that fulfill f x, y, z = 0 / - All points with f x, y, z < 0 define solid bound by f x, y, z = 0 / - Display possibilities / - Search for null points / - Approximate with polygons
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -406,11 +406,11 @@ Check yourself: Can you turn 'Implicit Surfaces' into a causal sentence instead 
 
 ### Page 33 - Quadrics
 
-Source cue: - Surfaces represented by quadric equations / Ellipsoid Single Hyperboloid Double Hyperboloid / x2 y2 z2 x2 y2 z2 x2 y2 z2 / 𝑓 x, y, z = + + − 1 𝑓 x, y, z = + − − 1 𝑓 x, y, z = + − + 1 / 𝛼2 𝛽2 𝛾2 𝛼2 𝛽2 𝛾2 𝛼2 𝛽2 𝛾2
+Source cue: - Surfaces represented by quadric equations / Ellipsoid Single Hyperboloid Double Hyperboloid / x2 y2 z2 x2 y2 z2 x2 y2 z2 / f x, y, z = + + − 1 f x, y, z = + − − 1 f x, y, z = + − + 1 / α2 β2 γ2 α2 β2 γ2 α2 β2 γ2
 
-Professor-style explanation: The slide 'Quadrics' introduces a graphics object, operation, or relation that belongs to the rendering workflow. The named terms describe what data enters the step, what operation changes or classifies that data, and what result is passed onward. On the slide, the concrete items are: - Surfaces represented by quadric equations / Ellipsoid Single Hyperboloid Double Hyperboloid / x2 y2 z2 x2 y2 z2 x2 y2 z2 / 𝑓 x, y, z = + + − 1 𝑓 x, y, z = + − − 1 𝑓 x, y, z = + − + 1 / 𝛼2 𝛽2 𝛾2 𝛼2 𝛽2 𝛾2 𝛼2 𝛽2 𝛾2. The object-level relation is input, operation, output, and later use. This is the basic shape of most computer graphics concepts: data is represented in one form, processed by a rule or algorithm, and then consumed by the next stage of image generation.
+Professor-style explanation: The slide 'Quadrics' introduces a graphics object, operation, or relation that belongs to the rendering workflow. The named terms describe what data enters the step, what operation changes or classifies that data, and what result is passed onward. On the slide, the concrete items are: - Surfaces represented by quadric equations / Ellipsoid Single Hyperboloid Double Hyperboloid / x2 y2 z2 x2 y2 z2 x2 y2 z2 / f x, y, z = + + − 1 f x, y, z = + − − 1 f x, y, z = + − + 1 / α2 β2 γ2 α2 β2 γ2 α2 β2 γ2. The object-level relation is input, operation, output, and later use. This is the basic shape of most computer graphics concepts: data is represented in one form, processed by a rule or algorithm, and then consumed by the next stage of image generation.
 
-Technical commentary: This slide is about Quadrics. The slide names a concrete relation between input data, an operation, and an output that another graphics stage can consume. Concrete items shown: - Surfaces represented by quadric equations / Ellipsoid Single Hyperboloid Double Hyperboloid / x2 y2 z2 x2 y2 z2 x2 y2 z2 / 𝑓 x, y, z = + + − 1 𝑓 x, y, z = + − − 1 𝑓 x, y, z = + − + 1 / 𝛼2 𝛽2 𝛾2 𝛼2 𝛽2 𝛾2 𝛼2 𝛽2 𝛾2
+Technical commentary: This slide is about Quadrics. The slide names a concrete relation between input data, an operation, and an output that another graphics stage can consume. Concrete items shown: - Surfaces represented by quadric equations / Ellipsoid Single Hyperboloid Double Hyperboloid / x2 y2 z2 x2 y2 z2 x2 y2 z2 / f x, y, z = + + − 1 f x, y, z = + − − 1 f x, y, z = + − + 1 / α2 β2 γ2 α2 β2 γ2 α2 β2 γ2
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -432,73 +432,73 @@ Check yourself: Can you turn 'Object Representation' into a causal sentence inst
 
 Source cue: - Surface representation is approximated by polygons / - Polygons are made up of vertices and edges
 
-Professor-style explanation: The slide 'Polygonal Models 1/3' introduces a graphics object, operation, or relation that belongs to the rendering workflow. The named terms describe what data enters the step, what operation changes or classifies that data, and what result is passed onward. On the slide, the concrete items are: - Surface representation is approximated by polygons / - Polygons are made up of vertices and edges. The object-level relation is input, operation, output, and later use. This is the basic shape of most computer graphics concepts: data is represented in one form, processed by a rule or algorithm, and then consumed by the next stage of image generation.
+Professor-style explanation: The slide 'Polygonal Models 1/3' explains how scene objects exist before they are rendered. A 3D model is not an image yet; it is a structured description of geometry and attributes. The central objects are vertices, edges, faces, triangles or other primitives, and sometimes additional data such as normals, texture coordinates, colors, materials, or connectivity. On the slide, the concrete items are: - Surface representation is approximated by polygons / - Polygons are made up of vertices and edges. This matters because the rendering pipeline needs this representation as input. The model describes what exists in the scene, while later stages decide where it appears, which parts are visible, how it is sampled into fragments, and how it is shaded into final pixel colors.
 
-Technical commentary: This slide is about Polygonal Models 1/3. The slide names a concrete relation between input data, an operation, and an output that another graphics stage can consume. Concrete items shown: - Surface representation is approximated by polygons / - Polygons are made up of vertices and edges
+Technical commentary: This slide is about Polygonal Models 1/3. The slide describes scene objects before rendering: geometric models, primitives, vertices, topology, attributes, and the representation used as input to the pipeline. Concrete items shown: - Surface representation is approximated by polygons / - Polygons are made up of vertices and edges
 
-Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
+Why it matters: Model slides explain the input objects that later transformations, projection, rasterization, and shading operate on.
 
-Check yourself: Can you turn 'Polygonal Models 1/3' into a causal sentence instead of repeating the slide title?
+Check yourself: Can you name the geometric objects and attributes represented by 'Polygonal Models 1/3' before rendering begins?
 
 ### Page 36 - Polygonal Models 1/4
 
 Source cue: - Surface representation is approximated by polygons (mostly triangles/quads) / - Polygons are made up of vertices and edges / Valence / Degree Adjacent Edges 1-Ring Neighborhood
 
-Professor-style explanation: The slide 'Polygonal Models 1/4' explains the moment where continuous geometry becomes a discrete image problem. A mathematical line or triangle is not made of pixels, but the screen is a grid of samples. Rasterization decides which samples are covered by the projected primitive and creates fragments for those samples. At the same time, values attached to the primitive, such as depth, color, normals, or texture coordinates, are interpolated so that each fragment has the data needed for shading. On the slide, the concrete items are: - Surface representation is approximated by polygons (mostly triangles/quads) / - Polygons are made up of vertices and edges / Valence / Degree Adjacent Edges 1-Ring Neighborhood. The important distinction is that rasterization creates candidates. A fragment exists because a primitive covered a sample, but final visibility still depends on depth testing, stencil testing, blending, masking, and framebuffer operations.
+Professor-style explanation: The slide 'Polygonal Models 1/4' explains how scene objects exist before they are rendered. A 3D model is not an image yet; it is a structured description of geometry and attributes. The central objects are vertices, edges, faces, triangles or other primitives, and sometimes additional data such as normals, texture coordinates, colors, materials, or connectivity. On the slide, the concrete items are: - Surface representation is approximated by polygons (mostly triangles/quads) / - Polygons are made up of vertices and edges / Valence / Degree Adjacent Edges 1-Ring Neighborhood. This matters because the rendering pipeline needs this representation as input. The model describes what exists in the scene, while later stages decide where it appears, which parts are visible, how it is sampled into fragments, and how it is shaded into final pixel colors.
 
-Technical commentary: This slide is about Polygonal Models 1/4. The rasterization objects on the slide convert ideal geometric primitives into covered samples or fragments with interpolated attributes. Concrete items shown: - Surface representation is approximated by polygons (mostly triangles/quads) / - Polygons are made up of vertices and edges / Valence / Degree Adjacent Edges 1-Ring Neighborhood
+Technical commentary: This slide is about Polygonal Models 1/4. The slide describes scene objects before rendering: geometric models, primitives, vertices, topology, attributes, and the representation used as input to the pipeline. Concrete items shown: - Surface representation is approximated by polygons (mostly triangles/quads) / - Polygons are made up of vertices and edges / Valence / Degree Adjacent Edges 1-Ring Neighborhood
 
-Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
+Why it matters: Model slides explain the input objects that later transformations, projection, rasterization, and shading operate on.
 
-Check yourself: Can you explain which samples/fragments are generated by 'Polygonal Models 1/4'?
+Check yourself: Can you name the geometric objects and attributes represented by 'Polygonal Models 1/4' before rendering begins?
 
 ### Page 37 - Polygonal Models 2/4
 
 Source cue: - Surface representation are often approximated by triangular polygons / - Triangles consist of three vertices and three edges / - Display achieved through rendering by raster conversion of triangles
 
-Professor-style explanation: The slide 'Polygonal Models 2/4' explains the moment where continuous geometry becomes a discrete image problem. A mathematical line or triangle is not made of pixels, but the screen is a grid of samples. Rasterization decides which samples are covered by the projected primitive and creates fragments for those samples. At the same time, values attached to the primitive, such as depth, color, normals, or texture coordinates, are interpolated so that each fragment has the data needed for shading. On the slide, the concrete items are: - Surface representation are often approximated by triangular polygons / - Triangles consist of three vertices and three edges / - Display achieved through rendering by raster conversion of triangles. The important distinction is that rasterization creates candidates. A fragment exists because a primitive covered a sample, but final visibility still depends on depth testing, stencil testing, blending, masking, and framebuffer operations.
+Professor-style explanation: The slide 'Polygonal Models 2/4' explains how scene objects exist before they are rendered. A 3D model is not an image yet; it is a structured description of geometry and attributes. The central objects are vertices, edges, faces, triangles or other primitives, and sometimes additional data such as normals, texture coordinates, colors, materials, or connectivity. On the slide, the concrete items are: - Surface representation are often approximated by triangular polygons / - Triangles consist of three vertices and three edges / - Display achieved through rendering by raster conversion of triangles. This matters because the rendering pipeline needs this representation as input. The model describes what exists in the scene, while later stages decide where it appears, which parts are visible, how it is sampled into fragments, and how it is shaded into final pixel colors.
 
-Technical commentary: This slide is about Polygonal Models 2/4. The rasterization objects on the slide convert ideal geometric primitives into covered samples or fragments with interpolated attributes. Concrete items shown: - Surface representation are often approximated by triangular polygons / - Triangles consist of three vertices and three edges / - Display achieved through rendering by raster conversion of triangles
+Technical commentary: This slide is about Polygonal Models 2/4. The slide describes scene objects before rendering: geometric models, primitives, vertices, topology, attributes, and the representation used as input to the pipeline. Concrete items shown: - Surface representation are often approximated by triangular polygons / - Triangles consist of three vertices and three edges / - Display achieved through rendering by raster conversion of triangles
 
-Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
+Why it matters: Model slides explain the input objects that later transformations, projection, rasterization, and shading operate on.
 
-Check yourself: Can you explain which samples/fragments are generated by 'Polygonal Models 2/4'?
+Check yourself: Can you name the geometric objects and attributes represented by 'Polygonal Models 2/4' before rendering begins?
 
 ### Page 38 - Polygonal Models 3/4
 
-Source cue: - Various attributes are associated with vertices of a polygonal model / - Colors / - Material properties / - Textures / - …
+Source cue: - Various attributes are associated with vertices of a polygonal model / - Colors / - Material properties / - Textures / - ...
 
-Professor-style explanation: The slide 'Polygonal Models 3/4' explains how a visible surface point receives color from local lighting. The surface normal gives the orientation of the surface. The light vector gives the direction from which illumination arrives. The view vector connects the surface point to the observer, and the material parameters decide how strongly the surface reacts with ambient, diffuse, or specular reflection. On the slide, the concrete items are: - Various attributes are associated with vertices of a polygonal model / - Colors / - Material properties / - Textures / - …. The object-level relation is light source, surface point, normal, material response, and computed color. The visual behavior changes when any of these objects changes: a rotated normal changes diffuse brightness, a different view vector moves the specular highlight, and different material coefficients change the perceived surface type.
+Professor-style explanation: The slide 'Polygonal Models 3/4' explains how scene objects exist before they are rendered. A 3D model is not an image yet; it is a structured description of geometry and attributes. The central objects are vertices, edges, faces, triangles or other primitives, and sometimes additional data such as normals, texture coordinates, colors, materials, or connectivity. On the slide, the concrete items are: - Various attributes are associated with vertices of a polygonal model / - Colors / - Material properties / - Textures / - . This matters because the rendering pipeline needs this representation as input. The model describes what exists in the scene, while later stages decide where it appears, which parts are visible, how it is sampled into fragments, and how it is shaded into final pixel colors.
 
-Technical commentary: This slide is about Polygonal Models 3/4. The lighting objects on the slide combine normals, light directions, view directions, material coefficients, and shading locations to compute color. Concrete items shown: - Various attributes are associated with vertices of a polygonal model / - Colors / - Material properties / - Textures / - …
+Technical commentary: This slide is about Polygonal Models 3/4. The slide describes scene objects before rendering: geometric models, primitives, vertices, topology, attributes, and the representation used as input to the pipeline. Concrete items shown: - Various attributes are associated with vertices of a polygonal model / - Colors / - Material properties / - Textures / - ...
 
-Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
+Why it matters: Model slides explain the input objects that later transformations, projection, rasterization, and shading operate on.
 
-Check yourself: Can you identify the normal, light vector, view vector, and material term relevant to 'Polygonal Models 3/4'?
+Check yourself: Can you name the geometric objects and attributes represented by 'Polygonal Models 3/4' before rendering begins?
 
 ### Page 39 - Polygonal Models 4/4
 
-Source cue: - Surface normal required in many cases / - Normal is calculated through cross product: / - Example use cases / 𝑎 𝑏 − 𝑎 𝑏 / 2 3 3 2
+Source cue: - Surface normal required in many cases / - Normal is calculated through cross product: / - Example use cases / a b − a b / 2 3 3 2
 
-Professor-style explanation: The slide 'Polygonal Models 4/4' explains how a visible surface point receives color from local lighting. The surface normal gives the orientation of the surface. The light vector gives the direction from which illumination arrives. The view vector connects the surface point to the observer, and the material parameters decide how strongly the surface reacts with ambient, diffuse, or specular reflection. On the slide, the concrete items are: - Surface normal required in many cases / - Normal is calculated through cross product: / - Example use cases / 𝑎 𝑏 − 𝑎 𝑏 / 2 3 3 2. The object-level relation is light source, surface point, normal, material response, and computed color. The visual behavior changes when any of these objects changes: a rotated normal changes diffuse brightness, a different view vector moves the specular highlight, and different material coefficients change the perceived surface type.
+Professor-style explanation: The slide 'Polygonal Models 4/4' explains how scene objects exist before they are rendered. A 3D model is not an image yet; it is a structured description of geometry and attributes. The central objects are vertices, edges, faces, triangles or other primitives, and sometimes additional data such as normals, texture coordinates, colors, materials, or connectivity. On the slide, the concrete items are: - Surface normal required in many cases / - Normal is calculated through cross product: / - Example use cases / a b − a b / 2 3 3 2. This matters because the rendering pipeline needs this representation as input. The model describes what exists in the scene, while later stages decide where it appears, which parts are visible, how it is sampled into fragments, and how it is shaded into final pixel colors.
 
-Technical commentary: This slide is about Polygonal Models 4/4. The lighting objects on the slide combine normals, light directions, view directions, material coefficients, and shading locations to compute color. Concrete items shown: - Surface normal required in many cases / - Normal is calculated through cross product: / - Example use cases / 𝑎 𝑏 − 𝑎 𝑏 / 2 3 3 2
+Technical commentary: This slide is about Polygonal Models 4/4. The slide describes scene objects before rendering: geometric models, primitives, vertices, topology, attributes, and the representation used as input to the pipeline. Concrete items shown: - Surface normal required in many cases / - Normal is calculated through cross product: / - Example use cases / a b − a b / 2 3 3 2
 
-Why it matters: Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.
+Why it matters: Model slides explain the input objects that later transformations, projection, rasterization, and shading operate on.
 
-Check yourself: Can you identify the normal, light vector, view vector, and material term relevant to 'Polygonal Models 4/4'?
+Check yourself: Can you name the geometric objects and attributes represented by 'Polygonal Models 4/4' before rendering begins?
 
 ### Page 40 - Volumetric Models
 
 Source cue: - Space filling object representation through voxels (volume elements) / - Display possibilities / - Rendering of extracted surfaces / - Direct rendering through specialized algorithms
 
-Professor-style explanation: The slide 'Volumetric Models' explains the moment where continuous geometry becomes a discrete image problem. A mathematical line or triangle is not made of pixels, but the screen is a grid of samples. Rasterization decides which samples are covered by the projected primitive and creates fragments for those samples. At the same time, values attached to the primitive, such as depth, color, normals, or texture coordinates, are interpolated so that each fragment has the data needed for shading. On the slide, the concrete items are: - Space filling object representation through voxels (volume elements) / - Display possibilities / - Rendering of extracted surfaces / - Direct rendering through specialized algorithms. The important distinction is that rasterization creates candidates. A fragment exists because a primitive covered a sample, but final visibility still depends on depth testing, stencil testing, blending, masking, and framebuffer operations.
+Professor-style explanation: The slide 'Volumetric Models' explains how scene objects exist before they are rendered. A 3D model is not an image yet; it is a structured description of geometry and attributes. The central objects are vertices, edges, faces, triangles or other primitives, and sometimes additional data such as normals, texture coordinates, colors, materials, or connectivity. On the slide, the concrete items are: - Space filling object representation through voxels (volume elements) / - Display possibilities / - Rendering of extracted surfaces / - Direct rendering through specialized algorithms. This matters because the rendering pipeline needs this representation as input. The model describes what exists in the scene, while later stages decide where it appears, which parts are visible, how it is sampled into fragments, and how it is shaded into final pixel colors.
 
-Technical commentary: This slide is about Volumetric Models. The rasterization objects on the slide convert ideal geometric primitives into covered samples or fragments with interpolated attributes. Concrete items shown: - Space filling object representation through voxels (volume elements) / - Display possibilities / - Rendering of extracted surfaces / - Direct rendering through specialized algorithms
+Technical commentary: This slide is about Volumetric Models. The slide describes scene objects before rendering: geometric models, primitives, vertices, topology, attributes, and the representation used as input to the pipeline. Concrete items shown: - Space filling object representation through voxels (volume elements) / - Display possibilities / - Rendering of extracted surfaces / - Direct rendering through specialized algorithms
 
-Why it matters: Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.
+Why it matters: Model slides explain the input objects that later transformations, projection, rasterization, and shading operate on.
 
-Check yourself: Can you explain which samples/fragments are generated by 'Volumetric Models'?
+Check yourself: Can you name the geometric objects and attributes represented by 'Volumetric Models' before rendering begins?
 
 ### Page 41 - Model Generation
 
@@ -514,11 +514,11 @@ Check yourself: Can you turn 'Model Generation' into a causal sentence instead o
 
 ### Page 42 - Coordinate Systems
 
-Source cue: - Three main coordinate system exist / - Model coordinate system – model specified in own coordinate system / - World coordinate system – models arranged in common coordinate system / - Eye/camera coordinate system – model in relation to camera / - To transfer between coordinate systems,
+Source cue: - Three main coordinate system exist / - Model coordinate system - model specified in own coordinate system / - World coordinate system - models arranged in common coordinate system / - Eye/camera coordinate system - model in relation to camera / - To transfer between coordinate systems,
 
-Professor-style explanation: The slide 'Coordinate Systems' explains how geometric objects move through coordinate systems. A point has a location, a vector has a direction and magnitude, a normal describes surface orientation, and a coordinate frame defines how these quantities are measured. A transformation matrix changes the description of these objects: translation moves points, rotation changes orientation, scaling changes size, and composition combines several operations into one matrix product. On the slide, the concrete items are: - Three main coordinate system exist / - Model coordinate system – model specified in own coordinate system / - World coordinate system – models arranged in common coordinate system / - Eye/camera coordinate system – model in relation to camera / - To transfer between coordinate systems,. The central relation is source space, transformation, and target space. In computer graphics this relation is everywhere: object space becomes world space, world space becomes view space, and view space becomes clip space. A formula is only meaningful after the two coordinate spaces around it are clear.
+Professor-style explanation: The slide 'Coordinate Systems' explains how geometric objects move through coordinate systems. A point has a location, a vector has a direction and magnitude, a normal describes surface orientation, and a coordinate frame defines how these quantities are measured. A transformation matrix changes the description of these objects: translation moves points, rotation changes orientation, scaling changes size, and composition combines several operations into one matrix product. On the slide, the concrete items are: - Three main coordinate system exist / - Model coordinate system - model specified in own coordinate system / - World coordinate system - models arranged in common coordinate system / - Eye/camera coordinate system - model in relation to camera / - To transfer between coordinate systems,. The central relation is source space, transformation, and target space. In computer graphics this relation is everywhere: object space becomes world space, world space becomes view space, and view space becomes clip space. A formula is only meaningful after the two coordinate spaces around it are clear.
 
-Technical commentary: This slide is about Coordinate Systems. The transformation objects on the slide move points, vectors, or coordinate frames from one space into another using matrices or affine operations. Concrete items shown: - Three main coordinate system exist / - Model coordinate system – model specified in own coordinate system / - World coordinate system – models arranged in common coordinate system / - Eye/camera coordinate system – model in relation to camera / - To transfer between coordinate systems,
+Technical commentary: This slide is about Coordinate Systems. The transformation objects on the slide move points, vectors, or coordinate frames from one space into another using matrices or affine operations. Concrete items shown: - Three main coordinate system exist / - Model coordinate system - model specified in own coordinate system / - World coordinate system - models arranged in common coordinate system / - Eye/camera coordinate system - model in relation to camera / - To transfer between coordinate systems,
 
 Why it matters: A wrong coordinate-space assumption can make correct formulas produce wrong images.
 
@@ -574,11 +574,11 @@ Check yourself: Can you explain which samples/fragments are generated by 'Non-Ph
 
 ### Page 47 - Image-Based Algorithms
 
-Source cue: - Number of computations direct proportional to number of pixels / for all Pixels do { / for all SceneObjects do { / - Benefits / - Easy implementation
+Source cue: - Number of computations direct proportional to number of pixels / for all Pixels do { / for all SceneObjects do { / ... / - Benefits
 
-Professor-style explanation: The slide 'Image-Based Algorithms' introduces a graphics object, operation, or relation that belongs to the rendering workflow. The named terms describe what data enters the step, what operation changes or classifies that data, and what result is passed onward. On the slide, the concrete items are: - Number of computations direct proportional to number of pixels / for all Pixels do { / for all SceneObjects do { / - Benefits / - Easy implementation. The object-level relation is input, operation, output, and later use. This is the basic shape of most computer graphics concepts: data is represented in one form, processed by a rule or algorithm, and then consumed by the next stage of image generation.
+Professor-style explanation: The slide 'Image-Based Algorithms' introduces a graphics object, operation, or relation that belongs to the rendering workflow. The named terms describe what data enters the step, what operation changes or classifies that data, and what result is passed onward. On the slide, the concrete items are: - Number of computations direct proportional to number of pixels / for all Pixels do { / for all SceneObjects do { / ... / - Benefits. The object-level relation is input, operation, output, and later use. This is the basic shape of most computer graphics concepts: data is represented in one form, processed by a rule or algorithm, and then consumed by the next stage of image generation.
 
-Technical commentary: This slide is about Image-Based Algorithms. The slide names a concrete relation between input data, an operation, and an output that another graphics stage can consume. Concrete items shown: - Number of computations direct proportional to number of pixels / for all Pixels do { / for all SceneObjects do { / - Benefits / - Easy implementation
+Technical commentary: This slide is about Image-Based Algorithms. The slide names a concrete relation between input data, an operation, and an output that another graphics stage can consume. Concrete items shown: - Number of computations direct proportional to number of pixels / for all Pixels do { / for all SceneObjects do { / ... / - Benefits
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -586,11 +586,11 @@ Check yourself: Can you turn 'Image-Based Algorithms' into a causal sentence ins
 
 ### Page 48 - Object-Based Algorithms
 
-Source cue: - Number of computations direct proportional to number of 3D models / for all SceneObjects do { / for all Pixels do { / - Benefits / - Fast computation
+Source cue: - Number of computations direct proportional to number of 3D models / for all SceneObjects do { / for all Pixels do { / ... / - Benefits
 
-Professor-style explanation: The slide 'Object-Based Algorithms' introduces a graphics object, operation, or relation that belongs to the rendering workflow. The named terms describe what data enters the step, what operation changes or classifies that data, and what result is passed onward. On the slide, the concrete items are: - Number of computations direct proportional to number of 3D models / for all SceneObjects do { / for all Pixels do { / - Benefits / - Fast computation. The object-level relation is input, operation, output, and later use. This is the basic shape of most computer graphics concepts: data is represented in one form, processed by a rule or algorithm, and then consumed by the next stage of image generation.
+Professor-style explanation: The slide 'Object-Based Algorithms' introduces a graphics object, operation, or relation that belongs to the rendering workflow. The named terms describe what data enters the step, what operation changes or classifies that data, and what result is passed onward. On the slide, the concrete items are: - Number of computations direct proportional to number of 3D models / for all SceneObjects do { / for all Pixels do { / ... / - Benefits. The object-level relation is input, operation, output, and later use. This is the basic shape of most computer graphics concepts: data is represented in one form, processed by a rule or algorithm, and then consumed by the next stage of image generation.
 
-Technical commentary: This slide is about Object-Based Algorithms. The slide names a concrete relation between input data, an operation, and an output that another graphics stage can consume. Concrete items shown: - Number of computations direct proportional to number of 3D models / for all SceneObjects do { / for all Pixels do { / - Benefits / - Fast computation
+Technical commentary: This slide is about Object-Based Algorithms. The slide names a concrete relation between input data, an operation, and an output that another graphics stage can consume. Concrete items shown: - Number of computations direct proportional to number of 3D models / for all SceneObjects do { / for all Pixels do { / ... / - Benefits
 
 Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
 
@@ -614,11 +614,11 @@ Source cue: No object-level text was extracted from this page; the page is prima
 
 Professor-style explanation: The slide 'Literature and other sources used in this chapter' is primarily a visual, title, transition, or diagram page rather than a text-heavy concept slide. Its role is to place the next concept into the lecture flow and give a visual anchor for the topic that follows. On the slide, the concrete items are: No object-level text was extracted from this page; the page is primarily title, image, diagram, or layout content. In the surrounding lecture sequence, this kind of page usually marks a shift of attention: from one pipeline stage to another, from a general idea to an algorithm, or from theory to an implementation detail.
 
-Technical commentary: This slide is about Literature and other sources used in this chapter. The slide names a concrete relation between input data, an operation, and an output that another graphics stage can consume. Concrete items shown: No object-level text was extracted from this page; the page is primarily title, image, diagram, or layout content.
+Technical commentary: This slide is about Literature and other sources used in this chapter. The slide lists source material or chapter references that support the technical content and give names for further reading. Concrete items shown: No object-level text was extracted from this page; the page is primarily title, image, diagram, or layout content.
 
-Why it matters: Even a sparse slide usually names a relation you must be able to explain in words.
+Why it matters: Reference slides provide the source trail for definitions, algorithms, and deeper explanations.
 
-Check yourself: Can you turn 'Literature and other sources used in this chapter' into a causal sentence instead of repeating the slide title?
+Check yourself: Can you identify which source or topic 'Literature and other sources used in this chapter' points to for deeper study?
 
 ### Page 51 - Peters 2016. (Chapters 1, 3 & 21)
 
