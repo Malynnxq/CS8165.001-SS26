@@ -633,6 +633,8 @@ def extract_slide_summaries(rel: str) -> list[dict[str, str]]:
                 "professor": professor_explanation(category, title, clue),
                 "commentary": slide_comment(category, title, clue),
                 "why": slide_why(category),
+                "exam": slide_exam_answer(category, title),
+                "trap": slide_common_trap(category, title),
                 "check": slide_check(category, title),
             }
         )
@@ -723,7 +725,21 @@ def content_cue(lines: list[str], title: str) -> str:
 def slide_category(title: str, clue: str) -> str:
     title_text = title.lower()
     text = f"{title} {clue}".lower()
-    if any(token in title_text for token in ["references", "literature", "sources used"]):
+    if any(
+        token in text
+        for token in [
+            "references",
+            "literature",
+            "sources used",
+            "text books",
+            "addison-wesley",
+            "springer",
+            "morgan kaufmann",
+            "official guide",
+            "fundamentals of computer graphics",
+            "principles and practice",
+        ]
+    ):
         return "reference"
     if any(token in title_text for token in ["history", "milestone", "contest result"]):
         return "history"
@@ -733,14 +749,20 @@ def slide_category(title: str, clue: str) -> str:
         return "model"
     if any(token in text for token in ["cast ray", "castray", "ray march", "ray casting", "ray tracing"]):
         return "visibility"
-    if "outline" in text:
+    if "outline" in text or len(re.findall(r"\b\d+\.\d+\b", clue)) >= 3:
         return "outline"
     if "course" in text or "teacher" in text or "exercise" in text:
         return "organization"
-    if "object-based rendering" in text or "geometry-based rendering" in text or "rendering process" in text or "rendering pipeline" in text:
-        return "pipeline"
     if "opengl" in text or "shader" in text or "buffer" in text or "framebuffer" in text:
         return "opengl"
+    if (
+        "object-based rendering" in text
+        or "geometry-based rendering" in text
+        or "rendering process" in text
+        or "rendering pipeline" in text
+        or "application stage" in title_text
+    ):
+        return "pipeline"
     if "transform" in text or "matrix" in text or "coordinate" in text:
         return "transform"
     if "clipping" in text or "cohen" in text or "sutherland" in text or "cyrus" in text or "weiler" in text or "greiner" in text:
@@ -815,98 +837,104 @@ def relation_sentence(category: str, title: str, clue: str) -> str:
 
 def professor_explanation(category: str, title: str, clue: str) -> str:
     relation = relation_sentence(category, title, clue)
+    exam_bridge = slide_exam_bridge(category)
     if clue.startswith("No object-level text was extracted"):
+        visual_exam_bridge = (
+            "For examination purposes, this page should be linked to the nearest surrounding text-heavy slides: "
+            "it introduces a topic boundary or visual example, while the neighboring pages provide the precise vocabulary and algorithmic details."
+        )
         return (
             f"The slide '{title}' is primarily a visual, title, transition, or diagram page rather than a text-heavy concept slide. "
             f"Its role is to place the next concept into the lecture flow and give a visual anchor for the topic that follows. "
-            f"{relation} In the surrounding lecture sequence, this kind of page usually marks a shift of attention: from one pipeline stage to another, from a general idea to an algorithm, or from theory to an implementation detail."
+            f"{relation} In the surrounding lecture sequence, this kind of page usually marks a shift of attention: from one pipeline stage to another, from a general idea to an algorithm, or from theory to an implementation detail. "
+            f"{visual_exam_bridge}"
         )
     explanations = {
         "outline": (
             f"The outline '{title}' gives the lecture its internal logic. The listed topics are the objects that will be connected during the chapter: first the problem space, then the mathematical or algorithmic tools, then the implementation consequences. "
             f"{relation} The order matters because later items rely on earlier definitions. For example, an OpenGL mechanism is much easier to understand once the corresponding pipeline object or mathematical operation has already been introduced. "
-            f"The outline is therefore a compact dependency graph of the lecture rather than a collection of isolated labels."
+            f"The outline is therefore a compact dependency graph of the lecture rather than a collection of isolated labels. {exam_bridge}"
         ),
         "history": (
             f"The slide '{title}' explains the historical background behind the graphics concept. Computer graphics did not appear as one finished pipeline; it developed from older ideas such as artistic perspective, color representation, display hardware, interactive systems, and increasingly programmable rendering algorithms. "
             f"The historical objects on the slide are people, systems, dates, or milestones, and each milestone marks a capability that later became normal in graphics software. "
-            f"{relation} This history matters because it shows why the course combines mathematics, image representation, hardware acceleration, and interaction. Modern real-time rendering is the result of these threads converging into a pipeline that can generate images fast enough for user input."
+            f"{relation} This history matters because it shows why the course combines mathematics, image representation, hardware acceleration, and interaction. Modern real-time rendering is the result of these threads converging into a pipeline that can generate images fast enough for user input. {exam_bridge}"
         ),
         "pixeldata": (
             f"The slide '{title}' explains raster images as concrete stored data. A raster image is a rectangular grid of pixels. Each pixel stores one or more channel values, such as red, green, blue, and sometimes alpha. "
             f"Color depth tells us how many bits are available per pixel or per channel, and that immediately determines both the number of representable colors and the memory footprint of the image. "
-            f"{relation} The object relation is pixel count, bits per pixel, color range, and memory size. This is why a simple image-resolution question is also a performance question: more pixels and more bits mean more memory traffic, more storage, and more work for display or image-processing operations."
+            f"{relation} The object relation is pixel count, bits per pixel, color range, and memory size. This is why a simple image-resolution question is also a performance question: more pixels and more bits mean more memory traffic, more storage, and more work for display or image-processing operations. {exam_bridge}"
         ),
         "model": (
             f"The slide '{title}' explains how scene objects exist before they are rendered. A 3D model is not an image yet; it is a structured description of geometry and attributes. "
             f"The central objects are vertices, edges, faces, triangles or other primitives, and sometimes additional data such as normals, texture coordinates, colors, materials, or connectivity. "
-            f"{relation} This matters because the rendering pipeline needs this representation as input. The model describes what exists in the scene, while later stages decide where it appears, which parts are visible, how it is sampled into fragments, and how it is shaded into final pixel colors."
+            f"{relation} This matters because the rendering pipeline needs this representation as input. The model describes what exists in the scene, while later stages decide where it appears, which parts are visible, how it is sampled into fragments, and how it is shaded into final pixel colors. {exam_bridge}"
         ),
         "reference": (
             f"The slide '{title}' collects the source material behind the chapter. References are not rendering objects themselves, but they identify the books, papers, or external resources from which the lecture's terminology and algorithms are drawn. "
-            f"{relation} In practical terms, a reference slide marks the boundary of the chapter and tells us where the formal definitions, derivations, or extended examples can be found if a topic needs more depth than the lecture slides provide."
+            f"{relation} In practical terms, a reference slide marks the boundary of the chapter and tells us where the formal definitions, derivations, or extended examples can be found if a topic needs more depth than the lecture slides provide. {exam_bridge}"
         ),
         "organization": (
             f"The slide '{title}' describes the practical objects of the course: lectures, exercise sheets, programming tasks, project work, teachers, dates, tools, or submission structure. "
             f"These objects are part of the learning system around the graphics content. The lecture introduces a concept, the exercise turns it into code or a calculation, and the project combines several such concepts into a working renderer. "
-            f"{relation} The important relation is between topic, practice format, and skill. A rendering concept that appears in an exercise is not just background vocabulary; it becomes something that can be recognized in C/C++ code, OpenGL calls, shader inputs, or debugging situations."
+            f"{relation} The important relation is between topic, practice format, and skill. A rendering concept that appears in an exercise is not just background vocabulary; it becomes something that can be recognized in C/C++ code, OpenGL calls, shader inputs, or debugging situations. {exam_bridge}"
         ),
         "pipeline": (
             f"The slide '{title}' explains rendering as a chain of object transformations. At the beginning there is scene information: models, vertices, primitives, attributes, camera state, and rendering state. "
             f"The geometry part of the pipeline changes where the objects are and how they are represented; vertices become positioned data, vertices are assembled into primitives, and primitives are prepared for conversion to the image grid. "
             f"{relation} The important story is that the same scene information changes form several times. A triangle is first model data, then transformed geometry, then a projected primitive, then a set of fragments, and finally only some of those fragments become pixel updates. "
-            f"This is why the pipeline is not just a drawing diagram; it is the explanation for where image errors can enter."
+            f"This is why the pipeline is not just a drawing diagram; it is the explanation for where image errors can enter. {exam_bridge}"
         ),
         "opengl": (
             f"The slide '{title}' explains how OpenGL exposes the rendering pipeline through explicit objects and state. A context owns the current rendering state; buffers hold vertex, index, texture, or pixel data; shader programs define programmable processing; textures and samplers provide sampled data; framebuffers receive the result. "
             f"OpenGL does not render from intention, it renders from the objects that are bound and the state that is active at the moment of the draw call. "
-            f"{relation} The concrete relation is API command, GPU resource, shader interface, and visible result. A small mismatch in this relation, such as a wrong buffer layout, missing uniform, wrong texture unit, or disabled depth test, can produce a perfectly valid draw call with a completely wrong image."
+            f"{relation} The concrete relation is API command, GPU resource, shader interface, and visible result. A small mismatch in this relation, such as a wrong buffer layout, missing uniform, wrong texture unit, or disabled depth test, can produce a perfectly valid draw call with a completely wrong image. {exam_bridge}"
         ),
         "transform": (
             f"The slide '{title}' explains how geometric objects move through coordinate systems. A point has a location, a vector has a direction and magnitude, a normal describes surface orientation, and a coordinate frame defines how these quantities are measured. "
             f"A transformation matrix changes the description of these objects: translation moves points, rotation changes orientation, scaling changes size, and composition combines several operations into one matrix product. "
             f"{relation} The central relation is source space, transformation, and target space. In computer graphics this relation is everywhere: object space becomes world space, world space becomes view space, and view space becomes clip space. "
-            f"A formula is only meaningful after the two coordinate spaces around it are clear."
+            f"A formula is only meaningful after the two coordinate spaces around it are clear. {exam_bridge}"
         ),
         "projection": (
             f"The slide '{title}' explains how camera geometry turns a 3D scene into image coordinates. In view space, objects are described relative to the camera. The projection matrix then maps that camera-centered geometry into clip space, where the viewing volume and clipping boundaries can be handled consistently. "
             f"Perspective projection uses the homogeneous coordinate so that the later divide by w creates foreshortening: farther objects occupy less image space. Orthographic projection removes that depth-based size change and keeps parallel structures visually parallel. "
-            f"{relation} The object chain is view-space position, projection matrix, clip coordinate, normalized device coordinate, and viewport coordinate. The slide is therefore connecting camera setup, visual appearance, and the numeric coordinate pipeline that rasterization later consumes."
+            f"{relation} The object chain is view-space position, projection matrix, clip coordinate, normalized device coordinate, and viewport coordinate. The slide is therefore connecting camera setup, visual appearance, and the numeric coordinate pipeline that rasterization later consumes. {exam_bridge}"
         ),
         "clipping": (
             f"The slide '{title}' explains clipping as a geometric boundary operation. A line segment, polygon, or triangle is compared with a window, plane, or volume. "
             f"The part inside the valid region survives, the part outside is removed, and a primitive crossing the boundary receives newly computed intersection points. "
             f"{relation} The objects involved are the original primitive, the clipping boundary, an inside/outside classification, intersection points, and the resulting clipped primitive. "
-            f"The core idea is not simply deleting geometry; clipping can reshape geometry so that the rasterizer receives only the meaningful visible portion."
+            f"The core idea is not simply deleting geometry; clipping can reshape geometry so that the rasterizer receives only the meaningful visible portion. {exam_bridge}"
         ),
         "rasterization": (
             f"The slide '{title}' explains the moment where continuous geometry becomes a discrete image problem. A mathematical line or triangle is not made of pixels, but the screen is a grid of samples. "
             f"Rasterization decides which samples are covered by the projected primitive and creates fragments for those samples. At the same time, values attached to the primitive, such as depth, color, normals, or texture coordinates, are interpolated so that each fragment has the data needed for shading. "
-            f"{relation} The important distinction is that rasterization creates candidates. A fragment exists because a primitive covered a sample, but final visibility still depends on depth testing, stencil testing, blending, masking, and framebuffer operations."
+            f"{relation} The important distinction is that rasterization creates candidates. A fragment exists because a primitive covered a sample, but final visibility still depends on depth testing, stencil testing, blending, masking, and framebuffer operations. {exam_bridge}"
         ),
         "visibility": (
             f"The slide '{title}' explains the problem of deciding which surface is actually visible from the current viewpoint. Many primitives can project to the same image region, but only the nearest relevant surface should determine the opaque color at a pixel. "
             f"Different algorithms solve this relation in different spaces: object-space methods sort or split geometry, image-space methods subdivide regions, ray methods query visibility along viewing rays, and the depth buffer compares per-fragment depth values. "
-            f"{relation} The object-level relation is viewpoint, candidate surface, visibility rule, and visible result. This relation is the reason that fragment generation and final pixel color are not the same thing."
+            f"{relation} The object-level relation is viewpoint, candidate surface, visibility rule, and visible result. This relation is the reason that fragment generation and final pixel color are not the same thing. {exam_bridge}"
         ),
         "illumination": (
             f"The slide '{title}' explains how a visible surface point receives color from local lighting. The surface normal gives the orientation of the surface. The light vector gives the direction from which illumination arrives. "
             f"The view vector connects the surface point to the observer, and the material parameters decide how strongly the surface reacts with ambient, diffuse, or specular reflection. "
-            f"{relation} The object-level relation is light source, surface point, normal, material response, and computed color. The visual behavior changes when any of these objects changes: a rotated normal changes diffuse brightness, a different view vector moves the specular highlight, and different material coefficients change the perceived surface type."
+            f"{relation} The object-level relation is light source, surface point, normal, material response, and computed color. The visual behavior changes when any of these objects changes: a rotated normal changes diffuse brightness, a different view vector moves the specular highlight, and different material coefficients change the perceived surface type. {exam_bridge}"
         ),
         "texturing": (
             f"The slide '{title}' explains textures as sampled data fields used during shading. A texture is not only a picture; it is a structured array of texels that can store color, normals, depth, material values, environment data, or volume data. "
             f"A fragment supplies texture coordinates, the texture object supplies stored samples, sampler state controls wrapping and filtering, and the shader decides what the fetched value means. "
-            f"{relation} The object-level relation is coordinate, texture memory, sampling rule, and shader interpretation. This relation explains why texture bugs often look visual but originate from data addressing, filtering state, mipmap completeness, or a mismatch between stored values and shader expectations."
+            f"{relation} The object-level relation is coordinate, texture memory, sampling rule, and shader interpretation. This relation explains why texture bugs often look visual but originate from data addressing, filtering state, mipmap completeness, or a mismatch between stored values and shader expectations. {exam_bridge}"
         ),
         "shadows": (
             f"The slide '{title}' explains a shadow as a visibility relation from the light source. A surface point is lit when the light can reach it directly, and it is shadowed when another object blocks the path from the light to that point. "
             f"The central objects are therefore the light, the occluder, the receiver, and some representation of light-space visibility. Depending on the method, that representation can be projected geometry, a precomputed light map, a shadow volume, or a shadow map storing depth from the light. "
-            f"{relation} The object-level relation is light, blocker, receiver, stored visibility information, and the darkened region visible in the final camera image."
+            f"{relation} The object-level relation is light, blocker, receiver, stored visibility information, and the darkened region visible in the final camera image. {exam_bridge}"
         ),
         "general": (
             f"The slide '{title}' introduces a graphics object, operation, or relation that belongs to the rendering workflow. The named terms describe what data enters the step, what operation changes or classifies that data, and what result is passed onward. "
-            f"{relation} The object-level relation is input, operation, output, and later use. This is the basic shape of most computer graphics concepts: data is represented in one form, processed by a rule or algorithm, and then consumed by the next stage of image generation."
+            f"{relation} The object-level relation is input, operation, output, and later use. This is the basic shape of most computer graphics concepts: data is represented in one form, processed by a rule or algorithm, and then consumed by the next stage of image generation. {exam_bridge}"
         ),
     }
     return explanations[category]
@@ -958,6 +986,79 @@ def slide_check(category: str, title: str) -> str:
     return checks[category]
 
 
+def slide_exam_bridge(category: str) -> str:
+    bridges = {
+        "outline": "For examination purposes, the important content is the dependency structure: which concept introduces the vocabulary, which later algorithm uses it, and which implementation problem it solves.",
+        "organization": "For examination purposes, the important content is the connection between lecture concept and practiced skill: the course does not separate theory from implementation.",
+        "history": "For examination purposes, the important content is not the date alone but the reason the milestone matters: every historical item solved a limitation in representation, interaction, display, or computation.",
+        "pixeldata": "For examination purposes, the important content is the chain width x height -> pixel count -> bits per pixel -> memory size; this chain also explains bandwidth and performance pressure.",
+        "model": "For examination purposes, the important content is that models are structured causes of images, not images themselves; positions, topology, attributes, and materials become input for later rendering stages.",
+        "reference": "For examination purposes, the important content is source attribution and vocabulary: references tell where precise definitions and standard algorithms come from.",
+        "pipeline": "For examination purposes, the important content is the representation change at each stage: model data, vertices, primitives, fragments, fragment tests, and final framebuffer updates.",
+        "opengl": "For examination purposes, the important content is state plus binding plus shader interface: OpenGL draws from the currently bound objects and active settings.",
+        "transform": "For examination purposes, the important content is space awareness: name the source space, the matrix operation, and the target space before applying any formula.",
+        "projection": "For examination purposes, the important content is the camera-to-screen chain: view coordinates, projection matrix, clip coordinates, perspective divide, normalized device coordinates, and viewport mapping.",
+        "clipping": "For examination purposes, the important content is classification: inside, outside, crossing, intersection point, and the newly produced primitive segment or polygon.",
+        "rasterization": "For examination purposes, the important content is that rasterization creates fragment candidates from projected primitives; later tests decide whether those candidates affect pixels.",
+        "visibility": "For examination purposes, the important content is the comparison rule: which candidate is visible according to depth, ordering, image subdivision, or ray intersection.",
+        "illumination": "For examination purposes, the important content is the vector and material relation: normal, light direction, view direction, reflection term, and color contribution.",
+        "texturing": "For examination purposes, the important content is coordinate-driven lookup: texture coordinates select stored texels, sampler state reconstructs values, and the shader interprets the result.",
+        "shadows": "For examination purposes, the important content is light-space visibility: a point is shadowed because another object blocks the path from the light.",
+        "general": "For examination purposes, the important content is the causal pattern: input object, operation or test, produced result, and the next stage that consumes it.",
+    }
+    return bridges[category]
+
+
+def slide_exam_answer(category: str, title: str) -> str:
+    if title == "Visual or title slide":
+        return "A strong answer links this visual or title page to the closest surrounding concept slide and names the topic transition it introduces."
+    answers = {
+        "outline": f"A strong answer for '{title}' names the topics in order and explains at least one dependency between an earlier item and a later item.",
+        "organization": f"A strong answer for '{title}' connects the course object to a concrete learning output: code, exercise, project work, or assessed concept.",
+        "history": f"A strong answer for '{title}' states the milestone and the graphics limitation it helped overcome, such as limited interaction, limited displays, missing 3D representation, or slow rendering.",
+        "pixeldata": f"A strong answer for '{title}' includes the formula relation width x height x bits per pixel, distinguishes bits from bytes, and links larger images to memory bandwidth.",
+        "model": f"A strong answer for '{title}' distinguishes model data from rendered image data and names the geometric or attribute data that later pipeline stages consume.",
+        "reference": f"A strong answer for '{title}' identifies what kind of source is listed and which course concept or algorithm that source supports.",
+        "pipeline": f"A strong answer for '{title}' states what representation enters the stage, what representation leaves it, and which later stage depends on that output.",
+        "opengl": f"A strong answer for '{title}' names the OpenGL object or state involved, where the data lives, which shader or pipeline stage consumes it, and how a wrong binding would show up visually.",
+        "transform": f"A strong answer for '{title}' names source space, target space, the transformation type, and whether the object is a point, direction vector, normal, or coordinate frame.",
+        "projection": f"A strong answer for '{title}' explains the mapping from view space through clip space and perspective divide to normalized and viewport coordinates.",
+        "clipping": f"A strong answer for '{title}' classifies geometry relative to the boundary, explains intersection creation, and names the geometry passed to rasterization.",
+        "rasterization": f"A strong answer for '{title}' explains coverage, fragment creation, interpolation, and the difference between a generated fragment and a final pixel update.",
+        "visibility": f"A strong answer for '{title}' identifies the competing candidates, the space in which the algorithm works, and the rule that selects the visible result.",
+        "illumination": f"A strong answer for '{title}' names the surface point, normal, light direction, view direction, material parameters, and the resulting ambient, diffuse, or specular contribution.",
+        "texturing": f"A strong answer for '{title}' names the texture data, texture coordinates, filtering or wrapping state, and shader interpretation of the sampled value.",
+        "shadows": f"A strong answer for '{title}' names the light, blocker, receiver, visibility representation, and the reason a region receives reduced direct illumination.",
+        "general": f"A strong answer for '{title}' turns the title into a precise cause-and-effect statement with input, processing rule, output, and later use.",
+    }
+    return answers[category]
+
+
+def slide_common_trap(category: str, title: str) -> str:
+    if title == "Visual or title slide":
+        return "Do not invent details that are not visible in the extracted text; use this page as a boundary marker and rely on adjacent slides for technical content."
+    traps = {
+        "outline": f"Do not memorize '{title}' as a list of headings only; the exam-relevant part is how the headings depend on each other.",
+        "organization": f"Do not treat '{title}' as administrative filler if it points to exercises, tools, or expected implementation skills.",
+        "history": f"Do not learn '{title}' as trivia only; connect each historical item to the technical capability it introduced or made practical.",
+        "pixeldata": f"Do not confuse bits with bytes in '{title}', and do not ignore that alpha or higher precision changes memory size.",
+        "model": f"Do not describe '{title}' as if the model were already a pixel image; a model is data that still needs transformation, visibility, and shading.",
+        "reference": f"Do not skip '{title}' if it names a standard algorithm or source that defines terminology used later in the chapter.",
+        "pipeline": f"Do not collapse '{title}' into 'the GPU draws it'; name the intermediate representations because that is where most errors and exam distinctions appear.",
+        "opengl": f"Do not assume an OpenGL call is enough by itself; the result depends on the complete active context state and currently bound resources.",
+        "transform": f"Do not multiply matrices mechanically in '{title}' without naming coordinate spaces and order of operations.",
+        "projection": f"Do not confuse projection with viewport mapping; projection creates clip coordinates and the perspective divide comes before final screen mapping.",
+        "clipping": f"Do not describe clipping as only deletion; crossing primitives can be cut and replaced by new vertices or primitive pieces.",
+        "rasterization": f"Do not call every fragment a pixel; fragments are candidates and can still fail tests or be blended before the framebuffer is updated.",
+        "visibility": f"Do not assume the first generated primitive is visible; visibility requires an ordering, depth, region, or ray comparison.",
+        "illumination": f"Do not mix up normal direction, light direction, and view direction; changing one changes the lighting term in a different way.",
+        "texturing": f"Do not reduce texturing to 'putting an image on an object'; coordinates, sampler state, mipmaps, and shader meaning are part of the concept.",
+        "shadows": f"Do not explain a shadow only from the camera view; the key visibility test is usually from the light's point of view.",
+        "general": f"Do not answer '{title}' by repeating the title; name what changes, why it changes, and what the next rendering step receives.",
+    }
+    return traps[category]
+
+
 def lecture_markdown(lecture: dict) -> str:
     stats = source_stats(lecture["source"])
     slides = extract_slide_summaries(lecture["source"])
@@ -1001,6 +1102,10 @@ def lecture_markdown(lecture: dict) -> str:
                 f"Technical commentary: {slide['commentary']}",
                 "",
                 f"Why it matters: {slide['why']}",
+                "",
+                f"Exam-grade answer: {slide['exam']}",
+                "",
+                f"Common trap: {slide['trap']}",
                 "",
                 f"Check yourself: {slide['check']}",
                 "",
@@ -1143,6 +1248,8 @@ def lecture_story(lecture: dict, styles, include_title: bool):
                 [paragraph("Professor-style explanation", styles["BodyText"]), paragraph(slide["professor"], styles["BodyText"])],
                 [paragraph("Technical commentary", styles["BodyText"]), paragraph(slide["commentary"], styles["BodyText"])],
                 [paragraph("Why it matters", styles["BodyText"]), paragraph(slide["why"], styles["BodyText"])],
+                [paragraph("Exam-grade answer", styles["BodyText"]), paragraph(slide["exam"], styles["BodyText"])],
+                [paragraph("Common trap", styles["BodyText"]), paragraph(slide["trap"], styles["BodyText"])],
                 [paragraph("Check yourself", styles["BodyText"]), paragraph(slide["check"], styles["BodyText"])],
             ],
             colWidths=[3.0 * cm, 12.2 * cm],
