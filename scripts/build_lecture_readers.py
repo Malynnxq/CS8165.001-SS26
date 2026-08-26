@@ -698,7 +698,7 @@ def content_cue(lines: list[str], title: str) -> str:
         if len(cue_lines) >= 5:
             break
     if not cue_lines:
-        return "The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image."
+        return "No object-level text was extracted from this page; the page is primarily title, image, diagram, or layout content."
     return " / ".join(cue_lines)
 
 
@@ -734,86 +734,85 @@ def slide_category(title: str, clue: str) -> str:
 def slide_comment(category: str, title: str, clue: str) -> str:
     prefix = f"This slide is about {title}. "
     comments = {
-        "outline": "Treat it as the roadmap for the lecture. The listed items are not independent facts; they are the sequence in which the lecture builds the concept.",
-        "organization": "Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect.",
-        "pipeline": "Read it as a data-flow explanation: scene or model data is processed step by step until valid framebuffer updates remain.",
-        "opengl": "Read it as concrete API state and GPU data movement. Ask which object is bound, which shader stage consumes it, and which state affects the draw call.",
-        "transform": "Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas.",
-        "projection": "Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations.",
-        "clipping": "Read it as boundary logic. Identify what is inside, what is outside, what can be trivially accepted/rejected, and where intersections are created.",
-        "rasterization": "Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives.",
-        "visibility": "Read it as an occlusion decision. Decide whether the method reasons about objects, image regions, rays, or per-fragment depth comparisons.",
-        "illumination": "Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated.",
-        "texturing": "Read it as sampled data access. Identify coordinates, texture object/state, filtering, mip level, and how the shader interprets the sampled value.",
-        "shadows": "Read it as visibility from the light source. Ask what blocks the light, how that blocking is represented, and which artifact the method may create.",
-        "general": "Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it.",
+        "outline": "The listed items define the lecture sequence: the topic begins with a problem statement, introduces the required objects or algorithms, and then connects them to rendering or implementation consequences.",
+        "organization": "The slide connects lecture theory with exercise work, programming practice, and assessment expectations. The named dates, exercises, or course components indicate where the concept will reappear.",
+        "pipeline": "Scene or model data moves through a sequence of representations: vertices, primitives, fragments, tests, and framebuffer updates. Each named object is one stage in that conversion.",
+        "opengl": "The OpenGL objects and calls shown here control GPU state, bound resources, shader interfaces, buffer contents, or framebuffer access at draw time.",
+        "transform": "The transformation objects on the slide move points, vectors, or coordinate frames from one space into another using matrices or affine operations.",
+        "projection": "The projection objects on the slide convert view-space geometry into clip coordinates, normalized coordinates, and finally screen-related positions.",
+        "clipping": "The clipping objects on the slide classify geometry against boundaries and produce accepted, rejected, or newly intersected primitive pieces.",
+        "rasterization": "The rasterization objects on the slide convert ideal geometric primitives into covered samples or fragments with interpolated attributes.",
+        "visibility": "The visibility method on the slide decides which surface, fragment, ray hit, or image region is visible from the current viewpoint.",
+        "illumination": "The lighting objects on the slide combine normals, light directions, view directions, material coefficients, and shading locations to compute color.",
+        "texturing": "The texturing objects on the slide define sampled data, coordinates, filtering rules, mip levels, and shader interpretation of fetched values.",
+        "shadows": "The shadow objects on the slide represent visibility from the light source: occluders block light, receivers show the result, and the algorithm stores or computes that relation.",
+        "general": "The slide names a concrete relation between input data, an operation, and an output that another graphics stage can consume.",
     }
-    return prefix + comments[category] + f" The visible cue is: {clue}"
+    return prefix + comments[category] + f" Concrete items shown: {clue}"
 
 
 def professor_explanation(category: str, title: str, clue: str) -> str:
-    cue_sentence = f"The slide gives us this anchor: {clue.rstrip('.;:')}"
+    cue_sentence = f"On the slide, the concrete items are: {clue.rstrip('.;:')}"
     explanations = {
         "outline": (
-            f"Let us use '{title}' as the map for the lecture. Do not learn this slide as a list. "
-            f"Read it as a promise about the order of ideas: first we introduce the problem, then the tools, "
-            f"then the consequences for rendering or implementation. {cue_sentence}. While studying, keep asking "
-            f"which later concept depends on each item in this outline."
+            f"The outline '{title}' states the structure of the lecture. It introduces the major objects and methods in the order in which they depend on each other. "
+            f"The first items usually define the problem, the middle items introduce the algorithms or API mechanisms, and the final items show consequences or references. "
+            f"{cue_sentence}. The content is therefore a dependency chain, not a set of unrelated headings."
         ),
         "organization": (
-            f"Here I would pause and connect the course logistics to your learning strategy. '{title}' is not a graphics "
-            f"algorithm, but it tells you how the course expects you to practice. {cue_sentence}. The practical message is: "
-            f"when a topic appears in lectures and exercises, you should be able to explain it conceptually and recognize it in code."
+            f"The slide '{title}' describes course objects such as lectures, exercises, projects, teachers, dates, or required tools. "
+            f"These objects define how the graphics concepts are practiced: lecture material provides theory, exercise sheets turn the same theory into C/C++ or OpenGL work, "
+            f"and project tasks combine several pipeline stages. {cue_sentence}. The important object relation is between course topic, programming exercise, and assessed skill."
         ),
         "pipeline": (
-            f"For '{title}', imagine following one piece of scene data through the renderer. It starts as model or application data, "
-            f"then passes through transformations, primitive processing, rasterization, fragment processing, tests, and finally the framebuffer. "
-            f"{cue_sentence}. The important point is that each stage changes the representation, so debugging means asking where the representation first became wrong."
+            f"The slide '{title}' explains object-based rendering as a conversion chain. A model supplies geometric objects such as vertices or primitives. "
+            f"The geometry stage transforms and assembles those objects. Rasterization turns primitives into fragments, and fragment operations decide which fragments update pixels in the framebuffer. "
+            f"{cue_sentence}. The essential relation is that every stage changes the representation of the same scene information."
         ),
         "opengl": (
-            f"On this slide, I would emphasize that OpenGL is a controlled state machine around the GPU pipeline. '{title}' is not about one magic render call; "
-            f"it is about objects, bindings, shader interfaces, buffers, and state being consistent at draw time. {cue_sentence}. If the output is wrong, "
-            f"you inspect which object owns the data, which shader consumes it, and which state changes the result."
+            f"The slide '{title}' describes the OpenGL side of the rendering pipeline. OpenGL represents rendering through objects such as contexts, buffers, vertex arrays, shaders, textures, samplers, and framebuffers. "
+            f"At draw time, the currently bound objects and state determine what data reaches the GPU and how the pipeline processes it. "
+            f"{cue_sentence}. The concrete relation is between API state, GPU resource, shader input, and final rendering result."
         ),
         "transform": (
-            f"For '{title}', put the formula aside for a moment and name the coordinate spaces. A transformation only makes sense when we know where the point, "
-            f"vector, or normal starts and where it should end. {cue_sentence}. The professor-level way to read this slide is to narrate the movement: "
-            f"model space to world space, world to view, view to clip, or whichever step the slide is showing."
+            f"The slide '{title}' explains how geometric objects change coordinate systems. A point, vector, normal, or local coordinate frame is multiplied by a transformation matrix or affected by an affine operation. "
+            f"Translations move positions, rotations change orientation, scaling changes size, and composed matrices combine several such effects. "
+            f"{cue_sentence}. The object-level relation is input coordinate space, transformation object, and output coordinate space."
         ),
         "projection": (
-            f"This slide should be read as camera geometry. With '{title}', the question is how a 3D view becomes coordinates that can be clipped, divided, "
-            f"mapped to the viewport, and rasterized. {cue_sentence}. Keep separate the camera/view transform, the projection matrix, the perspective divide, "
-            f"and the final viewport transform; many mistakes come from blending these steps together."
+            f"The slide '{title}' explains how camera geometry maps 3D positions toward a 2D image. The projection matrix maps view-space objects into clip space. "
+            f"Perspective projection uses the homogeneous component so that the perspective divide makes distant objects appear smaller; orthographic projection preserves apparent size. "
+            f"{cue_sentence}. The object-level chain is camera/view volume, projection matrix, clip coordinates, normalized device coordinates, and viewport coordinates."
         ),
         "clipping": (
-            f"For '{title}', think of a boundary test. The renderer does not want arbitrary geometry continuing forever; it needs to decide what part of a primitive "
-            f"is inside the valid region. {cue_sentence}. A good explanation says which object is tested, which boundary is used, whether the primitive is accepted, "
-            f"rejected, or cut, and where new intersection points may appear."
+            f"The slide '{title}' explains clipping as a boundary operation on geometric primitives. Lines or polygons are compared with clipping boundaries. "
+            f"Parts inside the valid region are kept, parts outside are discarded, and primitives crossing a boundary receive new intersection vertices. "
+            f"{cue_sentence}. The objects involved are the primitive, the clipping boundary, inside/outside classification, and the resulting clipped primitive."
         ),
         "rasterization": (
-            f"Here the lecture moves from continuous geometry to a discrete grid. '{title}' asks which pixels or samples are covered by an ideal mathematical primitive. "
-            f"{cue_sentence}. The key spoken explanation is: rasterization creates fragment candidates and interpolated values, but it does not by itself guarantee "
-            f"that a fragment becomes the final visible pixel."
+            f"The slide '{title}' explains the conversion from continuous geometry to a discrete sample grid. A mathematical line, triangle, or region is tested against pixel/sample positions. "
+            f"Covered samples become fragments, and attributes such as depth, color, normals, or texture coordinates can be interpolated across the primitive. "
+            f"{cue_sentence}. Rasterization creates fragment candidates; later tests decide whether those candidates become visible pixel updates."
         ),
         "visibility": (
-            f"With '{title}', the question is no longer just whether geometry exists, but whether it is visible from a viewpoint. {cue_sentence}. Explain the method by "
-            f"naming its decision space: does it compare objects, split image regions, cast rays, or compare per-fragment depth values? That tells you what it can handle well."
+            f"The slide '{title}' explains visibility as the decision of which surface is seen from the current viewpoint. Some methods compare or sort objects, some subdivide image regions, "
+            f"some cast rays, and the depth buffer compares per-fragment depth values. {cue_sentence}. The object-level relation is viewpoint, candidate surface, visibility test, and visible result."
         ),
         "illumination": (
-            f"This slide belongs to local shading. For '{title}', imagine one visible surface point and ask how bright or colored it should become. {cue_sentence}. "
-            f"The professor explanation must name the normal, light direction, view direction, material response, and whether the calculation is done per vertex or per fragment."
+            f"The slide '{title}' explains local illumination at a surface point. The surface normal defines orientation, the light vector defines incoming light, the view vector defines the observer, "
+            f"and material parameters scale ambient, diffuse, or specular terms. {cue_sentence}. The object-level relation is light source, surface point, material response, and computed color."
         ),
         "texturing": (
-            f"For '{title}', stop thinking of a texture as only a picture. Think of it as sampled data that the shader can query. {cue_sentence}. The explanation is: "
-            f"a fragment has coordinates, OpenGL state and sampler settings define how to fetch data, filtering decides how samples are reconstructed, and the shader decides what the value means."
+            f"The slide '{title}' explains textures as sampled data used by shaders. A fragment carries texture coordinates, a texture object stores texels, sampler state defines wrapping and filtering, "
+            f"and the shader interprets the fetched value as color, normal, material data, depth, or another field. {cue_sentence}. The object-level relation is coordinate, texture memory, sampling rule, and shader use."
         ),
         "shadows": (
-            f"On '{title}', translate the visual effect into a visibility question from the light. A point is lit if the light can see it and shadowed if something blocks that path. "
-            f"{cue_sentence}. A solid explanation names the occluder, receiver, light-space representation, and the approximation or artifact introduced by the method."
+            f"The slide '{title}' explains shadows as visibility from the light source. An occluder blocks light, a receiver shows the missing illumination, and an algorithm such as a projected shadow, shadow volume, "
+            f"light map, or shadow map represents that blocking relation. {cue_sentence}. The object-level relation is light, occluder, receiver, stored visibility information, and resulting shadow."
         ),
         "general": (
-            f"For '{title}', I would not just read the bullet points aloud. I would ask what problem the slide is solving and how it connects to the previous and next stage. "
-            f"{cue_sentence}. Turn the slide into a causal explanation: this input is processed by this idea, which produces this result, and that result matters later."
+            f"The slide '{title}' introduces a concrete graphics object, operation, or relation. The named terms describe input data, a processing step, and an output used elsewhere in the rendering workflow. "
+            f"{cue_sentence}. The object-level relation is therefore input, operation, output, and the later graphics stage that consumes the output."
         ),
     }
     return explanations[category]
