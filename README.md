@@ -7,6 +7,8 @@ Private backup of the Moodle course export `CS8165.001-SS26_1787682614.zip`.
 - `index.html` - course overview from Moodle
 - `lectures/` - lecture pages and renamed slide PDFs
 - `assignments/` - exercise pages
+- `assignment_zips/` - original downloaded ZIP packages for Exercises 1-4
+- `assignment_sources/` - extracted contents of the Exercise 1-4 ZIPs for direct GitHub browsing
 - `forums/` - exported forum pages
 - `course/` - course administration pages such as group selection
 - `examples/` - downloadable starter projects and sample files
