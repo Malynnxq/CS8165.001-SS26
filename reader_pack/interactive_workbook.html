@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CS8165.001 Interactive Workbook</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172026;
+      --muted: #596870;
+      --line: #cbd6dc;
+      --bg: #f7f8f5;
+      --panel: #ffffff;
+      --accent: #2f6f73;
+      --accent-2: #8a5a44;
+      --ok: #1d7a46;
+      --bad: #a33a33;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.5;
+    }
+    header {
+      padding: 28px max(20px, 6vw) 18px;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+    }
+    h1 { margin: 0 0 8px; font-size: 30px; letter-spacing: 0; }
+    header p { margin: 0; max-width: 920px; color: var(--muted); }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 14px max(20px, 6vw);
+      background: #edf3f1;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    nav a {
+      color: var(--ink);
+      text-decoration: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 6px 9px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    main { padding: 22px max(20px, 6vw) 48px; }
+    .band {
+      max-width: 1120px;
+      margin: 0 auto 22px;
+      padding: 18px 0;
+    }
+    .pipeline-svg {
+      width: 100%;
+      max-width: 960px;
+      display: block;
+      margin: 12px 0 0;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+    .chapter, .lab {
+      max-width: 1120px;
+      margin: 0 auto 16px;
+      padding: 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .chapter-head {
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    .chapter-head span {
+      width: 40px;
+      height: 40px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 6px;
+      color: #fff;
+      background: var(--accent);
+      font-weight: 700;
+    }
+    h2, h3 { margin: 0; letter-spacing: 0; }
+    .chapter-head a { color: var(--accent); }
+    details {
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+    summary { cursor: pointer; font-weight: 700; }
+    .checks {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .question {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: #fbfcfc;
+    }
+    .question p { margin: 0 0 10px; }
+    .choices {
+      display: grid;
+      gap: 8px;
+    }
+    button {
+      font: inherit;
+      cursor: pointer;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 6px;
+      padding: 8px 10px;
+      text-align: left;
+    }
+    button:hover { border-color: var(--accent); }
+    button.correct { border-color: var(--ok); background: #eaf6ef; }
+    button.wrong { border-color: var(--bad); background: #faeeee; }
+    .feedback { min-height: 22px; font-weight: 700; }
+    .lab .answer {
+      border-left: 4px solid var(--accent-2);
+      padding: 8px 12px;
+      background: #f8f1ed;
+    }
+    @media (max-width: 680px) {
+      .chapter-head { grid-template-columns: 44px 1fr; }
+      .chapter-head a { grid-column: 2; }
+      h1 { font-size: 25px; }
+      nav { position: static; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CS8165.001 Interactive Workbook</h1>
+    <p>Closed-format practice in the course's primary language. Predict first, click second, then repair every wrong answer in the mistake log.</p>
+  </header>
+  <nav>
+    <a href="#chapter-01">01</a><a href="#chapter-02">02</a><a href="#chapter-03">03</a><a href="#chapter-04">04</a><a href="#chapter-05">05</a><a href="#chapter-06">06</a><a href="#chapter-07">07</a><a href="#chapter-08">08</a><a href="#chapter-09">09</a><a href="#chapter-10">10</a>
+    <a href="#labs">Labs</a>
+  </nav>
+  <main>
+    <section class="band">
+      <h2>Pipeline Map</h2>
+      
+    <svg class="pipeline-svg" viewBox="0 0 960 140" role="img" aria-label="Rendering pipeline overview">
+      <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L0,6 L9,3 z" fill="#284b63"></path>
+        </marker>
+      </defs>
+      <g fill="#f2f6f8" stroke="#284b63" stroke-width="2">
+        <rect x="20" y="45" width="110" height="50" rx="6"></rect>
+        <rect x="165" y="45" width="110" height="50" rx="6"></rect>
+        <rect x="310" y="45" width="110" height="50" rx="6"></rect>
+        <rect x="455" y="45" width="110" height="50" rx="6"></rect>
+        <rect x="600" y="45" width="110" height="50" rx="6"></rect>
+        <rect x="745" y="45" width="170" height="50" rx="6"></rect>
+      </g>
+      <g stroke="#284b63" stroke-width="2" marker-end="url(#arrow)">
+        <line x1="130" y1="70" x2="160" y2="70"></line>
+        <line x1="275" y1="70" x2="305" y2="70"></line>
+        <line x1="420" y1="70" x2="450" y2="70"></line>
+        <line x1="565" y1="70" x2="595" y2="70"></line>
+        <line x1="710" y1="70" x2="740" y2="70"></line>
+      </g>
+      <g fill="#111" font-family="Arial, sans-serif" font-size="15" text-anchor="middle">
+        <text x="75" y="75">Vertices</text>
+        <text x="220" y="75">Primitives</text>
+        <text x="365" y="75">Clipping</text>
+        <text x="510" y="75">Rasterize</text>
+        <text x="655" y="75">Fragments</text>
+        <text x="830" y="75">Tests + Framebuffer</text>
+      </g>
+    </svg>
+    
+    </section>
+    
+            <section class="chapter" id="chapter-01">
+              <div class="chapter-head">
+                <span>01</span>
+                <h2>Introduction</h2>
+                <a href="../course_text_parts/03_lectures/01_introduction.txt">source chunk</a>
+              </div>
+              <p>Computer graphics is the process of turning a model, a camera, light, material, and sampling decisions into pixels. The important exam habit is to avoid treating the final image as one magic step. Every visible result comes from a chain of coordinate changes, geometric decisions, sampling decisions, and shading decisions.</p>
+              <details>
+                <summary>Must know</summary>
+                <ul><li>Explain graphics as a pipeline from scene data to image samples.</li><li>Separate model data, camera setup, rendering algorithm, and output device.</li><li>Use precise terms: vertex, primitive, fragment, pixel, shader, buffer, sample.</li></ul>
+              </details>
+              <details>
+                <summary>Try it</summary>
+                <p>Draw a one-page map from object data to final image. Add one possible failure at each stage.</p>
+              </details>
+              <div class="checks">
+                <div class="question">
+                  <p>1. The output of rendering is best described as:</p>
+                  <div class="choices"><button class="choice" data-correct="true">A. A set of final image samples</button><button class="choice" data-correct="false">B. Only a list of triangles</button><button class="choice" data-correct="false">C. Only a camera matrix</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                
+                <div class="question">
+                  <p>2. A fragment appears before final pixel update.</p>
+                  <div class="choices"><button class="choice" data-correct="true">A. True</button><button class="choice" data-correct="false">B. False</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                </div>
+            </section>
+            
+            <section class="chapter" id="chapter-02">
+              <div class="chapter-head">
+                <span>02</span>
+                <h2>Rendering Pipeline</h2>
+                <a href="../course_text_parts/03_lectures/02_rendering-pipeline.txt">source chunk</a>
+              </div>
+              <p>The rendering pipeline organizes rendering into predictable stages. Application code supplies data and state. Vertex processing transforms vertices. Primitive assembly creates geometric primitives. Clipping removes parts outside the view. Rasterization creates fragments. Fragment processing computes candidate colors and depths. Per-fragment operations decide what reaches the framebuffer.</p>
+              <details>
+                <summary>Must know</summary>
+                <ul><li>Order the pipeline stages and name their inputs and outputs.</li><li>Distinguish programmable stages from fixed-function decisions.</li><li>Relate OpenGL objects to the stage where they matter.</li></ul>
+              </details>
+              <details>
+                <summary>Try it</summary>
+                <p>Given a black screen, list five pipeline checkpoints in the order you would inspect them.</p>
+              </details>
+              <div class="checks">
+                <div class="question">
+                  <p>1. Rasterization primarily converts:</p>
+                  <div class="choices"><button class="choice" data-correct="true">A. Primitives into fragments</button><button class="choice" data-correct="false">B. Textures into vertices</button><button class="choice" data-correct="false">C. Pixels into triangles</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                
+                <div class="question">
+                  <p>2. Depth testing happens before primitive assembly.</p>
+                  <div class="choices"><button class="choice" data-correct="false">A. True</button><button class="choice" data-correct="true">B. False</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                </div>
+            </section>
+            
+            <section class="chapter" id="chapter-03">
+              <div class="chapter-head">
+                <span>03</span>
+                <h2>Geometric Transformations</h2>
+                <a href="../course_text_parts/03_lectures/03_geometric-transformations.txt">source chunk</a>
+              </div>
+              <p>Transformations move geometry between coordinate systems. Object coordinates describe a model locally. World coordinates place the model in a scene. View coordinates describe the scene relative to the camera. Clip coordinates prepare geometry for projection and clipping.</p>
+              <details>
+                <summary>Must know</summary>
+                <ul><li>Explain homogeneous coordinates and why they are useful.</li><li>Apply translation, rotation, scaling, and composition conceptually.</li><li>Track object, world, view, clip, normalized device, and screen coordinates.</li></ul>
+              </details>
+              <details>
+                <summary>Try it</summary>
+                <p>Create a small chain: model matrix, view matrix, projection matrix. Label the coordinate space after each multiplication.</p>
+              </details>
+              <div class="checks">
+                <div class="question">
+                  <p>1. Matrix order matters because:</p>
+                  <div class="choices"><button class="choice" data-correct="true">A. Matrix multiplication is generally not commutative</button><button class="choice" data-correct="false">B. Vectors have no coordinates</button><button class="choice" data-correct="false">C. Projection removes all matrices</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                
+                <div class="question">
+                  <p>2. Translation is naturally represented in a 4x4 homogeneous matrix.</p>
+                  <div class="choices"><button class="choice" data-correct="true">A. True</button><button class="choice" data-correct="false">B. False</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                </div>
+            </section>
+            
+            <section class="chapter" id="chapter-04">
+              <div class="chapter-head">
+                <span>04</span>
+                <h2>Geometric Projection</h2>
+                <a href="../course_text_parts/03_lectures/04_geometric-projection.txt">source chunk</a>
+              </div>
+              <p>Projection maps view-space geometry into a form that can become a 2D image. Orthographic projection keeps parallel lines parallel and does not shrink distant objects. Perspective projection models foreshortening: objects farther away appear smaller.</p>
+              <details>
+                <summary>Must know</summary>
+                <ul><li>Compare orthographic and perspective projection.</li><li>Explain the role of the perspective divide.</li><li>Relate field of view, aspect ratio, near plane, and far plane to the viewing volume.</li></ul>
+              </details>
+              <details>
+                <summary>Try it</summary>
+                <p>Sketch the same cube under orthographic and perspective projection and label the difference.</p>
+              </details>
+              <div class="checks">
+                <div class="question">
+                  <p>1. Perspective projection usually makes distant objects:</p>
+                  <div class="choices"><button class="choice" data-correct="true">A. Appear smaller</button><button class="choice" data-correct="false">B. Keep exactly the same apparent size</button><button class="choice" data-correct="false">C. Disappear before clipping</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                
+                <div class="question">
+                  <p>2. The perspective divide happens after projection to reach normalized device coordinates.</p>
+                  <div class="choices"><button class="choice" data-correct="true">A. True</button><button class="choice" data-correct="false">B. False</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                </div>
+            </section>
+            
+            <section class="chapter" id="chapter-05">
+              <div class="chapter-head">
+                <span>05</span>
+                <h2>Clipping</h2>
+                <a href="../course_text_parts/03_lectures/05_clipping.txt">source chunk</a>
+              </div>
+              <p>Clipping removes parts of primitives outside the view volume. It is not the same as culling and not the same as depth testing. Clipping can create new vertices where a primitive crosses a clipping boundary.</p>
+              <details>
+                <summary>Must know</summary>
+                <ul><li>Define clipping as cutting primitives against a volume or boundary.</li><li>Distinguish clipping from culling and depth testing.</li><li>Explain why clipping can introduce new vertices.</li></ul>
+              </details>
+              <details>
+                <summary>Try it</summary>
+                <p>Draw a line crossing a rectangular window. Mark the kept segment and the two intersection points.</p>
+              </details>
+              <div class="checks">
+                <div class="question">
+                  <p>1. When a triangle crosses the view boundary, clipping may:</p>
+                  <div class="choices"><button class="choice" data-correct="true">A. Create new boundary vertices</button><button class="choice" data-correct="false">B. Always delete the whole triangle</button><button class="choice" data-correct="false">C. Only change the texture image</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                
+                <div class="question">
+                  <p>2. Clipping and depth testing solve the same problem.</p>
+                  <div class="choices"><button class="choice" data-correct="false">A. True</button><button class="choice" data-correct="true">B. False</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                </div>
+            </section>
+            
+            <section class="chapter" id="chapter-06">
+              <div class="chapter-head">
+                <span>06</span>
+                <h2>Rasterization</h2>
+                <a href="../course_text_parts/03_lectures/06_rasterization.txt">source chunk</a>
+              </div>
+              <p>Rasterization determines which samples or pixels are covered by a primitive and creates fragments for later processing. It bridges continuous geometry and the discrete image grid.</p>
+              <details>
+                <summary>Must know</summary>
+                <ul><li>Explain rasterization as primitive-to-fragment conversion.</li><li>Describe attribute interpolation across a primitive.</li><li>Connect sampling decisions to aliasing and image quality.</li></ul>
+              </details>
+              <details>
+                <summary>Try it</summary>
+                <p>Place a small triangle over a pixel grid and mark which samples become fragments.</p>
+              </details>
+              <div class="checks">
+                <div class="question">
+                  <p>1. Rasterization produces:</p>
+                  <div class="choices"><button class="choice" data-correct="true">A. Fragments</button><button class="choice" data-correct="false">B. Only final visible pixels</button><button class="choice" data-correct="false">C. Only vertex shader code</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                
+                <div class="question">
+                  <p>2. Texture coordinates can be interpolated across a primitive.</p>
+                  <div class="choices"><button class="choice" data-correct="true">A. True</button><button class="choice" data-correct="false">B. False</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                </div>
+            </section>
+            
+            <section class="chapter" id="chapter-07">
+              <div class="chapter-head">
+                <span>07</span>
+                <h2>Visibility Determination</h2>
+                <a href="../course_text_parts/03_lectures/07_visibility-determination.txt">source chunk</a>
+              </div>
+              <p>Visibility determination decides what can be seen from the current viewpoint. Back-face culling can remove geometry based on orientation. View-frustum culling can reject objects outside the camera volume. Depth buffering resolves occlusion per fragment by comparing depth values.</p>
+              <details>
+                <summary>Must know</summary>
+                <ul><li>Explain culling, clipping, and depth testing separately.</li><li>Describe the Z-buffer idea and its update rule.</li><li>Name depth precision issues and why near/far settings matter.</li></ul>
+              </details>
+              <details>
+                <summary>Try it</summary>
+                <p>Simulate two overlapping fragments with depths 0.2 and 0.7 under a less-than depth test.</p>
+              </details>
+              <div class="checks">
+                <div class="question">
+                  <p>1. The Z-buffer stores:</p>
+                  <div class="choices"><button class="choice" data-correct="true">A. Depth values used for visibility</button><button class="choice" data-correct="false">B. Only texture colors</button><button class="choice" data-correct="false">C. Shader source code</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                
+                <div class="question">
+                  <p>2. Back-face culling is based on orientation, not per-pixel depth.</p>
+                  <div class="choices"><button class="choice" data-correct="true">A. True</button><button class="choice" data-correct="false">B. False</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                </div>
+            </section>
+            
+            <section class="chapter" id="chapter-08">
+              <div class="chapter-head">
+                <span>08</span>
+                <h2>Local Illumination</h2>
+                <a href="../course_text_parts/03_lectures/08_local-illumination.txt">source chunk</a>
+              </div>
+              <p>Local illumination estimates the color of a surface point from local information such as normal direction, light direction, view direction, material coefficients, and light intensity. It does not fully simulate indirect global light transport unless an approximation is added.</p>
+              <details>
+                <summary>Must know</summary>
+                <ul><li>Separate ambient, diffuse, and specular contributions.</li><li>Explain the role of normals, light direction, view direction, and material parameters.</li><li>Compare Phong-style and Blinn-Phong-style specular reasoning qualitatively.</li></ul>
+              </details>
+              <details>
+                <summary>Try it</summary>
+                <p>For a surface facing away from a light, decide what happens to the diffuse term.</p>
+              </details>
+              <div class="checks">
+                <div class="question">
+                  <p>1. Diffuse reflection mainly depends on:</p>
+                  <div class="choices"><button class="choice" data-correct="true">A. The angle between normal and light direction</button><button class="choice" data-correct="false">B. Only the screen resolution</button><button class="choice" data-correct="false">C. Only the texture filename</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                
+                <div class="question">
+                  <p>2. Local illumination normally ignores full indirect light transport.</p>
+                  <div class="choices"><button class="choice" data-correct="true">A. True</button><button class="choice" data-correct="false">B. False</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                </div>
+            </section>
+            
+            <section class="chapter" id="chapter-09">
+              <div class="chapter-head">
+                <span>09</span>
+                <h2>Texturing</h2>
+                <a href="../course_text_parts/03_lectures/09_texturing.txt">source chunk</a>
+              </div>
+              <p>A texture is sampled data used during rendering. It is often an image, but conceptually it can store many kinds of values. Texture coordinates map a point on a primitive to a lookup in texture space.</p>
+              <details>
+                <summary>Must know</summary>
+                <ul><li>Define texture coordinates and texture sampling.</li><li>Compare nearest filtering, linear filtering, and mipmapping qualitatively.</li><li>Name different uses of textures beyond color maps.</li></ul>
+              </details>
+              <details>
+                <summary>Try it</summary>
+                <p>Explain why a distant checkerboard texture can shimmer without mipmapping.</p>
+              </details>
+              <div class="checks">
+                <div class="question">
+                  <p>1. Mipmaps mainly help with:</p>
+                  <div class="choices"><button class="choice" data-correct="true">A. Reducing aliasing for minified textures</button><button class="choice" data-correct="false">B. Replacing the projection matrix</button><button class="choice" data-correct="false">C. Deleting hidden triangles</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                
+                <div class="question">
+                  <p>2. Texture coordinates are interpolated during rasterization for fragment use.</p>
+                  <div class="choices"><button class="choice" data-correct="true">A. True</button><button class="choice" data-correct="false">B. False</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                </div>
+            </section>
+            
+            <section class="chapter" id="chapter-10">
+              <div class="chapter-head">
+                <span>10</span>
+                <h2>Shadows</h2>
+                <a href="../course_text_parts/03_lectures/10_shadows.txt">source chunk</a>
+              </div>
+              <p>Shadows are another visibility problem: is a surface point visible from the light source? Shadow mapping answers this with two passes. First render depth from the light&#x27;s point of view into a shadow map. Then render the camera view and compare each relevant point against the stored light-space depth.</p>
+              <details>
+                <summary>Must know</summary>
+                <ul><li>Explain shadows as light-source visibility.</li><li>Describe the two-pass shadow mapping algorithm.</li><li>Name shadow acne, bias, peter panning, resolution limits, and sampling issues.</li></ul>
+              </details>
+              <details>
+                <summary>Try it</summary>
+                <p>Write the two shadow-mapping passes as pseudocode with one line for the depth comparison.</p>
+              </details>
+              <div class="checks">
+                <div class="question">
+                  <p>1. A shadow map stores:</p>
+                  <div class="choices"><button class="choice" data-correct="true">A. Depth from the light&#x27;s view</button><button class="choice" data-correct="false">B. Final camera colors</button><button class="choice" data-correct="false">C. Only mesh filenames</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                
+                <div class="question">
+                  <p>2. Bias can reduce acne but may detach shadows.</p>
+                  <div class="choices"><button class="choice" data-correct="true">A. True</button><button class="choice" data-correct="false">B. False</button></div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+                </div>
+            </section>
+            
+    <section class="band" id="labs">
+      <h2>Software And OpenGL Labs</h2>
+      <p>Use these as practical checks when you can open a starter project or inspect a minimal OpenGL example.</p>
+    </section>
+    
+            <section class="lab">
+              <h3>Black Screen Debugging</h3>
+              <p>You render a triangle but the window is black. Choose the first checks in pipeline order.</p>
+              <button class="reveal">Reveal expected reasoning</button>
+              <p class="answer" hidden>Check shader compilation/linking, vertex array/buffer binding and attribute layout, transformation/projection, viewport, draw call, face culling, depth test, and fragment output.</p>
+            </section>
+            
+            <section class="lab">
+              <h3>Depth Buffer Experiment</h3>
+              <p>Render two overlapping triangles with and without depth testing. Predict the difference before running it.</p>
+              <button class="reveal">Reveal expected reasoning</button>
+              <p class="answer" hidden>Without depth testing, later draw order can dominate. With depth testing, the nearer fragment wins according to the depth function and depth buffer contents.</p>
+            </section>
+            
+            <section class="lab">
+              <h3>Texture Filtering Toggle</h3>
+              <p>Switch between nearest, linear, and mipmapped filtering on a checkerboard texture.</p>
+              <button class="reveal">Reveal expected reasoning</button>
+              <p class="answer" hidden>Nearest looks blocky, linear blends neighboring texels, and mipmapping reduces shimmer/aliasing when the texture is minified.</p>
+            </section>
+            
+            <section class="lab">
+              <h3>Shadow Bias Slider</h3>
+              <p>Increase and decrease shadow bias in a shadow-mapping example.</p>
+              <button class="reveal">Reveal expected reasoning</button>
+              <p class="answer" hidden>Too little bias causes self-shadowing acne. Too much bias can detach the shadow from the caster.</p>
+            </section>
+            
+  </main>
+  <script>
+    document.querySelectorAll(".choice").forEach((button) => {
+      button.addEventListener("click", () => {
+        const group = button.closest(".question");
+        group.querySelectorAll(".choice").forEach((b) => b.classList.remove("correct", "wrong"));
+        const ok = button.dataset.correct === "true";
+        button.classList.add(ok ? "correct" : "wrong");
+        group.querySelector(".feedback").textContent = ok ? "Correct." : "Not correct. Re-read the source chunk and try again.";
+      });
+    });
+    document.querySelectorAll(".reveal").forEach((button) => {
+      button.addEventListener("click", () => {
+        const answer = button.nextElementSibling;
+        answer.hidden = !answer.hidden;
+        button.textContent = answer.hidden ? "Reveal expected reasoning" : "Hide expected reasoning";
+      });
+    });
+  </script>
+</body>
+</html>

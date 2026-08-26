@@ -1,0 +1,22 @@
+{
+  "pack": "reader_pack",
+  "language": "English generated explanations; original source text remains in its exported language.",
+  "chapters": 10,
+  "opengl_labs": 4,
+  "source_audit_checks": {
+    "all_lecture_chunks_present": true,
+    "all_assignment_chunks_present": true,
+    "all_pdf_pages_have_metadata": true,
+    "no_pdf_page_without_extractable_text": true,
+    "size_limited_slices_recombine_to_full_text": true,
+    "size_limited_slices_under_max_bytes": true
+  },
+  "files": [
+    "README.md",
+    "narrative_reader.md",
+    "original_language_ai_bundle.txt",
+    "icg_narrative_reader.pdf",
+    "interactive_workbook.html",
+    "language_audit.md"
+  ]
+}

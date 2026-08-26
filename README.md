@@ -18,10 +18,19 @@ Private backup of the Moodle course export `CS8165.001-SS26_1787682614.zip`.
 - `practice_pack/` - interactive practice pack with cloze texts, matching tables, MC questions, sequencing tasks, math/algorithm drills, diagram prompts, OpenGL drills, and a roadmap from 0 to exam-ready
 - `practice_pack/repetition_variants/` - repeated practice rounds with the same concepts but different wording and task layouts
 - `overprep_pack/` - closed-format overpreparation pack with MC/mock exams, mistake log, concept-confusion pairs, diagram label workbook, OpenGL debugging drills, one-pagers, spaced repetition, and final readiness checklist
+- `reader_pack/` - readable original-language narrative reader, PDF, clickable workbook, and language audit
 - `scripts/build_course_text.py` - reproducible exporter for rebuilding `course_full_text.txt`
 - `scripts/build_study_pack.py` - reproducible generator for rebuilding `study_pack/`
 - `scripts/build_practice_pack.py` - reproducible generator for rebuilding `practice_pack/`
 - `scripts/build_overprep_pack.py` - reproducible generator for rebuilding `overprep_pack/`
+- `scripts/build_reader_pack.py` - reproducible generator for rebuilding `reader_pack/`
+
+## Language Policy
+
+- Raw extracted course material keeps its original exported language.
+- The lecture/course content is primarily English, so `reader_pack/` is written in English.
+- German Moodle interface text or notices remain German only when they are original source text.
+- Some older helper files contain German study instructions because they were generated from German user requests. For original-language AI input, start with `reader_pack/narrative_reader.md` and the matching source chunks in `course_text_parts/03_lectures/`.
 
 ## AI Study Files
 
@@ -40,6 +49,12 @@ Coverage checks are stored in `course_build_audit.json`.
 
 Start here:
 
+- `reader_pack/README.md`
+- `reader_pack/narrative_reader.md`
+- `reader_pack/original_language_ai_bundle.txt`
+- `reader_pack/icg_narrative_reader.pdf`
+- `reader_pack/interactive_workbook.html`
+- `reader_pack/language_audit.md`
 - `study_pack/README.md`
 - `study_pack/ai_prompts.md`
 - `study_pack/chapter_guides/`
@@ -53,7 +68,7 @@ The study pack is derived from the course chunks and does not invent missing old
 
 Use these for active learning and copy-paste generators:
 
-- `practice_pack/cloze_source_texts.md` - coherent source texts for Lueckentext/cloze generators
+- `practice_pack/cloze_source_texts.md` - coherent source texts for cloze generators
 - `practice_pack/premade_cloze_texts.md` - same topics with blanks already inserted
 - `practice_pack/matching_pairs.tsv` - importable term/definition/chapter table
 - `practice_pack/matching_tasks.md` - manual matching grouped by chapter
@@ -69,18 +84,20 @@ Use these for active learning and copy-paste generators:
 ## Roadmap From 0 To Exam-Ready
 
 1. **Setup:** Open `course_build_audit.json` and confirm all checks are `true`.
-2. **Orientation:** Read `course_text_parts/00_START_HERE.txt`, then `study_pack/README.md`.
-3. **Core Understanding:** Work through `study_pack/chapter_guides/` from chapter 01 to 10.
-4. **Raw Source Check:** For each chapter, load the matching file from `course_text_parts/03_lectures/`.
-5. **Active Recall:** Use `practice_pack/cloze_source_texts.md`, `practice_pack/matching_pairs.tsv`, and `study_pack/flashcards_anki.tsv`.
-6. **Non-Boring Repetition:** Use `practice_pack/repetition_variants/round_01`, then `round_02`, then `round_03`. These repeat the same concepts with changed wording and task surfaces.
-7. **Math/Algorithms:** Work through `study_pack/formulas_and_derivations.md` and `practice_pack/math_algorithm_drills.md`.
-8. **Visuals:** Use `study_pack/visual_review_guide.md` and `practice_pack/diagram_graphics_prompts.md`; open the original PDF pages for diagrams.
-9. **OpenGL/Software:** Use `practice_pack/opengl_software_drills.md` and inspect `course_text_parts/05_opengl_starter_project.txt`.
-10. **Exam Simulation:** Use `study_pack/exam_drill.md`, `practice_pack/multiple_choice.md`, and `practice_pack/sequencing_tasks.md`.
-11. **Closed-Format Overprep:** Use `overprep_pack/mock_exams/`, `overprep_pack/concept_confusion_pairs.md`, and `overprep_pack/closed_format_oral_exam_mode.md`. Prefer selecting, matching, filling, ordering, and labeling over vague open answers.
-12. **Mistake Repair:** Log every wrong answer in `overprep_pack/mistake_log.md` and reset it into the spaced-repetition schedule.
-13. **Final Pass:** Use `overprep_pack/final_readiness_checklist.md`. Revisit every weak spot until you can explain it with definition, pipeline role, diagram, algorithm/formula, OpenGL relation, and typical pitfall.
+2. **Readable Start:** Read `reader_pack/narrative_reader.md` or browse `reader_pack/icg_narrative_reader.pdf`.
+3. **Clickable Check:** Open `reader_pack/interactive_workbook.html` and answer the closed checks chapter by chapter.
+4. **Orientation:** Read `course_text_parts/00_START_HERE.txt`, then `study_pack/README.md`.
+5. **Core Understanding:** Work through `study_pack/chapter_guides/` from chapter 01 to 10.
+6. **Raw Source Check:** For each chapter, load the matching file from `course_text_parts/03_lectures/`.
+7. **Active Recall:** Use `practice_pack/cloze_source_texts.md`, `practice_pack/matching_pairs.tsv`, and `study_pack/flashcards_anki.tsv`.
+8. **Non-Boring Repetition:** Use `practice_pack/repetition_variants/round_01`, then `round_02`, then `round_03`. These repeat the same concepts with changed wording and task surfaces.
+9. **Math/Algorithms:** Work through `study_pack/formulas_and_derivations.md` and `practice_pack/math_algorithm_drills.md`.
+10. **Visuals:** Use `study_pack/visual_review_guide.md` and `practice_pack/diagram_graphics_prompts.md`; open the original PDF pages for diagrams.
+11. **OpenGL/Software:** Use `practice_pack/opengl_software_drills.md`, inspect `course_text_parts/05_opengl_starter_project.txt`, and use the software labs in `reader_pack/interactive_workbook.html`.
+12. **Exam Simulation:** Use `study_pack/exam_drill.md`, `practice_pack/multiple_choice.md`, and `practice_pack/sequencing_tasks.md`.
+13. **Closed-Format Overprep:** Use `overprep_pack/mock_exams/`, `overprep_pack/concept_confusion_pairs.md`, and `overprep_pack/closed_format_oral_exam_mode.md`. Prefer selecting, matching, filling, ordering, and labeling over vague open answers.
+14. **Mistake Repair:** Log every wrong answer in `overprep_pack/mistake_log.md` and reset it into the spaced-repetition schedule.
+15. **Final Pass:** Use `overprep_pack/final_readiness_checklist.md`. Revisit every weak spot until you can explain it with definition, pipeline role, diagram, algorithm/formula, OpenGL relation, and typical pitfall.
 
 ## Closed-Format Overprep
 
@@ -137,4 +154,10 @@ To rebuild the closed-format overprep pack:
 
 ```powershell
 python scripts/build_overprep_pack.py
+```
+
+To rebuild the original-language reader pack:
+
+```powershell
+python scripts/build_reader_pack.py
 ```
