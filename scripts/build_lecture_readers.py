@@ -621,12 +621,17 @@ def extract_slide_summaries(rel: str) -> list[dict[str, str]]:
         lines = [clean_line(line) for line in body.splitlines()]
         lines = [line for line in lines if useful_slide_line(line)]
         title = choose_slide_title(lines)
-        clue = " ".join(lines[:6])
+        clue = content_cue(lines, title)
+        category = slide_category(title, clue)
         slides.append(
             {
                 "page": page,
                 "title": title,
-                "commentary": slide_comment(title, clue),
+                "cue": clue,
+                "category": category,
+                "commentary": slide_comment(category, title, clue),
+                "why": slide_why(category),
+                "check": slide_check(category, title),
             }
         )
     return slides
@@ -681,33 +686,106 @@ def choose_slide_title(lines: list[str]) -> str:
     return lines[0][:95]
 
 
-def slide_comment(title: str, clue: str) -> str:
+def content_cue(lines: list[str], title: str) -> str:
+    cue_lines = []
+    for line in lines:
+        if line == title and not cue_lines:
+            continue
+        if len(line) > 140:
+            line = line[:137] + "..."
+        cue_lines.append(line)
+        if len(cue_lines) >= 5:
+            break
+    if not cue_lines:
+        return "The extracted slide text is mostly visual or metadata; use the original PDF page for the diagram or image."
+    return " / ".join(cue_lines)
+
+
+def slide_category(title: str, clue: str) -> str:
     text = f"{title} {clue}".lower()
     if "outline" in text:
-        return "Use this as the lecture map. Before reading details, know which sections belong together and which later chapters reuse them."
+        return "outline"
     if "course" in text or "teacher" in text or "exercise" in text:
-        return "Read this as organization and relevance information: it tells you how lecture theory, exercises, and exam preparation connect."
+        return "organization"
     if "object-based rendering" in text or "geometry-based rendering" in text or "rendering process" in text or "rendering pipeline" in text:
-        return "Read this as the main data-flow story: scene/model data is processed step by step until only valid framebuffer updates remain."
+        return "pipeline"
     if "opengl" in text or "shader" in text or "buffer" in text or "framebuffer" in text:
-        return "Read this as pipeline state and data flow. Ask which OpenGL object or shader stage owns the data at this point."
+        return "opengl"
     if "transform" in text or "matrix" in text or "coordinate" in text:
-        return "Read this as a coordinate-space step. Name the input space, the matrix or operation, and the output space."
+        return "transform"
     if "projection" in text or "camera" in text or "viewport" in text or "perspective" in text or "orthographic" in text:
-        return "Read this as camera geometry. Track how view-space positions become clip, normalized, and screen coordinates."
+        return "projection"
     if "clipping" in text or "cohen" in text or "sutherland" in text or "cyrus" in text or "weiler" in text or "greiner" in text:
-        return "Read this as boundary logic. Identify what is inside, what is outside, and when new intersection vertices are created."
+        return "clipping"
     if "raster" in text or "scanline" in text or "triangle" in text or "line " in text or "filling" in text:
-        return "Read this as continuous-to-discrete conversion. Ask which samples are covered and which attributes are interpolated."
+        return "rasterization"
     if "visibility" in text or "depth" in text or "z-buffer" in text or "ray" in text or "bsp" in text or "warnock" in text:
-        return "Read this as an occlusion decision. Decide whether the method works in object space, image space, or per-fragment depth space."
+        return "visibility"
     if "light" in text or "illumination" in text or "phong" in text or "material" in text or "shading" in text or "normal" in text:
-        return "Read this as local shading. Name the normal, light vector, view vector, material term, and where the computation happens."
+        return "illumination"
     if "texture" in text or "mipmap" in text or "sampling" in text or "filter" in text or "uv" in text or "environment" in text:
-        return "Read this as sampled data. Identify the texture coordinates, sampling rule, filtering mode, and shader interpretation."
+        return "texturing"
     if "shadow" in text:
-        return "Read this as light-space visibility. Ask what blocks the light, what representation stores that information, and which artifact can appear."
-    return "Read this slide by connecting the bullet terms causally: what problem is being solved, what data is used, and what output is produced?"
+        return "shadows"
+    return "general"
+
+
+def slide_comment(category: str, title: str, clue: str) -> str:
+    prefix = f"This slide is about {title}. "
+    comments = {
+        "outline": "Treat it as the roadmap for the lecture. The listed items are not independent facts; they are the sequence in which the lecture builds the concept.",
+        "organization": "Treat it as relevance information. It tells you how the lecture, exercises, programming tasks, and exam preparation connect.",
+        "pipeline": "Read it as a data-flow explanation: scene or model data is processed step by step until valid framebuffer updates remain.",
+        "opengl": "Read it as concrete API state and GPU data movement. Ask which object is bound, which shader stage consumes it, and which state affects the draw call.",
+        "transform": "Read it as a coordinate-space operation. Name the input space, the matrix or transformation, and the output space before memorizing formulas.",
+        "projection": "Read it as camera geometry. Track how 3D view-space positions become clip coordinates, normalized device coordinates, and finally screen locations.",
+        "clipping": "Read it as boundary logic. Identify what is inside, what is outside, what can be trivially accepted/rejected, and where intersections are created.",
+        "rasterization": "Read it as continuous-to-discrete conversion. The core question is which samples are covered and which interpolated values each fragment receives.",
+        "visibility": "Read it as an occlusion decision. Decide whether the method reasons about objects, image regions, rays, or per-fragment depth comparisons.",
+        "illumination": "Read it as local shading. Identify normal, light direction, view direction, material coefficients, and where the computation is evaluated.",
+        "texturing": "Read it as sampled data access. Identify coordinates, texture object/state, filtering, mip level, and how the shader interprets the sampled value.",
+        "shadows": "Read it as visibility from the light source. Ask what blocks the light, how that blocking is represented, and which artifact the method may create.",
+        "general": "Connect the bullet terms causally: what problem is being solved, what data is used, what output is produced, and which later pipeline stage depends on it.",
+    }
+    return prefix + comments[category] + f" The visible cue is: {clue}"
+
+
+def slide_why(category: str) -> str:
+    reasons = {
+        "outline": "Outlines tell you the dependency order. They are the safest way to avoid learning isolated bullet points.",
+        "organization": "Course logistics often reveal which topics are practiced, assessed, or expected in code.",
+        "pipeline": "Pipeline understanding lets you localize rendering errors instead of guessing randomly.",
+        "opengl": "OpenGL bugs are usually state, binding, shader-interface, or buffer-layout bugs, so API details matter.",
+        "transform": "A wrong coordinate-space assumption can make correct formulas produce wrong images.",
+        "projection": "Projection controls both image composition and depth precision, so it affects visibility and rasterization later.",
+        "clipping": "Clipping decides what geometry is allowed to reach rasterization and can create new boundary vertices.",
+        "rasterization": "Rasterization determines fragment generation; without it, shading and fragment tests have nothing to operate on.",
+        "visibility": "Visibility decides which generated candidates are actually seen from the current viewpoint.",
+        "illumination": "Lighting formulas are only meaningful when their vectors and material terms are interpreted correctly.",
+        "texturing": "Texture sampling is a major source of visual detail and a common source of artifacts.",
+        "shadows": "Shadow algorithms reuse visibility ideas, but from the light's point of view.",
+        "general": "Even a sparse slide usually names a relation you must be able to explain in words.",
+    }
+    return reasons[category]
+
+
+def slide_check(category: str, title: str) -> str:
+    checks = {
+        "outline": f"Can you explain where '{title}' fits in the lecture order and what later section depends on it?",
+        "organization": f"Can you connect '{title}' to an exercise, project task, or exam-preparation action?",
+        "pipeline": f"Can you name the input and output representation for '{title}' in the rendering pipeline?",
+        "opengl": f"Can you name the OpenGL object, state, shader stage, or buffer involved in '{title}'?",
+        "transform": f"Can you state the coordinate space before and after '{title}'?",
+        "projection": f"Can you explain how '{title}' changes positions before rasterization?",
+        "clipping": f"Can you decide what is accepted, rejected, or newly intersected in '{title}'?",
+        "rasterization": f"Can you explain which samples/fragments are generated by '{title}'?",
+        "visibility": f"Can you decide whether '{title}' works per object, per image region, per ray, or per fragment?",
+        "illumination": f"Can you identify the normal, light vector, view vector, and material term relevant to '{title}'?",
+        "texturing": f"Can you identify the sampled data, coordinate, and filtering/state issue in '{title}'?",
+        "shadows": f"Can you explain what the light can or cannot see in '{title}'?",
+        "general": f"Can you turn '{title}' into a causal sentence instead of repeating the slide title?",
+    }
+    return checks[category]
 
 
 def lecture_markdown(lecture: dict) -> str:
@@ -735,20 +813,27 @@ def lecture_markdown(lecture: dict) -> str:
     ]
     lines.extend(
         [
-            "## Slide Walkthrough",
+            "## Per-Slide Commentary",
             "",
-            "This section adds a short reading comment for every extracted slide page. Use it when the original PDF page is too terse.",
+            "Every extracted slide page gets its own reading note. This is the part to use when the original PDF is too terse or visually dense.",
             "",
         ]
     )
     for slide in slides:
         lines.extend(
             [
-                f"- Page {slide['page']}: **{slide['title']}**",
-                f"  - Reading comment: {slide['commentary']}",
+                f"### Page {slide['page']} - {slide['title']}",
+                "",
+                f"Source cue: {slide['cue']}",
+                "",
+                f"Commentary: {slide['commentary']}",
+                "",
+                f"Why it matters: {slide['why']}",
+                "",
+                f"Check yourself: {slide['check']}",
+                "",
             ]
         )
-    lines.append("")
     for index, section in enumerate(lecture["sections"], start=1):
         lines.extend(
             [
@@ -876,28 +961,32 @@ def lecture_story(lecture: dict, styles, include_title: bool):
     ]:
         story.append(paragraph(f"- {item}", styles["BodyText"]))
     story.append(Spacer(1, 8))
-    story.append(paragraph("Slide walkthrough", styles["Heading1"]))
-    story.append(paragraph("Each row gives a short reading comment for one extracted slide page. Use it to turn sparse slide bullets into a human-readable path through the lecture.", styles["BodyText"]))
-    walk_rows = [[paragraph("Page", styles["BodyText"]), paragraph("Slide title", styles["BodyText"]), paragraph("How to read it", styles["BodyText"])]]
+    story.append(paragraph("Per-slide commentary", styles["Heading1"]))
+    story.append(paragraph("Each extracted slide page gets its own note. Use this section as the spoken commentary that the terse slide deck is missing.", styles["BodyText"]))
     for slide in slides:
-        walk_rows.append(
+        slide_table = Table(
             [
-                paragraph(slide["page"], styles["BodyText"]),
-                paragraph(slide["title"], styles["BodyText"]),
-                paragraph(slide["commentary"], styles["BodyText"]),
-            ]
+                [paragraph(f"Page {slide['page']}", styles["BodyText"]), paragraph(slide["title"], styles["BodyText"])],
+                [paragraph("Source cue", styles["BodyText"]), paragraph(slide["cue"], styles["BodyText"])],
+                [paragraph("Commentary", styles["BodyText"]), paragraph(slide["commentary"], styles["BodyText"])],
+                [paragraph("Why it matters", styles["BodyText"]), paragraph(slide["why"], styles["BodyText"])],
+                [paragraph("Check yourself", styles["BodyText"]), paragraph(slide["check"], styles["BodyText"])],
+            ],
+            colWidths=[3.0 * cm, 12.2 * cm],
         )
-    walk_table = Table(walk_rows, colWidths=[1.4 * cm, 5.0 * cm, 8.8 * cm], repeatRows=1)
-    walk_table.setStyle(
-        TableStyle(
-            [
-                ("GRID", (0, 0), (-1, -1), 0.25, colors.HexColor("#d5dde1")),
-                ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#edf3f1")),
-                ("VALIGN", (0, 0), (-1, -1), "TOP"),
-            ]
+        slide_table.setStyle(
+            TableStyle(
+                [
+                    ("GRID", (0, 0), (-1, -1), 0.25, colors.HexColor("#d5dde1")),
+                    ("BACKGROUND", (0, 0), (0, -1), colors.HexColor("#edf3f1")),
+                    ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#f6f8f8")),
+                    ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                    ("FONTNAME", (0, 0), (0, -1), "Helvetica-Bold"),
+                ]
+            )
         )
-    )
-    story.append(walk_table)
+        story.append(slide_table)
+        story.append(Spacer(1, 6))
     story.append(Spacer(1, 10))
     for index, section in enumerate(lecture["sections"], start=1):
         story.append(paragraph(f"{lecture['id']}.{index} {section['title']}", styles["Heading1"]))
@@ -972,14 +1061,14 @@ def write_readme() -> None:
     lines = [
         "# Lecture Readers",
         "",
-        "This folder contains a readable version of every lecture. The raw slide extraction is still the source of truth, but these files add the missing explanatory commentary that makes the material usable for human study.",
+        "This folder contains a readable version of every lecture. The raw slide extraction is still the source of truth, but these files add the missing explanatory commentary that makes the material usable for human study. Every extracted slide page has its own commentary block with a source cue, explanation, relevance note, and check question.",
         "",
         "Language: English. The lecture material is primarily English, so the generated commentary stays in English.",
         "",
         "## Files",
         "",
-        "- `markdown/` - one readable Markdown file per lecture",
-        "- `pdf/` - one PDF per lecture plus `CS8165_complete_lecture_readers.pdf`",
+        "- `markdown/` - one readable Markdown file per lecture, with per-slide commentary",
+        "- `pdf/` - one PDF per lecture plus `CS8165_complete_lecture_readers.pdf`, with per-slide commentary",
         "- `lecture_reader_manifest.json` - generated coverage manifest",
         "",
         "## Recommended Reading Route",
