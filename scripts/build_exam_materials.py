@@ -270,6 +270,30 @@ def plain_chapter_filename(topic: dict) -> str:
     return f"chapters_plain/{topic['id']}_{slug(topic['title'])}_plain_text.txt"
 
 
+def bridge_chapter_filename(topic: dict) -> str:
+    return f"chapters_bridge/{topic['id']}_{slug(topic['title'])}_b1_bridge.md"
+
+
+def chain_as_words(topic: dict) -> str:
+    return topic["chain"].replace(" -> ", ", then ")
+
+
+def everyday_bridge(topic: dict) -> str:
+    examples = {
+        "01": "You already know that a phone or laptop screen is made of many small picture points. This lecture connects that everyday idea to the more technical idea of computer graphics.",
+        "02": "You already know a factory line, where one station does one job and gives the result to the next station. The rendering pipeline works in a similar way.",
+        "03": "You already know moving, turning, and resizing objects from normal software. This lecture explains the mathematical version of those actions.",
+        "04": "You already know that a camera turns a three dimensional scene into a flat picture. Projection is the graphics version of that idea.",
+        "05": "You already know cropping a photo or cutting away the part of a picture that is outside a window. Clipping is the geometric version of that idea.",
+        "06": "You already know that a screen is a grid. Rasterization explains how smooth geometric shapes become decisions on that grid.",
+        "07": "You already know that a nearer object can hide a farther object. Visibility determination is the formal version of that simple fact.",
+        "08": "You already know that a surface looks brighter when it faces a lamp and darker when it turns away. Local illumination explains this with vectors and material values.",
+        "09": "You already know that an image can be placed on a surface, like a label on a bottle. Texturing is the graphics version, but it is more general than a simple sticker.",
+        "10": "You already know that a shadow appears when something blocks light. The important course idea is that this is a visibility question from the light, not only from the camera.",
+    }
+    return examples[topic["id"]]
+
+
 def plain_text(text: str) -> str:
     replacements = [
         ("cannot", "cannot"),
@@ -399,6 +423,188 @@ def plain_chapter_text(topic: dict) -> str:
             sentence(
                 f"You are done with this chapter only when you can recognize a new question as belonging to {topic['title']}, rebuild the chain {chain_words}, and choose the correct answer even when the wording changes."
             ),
+            "",
+        ]
+    )
+    return "\n".join(lines)
+
+
+def bridge_phrase_bank(topic: dict) -> list[tuple[str, str, str]]:
+    chain_words = chain_as_words(topic)
+    return [
+        (
+            "to represent something",
+            "to show something in a certain form.",
+            "In graphics, the same object can be represented as pixels, vertices, fragments, texture values, or depth values.",
+        ),
+        (
+            "to convert A into B",
+            "to change information from one form into another form.",
+            f"The course often says that one stage converts data into the next stage of this process: {chain_words}.",
+        ),
+        (
+            "to map A to B",
+            "to connect one space, value, or position to another space, value, or position.",
+            "If a lecture says that coordinates are mapped, it means that the same thing is described in a new place or scale.",
+        ),
+        (
+            "to determine whether",
+            "to decide if something is true or false.",
+            "Graphics algorithms often determine whether a point is inside, visible, covered, lit, or shadowed.",
+        ),
+        (
+            "to pass a test",
+            "to satisfy a rule and continue to the next step.",
+            "A fragment can pass a depth test or fail it, so it may or may not become visible.",
+        ),
+        (
+            "to depend on",
+            "to need something else before it can work correctly.",
+            f"The later part of the chapter depends on the earlier part of this chain: {chain_words}.",
+        ),
+        (
+            "to store a value",
+            "to keep a value in memory so that it can be used later.",
+            "Buffers, textures, and framebuffers store values for rendering.",
+        ),
+        (
+            "at draw time",
+            "at the exact moment when the GPU receives the draw command.",
+            "In OpenGL, the current state at draw time is very important.",
+        ),
+    ]
+
+
+def simple_topic_problem(topic: dict) -> str:
+    return (
+        f"This lecture asks a practical question. What must the computer know, change, test, or store so that the topic called {topic['title']} works in a rendering system?"
+    )
+
+
+def bridge_chapter_text(topic: dict) -> str:
+    lecture = lecture_for(topic)
+    chain_steps = topic["chain"].split(" -> ")
+    chain_words = chain_as_words(topic)
+    lines = [
+        f"# Lecture {topic['id']} - {topic['title']} B1 Bridge",
+        "",
+        "Read this before the normal exam chapter if the English feels too dense. This version does not replace the main chapter. It prepares you for it.",
+        "",
+        "## 1. Starting Point",
+        "",
+        simple_topic_problem(topic),
+        "",
+        "## 2. Everyday Bridge",
+        "",
+        everyday_bridge(topic),
+        "",
+        f"The main idea in easier English is this: {topic['core']}",
+        "",
+        "A graphics lecture usually explains a process. A process means that something starts in one form, changes several times, and ends in another form.",
+        "",
+        "For this lecture, the process is:",
+        "",
+    ]
+    for index, step in enumerate(chain_steps, start=1):
+        connector = "This is the start." if index == 1 else "This comes after the previous step."
+        lines.extend(
+            [
+                f"{index}. {step}. {connector}",
+                "",
+            ]
+        )
+    lines.extend(
+        [
+            "When you read the main chapter, do not try to memorize the whole sentence first. Ask three smaller questions. What goes in? What changes? What comes out?",
+            "",
+            "## 3. English Bridge",
+            "",
+            "These phrases appear often in computer graphics texts. Learn them as small sentence patterns.",
+            "",
+        ]
+    )
+    for phrase, meaning, example in bridge_phrase_bank(topic):
+        lines.extend(
+            [
+                f"### {phrase}",
+                "",
+                f"Meaning: {meaning}",
+                "",
+                f"Course example: {example}",
+                "",
+                f"How to read it: if you see `{phrase}`, look for the thing before the verb and the thing after the verb. The first thing usually gives the input or object. The second thing usually gives the result, rule, or dependency.",
+                "",
+            ]
+        )
+    lines.extend(
+        [
+            "## 4. Terminology Bridge",
+            "",
+            "The important words are not random vocabulary. Each word has a job in the rendering story.",
+            "",
+        ]
+    )
+    for term, definition in topic["terms"]:
+        lines.extend(
+            [
+                f"### {term}",
+                "",
+                f"Simple meaning: {definition}",
+                "",
+            f"Why it is here: this word helps explain {topic['title'].lower()}. It connects to this process: `{chain_words}`.",
+                "",
+                f"Good sentence pattern: `{term}` is used when the system needs to describe, change, test, store, or use this kind of information.",
+                "",
+            ]
+        )
+    lines.extend(
+        [
+            "## 5. Step By Step Bridge",
+            "",
+            "Each part below connects a lecture section to easier English. Read the easy sentence first. Then read the explanation. Then read the same part in the normal chapter.",
+            "",
+        ]
+    )
+    for section_index, section in enumerate(lecture["sections"], start=1):
+        lines.extend(
+            [
+                f"### {topic['id']}.{section_index} {section['title']}",
+                "",
+                f"Easy sentence: this section explains one part of {topic['title'].lower()}.",
+                "",
+                f"Main connection: {section['mental_model']}",
+                "",
+                "What this means in slower English:",
+                "",
+            ]
+        )
+        for paragraph in section["commentary"]:
+            lines.extend([f"{plain_text(paragraph)}", ""])
+        lines.extend(
+            [
+                "Language help: in this section, look for verbs such as prepares, handles, creates, applies, computes, decides, stores, maps, tests, or converts. The verb tells you what is happening. The object after the verb is usually the data, stage, value, or result that the course wants you to understand.",
+                "",
+            ]
+        )
+        lines.extend(
+            [
+                f"Check question in simple form: {section['check']}",
+                "",
+                "If you cannot answer it yet, go back to the process and ask what goes in, what changes, and what comes out.",
+                "",
+            ]
+        )
+    lines.extend(
+        [
+            "## 6. Reading The Main Chapter After This",
+            "",
+            "Now read the normal chapter for this lecture. When a sentence feels hard, do not translate every word first. First mark the verb. Then mark the technical noun. Then ask how the noun moves through the process.",
+            "",
+            f"The most dangerous misunderstanding in this lecture is: {topic['trap']}",
+            "",
+            f"The compact rule is: {topic['formula']}",
+            "",
+            "You are ready for the main version when you can explain the process with simple English, recognize the important course words, and understand the verbs that connect the words.",
             "",
         ]
     )
@@ -540,6 +746,22 @@ def combined_plain_chapters() -> str:
     ]
     for topic in TOPICS:
         lines.append(plain_chapter_text(topic))
+        lines.append("")
+    return "\n".join(lines)
+
+
+def combined_bridge_chapters() -> str:
+    lines = [
+        "# CS8165 B1 Bridge Chapters",
+        "",
+        "This file combines the ten B1 bridge chapters. Use it before the normal exam chapters when the terminology, verbs, and collocations are the main barrier.",
+        "",
+    ]
+    for topic in TOPICS:
+        lines.append(f"- Lecture {topic['id']} - {topic['title']}: `{bridge_chapter_filename(topic)}`")
+    lines.append("")
+    for topic in TOPICS:
+        lines.append(bridge_chapter_text(topic))
         lines.append("")
     return "\n".join(lines)
 
@@ -1065,6 +1287,8 @@ def manifest() -> str:
         "assignment_count": len(ASSIGNMENTS),
         "files": [
             "README.md",
+            "chapters_bridge/CS8165_all_b1_bridge_chapters.md",
+            *[bridge_chapter_filename(topic) for topic in TOPICS],
             "chapters/CS8165_all_exam_chapters.md",
             *[chapter_filename(topic) for topic in TOPICS],
             "chapters_plain/CS8165_all_plain_text_chapters.txt",
@@ -1099,22 +1323,23 @@ Use it when you want prepared material rather than only a roadmap.
 
 Recommended order:
 
-1. `chapters_plain/CS8165_all_plain_text_chapters.txt` or one file from `chapters_plain/`
-2. `chapters/CS8165_all_exam_chapters.md` or one file from `chapters/`
-3. `00_reading_route.md`
-4. `01_mastery_checklists.md`
-5. `08_assignment_workbook.md`
-6. `02_cloze_generator_inputs.md`
-7. `03_matching_pairs.tsv` and `03_matching_tasks.md`
-8. `05_sequencing_and_pipeline_tasks.md`
-9. `04_closed_format_drills.md`
-10. `06_diagram_label_tasks.md`
-11. `07_opengl_debugging_drills.md`
-12. `09_final_mixed_closed_exam.md`
-13. `10_mistake_log_repair_drills.md`
-14. `11_ai_prompt_bank.md`
+1. `chapters_bridge/CS8165_all_b1_bridge_chapters.md` or one file from `chapters_bridge/`
+2. `chapters_plain/CS8165_all_plain_text_chapters.txt` or one file from `chapters_plain/`
+3. `chapters/CS8165_all_exam_chapters.md` or one file from `chapters/`
+4. `00_reading_route.md`
+5. `01_mastery_checklists.md`
+6. `08_assignment_workbook.md`
+7. `02_cloze_generator_inputs.md`
+8. `03_matching_pairs.tsv` and `03_matching_tasks.md`
+9. `05_sequencing_and_pipeline_tasks.md`
+10. `04_closed_format_drills.md`
+11. `06_diagram_label_tasks.md`
+12. `07_opengl_debugging_drills.md`
+13. `09_final_mixed_closed_exam.md`
+14. `10_mistake_log_repair_drills.md`
+15. `11_ai_prompt_bank.md`
 
-The files in `chapters_plain/` are prose-only reading chapters. They avoid Markdown, bullets, code marks, arrows, tables, and symbolic notation inside the text. The files in `chapters/` keep the structured exam chapter layout. The readable slide-by-slide explanations in `lecture_readers/` remain the deeper source for per-slide commentary.
+The files in `chapters_bridge/` are B1 bridge chapters. They explain terminology, verbs, collocations, and concept links before you read the main version. The files in `chapters_plain/` are prose-only reading chapters. They avoid Markdown, bullets, code marks, arrows, tables, and symbolic notation inside the text. The files in `chapters/` keep the structured exam chapter layout. The readable slide-by-slide explanations in `lecture_readers/` remain the deeper source for per-slide commentary.
 """
 
 
@@ -1122,8 +1347,10 @@ def main() -> None:
     ensure_out()
     write("README.md", readme())
     for topic in TOPICS:
+        write(bridge_chapter_filename(topic), bridge_chapter_text(topic))
         write(chapter_filename(topic), chapter_text(topic))
         write(plain_chapter_filename(topic), plain_chapter_text(topic))
+    write("chapters_bridge/CS8165_all_b1_bridge_chapters.md", combined_bridge_chapters())
     write("chapters/CS8165_all_exam_chapters.md", combined_chapters())
     write("chapters_plain/CS8165_all_plain_text_chapters.txt", combined_plain_chapters())
     write("00_reading_route.md", reading_route())

@@ -19,7 +19,7 @@ Private backup of the Moodle course export `CS8165.001-SS26_1787682614.zip`.
 - `course_build_audit.json` - machine-readable coverage report for source files, PDF pages, chunks, and validation checks
 - `study_pack/` - exam-preparation pack with chapter guides, formula checklist, visual review guide, exam drill, Anki TSV, study plan, and reusable AI prompts
 - `practice_pack/` - interactive practice pack with cloze texts, matching tables, MC questions, sequencing tasks, math/algorithm drills, diagram prompts, OpenGL drills, and a roadmap from 0 to exam-ready
-- `exam_materials/` - generated reading-first exam material pack with plain prose chapters, structured exam chapters, checklists, cloze inputs, matching TSV, closed-format drills, assignment workbook, and final mixed exam
+- `exam_materials/` - generated reading-first exam material pack with B1 bridge chapters, plain prose chapters, structured exam chapters, checklists, cloze inputs, matching TSV, closed-format drills, assignment workbook, and final mixed exam
 - `practice_pack/repetition_variants/` - repeated practice rounds with the same concepts but different wording and task layouts
 - `overprep_pack/` - closed-format overpreparation pack with MC/mock exams, mistake log, concept-confusion pairs, diagram label workbook, OpenGL debugging drills, one-pagers, spaced repetition, and final readiness checklist
 - `reader_pack/` - readable original-language narrative reader, PDF, clickable workbook, and language audit
