@@ -1,0 +1,81 @@
+Lecture two is about Rendering Pipeline.
+
+The central idea is this. Rendering is a sequence of representation changes, models become vertices, primitives, fragments, tested fragments, and finally framebuffer updates. The useful mental chain is application data, then geometry stage, then primitive assembly, then rasterization, then fragment operations, then framebuffer. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
+
+Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story.
+
+The first idea in this lecture is Rendering Process.
+
+Object based rendering starts with scene objects represented as primitives. The pipeline transforms vertices, assembles primitives, rasterizes them into fragments, and lets only some fragments become pixels. The important detail is that the representation changes at every stage.
+
+The application stage prepares data and state. The geometry stage handles positions and primitives. The rasterization stage creates fragments and applies fragment operations. This separation helps you explain both theory questions and black screen OpenGL bugs.
+
+The study meaning is this. Vertices become primitives, primitives become fragments, and fragments compete to become pixel updates.
+
+A useful closed check is this question. What is the difference between a fragment and a final pixel?
+
+The second idea in this lecture is OpenGL Overview.
+
+OpenGL is an API for controlling a graphics pipeline. It is not a renderer by itself in the sense of a single command that understands your scene. You create a context, provide buffers, set state, compile shaders, bind objects, and issue draw calls.
+
+Modern OpenGL is stateful and shader based. Many errors happen because the programmer assumes that a later call carries more information than it really does. The GPU uses the currently bound objects and current state at draw time.
+
+The study meaning is this. OpenGL draw calls consume the state machine as it exists right now.
+
+A useful closed check is this question. Why can binding the wrong vertex array or shader program produce a valid draw call with wrong output?
+
+The third idea in this lecture is OpenGL Rendering.
+
+Older OpenGL exposed a fixed function style where many transformations and lighting choices were configured through predefined calls. Modern OpenGL expects you to write shader programs and explicitly manage data flow.
+
+This is not just historical trivia. It explains why shader code, vertex attributes, uniforms, and buffer objects are central in the exercises. If the shader expects an attribute and the vertex layout does not provide it, the pipeline has no magic fallback.
+
+The study meaning is this. Modern OpenGL makes the data path explicit, that gives control but also creates responsibility.
+
+A useful closed check is this question. Which data usually goes into vertex attributes, and which data usually goes into uniforms?
+
+The fourth idea in this lecture is OpenGL Rendering Pipeline.
+
+The vertex shader runs per vertex and usually outputs clip space position plus attributes for later interpolation. Primitive assembly groups vertices into points, lines, or triangles. Clipping handles geometry outside the view volume. Rasterization creates fragments.
+
+The fragment shader computes candidate fragment output, often using interpolated attributes, uniforms, and textures. After that, tests and operations such as depth testing, stencil testing, blending, and masking decide what reaches the framebuffer.
+
+The study meaning is this. Programmable shaders compute values, fixed pipeline stages decide coverage, interpolation, tests, and output rules.
+
+A useful closed check is this question. If your geometry appears in wireframe but colors are wrong, which stages become suspicious?
+
+The fifth idea in this lecture is Fragment Tests, Framebuffer, and Pixel Based Rendering.
+
+Fragment tests are the gatekeepers after shading. A fragment can have a perfectly valid color and still fail because depth, stencil, scissor, masking, or blending state prevents a visible update. This is why final pixels are a subset of generated fragments.
+
+The framebuffer stores the final render targets, color buffers, depth buffers, stencil buffers, or custom attachments. Pixel based rendering starts from image data instead of geometric primitives, which is useful for image processing but conceptually different from the object to pixel pipeline.
+
+The study meaning is this. The framebuffer is the destination, fragment operations are the rules for writing into it.
+
+A useful closed check is this question. Why can two fragments with different colors produce only one visible pixel color?
+
+The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries.
+
+The term application stage means this. CPU side preparation of models, scene data, interaction, animation, and rendering state. It belongs here because it participates in the chain application data, then geometry stage, then primitive assembly, then rasterization, then fragment operations, then framebuffer. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term geometry stage means this. Pipeline stage that transforms vertices and prepares primitives. It belongs here because it participates in the chain application data, then geometry stage, then primitive assembly, then rasterization, then fragment operations, then framebuffer. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term rasterization means this. Conversion of projected primitives into fragment candidates on a sample grid. It belongs here because it participates in the chain application data, then geometry stage, then primitive assembly, then rasterization, then fragment operations, then framebuffer. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term fragment means this. A candidate pixel contribution produced by rasterization before final tests and blending. It belongs here because it participates in the chain application data, then geometry stage, then primitive assembly, then rasterization, then fragment operations, then framebuffer. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term framebuffer means this. Memory target that stores color, depth, stencil, or related per pixel results. It belongs here because it participates in the chain application data, then geometry stage, then primitive assembly, then rasterization, then fragment operations, then framebuffer. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term double buffering means this. Using front and back buffers so drawing can happen off screen before display swap. It belongs here because it participates in the chain application data, then geometry stage, then primitive assembly, then rasterization, then fragment operations, then framebuffer. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The compact rule for this chapter is vertices then primitives then fragments then tests then pixels.
+
+Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later.
+
+This chapter connects most directly to the assignment Rendering Pipeline. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, application data, then geometry stage, then primitive assembly, then rasterization, then fragment operations, then framebuffer.
+
+The main exam trap is this. Do not collapse the whole pipeline into the GPU draws it, name the intermediate representations. This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor.
+
+A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
+
+You are done with this chapter only when you can recognize a new question as belonging to Rendering Pipeline, rebuild the chain application data, then geometry stage, then primitive assembly, then rasterization, then fragment operations, then framebuffer, and choose the correct answer even when the wording changes.

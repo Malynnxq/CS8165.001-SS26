@@ -252,6 +252,159 @@ def chapter_filename(topic: dict) -> str:
     return f"chapters/{topic['id']}_{slug(topic['title'])}_exam_chapter.md"
 
 
+NUMBER_WORDS = {
+    "01": "one",
+    "02": "two",
+    "03": "three",
+    "04": "four",
+    "05": "five",
+    "06": "six",
+    "07": "seven",
+    "08": "eight",
+    "09": "nine",
+    "10": "ten",
+}
+
+
+def plain_chapter_filename(topic: dict) -> str:
+    return f"chapters_plain/{topic['id']}_{slug(topic['title'])}_plain_text.txt"
+
+
+def plain_text(text: str) -> str:
+    replacements = [
+        ("cannot", "cannot"),
+        ("can't", "cannot"),
+        ("won't", "will not"),
+        ("n't", " not"),
+        ("->", " then "),
+        ("=>", " therefore "),
+        ("<=", " less than or equal to "),
+        (">=", " greater than or equal to "),
+        ("=", " equals "),
+        ("+", " plus "),
+        ("*", " times "),
+        ("/", " or "),
+        ("_", " "),
+        ("-", " "),
+        (";", ","),
+        (":", ","),
+        ("`", ""),
+        ("\"", ""),
+        ("'", ""),
+        ("(", ", "),
+        (")", ", "),
+        ("[", ", "),
+        ("]", ", "),
+        ("#", " "),
+    ]
+    for old, new in replacements:
+        text = text.replace(old, new)
+    text = re.sub(r"[^A-Za-z.,!?\s]", " ", text)
+    text = re.sub(r"[ \t]+", " ", text)
+    text = re.sub(r" +([.,!?])", r"\1", text)
+    text = re.sub(r"([.,!?])([A-Za-z])", r"\1 \2", text)
+    text = re.sub(r"\s+\n", "\n", text)
+    text = re.sub(r"\n\s+", "\n", text)
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    text = text.strip()
+    if text and text[-1] not in ".!?":
+        text += "."
+    return text
+
+
+def sentence(text: str) -> str:
+    return plain_text(text)
+
+
+def plain_chapter_text(topic: dict) -> str:
+    lecture = lecture_for(topic)
+    number_word = NUMBER_WORDS[topic["id"]]
+    chain_words = topic["chain"].replace(" -> ", ", then ")
+    lines = [
+        sentence(f"Lecture {number_word} is about {topic['title']}."),
+        "",
+        sentence(
+            f"The central idea is this. {topic['core']} The useful mental chain is {chain_words}. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step."
+        ),
+        "",
+        sentence(
+            "Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story."
+        ),
+        "",
+    ]
+    for section_index, section in enumerate(lecture["sections"], start=1):
+        ordinal = [
+            "first",
+            "second",
+            "third",
+            "fourth",
+            "fifth",
+            "sixth",
+            "seventh",
+            "eighth",
+            "ninth",
+            "tenth",
+        ][section_index - 1]
+        lines.extend(
+            [
+                sentence(f"The {ordinal} idea in this lecture is {section['title']}."),
+                "",
+            ]
+        )
+        for paragraph in section["commentary"]:
+            lines.extend([sentence(paragraph), ""])
+        lines.extend(
+            [
+                sentence(f"The study meaning is this. {section['mental_model']}"),
+                "",
+                sentence(f"A useful closed check is this question. {section['check']}"),
+                "",
+            ]
+        )
+    lines.extend(
+        [
+            sentence("The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries."),
+            "",
+        ]
+    )
+    for term, definition in topic["terms"]:
+        lines.extend(
+            [
+                sentence(
+                    f"The term {term} means this. {definition} It belongs here because it participates in the chain {chain_words}. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it."
+                ),
+                "",
+            ]
+        )
+    lines.extend(
+        [
+            sentence(f"The compact rule for this chapter is {topic['formula']}."),
+            "",
+            sentence(
+                "Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later."
+            ),
+            "",
+            sentence(
+                f"This chapter connects most directly to the assignment {topic['assignment']}. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, {chain_words}."
+            ),
+            "",
+            sentence(
+                f"The main exam trap is this. {topic['trap']} This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor."
+            ),
+            "",
+            sentence(
+                "A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction."
+            ),
+            "",
+            sentence(
+                f"You are done with this chapter only when you can recognize a new question as belonging to {topic['title']}, rebuild the chain {chain_words}, and choose the correct answer even when the wording changes."
+            ),
+            "",
+        ]
+    )
+    return "\n".join(lines)
+
+
 def chapter_text(topic: dict) -> str:
     lecture = lecture_for(topic)
     terms = topic["terms"]
@@ -374,6 +527,19 @@ def combined_chapters() -> str:
     lines.append("")
     for topic in TOPICS:
         lines.append(chapter_text(topic))
+        lines.append("")
+    return "\n".join(lines)
+
+
+def combined_plain_chapters() -> str:
+    lines = [
+        sentence("This file contains all ten plain English exam chapters."),
+        "",
+        sentence("It is designed for uninterrupted reading and for copying into tools that work better with normal prose than with Markdown, tables, bullets, code marks, arrows, or symbolic notation."),
+        "",
+    ]
+    for topic in TOPICS:
+        lines.append(plain_chapter_text(topic))
         lines.append("")
     return "\n".join(lines)
 
@@ -901,6 +1067,8 @@ def manifest() -> str:
             "README.md",
             "chapters/CS8165_all_exam_chapters.md",
             *[chapter_filename(topic) for topic in TOPICS],
+            "chapters_plain/CS8165_all_plain_text_chapters.txt",
+            *[plain_chapter_filename(topic) for topic in TOPICS],
             "00_reading_route.md",
             "01_mastery_checklists.md",
             "02_cloze_generator_inputs.md",
@@ -931,21 +1099,22 @@ Use it when you want prepared material rather than only a roadmap.
 
 Recommended order:
 
-1. `chapters/CS8165_all_exam_chapters.md` or one file from `chapters/`
-2. `00_reading_route.md`
-3. `01_mastery_checklists.md`
-4. `08_assignment_workbook.md`
-5. `02_cloze_generator_inputs.md`
-6. `03_matching_pairs.tsv` and `03_matching_tasks.md`
-7. `05_sequencing_and_pipeline_tasks.md`
-8. `04_closed_format_drills.md`
-9. `06_diagram_label_tasks.md`
-10. `07_opengl_debugging_drills.md`
-11. `09_final_mixed_closed_exam.md`
-12. `10_mistake_log_repair_drills.md`
-13. `11_ai_prompt_bank.md`
+1. `chapters_plain/CS8165_all_plain_text_chapters.txt` or one file from `chapters_plain/`
+2. `chapters/CS8165_all_exam_chapters.md` or one file from `chapters/`
+3. `00_reading_route.md`
+4. `01_mastery_checklists.md`
+5. `08_assignment_workbook.md`
+6. `02_cloze_generator_inputs.md`
+7. `03_matching_pairs.tsv` and `03_matching_tasks.md`
+8. `05_sequencing_and_pipeline_tasks.md`
+9. `04_closed_format_drills.md`
+10. `06_diagram_label_tasks.md`
+11. `07_opengl_debugging_drills.md`
+12. `09_final_mixed_closed_exam.md`
+13. `10_mistake_log_repair_drills.md`
+14. `11_ai_prompt_bank.md`
 
-The files in `chapters/` are the actual generated exam chapters. The readable slide-by-slide explanations in `lecture_readers/` remain the deeper source for per-slide commentary.
+The files in `chapters_plain/` are prose-only reading chapters. They avoid Markdown, bullets, code marks, arrows, tables, and symbolic notation inside the text. The files in `chapters/` keep the structured exam chapter layout. The readable slide-by-slide explanations in `lecture_readers/` remain the deeper source for per-slide commentary.
 """
 
 
@@ -954,7 +1123,9 @@ def main() -> None:
     write("README.md", readme())
     for topic in TOPICS:
         write(chapter_filename(topic), chapter_text(topic))
+        write(plain_chapter_filename(topic), plain_chapter_text(topic))
     write("chapters/CS8165_all_exam_chapters.md", combined_chapters())
+    write("chapters_plain/CS8165_all_plain_text_chapters.txt", combined_plain_chapters())
     write("00_reading_route.md", reading_route())
     write("01_mastery_checklists.md", mastery_checklists())
     write("02_cloze_generator_inputs.md", cloze_inputs())

@@ -1,0 +1,81 @@
+Lecture ten is about Shadows.
+
+The central idea is this. Shadows are visibility tests from the light source, not only dark shapes seen by the camera. The useful mental chain is light, then possible blocker, then receiver point, then light space visibility test, then lit or shadowed result. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
+
+Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story.
+
+The first idea in this lecture is Definitions.
+
+A shadow is not simply a dark texture. It is evidence that light visibility is blocked. Important distinctions include hard versus soft shadows, umbra versus penumbra, and geometric versus precomputed approaches.
+
+For real time graphics, shadows are usually approximated. The approximation must answer a visibility question cheaply enough for interactive rendering.
+
+The study meaning is this. Shadows are light space visibility made visible in the camera image.
+
+A useful closed check is this question. Why is shadow computation related to visibility determination?
+
+The second idea in this lecture is Ground Plane Shadows.
+
+Ground plane shadows project an object onto a receiving plane. This is simple and can look convincing in restricted scenes, but it assumes a known planar receiver and does not handle general shadowing between arbitrary objects.
+
+The method is useful pedagogically because it makes the geometric nature of shadows explicit, a light source, an occluder, and a receiver define where the shadow lands.
+
+The study meaning is this. A planar shadow is projected geometry on a known receiver.
+
+A useful closed check is this question. What scene limitation makes ground plane shadows less general than shadow maps?
+
+The third idea in this lecture is Light Maps.
+
+Light maps store precomputed lighting or shadow information in textures. They can be efficient at runtime, but they are limited when lights, objects, or geometry move dynamically.
+
+This is another example of a recurring graphics tradeoff, precompute for speed, but lose flexibility. Real time rendering often mixes precomputed and dynamic techniques.
+
+The study meaning is this. A light map spends storage and preprocessing to save runtime shading work.
+
+A useful closed check is this question. Why are light maps less suitable for fully dynamic moving lights?
+
+The fourth idea in this lecture is Shadow Volumes.
+
+Shadow volumes construct the volume of space blocked from a light by an occluder. The camera view can then determine whether visible points lie inside that volume. Stencil buffer techniques are often associated with this method.
+
+The strength is geometric precision for hard shadows. The cost is handling silhouette edges, volume construction, and robust stencil operations. It is a good contrast to shadow maps, which are image based from the light view.
+
+The study meaning is this. A shadow volume is the D region where the light cannot reach.
+
+A useful closed check is this question. Why are silhouette edges important for constructing shadow volumes?
+
+The fifth idea in this lecture is Shadow Maps.
+
+Shadow mapping renders the scene from the lights point of view and stores depth. During the camera pass, a surface point is transformed into light space and compared against the stored depth. If it is farther than what the light saw, it is in shadow.
+
+This method is practical and widely used, but it has artifacts. Shadow acne comes from precision or self comparison issues. Bias can reduce acne but too much bias causes detached shadows. Resolution, filtering, and light projection strongly affect quality.
+
+The study meaning is this. Shadow maps reuse the depth buffer idea, but from the lights camera.
+
+A useful closed check is this question. What exactly is stored in a shadow map?
+
+The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries.
+
+The term shadow means this. Reduced direct illumination where an object blocks light from reaching a receiver. It belongs here because it participates in the chain light, then possible blocker, then receiver point, then light space visibility test, then lit or shadowed result. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term occluder means this. Object that blocks light. It belongs here because it participates in the chain light, then possible blocker, then receiver point, then light space visibility test, then lit or shadowed result. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term receiver means this. Surface where the shadow appears. It belongs here because it participates in the chain light, then possible blocker, then receiver point, then light space visibility test, then lit or shadowed result. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term shadow map means this. Depth image rendered from the lights point of view for later visibility comparison. It belongs here because it participates in the chain light, then possible blocker, then receiver point, then light space visibility test, then lit or shadowed result. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term shadow volume means this. Volume of space hidden from a light by an occluder. It belongs here because it participates in the chain light, then possible blocker, then receiver point, then light space visibility test, then lit or shadowed result. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term projective shadow means this. Shadow construction based on projecting geometry onto a receiver. It belongs here because it participates in the chain light, then possible blocker, then receiver point, then light space visibility test, then lit or shadowed result. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The compact rule for this chapter is point is shadowed if something is closer to the light along the same light ray.
+
+Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later.
+
+This chapter connects most directly to the assignment Rendering contest and integrated lighting tasks. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, light, then possible blocker, then receiver point, then light space visibility test, then lit or shadowed result.
+
+The main exam trap is this. Do not explain a shadow only from the camera view, the key test is light space visibility. This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor.
+
+A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
+
+You are done with this chapter only when you can recognize a new question as belonging to Shadows, rebuild the chain light, then possible blocker, then receiver point, then light space visibility test, then lit or shadowed result, and choose the correct answer even when the wording changes.

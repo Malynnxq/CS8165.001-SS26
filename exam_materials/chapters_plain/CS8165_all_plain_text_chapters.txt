@@ -1,0 +1,832 @@
+This file contains all ten plain English exam chapters.
+
+It is designed for uninterrupted reading and for copying into tools that work better with normal prose than with Markdown, tables, bullets, code marks, arrows, or symbolic notation.
+
+Lecture one is about Introduction.
+
+The central idea is this. Computer graphics generates images from descriptions, interactive graphics adds a strict time budget and a feedback loop with the user. The useful mental chain is scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
+
+Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story.
+
+The first idea in this lecture is Course Organization.
+
+The organizational slides matter because they explain how the theory and programming parts fit together. The exercises are not separate from the lecture, they are the practical version of the same pipeline ideas. When the course says that slides are generally not self explanatory, that is a warning, the bullet points are anchors, not a textbook.
+
+Treat every exercise sheet as an applied checkpoint. Rendering pipeline, primitive types, shaders, transformations, projection, clipping, and rasterization are introduced in the lectures and then turned into OpenGL tasks. If a topic appears both in a lecture and an exercise, it is more likely to be exam relevant.
+
+The study meaning is this. Lecture slides give the vocabulary, exercises force you to connect that vocabulary to code and visible output.
+
+A useful closed check is this question. Can you list the five exercise themes and connect each one to a later lecture chapter?
+
+The second idea in this lecture is Computer Graphics Overview.
+
+Computer graphics is about generating images from descriptions. The description can be pixel based, object based, physically motivated, artistic, or algorithmic. The common thread is that the computer must decide what color belongs at image samples.
+
+Interactive graphics adds a time constraint. The image is not computed once and admired, it must respond to camera motion, user input, animation, and changing state. That is why real time rendering often uses approximations and specialized GPU stages.
+
+The study meaning is this. Graphics is controlled image generation. Interactive graphics is controlled image generation under a strict time budget.
+
+A useful closed check is this question. What changes when a renderer must be interactive rather than offline?
+
+The third idea in this lecture is Pixel Based Representations.
+
+A pixel based representation stores an image directly as samples on a grid. It is easy to display and edit locally, but it does not know the underlying D scene. If you zoom into a raster image, you reveal the sampling grid, not more geometry.
+
+This is the first place where sampling becomes important. Resolution, color depth, aliasing, and frame time are not cosmetic details. They decide what information can be represented and how much data must be processed per second.
+
+The study meaning is this. A raster image is already the answer. It contains color samples, not the geometric reasons behind them.
+
+A useful closed check is this question. Why can a pixel image be easy to display but hard to reinterpret as a D scene?
+
+The fourth idea in this lecture is D Models.
+
+A D model is a structured description of objects before they become pixels. It may contain vertices, primitives, topology, normals, materials, textures, and transformations. Unlike a pixel image, it can be viewed from different camera positions.
+
+The course mostly follows object based rendering, start from model data, transform it, project it, rasterize it, shade it, test visibility, and finally update pixels. Later chapters explain these steps one by one.
+
+The study meaning is this. A model is not an image. It is a cause from which many possible images can be generated.
+
+A useful closed check is this question. Which model attributes can influence final color besides vertex positions?
+
+The fifth idea in this lecture is Algorithmic Paradigms.
+
+The lecture contrasts ways to generate images. Rasterization works from objects toward pixels and is the dominant real time pipeline. Ray based methods work from image samples into the scene and are powerful for visibility and lighting but can be more expensive.
+
+Do not memorize these paradigms as names only. Ask what direction information flows. Does the algorithm start from geometry and find covered pixels, or from pixels or rays and find visible geometry? That direction explains the strengths and weaknesses.
+
+The study meaning is this. Rasterization asks, Which samples does this primitive cover? Ray casting asks, What does this sample see?
+
+A useful closed check is this question. Which paradigm fits OpenGLs standard real time pipeline most directly?
+
+The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries.
+
+The term raster image means this. A grid of stored pixel samples, it is already an image, not a D scene. It belongs here because it participates in the chain scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term pixel means this. A discrete image sample containing color or channel values. It belongs here because it participates in the chain scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term color depth means this. The number of bits used to represent color values, controlling precision and memory size. It belongs here because it participates in the chain scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term D model means this. A structured description of geometry and attributes that can generate many possible images. It belongs here because it participates in the chain scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term primitive means this. A basic geometric object such as a point, line, or triangle used by the rendering pipeline. It belongs here because it participates in the chain scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term interactive graphics means this. Rendering where images must update quickly enough to respond to input or animation. It belongs here because it participates in the chain scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The compact rule for this chapter is image memory equals width x height x bits per pixel, then divide by for bytes.
+
+Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later.
+
+This chapter connects most directly to the assignment Introduction to C plus plus. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis.
+
+The main exam trap is this. Do not confuse an image representation with the geometric cause of the image. This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor.
+
+A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
+
+You are done with this chapter only when you can recognize a new question as belonging to Introduction, rebuild the chain scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis, and choose the correct answer even when the wording changes.
+
+
+Lecture two is about Rendering Pipeline.
+
+The central idea is this. Rendering is a sequence of representation changes, models become vertices, primitives, fragments, tested fragments, and finally framebuffer updates. The useful mental chain is application data, then geometry stage, then primitive assembly, then rasterization, then fragment operations, then framebuffer. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
+
+Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story.
+
+The first idea in this lecture is Rendering Process.
+
+Object based rendering starts with scene objects represented as primitives. The pipeline transforms vertices, assembles primitives, rasterizes them into fragments, and lets only some fragments become pixels. The important detail is that the representation changes at every stage.
+
+The application stage prepares data and state. The geometry stage handles positions and primitives. The rasterization stage creates fragments and applies fragment operations. This separation helps you explain both theory questions and black screen OpenGL bugs.
+
+The study meaning is this. Vertices become primitives, primitives become fragments, and fragments compete to become pixel updates.
+
+A useful closed check is this question. What is the difference between a fragment and a final pixel?
+
+The second idea in this lecture is OpenGL Overview.
+
+OpenGL is an API for controlling a graphics pipeline. It is not a renderer by itself in the sense of a single command that understands your scene. You create a context, provide buffers, set state, compile shaders, bind objects, and issue draw calls.
+
+Modern OpenGL is stateful and shader based. Many errors happen because the programmer assumes that a later call carries more information than it really does. The GPU uses the currently bound objects and current state at draw time.
+
+The study meaning is this. OpenGL draw calls consume the state machine as it exists right now.
+
+A useful closed check is this question. Why can binding the wrong vertex array or shader program produce a valid draw call with wrong output?
+
+The third idea in this lecture is OpenGL Rendering.
+
+Older OpenGL exposed a fixed function style where many transformations and lighting choices were configured through predefined calls. Modern OpenGL expects you to write shader programs and explicitly manage data flow.
+
+This is not just historical trivia. It explains why shader code, vertex attributes, uniforms, and buffer objects are central in the exercises. If the shader expects an attribute and the vertex layout does not provide it, the pipeline has no magic fallback.
+
+The study meaning is this. Modern OpenGL makes the data path explicit, that gives control but also creates responsibility.
+
+A useful closed check is this question. Which data usually goes into vertex attributes, and which data usually goes into uniforms?
+
+The fourth idea in this lecture is OpenGL Rendering Pipeline.
+
+The vertex shader runs per vertex and usually outputs clip space position plus attributes for later interpolation. Primitive assembly groups vertices into points, lines, or triangles. Clipping handles geometry outside the view volume. Rasterization creates fragments.
+
+The fragment shader computes candidate fragment output, often using interpolated attributes, uniforms, and textures. After that, tests and operations such as depth testing, stencil testing, blending, and masking decide what reaches the framebuffer.
+
+The study meaning is this. Programmable shaders compute values, fixed pipeline stages decide coverage, interpolation, tests, and output rules.
+
+A useful closed check is this question. If your geometry appears in wireframe but colors are wrong, which stages become suspicious?
+
+The fifth idea in this lecture is Fragment Tests, Framebuffer, and Pixel Based Rendering.
+
+Fragment tests are the gatekeepers after shading. A fragment can have a perfectly valid color and still fail because depth, stencil, scissor, masking, or blending state prevents a visible update. This is why final pixels are a subset of generated fragments.
+
+The framebuffer stores the final render targets, color buffers, depth buffers, stencil buffers, or custom attachments. Pixel based rendering starts from image data instead of geometric primitives, which is useful for image processing but conceptually different from the object to pixel pipeline.
+
+The study meaning is this. The framebuffer is the destination, fragment operations are the rules for writing into it.
+
+A useful closed check is this question. Why can two fragments with different colors produce only one visible pixel color?
+
+The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries.
+
+The term application stage means this. CPU side preparation of models, scene data, interaction, animation, and rendering state. It belongs here because it participates in the chain application data, then geometry stage, then primitive assembly, then rasterization, then fragment operations, then framebuffer. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term geometry stage means this. Pipeline stage that transforms vertices and prepares primitives. It belongs here because it participates in the chain application data, then geometry stage, then primitive assembly, then rasterization, then fragment operations, then framebuffer. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term rasterization means this. Conversion of projected primitives into fragment candidates on a sample grid. It belongs here because it participates in the chain application data, then geometry stage, then primitive assembly, then rasterization, then fragment operations, then framebuffer. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term fragment means this. A candidate pixel contribution produced by rasterization before final tests and blending. It belongs here because it participates in the chain application data, then geometry stage, then primitive assembly, then rasterization, then fragment operations, then framebuffer. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term framebuffer means this. Memory target that stores color, depth, stencil, or related per pixel results. It belongs here because it participates in the chain application data, then geometry stage, then primitive assembly, then rasterization, then fragment operations, then framebuffer. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term double buffering means this. Using front and back buffers so drawing can happen off screen before display swap. It belongs here because it participates in the chain application data, then geometry stage, then primitive assembly, then rasterization, then fragment operations, then framebuffer. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The compact rule for this chapter is vertices then primitives then fragments then tests then pixels.
+
+Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later.
+
+This chapter connects most directly to the assignment Rendering Pipeline. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, application data, then geometry stage, then primitive assembly, then rasterization, then fragment operations, then framebuffer.
+
+The main exam trap is this. Do not collapse the whole pipeline into the GPU draws it, name the intermediate representations. This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor.
+
+A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
+
+You are done with this chapter only when you can recognize a new question as belonging to Rendering Pipeline, rebuild the chain application data, then geometry stage, then primitive assembly, then rasterization, then fragment operations, then framebuffer, and choose the correct answer even when the wording changes.
+
+
+Lecture three is about Geometric Transformations.
+
+The central idea is this. Transformations change how points, vectors, normals, and coordinate frames are expressed across model, world, view, and clip related spaces. The useful mental chain is object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
+
+Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story.
+
+The first idea in this lecture is Mathematical Foundations.
+
+The lecture uses vectors and matrices to express geometric operations. A vector can represent a point position, a direction, an offset, or an attribute depending on context. A matrix expresses a linear map or, with homogeneous coordinates, an affine transformation.
+
+The central exam habit is to name the coordinate space. A point in model coordinates and a light direction in view coordinates cannot be mixed safely. Many visual bugs are coordinate space bugs.
+
+The study meaning is this. A numeric vector is incomplete until you know what coordinate system it belongs to.
+
+A useful closed check is this question. Why is a normal vector not transformed exactly like a point under all transformations?
+
+The second idea in this lecture is Affine Transformations.
+
+Affine transformations include translation, rotation, scaling, shearing, and combinations of these. Homogeneous coordinates allow translation to be represented in matrix form together with other transformations.
+
+Translation moves positions but not pure directions. Rotation changes orientation while preserving lengths if it is a proper rotation. Scaling can change lengths and can also affect normals. These distinctions matter later in lighting.
+
+The study meaning is this. Use D homogeneous coordinates so that a single matrix pipeline can move D points through the scene.
+
+A useful closed check is this question. What does the homogeneous w component let a transformation matrix express?
+
+The third idea in this lecture is Composition of Transformations.
+
+Composition means applying several transformations in sequence. The order matters because matrix multiplication is generally not commutative. Rotating an object around its own origin and then translating it is different from translating it and then rotating around the world origin.
+
+When you read a formula such as projection times view times model times position, read it from right to left for the point, first model, then view, then projection. The resulting matrix chain is compact, but the conceptual steps remain separate.
+
+The study meaning is this. Matrix chains are compressed stories of movement through coordinate spaces.
+
+A useful closed check is this question. Why can swapping model and view matrices destroy the intended camera or object relation?
+
+The fourth idea in this lecture is Coordinate System Change.
+
+A transformation can be read actively as moving an object, or passively as changing the coordinate frame used to describe it. Both interpretations are valid, but mixing them carelessly causes sign and order errors.
+
+The view matrix is a classic example, conceptually you position a camera, but the pipeline usually transforms the world by the inverse of the camera transform so that the camera becomes the origin of view space.
+
+The study meaning is this. Moving the camera one way is equivalent to moving the world the opposite way for rendering.
+
+A useful closed check is this question. Why is the view transform often related to the inverse camera transform?
+
+The fifth idea in this lecture is Transformations in OpenGL.
+
+Modern OpenGL does not automatically manage the old matrix stacks. You usually compute model, view, and projection matrices in application code and pass them to shaders as uniforms.
+
+The vertex shader is where the final clip space position is normally computed. That means a wrong matrix uniform, wrong multiplication order, or wrong convention can make geometry vanish even though buffers and draw calls are correct.
+
+The study meaning is this. The shader is the place where abstract transformation math becomes GPU execution.
+
+A useful closed check is this question. Which matrix would you inspect first if an object follows the camera instead of staying in the world?
+
+The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries.
+
+The term homogeneous coordinates means this. Coordinates with an additional component that make translation and projection expressible by matrices. It belongs here because it participates in the chain object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term translation means this. A transformation that moves points by an offset, direction vectors are not shifted the same way. It belongs here because it participates in the chain object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term rotation means this. A transformation that changes orientation while preserving distances. It belongs here because it participates in the chain object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term scaling means this. A transformation that changes size and can distort normals if handled incorrectly. It belongs here because it participates in the chain object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term matrix composition means this. Combining transformations by multiplication, where order matters. It belongs here because it participates in the chain object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term normal transformation means this. Transforming surface normals consistently, often requiring inverse transpose logic under non uniform scaling. It belongs here because it participates in the chain object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The compact rule for this chapter is p world equals M model times p model, p view equals V times p world.
+
+Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later.
+
+This chapter connects most directly to the assignment Geometric Transformations. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates.
+
+The main exam trap is this. Do not multiply matrices without naming source space, target space, and order. This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor.
+
+A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
+
+You are done with this chapter only when you can recognize a new question as belonging to Geometric Transformations, rebuild the chain object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates, and choose the correct answer even when the wording changes.
+
+
+Lecture four is about Geometric Projection.
+
+The central idea is this. Projection maps camera space geometry into clip coordinates and then normalized device coordinates before viewport mapping. The useful mental chain is view space position, then projection matrix, then clip coordinates, then perspective divide, then NDC, then viewport coordinates. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
+
+Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story.
+
+The first idea in this lecture is Linear Perspective and Planar Projections.
+
+Perspective projection models the visual effect that farther objects appear smaller. Orthographic projection removes this distance based size change and keeps parallel lines parallel. Both are useful, but they communicate different spatial relationships.
+
+Planar projection means mapping points onto an image plane. The lectures art examples are not decoration, they show that projection is a geometric rule for constructing an image from a viewpoint.
+
+The study meaning is this. Projection is the rule that turns D positions into image plane positions.
+
+A useful closed check is this question. What visual cue does perspective projection add that orthographic projection lacks?
+
+The second idea in this lecture is Camera Modeling.
+
+A virtual camera is defined by position, orientation, projection type, viewing volume, and image or viewport settings. The view transform places the world relative to the camera. The projection transform maps that view into clip coordinates.
+
+Near and far clipping planes are part of the camera model. They decide what range of depths is represented and strongly affect depth buffer precision. A careless near or far setup can create z fighting even if the scene geometry is correct.
+
+The study meaning is this. A camera is not only an eye position, it is also a volume and a mapping rule.
+
+A useful closed check is this question. Why can changing the near plane affect depth artifacts?
+
+The third idea in this lecture is Specifying Projections in OpenGL.
+
+In OpenGL, projection is usually encoded in a projection matrix sent to a shader. The matrix maps view space coordinates to clip space. Clipping and the perspective divide then lead toward normalized device coordinates.
+
+Aspect ratio and field of view must match the intended viewport. If the aspect ratio is wrong, objects appear stretched. If the field of view is extreme, the image can look distorted even though the math is functioning.
+
+The study meaning is this. The projection matrix is the camera lens encoded as linear algebra in homogeneous coordinates.
+
+A useful closed check is this question. What symptom suggests that the projection aspect ratio does not match the window?
+
+The fourth idea in this lecture is Orthographic and Perspective Derivations.
+
+The derivations are there to explain where the matrix entries come from. Orthographic projection maps a box shaped view volume into normalized coordinates. Perspective projection maps a frustum and uses the homogeneous component for the later divide.
+
+You do not need to treat these matrices as random formulas. Each part maps a coordinate range into a standard range. The perspective matrix additionally arranges w so that the perspective divide creates foreshortening.
+
+The study meaning is this. Projection matrices normalize a viewing volume, perspective also prepares the divide by w.
+
+A useful closed check is this question. What does the perspective divide do to x and y coordinates?
+
+The fifth idea in this lecture is Viewport Transformation.
+
+After normalized device coordinates, the viewport transform maps the normalized range to actual window coordinates. This is the last geometric mapping before rasterization uses the target grid.
+
+Separating projection from viewport mapping helps debugging. A wrong projection can produce wrong normalized coordinates, a wrong viewport can map otherwise valid coordinates into the wrong part of the window.
+
+The study meaning is this. Projection decides normalized position, viewport decides where that position lands on the screen.
+
+A useful closed check is this question. Why is resizing a window related to both viewport and projection settings?
+
+The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries.
+
+The term view volume means this. The D region visible to the camera before mapping to the screen. It belongs here because it participates in the chain view space position, then projection matrix, then clip coordinates, then perspective divide, then NDC, then viewport coordinates. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term orthographic projection means this. Projection without perspective foreshortening, parallel lines stay parallel. It belongs here because it participates in the chain view space position, then projection matrix, then clip coordinates, then perspective divide, then NDC, then viewport coordinates. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term perspective projection means this. Projection where farther objects appear smaller after division by the homogeneous component. It belongs here because it participates in the chain view space position, then projection matrix, then clip coordinates, then perspective divide, then NDC, then viewport coordinates. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term clip coordinates means this. Coordinates produced before clipping and perspective divide. It belongs here because it participates in the chain view space position, then projection matrix, then clip coordinates, then perspective divide, then NDC, then viewport coordinates. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term perspective divide means this. Division by w that produces normalized device coordinates. It belongs here because it participates in the chain view space position, then projection matrix, then clip coordinates, then perspective divide, then NDC, then viewport coordinates. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term viewport transformation means this. Mapping normalized device coordinates to window or screen coordinates. It belongs here because it participates in the chain view space position, then projection matrix, then clip coordinates, then perspective divide, then NDC, then viewport coordinates. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The compact rule for this chapter is p clip equals P times p view, p ndc equals p clip. xyz or p clip. w.
+
+Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later.
+
+This chapter connects most directly to the assignment Projections and Clipping. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, view space position, then projection matrix, then clip coordinates, then perspective divide, then NDC, then viewport coordinates.
+
+The main exam trap is this. Do not confuse projection with viewport mapping, the perspective divide sits between them. This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor.
+
+A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
+
+You are done with this chapter only when you can recognize a new question as belonging to Geometric Projection, rebuild the chain view space position, then projection matrix, then clip coordinates, then perspective divide, then NDC, then viewport coordinates, and choose the correct answer even when the wording changes.
+
+
+Lecture five is about Clipping.
+
+The central idea is this. Clipping classifies geometry against boundaries and keeps, rejects, or cuts primitives before rasterization. The useful mental chain is primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
+
+Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story.
+
+The first idea in this lecture is Cohen Sutherland Line Clipping.
+
+Cohen Sutherland assigns outcodes to line endpoints based on which side of the clipping window they lie on. These codes allow quick accept, quick reject, or partial clipping. The algorithm is efficient because many cases are decided before computing intersections.
+
+The exam friendly idea is the logic of region codes, if both endpoints are inside, keep the segment. If the bitwise AND of the outcodes is nonzero, both endpoints share an outside region and the segment can be rejected. Otherwise, compute an intersection and continue.
+
+The study meaning is this. Outcodes are a cheap classification before doing intersection math.
+
+A useful closed check is this question. What does a nonzero bitwise AND of two endpoint outcodes imply?
+
+The second idea in this lecture is Cyrus Beck Line Clipping.
+
+Cyrus Beck treats the line parametrically and clips against convex boundaries. Instead of repeatedly using region codes, it finds entering and leaving parameter values along the line.
+
+The key is to reason about the line parameter t. A clipped line segment is not a new unrelated line, it is a restricted interval of the original parametric line. Boundary tests shrink that interval.
+
+The study meaning is this. Clipping a parametric line means narrowing the valid t interval.
+
+A useful closed check is this question. Why does Cyrus Beck naturally require convex clipping regions?
+
+The third idea in this lecture is Sutherland Hodgman Polygon Clipping.
+
+Sutherland Hodgman clips a polygon against one boundary at a time. For each edge of the polygon, it decides whether vertices are inside or outside and emits zero, one, or two vertices depending on transitions across the boundary.
+
+This algorithm is easiest to understand as a stream processor. Feed in a polygon, clip it against the left boundary, feed the result into the right boundary, and so on. Each boundary can add intersection vertices.
+
+The study meaning is this. Polygon clipping is repeated edge by edge filtering plus intersection insertion.
+
+A useful closed check is this question. When can polygon clipping increase the number of vertices?
+
+The fourth idea in this lecture is Weiler Atherton and Greiner Hormann.
+
+These algorithms address more complex polygon clipping scenarios, especially when polygon relationships are not as simple as convex window clipping. They organize intersections and traversal rules to produce correct output boundaries.
+
+For preparation, focus on why simpler algorithms are not enough. Complex polygon intersection can require following alternating boundaries of subject and clipping polygons. That is a topology problem, not only a line intersection problem.
+
+The study meaning is this. Complex polygon clipping is about traversing boundary networks after intersections are known.
+
+A useful closed check is this question. Why are intersection ordering and traversal rules important for polygon clipping?
+
+The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries.
+
+The term clipping means this. Removing or cutting geometry outside a valid window, plane, or volume. It belongs here because it participates in the chain primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term Cohen Sutherland means this. Line clipping method using region or outcodes to reject, accept, or clip line segments. It belongs here because it participates in the chain primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term Sutherland Hodgman means this. Polygon clipping method that processes polygon vertices against clipping boundaries. It belongs here because it participates in the chain primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term Cyrus Beck means this. Parametric line clipping method using entering and leaving parameter intervals. It belongs here because it participates in the chain primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term outcode means this. A compact code describing where a point lies relative to clipping boundaries. It belongs here because it participates in the chain primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term intersection point means this. New boundary point created when a primitive crosses a clipping edge or plane. It belongs here because it participates in the chain primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The compact rule for this chapter is line point p, t, equals p plus t times, p p,, then restrict t to the visible interval.
+
+Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later.
+
+This chapter connects most directly to the assignment Projections and Clipping. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive.
+
+The main exam trap is this. Do not describe clipping as only deletion, crossing primitives can create new vertices. This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor.
+
+A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
+
+You are done with this chapter only when you can recognize a new question as belonging to Clipping, rebuild the chain primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive, and choose the correct answer even when the wording changes.
+
+
+Lecture six is about Rasterization.
+
+The central idea is this. Rasterization converts continuous projected geometry into discrete fragment candidates and interpolated per fragment attributes. The useful mental chain is projected primitive, then sample coverage, then fragment generation, then attribute interpolation, then fragment tests. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
+
+Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story.
+
+The first idea in this lecture is Line Rasterization.
+
+A mathematical line has infinitely many points, but a raster display has a finite grid. Line rasterization decides which grid cells or samples best approximate the ideal line. The algorithm must balance accuracy, speed, and consistency.
+
+Incremental algorithms avoid recomputing expensive formulas for every pixel. The important idea is to step along one axis and update an error term that decides when to step along the other axis.
+
+The study meaning is this. Rasterizing a line means approximating a continuous path by grid decisions.
+
+A useful closed check is this question. Why are incremental error updates useful in line rasterization?
+
+The second idea in this lecture is Triangle Edge Rasterization.
+
+Triangles are the core primitive in real time rendering. Edge functions or half space tests decide whether a sample lies inside the triangle. This allows the rasterizer to test coverage systematically.
+
+Coverage is not final visibility. A covered sample becomes a fragment candidate. Depth testing, stencil testing, blending, and other operations still decide whether the framebuffer changes.
+
+The study meaning is this. Triangle rasterization answers the question, which samples are inside this projected triangle?
+
+A useful closed check is this question. What later stage can reject a fragment after triangle coverage succeeds?
+
+The third idea in this lecture is Region Filling.
+
+Region filling generalizes the idea of determining interior samples. The algorithm must identify connected areas or spans that should receive color. This connects rasterization to scan conversion and image space reasoning.
+
+The practical issue is avoiding gaps, double fills, or inconsistent boundary handling. Small choices at edges can become visible artifacts when many primitives meet.
+
+The study meaning is this. Filling is about turning boundary descriptions into consistent interior samples.
+
+A useful closed check is this question. Why can inconsistent edge rules create cracks between adjacent primitives?
+
+The fourth idea in this lecture is Scanline Based Triangle Rasterization.
+
+Scanline rasterization processes horizontal rows of the image. For each row that crosses a triangle, the algorithm finds the covered interval and fills the span. Attribute interpolation can be updated along edges and across each span.
+
+The method is intuitive because it follows the memory layout of many images. It also demonstrates why interpolation is tied to rasterization, once you know a sample location inside the primitive, you can interpolate depth, color, normals, or texture coordinates.
+
+The study meaning is this. Each scanline asks, where does this triangle enter and leave this row?
+
+A useful closed check is this question. Which attributes might be interpolated while filling triangle spans?
+
+The fifth idea in this lecture is Tile Based Triangle Rasterization.
+
+Tile or block based approaches group pixels into small regions. This can improve locality and parallel work distribution. Modern GPUs often reason in blocks or tiles internally because rendering is massively parallel.
+
+For the exam, connect this to efficiency. The mathematical goal is still coverage, but the implementation is organized to use hardware resources well.
+
+The study meaning is this. Block based rasterization keeps the same coverage problem but changes the work organization.
+
+A useful closed check is this question. Why is block organization attractive for parallel graphics hardware?
+
+The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries.
+
+The term scan conversion means this. Determining which discrete samples are covered by an ideal geometric primitive. It belongs here because it participates in the chain projected primitive, then sample coverage, then fragment generation, then attribute interpolation, then fragment tests. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term triangle coverage means this. Testing which pixel or sample positions lie inside a triangle. It belongs here because it participates in the chain projected primitive, then sample coverage, then fragment generation, then attribute interpolation, then fragment tests. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term barycentric coordinates means this. Weights relative to triangle vertices used for inside tests and interpolation. It belongs here because it participates in the chain projected primitive, then sample coverage, then fragment generation, then attribute interpolation, then fragment tests. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term interpolation means this. Computing per fragment values from vertex attributes. It belongs here because it participates in the chain projected primitive, then sample coverage, then fragment generation, then attribute interpolation, then fragment tests. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term aliasing means this. Artifacts caused when continuous signals are sampled too coarsely. It belongs here because it participates in the chain projected primitive, then sample coverage, then fragment generation, then attribute interpolation, then fragment tests. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term fragment candidate means this. A potential contribution to the framebuffer, not yet a guaranteed visible pixel. It belongs here because it participates in the chain projected primitive, then sample coverage, then fragment generation, then attribute interpolation, then fragment tests. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The compact rule for this chapter is attribute equals alpha times a plus beta times a plus gamma times a, with alpha plus beta plus gamma equals.
+
+Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later.
+
+This chapter connects most directly to the assignment Rasterization. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, projected primitive, then sample coverage, then fragment generation, then attribute interpolation, then fragment tests.
+
+The main exam trap is this. Do not call every generated fragment a final pixel. This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor.
+
+A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
+
+You are done with this chapter only when you can recognize a new question as belonging to Rasterization, rebuild the chain projected primitive, then sample coverage, then fragment generation, then attribute interpolation, then fragment tests, and choose the correct answer even when the wording changes.
+
+
+Lecture seven is about Visibility Determination.
+
+The central idea is this. Visibility algorithms decide which candidate surface is actually seen from the current viewpoint. The useful mental chain is many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
+
+Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story.
+
+The first idea in this lecture is Object Based Algorithms.
+
+Object based visibility algorithms reason about geometry before or while comparing surfaces. They can sort, split, or reject objects based on spatial relations. This is different from simply letting every fragment fight in the depth buffer.
+
+The value of object based reasoning is reducing work or establishing correct order. The difficulty is that geometry can overlap in complicated ways, so simple global ordering is not always possible.
+
+The study meaning is this. Object based visibility tries to solve visibility with geometry before final pixels are written.
+
+A useful closed check is this question. Why can intersecting polygons make simple depth sorting fail?
+
+The second idea in this lecture is Binary Space Partitioning.
+
+A BSP tree recursively divides space with planes. Once built, it can help traverse geometry in a view dependent order. This is useful for visibility and ordering because the tree encodes spatial relationships.
+
+The cost is preprocessing and possible splitting of geometry. BSP is a good example of trading memory and setup work for faster or more structured visibility decisions later.
+
+The study meaning is this. A BSP tree stores a recursive answer to which side of this plane is the geometry on?
+
+A useful closed check is this question. Why can building a BSP tree require splitting polygons?
+
+The third idea in this lecture is Warnock Algorithm.
+
+Warnocks algorithm works in image space by subdividing regions until visibility is simple enough to decide. If a region is ambiguous, split it. If it is simple, fill it.
+
+This illustrates a general graphics strategy, recursively reduce a hard global problem into smaller local problems. The algorithm is less central in modern OpenGL practice than the depth buffer, but it helps contrast image space and object space approaches.
+
+The study meaning is this. When a region is too complicated, subdivide until the answer becomes simple.
+
+A useful closed check is this question. What makes Warnocks algorithm image space rather than object space?
+
+The fourth idea in this lecture is Depth Buffer Algorithm.
+
+The depth buffer stores the closest accepted depth at each sample or pixel. For each fragment, compare its depth to the stored depth. If it passes, update the color and depth, otherwise discard it.
+
+The strength of the depth buffer is simplicity and hardware efficiency. The weakness is precision, depth values are finite, and projection distributes precision unevenly. Bad near or far settings can create z fighting.
+
+The study meaning is this. The depth buffer is a per sample competition for closest visible fragment.
+
+A useful closed check is this question. Why should the near plane not be unnecessarily close to the camera?
+
+The fifth idea in this lecture is Depth Extensions and Ray Casting.
+
+Depth buffer extensions refine or adapt depth based visibility, for example by handling precision, transparency, or multiple layers more carefully. Standard depth testing alone is not a complete solution for every visibility situation.
+
+Ray casting takes the opposite direction from rasterization, for each image sample, cast a ray into the scene and find the closest intersection. This naturally solves primary visibility but requires intersection work instead of raster coverage work.
+
+The study meaning is this. Rasterization pushes primitives to pixels, ray casting pulls visibility from pixels into the scene.
+
+A useful closed check is this question. Why is transparency harder than opaque nearest surface visibility?
+
+The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries.
+
+The term depth buffer means this. Per pixel storage of depth values used to keep the nearest visible fragment. It belongs here because it participates in the chain many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term z buffer algorithm means this. Image space visibility method comparing fragment depths at each pixel. It belongs here because it participates in the chain many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term Painters algorithm means this. Object order visibility method based on drawing farther objects before nearer objects. It belongs here because it participates in the chain many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term BSP tree means this. Space partitioning structure that can support visibility ordering. It belongs here because it participates in the chain many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term Warnock algorithm means this. Image space subdivision method for resolving visible surfaces in regions. It belongs here because it participates in the chain many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term ray casting means this. Finding visible surfaces by tracing rays from image samples into the scene. It belongs here because it participates in the chain many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The compact rule for this chapter is visible fragment equals candidate with passing depth or visibility test at the sample.
+
+Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later.
+
+This chapter connects most directly to the assignment Rasterization and integrated rendering tasks. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution.
+
+The main exam trap is this. Do not confuse generating a fragment with proving that it is visible. This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor.
+
+A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
+
+You are done with this chapter only when you can recognize a new question as belonging to Visibility Determination, rebuild the chain many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution, and choose the correct answer even when the wording changes.
+
+
+Lecture eight is about Local Illumination.
+
+The central idea is this. Local illumination computes color from surface orientation, light direction, view direction, and material response. The useful mental chain is surface point plus normal plus light plus view plus material, then lighting equation, then shaded color. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
+
+Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story.
+
+The first idea in this lecture is Physics of Light.
+
+The physics slides provide intuition for light as energy interacting with surfaces. For this course, the goal is not full physical simulation but a usable model for real time rendering.
+
+Important terms are reflection, absorption, wavelength or color, intensity, and direction. These terms become shader inputs or material parameters later. The simplified model must still preserve the relation between light direction, surface orientation, and observed brightness.
+
+The study meaning is this. Shading is an approximation of light surface interaction that is cheap enough for rendering.
+
+A useful closed check is this question. Why does surface orientation affect diffuse brightness?
+
+The second idea in this lecture is Light Sources.
+
+Light source models define where light comes from and how its direction and intensity are computed. Directional lights approximate distant sources with parallel rays. Point lights emit from a position and often include attenuation. Spotlights add a directional cone.
+
+In shader code, the type of light determines how you compute the light vector. A directional light can use a fixed direction, a point light requires subtracting the surface position from the light position.
+
+The study meaning is this. Different light types mainly change how the light direction and intensity are computed at the surface point.
+
+A useful closed check is this question. What is the difference between a directional light vector and a point light vector?
+
+The third idea in this lecture is Material Models.
+
+A material model tells the shader how a surface responds to light. Diffuse material scatters light broadly, specular material creates view dependent highlights, ambient terms approximate background illumination.
+
+Material coefficients are not arbitrary decoration. They scale the contribution of each lighting term. If the specular coefficient is zero, the surface should not show a specular highlight under that model.
+
+The study meaning is this. Light asks what arrives, material answers how the surface reacts.
+
+A useful closed check is this question. Which material parameter would you adjust to reduce shiny highlights?
+
+The fourth idea in this lecture is Phong Illumination Model.
+
+The Phong illumination model combines ambient, diffuse, and specular terms. Diffuse lighting uses the angle between normal and light direction. Specular lighting also depends on the viewer because highlights move with the view direction.
+
+The formula is less important than the decomposition. Ambient is a rough constant approximation. Diffuse is orientation dependent matte reflection. Specular is view dependent shininess. A correct answer should name the vectors and normalize them.
+
+The study meaning is this. Phong style lighting is a sum of simple terms, each modeling a different visual effect.
+
+A useful closed check is this question. Why does the specular term depend on the view direction?
+
+The fifth idea in this lecture is Shading.
+
+Shading decides where the illumination calculation is evaluated and how results are interpolated. Flat shading uses one value per primitive. Gouraud shading evaluates at vertices and interpolates colors. Phong shading interpolates normals and evaluates lighting per fragment.
+
+Per fragment shading is more expensive but can represent highlights more accurately. This connects directly to the pipeline, interpolation during rasterization provides the data used by the fragment shader.
+
+The study meaning is this. The shading method decides what is computed at vertices and what is computed at fragments.
+
+A useful closed check is this question. Why can Gouraud shading miss a small specular highlight?
+
+The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries.
+
+The term surface normal means this. Vector describing surface orientation and controlling diffuse or specular response. It belongs here because it participates in the chain surface point plus normal plus light plus view plus material, then lighting equation, then shaded color. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term ambient term means this. Approximate base illumination independent of direct light direction. It belongs here because it participates in the chain surface point plus normal plus light plus view plus material, then lighting equation, then shaded color. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term diffuse reflection means this. View independent light response based on the angle between normal and light direction. It belongs here because it participates in the chain surface point plus normal plus light plus view plus material, then lighting equation, then shaded color. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term specular reflection means this. View dependent highlight term based on reflection or half vector alignment. It belongs here because it participates in the chain surface point plus normal plus light plus view plus material, then lighting equation, then shaded color. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term Phong model means this. Local illumination model combining ambient, diffuse, and specular components. It belongs here because it participates in the chain surface point plus normal plus light plus view plus material, then lighting equation, then shaded color. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term material coefficient means this. Parameter controlling how strongly a surface responds to lighting terms. It belongs here because it participates in the chain surface point plus normal plus light plus view plus material, then lighting equation, then shaded color. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The compact rule for this chapter is color equals ambient plus diffuse plus specular.
+
+Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later.
+
+This chapter connects most directly to the assignment Rendering contest and shader related tasks. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, surface point plus normal plus light plus view plus material, then lighting equation, then shaded color.
+
+The main exam trap is this. Do not mix up normal, light direction, and view direction, each changes a different lighting term. This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor.
+
+A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
+
+You are done with this chapter only when you can recognize a new question as belonging to Local Illumination, rebuild the chain surface point plus normal plus light plus view plus material, then lighting equation, then shaded color, and choose the correct answer even when the wording changes.
+
+
+Lecture nine is about Texturing.
+
+The central idea is this. Texturing uses coordinates and sampler state to fetch stored data and interpret it in a shader. The useful mental chain is fragment coordinates, then texture coordinates, then sampler or filter or wrap state, then texel fetch, then shader meaning. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
+
+Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story.
+
+The first idea in this lecture is Texture Objects, Texels, Formats, and Color Space.
+
+A texture object stores sampled data on the GPU. A texel is one stored texture sample. The texture format decides what channels and numeric representation the samples use. Color space matters because color values may be stored nonlinearly, especially for sRGB images.
+
+The key shift is to stop thinking of texture as only a picture. Textures can store color, normals, depth, lookup data, environment information, or volume data. The shader decides how the sampled values are interpreted.
+
+The study meaning is this. A texture is a GPU accessible sampled data field.
+
+A useful closed check is this question. Why can the same texture mechanism store both color maps and normal maps?
+
+The second idea in this lecture is Texture Coordinates, UV Mapping, and Wrapping.
+
+Texture coordinates map surface points to locations in texture space. UV coordinates are usually interpolated across primitives during rasterization and then used by the fragment shader to sample a texture.
+
+Wrapping rules decide what happens outside the normal coordinate range. Repeat, clamp, mirrored repeat, and border behavior are not visual afterthoughts, they define the sampling function outside the base domain.
+
+The study meaning is this. UVs are the address system that lets a fragment look up texture data.
+
+A useful closed check is this question. What artifact might appear if a wrapping mode is wrong at the edge of a surface?
+
+The third idea in this lecture is Sampling, Filtering, Mipmaps, and Anisotropy.
+
+Sampling turns continuous texture coordinates into values from discrete texels. Nearest filtering selects a nearby texel and can look blocky. Linear filtering blends nearby texels and looks smoother. Minification is harder because many texels may map to one pixel.
+
+Mipmaps store prefiltered lower resolution versions of a texture. They reduce aliasing and shimmer when textures are seen at small scale. Anisotropic filtering improves quality when a texture is viewed at a steep angle where footprint shape is elongated.
+
+The study meaning is this. Filtering reconstructs values, mipmaps choose an appropriate scale before reconstruction.
+
+A useful closed check is this question. Why does a distant checkerboard shimmer without mipmapping?
+
+The fourth idea in this lecture is Modern OpenGL Texture Pipeline.
+
+In modern OpenGL, textures are represented by texture objects, bound to texture units, connected to sampler uniforms, and accessed in shaders. The shader does not sample a filename, it samples a bound texture through a sampler.
+
+Texture bugs often come from state mismatches, wrong active texture unit, wrong sampler uniform, missing mipmaps for a mipmap filter, wrong wrap mode, or wrong internal format.
+
+The study meaning is this. OpenGL texturing is a chain, object data then texture unit then sampler uniform then shader lookup.
+
+A useful closed check is this question. Why can a texture appear black when the shader code is mathematically correct?
+
+The fifth idea in this lecture is Normal Mapping.
+
+Normal mapping stores normal directions in a texture so that lighting can vary at a finer scale than the geometry. The surface may have few triangles, but the shader receives detailed normals per fragment.
+
+The hard part is coordinate space. Normal maps are often defined in tangent space, so the shader must transform or interpret them with the correct tangent, bitangent, and normal basis.
+
+The study meaning is this. Normal mapping changes the lighting normal, not the actual mesh silhouette.
+
+A useful closed check is this question. Why does normal mapping not change the geometric outline of an object?
+
+The sixth idea in this lecture is Environment Mapping and D Textures.
+
+Environment mapping uses textures to represent surrounding illumination or reflections. A direction, not a surface UV alone, can be used to sample an environment map. This is a texture lookup driven by view or reflection geometry.
+
+D textures and volume rendering extend the same sampled data idea into three dimensions. Instead of sampling a D image, the shader samples a volume. This is useful for data such as medical scans, density fields, or procedural volumetric effects.
+
+The study meaning is this. Textures are general sampled data, the coordinate dimensionality depends on the problem.
+
+A useful closed check is this question. What coordinate type would you use to sample a D texture?
+
+The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries.
+
+The term texture means this. Sampled data array used for color, normals, material data, depth, or other shader inputs. It belongs here because it participates in the chain fragment coordinates, then texture coordinates, then sampler or filter or wrap state, then texel fetch, then shader meaning. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term texel means this. A stored sample in texture memory. It belongs here because it participates in the chain fragment coordinates, then texture coordinates, then sampler or filter or wrap state, then texel fetch, then shader meaning. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term UV coordinates means this. Coordinates that map surface locations to texture space. It belongs here because it participates in the chain fragment coordinates, then texture coordinates, then sampler or filter or wrap state, then texel fetch, then shader meaning. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term filtering means this. Rule for reconstructing values between texels, such as nearest or linear filtering. It belongs here because it participates in the chain fragment coordinates, then texture coordinates, then sampler or filter or wrap state, then texel fetch, then shader meaning. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term mipmap means this. Precomputed lower resolution texture levels used to reduce aliasing and improve sampling. It belongs here because it participates in the chain fragment coordinates, then texture coordinates, then sampler or filter or wrap state, then texel fetch, then shader meaning. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term environment mapping means this. Using texture lookup to approximate surrounding reflections or distant lighting. It belongs here because it participates in the chain fragment coordinates, then texture coordinates, then sampler or filter or wrap state, then texel fetch, then shader meaning. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The compact rule for this chapter is sampled value equals texture, sampler, uv,, then shader interprets the value.
+
+Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later.
+
+This chapter connects most directly to the assignment Rendering contest and texture or shader tasks. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, fragment coordinates, then texture coordinates, then sampler or filter or wrap state, then texel fetch, then shader meaning.
+
+The main exam trap is this. Do not reduce texturing to pasting an image onto geometry. This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor.
+
+A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
+
+You are done with this chapter only when you can recognize a new question as belonging to Texturing, rebuild the chain fragment coordinates, then texture coordinates, then sampler or filter or wrap state, then texel fetch, then shader meaning, and choose the correct answer even when the wording changes.
+
+
+Lecture ten is about Shadows.
+
+The central idea is this. Shadows are visibility tests from the light source, not only dark shapes seen by the camera. The useful mental chain is light, then possible blocker, then receiver point, then light space visibility test, then lit or shadowed result. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
+
+Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story.
+
+The first idea in this lecture is Definitions.
+
+A shadow is not simply a dark texture. It is evidence that light visibility is blocked. Important distinctions include hard versus soft shadows, umbra versus penumbra, and geometric versus precomputed approaches.
+
+For real time graphics, shadows are usually approximated. The approximation must answer a visibility question cheaply enough for interactive rendering.
+
+The study meaning is this. Shadows are light space visibility made visible in the camera image.
+
+A useful closed check is this question. Why is shadow computation related to visibility determination?
+
+The second idea in this lecture is Ground Plane Shadows.
+
+Ground plane shadows project an object onto a receiving plane. This is simple and can look convincing in restricted scenes, but it assumes a known planar receiver and does not handle general shadowing between arbitrary objects.
+
+The method is useful pedagogically because it makes the geometric nature of shadows explicit, a light source, an occluder, and a receiver define where the shadow lands.
+
+The study meaning is this. A planar shadow is projected geometry on a known receiver.
+
+A useful closed check is this question. What scene limitation makes ground plane shadows less general than shadow maps?
+
+The third idea in this lecture is Light Maps.
+
+Light maps store precomputed lighting or shadow information in textures. They can be efficient at runtime, but they are limited when lights, objects, or geometry move dynamically.
+
+This is another example of a recurring graphics tradeoff, precompute for speed, but lose flexibility. Real time rendering often mixes precomputed and dynamic techniques.
+
+The study meaning is this. A light map spends storage and preprocessing to save runtime shading work.
+
+A useful closed check is this question. Why are light maps less suitable for fully dynamic moving lights?
+
+The fourth idea in this lecture is Shadow Volumes.
+
+Shadow volumes construct the volume of space blocked from a light by an occluder. The camera view can then determine whether visible points lie inside that volume. Stencil buffer techniques are often associated with this method.
+
+The strength is geometric precision for hard shadows. The cost is handling silhouette edges, volume construction, and robust stencil operations. It is a good contrast to shadow maps, which are image based from the light view.
+
+The study meaning is this. A shadow volume is the D region where the light cannot reach.
+
+A useful closed check is this question. Why are silhouette edges important for constructing shadow volumes?
+
+The fifth idea in this lecture is Shadow Maps.
+
+Shadow mapping renders the scene from the lights point of view and stores depth. During the camera pass, a surface point is transformed into light space and compared against the stored depth. If it is farther than what the light saw, it is in shadow.
+
+This method is practical and widely used, but it has artifacts. Shadow acne comes from precision or self comparison issues. Bias can reduce acne but too much bias causes detached shadows. Resolution, filtering, and light projection strongly affect quality.
+
+The study meaning is this. Shadow maps reuse the depth buffer idea, but from the lights camera.
+
+A useful closed check is this question. What exactly is stored in a shadow map?
+
+The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries.
+
+The term shadow means this. Reduced direct illumination where an object blocks light from reaching a receiver. It belongs here because it participates in the chain light, then possible blocker, then receiver point, then light space visibility test, then lit or shadowed result. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term occluder means this. Object that blocks light. It belongs here because it participates in the chain light, then possible blocker, then receiver point, then light space visibility test, then lit or shadowed result. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term receiver means this. Surface where the shadow appears. It belongs here because it participates in the chain light, then possible blocker, then receiver point, then light space visibility test, then lit or shadowed result. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term shadow map means this. Depth image rendered from the lights point of view for later visibility comparison. It belongs here because it participates in the chain light, then possible blocker, then receiver point, then light space visibility test, then lit or shadowed result. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term shadow volume means this. Volume of space hidden from a light by an occluder. It belongs here because it participates in the chain light, then possible blocker, then receiver point, then light space visibility test, then lit or shadowed result. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term projective shadow means this. Shadow construction based on projecting geometry onto a receiver. It belongs here because it participates in the chain light, then possible blocker, then receiver point, then light space visibility test, then lit or shadowed result. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The compact rule for this chapter is point is shadowed if something is closer to the light along the same light ray.
+
+Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later.
+
+This chapter connects most directly to the assignment Rendering contest and integrated lighting tasks. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, light, then possible blocker, then receiver point, then light space visibility test, then lit or shadowed result.
+
+The main exam trap is this. Do not explain a shadow only from the camera view, the key test is light space visibility. This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor.
+
+A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
+
+You are done with this chapter only when you can recognize a new question as belonging to Shadows, rebuild the chain light, then possible blocker, then receiver point, then light space visibility test, then lit or shadowed result, and choose the correct answer even when the wording changes.

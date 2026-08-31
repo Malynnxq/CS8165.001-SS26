@@ -1,0 +1,81 @@
+Lecture eight is about Local Illumination.
+
+The central idea is this. Local illumination computes color from surface orientation, light direction, view direction, and material response. The useful mental chain is surface point plus normal plus light plus view plus material, then lighting equation, then shaded color. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
+
+Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story.
+
+The first idea in this lecture is Physics of Light.
+
+The physics slides provide intuition for light as energy interacting with surfaces. For this course, the goal is not full physical simulation but a usable model for real time rendering.
+
+Important terms are reflection, absorption, wavelength or color, intensity, and direction. These terms become shader inputs or material parameters later. The simplified model must still preserve the relation between light direction, surface orientation, and observed brightness.
+
+The study meaning is this. Shading is an approximation of light surface interaction that is cheap enough for rendering.
+
+A useful closed check is this question. Why does surface orientation affect diffuse brightness?
+
+The second idea in this lecture is Light Sources.
+
+Light source models define where light comes from and how its direction and intensity are computed. Directional lights approximate distant sources with parallel rays. Point lights emit from a position and often include attenuation. Spotlights add a directional cone.
+
+In shader code, the type of light determines how you compute the light vector. A directional light can use a fixed direction, a point light requires subtracting the surface position from the light position.
+
+The study meaning is this. Different light types mainly change how the light direction and intensity are computed at the surface point.
+
+A useful closed check is this question. What is the difference between a directional light vector and a point light vector?
+
+The third idea in this lecture is Material Models.
+
+A material model tells the shader how a surface responds to light. Diffuse material scatters light broadly, specular material creates view dependent highlights, ambient terms approximate background illumination.
+
+Material coefficients are not arbitrary decoration. They scale the contribution of each lighting term. If the specular coefficient is zero, the surface should not show a specular highlight under that model.
+
+The study meaning is this. Light asks what arrives, material answers how the surface reacts.
+
+A useful closed check is this question. Which material parameter would you adjust to reduce shiny highlights?
+
+The fourth idea in this lecture is Phong Illumination Model.
+
+The Phong illumination model combines ambient, diffuse, and specular terms. Diffuse lighting uses the angle between normal and light direction. Specular lighting also depends on the viewer because highlights move with the view direction.
+
+The formula is less important than the decomposition. Ambient is a rough constant approximation. Diffuse is orientation dependent matte reflection. Specular is view dependent shininess. A correct answer should name the vectors and normalize them.
+
+The study meaning is this. Phong style lighting is a sum of simple terms, each modeling a different visual effect.
+
+A useful closed check is this question. Why does the specular term depend on the view direction?
+
+The fifth idea in this lecture is Shading.
+
+Shading decides where the illumination calculation is evaluated and how results are interpolated. Flat shading uses one value per primitive. Gouraud shading evaluates at vertices and interpolates colors. Phong shading interpolates normals and evaluates lighting per fragment.
+
+Per fragment shading is more expensive but can represent highlights more accurately. This connects directly to the pipeline, interpolation during rasterization provides the data used by the fragment shader.
+
+The study meaning is this. The shading method decides what is computed at vertices and what is computed at fragments.
+
+A useful closed check is this question. Why can Gouraud shading miss a small specular highlight?
+
+The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries.
+
+The term surface normal means this. Vector describing surface orientation and controlling diffuse or specular response. It belongs here because it participates in the chain surface point plus normal plus light plus view plus material, then lighting equation, then shaded color. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term ambient term means this. Approximate base illumination independent of direct light direction. It belongs here because it participates in the chain surface point plus normal plus light plus view plus material, then lighting equation, then shaded color. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term diffuse reflection means this. View independent light response based on the angle between normal and light direction. It belongs here because it participates in the chain surface point plus normal plus light plus view plus material, then lighting equation, then shaded color. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term specular reflection means this. View dependent highlight term based on reflection or half vector alignment. It belongs here because it participates in the chain surface point plus normal plus light plus view plus material, then lighting equation, then shaded color. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term Phong model means this. Local illumination model combining ambient, diffuse, and specular components. It belongs here because it participates in the chain surface point plus normal plus light plus view plus material, then lighting equation, then shaded color. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term material coefficient means this. Parameter controlling how strongly a surface responds to lighting terms. It belongs here because it participates in the chain surface point plus normal plus light plus view plus material, then lighting equation, then shaded color. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The compact rule for this chapter is color equals ambient plus diffuse plus specular.
+
+Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later.
+
+This chapter connects most directly to the assignment Rendering contest and shader related tasks. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, surface point plus normal plus light plus view plus material, then lighting equation, then shaded color.
+
+The main exam trap is this. Do not mix up normal, light direction, and view direction, each changes a different lighting term. This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor.
+
+A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
+
+You are done with this chapter only when you can recognize a new question as belonging to Local Illumination, rebuild the chain surface point plus normal plus light plus view plus material, then lighting equation, then shaded color, and choose the correct answer even when the wording changes.

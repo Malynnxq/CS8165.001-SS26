@@ -1,0 +1,91 @@
+Lecture nine is about Texturing.
+
+The central idea is this. Texturing uses coordinates and sampler state to fetch stored data and interpret it in a shader. The useful mental chain is fragment coordinates, then texture coordinates, then sampler or filter or wrap state, then texel fetch, then shader meaning. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
+
+Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story.
+
+The first idea in this lecture is Texture Objects, Texels, Formats, and Color Space.
+
+A texture object stores sampled data on the GPU. A texel is one stored texture sample. The texture format decides what channels and numeric representation the samples use. Color space matters because color values may be stored nonlinearly, especially for sRGB images.
+
+The key shift is to stop thinking of texture as only a picture. Textures can store color, normals, depth, lookup data, environment information, or volume data. The shader decides how the sampled values are interpreted.
+
+The study meaning is this. A texture is a GPU accessible sampled data field.
+
+A useful closed check is this question. Why can the same texture mechanism store both color maps and normal maps?
+
+The second idea in this lecture is Texture Coordinates, UV Mapping, and Wrapping.
+
+Texture coordinates map surface points to locations in texture space. UV coordinates are usually interpolated across primitives during rasterization and then used by the fragment shader to sample a texture.
+
+Wrapping rules decide what happens outside the normal coordinate range. Repeat, clamp, mirrored repeat, and border behavior are not visual afterthoughts, they define the sampling function outside the base domain.
+
+The study meaning is this. UVs are the address system that lets a fragment look up texture data.
+
+A useful closed check is this question. What artifact might appear if a wrapping mode is wrong at the edge of a surface?
+
+The third idea in this lecture is Sampling, Filtering, Mipmaps, and Anisotropy.
+
+Sampling turns continuous texture coordinates into values from discrete texels. Nearest filtering selects a nearby texel and can look blocky. Linear filtering blends nearby texels and looks smoother. Minification is harder because many texels may map to one pixel.
+
+Mipmaps store prefiltered lower resolution versions of a texture. They reduce aliasing and shimmer when textures are seen at small scale. Anisotropic filtering improves quality when a texture is viewed at a steep angle where footprint shape is elongated.
+
+The study meaning is this. Filtering reconstructs values, mipmaps choose an appropriate scale before reconstruction.
+
+A useful closed check is this question. Why does a distant checkerboard shimmer without mipmapping?
+
+The fourth idea in this lecture is Modern OpenGL Texture Pipeline.
+
+In modern OpenGL, textures are represented by texture objects, bound to texture units, connected to sampler uniforms, and accessed in shaders. The shader does not sample a filename, it samples a bound texture through a sampler.
+
+Texture bugs often come from state mismatches, wrong active texture unit, wrong sampler uniform, missing mipmaps for a mipmap filter, wrong wrap mode, or wrong internal format.
+
+The study meaning is this. OpenGL texturing is a chain, object data then texture unit then sampler uniform then shader lookup.
+
+A useful closed check is this question. Why can a texture appear black when the shader code is mathematically correct?
+
+The fifth idea in this lecture is Normal Mapping.
+
+Normal mapping stores normal directions in a texture so that lighting can vary at a finer scale than the geometry. The surface may have few triangles, but the shader receives detailed normals per fragment.
+
+The hard part is coordinate space. Normal maps are often defined in tangent space, so the shader must transform or interpret them with the correct tangent, bitangent, and normal basis.
+
+The study meaning is this. Normal mapping changes the lighting normal, not the actual mesh silhouette.
+
+A useful closed check is this question. Why does normal mapping not change the geometric outline of an object?
+
+The sixth idea in this lecture is Environment Mapping and D Textures.
+
+Environment mapping uses textures to represent surrounding illumination or reflections. A direction, not a surface UV alone, can be used to sample an environment map. This is a texture lookup driven by view or reflection geometry.
+
+D textures and volume rendering extend the same sampled data idea into three dimensions. Instead of sampling a D image, the shader samples a volume. This is useful for data such as medical scans, density fields, or procedural volumetric effects.
+
+The study meaning is this. Textures are general sampled data, the coordinate dimensionality depends on the problem.
+
+A useful closed check is this question. What coordinate type would you use to sample a D texture?
+
+The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries.
+
+The term texture means this. Sampled data array used for color, normals, material data, depth, or other shader inputs. It belongs here because it participates in the chain fragment coordinates, then texture coordinates, then sampler or filter or wrap state, then texel fetch, then shader meaning. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term texel means this. A stored sample in texture memory. It belongs here because it participates in the chain fragment coordinates, then texture coordinates, then sampler or filter or wrap state, then texel fetch, then shader meaning. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term UV coordinates means this. Coordinates that map surface locations to texture space. It belongs here because it participates in the chain fragment coordinates, then texture coordinates, then sampler or filter or wrap state, then texel fetch, then shader meaning. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term filtering means this. Rule for reconstructing values between texels, such as nearest or linear filtering. It belongs here because it participates in the chain fragment coordinates, then texture coordinates, then sampler or filter or wrap state, then texel fetch, then shader meaning. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term mipmap means this. Precomputed lower resolution texture levels used to reduce aliasing and improve sampling. It belongs here because it participates in the chain fragment coordinates, then texture coordinates, then sampler or filter or wrap state, then texel fetch, then shader meaning. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term environment mapping means this. Using texture lookup to approximate surrounding reflections or distant lighting. It belongs here because it participates in the chain fragment coordinates, then texture coordinates, then sampler or filter or wrap state, then texel fetch, then shader meaning. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The compact rule for this chapter is sampled value equals texture, sampler, uv,, then shader interprets the value.
+
+Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later.
+
+This chapter connects most directly to the assignment Rendering contest and texture or shader tasks. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, fragment coordinates, then texture coordinates, then sampler or filter or wrap state, then texel fetch, then shader meaning.
+
+The main exam trap is this. Do not reduce texturing to pasting an image onto geometry. This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor.
+
+A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
+
+You are done with this chapter only when you can recognize a new question as belonging to Texturing, rebuild the chain fragment coordinates, then texture coordinates, then sampler or filter or wrap state, then texel fetch, then shader meaning, and choose the correct answer even when the wording changes.

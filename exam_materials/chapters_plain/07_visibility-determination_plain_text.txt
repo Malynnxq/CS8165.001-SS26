@@ -1,0 +1,81 @@
+Lecture seven is about Visibility Determination.
+
+The central idea is this. Visibility algorithms decide which candidate surface is actually seen from the current viewpoint. The useful mental chain is many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
+
+Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story.
+
+The first idea in this lecture is Object Based Algorithms.
+
+Object based visibility algorithms reason about geometry before or while comparing surfaces. They can sort, split, or reject objects based on spatial relations. This is different from simply letting every fragment fight in the depth buffer.
+
+The value of object based reasoning is reducing work or establishing correct order. The difficulty is that geometry can overlap in complicated ways, so simple global ordering is not always possible.
+
+The study meaning is this. Object based visibility tries to solve visibility with geometry before final pixels are written.
+
+A useful closed check is this question. Why can intersecting polygons make simple depth sorting fail?
+
+The second idea in this lecture is Binary Space Partitioning.
+
+A BSP tree recursively divides space with planes. Once built, it can help traverse geometry in a view dependent order. This is useful for visibility and ordering because the tree encodes spatial relationships.
+
+The cost is preprocessing and possible splitting of geometry. BSP is a good example of trading memory and setup work for faster or more structured visibility decisions later.
+
+The study meaning is this. A BSP tree stores a recursive answer to which side of this plane is the geometry on?
+
+A useful closed check is this question. Why can building a BSP tree require splitting polygons?
+
+The third idea in this lecture is Warnock Algorithm.
+
+Warnocks algorithm works in image space by subdividing regions until visibility is simple enough to decide. If a region is ambiguous, split it. If it is simple, fill it.
+
+This illustrates a general graphics strategy, recursively reduce a hard global problem into smaller local problems. The algorithm is less central in modern OpenGL practice than the depth buffer, but it helps contrast image space and object space approaches.
+
+The study meaning is this. When a region is too complicated, subdivide until the answer becomes simple.
+
+A useful closed check is this question. What makes Warnocks algorithm image space rather than object space?
+
+The fourth idea in this lecture is Depth Buffer Algorithm.
+
+The depth buffer stores the closest accepted depth at each sample or pixel. For each fragment, compare its depth to the stored depth. If it passes, update the color and depth, otherwise discard it.
+
+The strength of the depth buffer is simplicity and hardware efficiency. The weakness is precision, depth values are finite, and projection distributes precision unevenly. Bad near or far settings can create z fighting.
+
+The study meaning is this. The depth buffer is a per sample competition for closest visible fragment.
+
+A useful closed check is this question. Why should the near plane not be unnecessarily close to the camera?
+
+The fifth idea in this lecture is Depth Extensions and Ray Casting.
+
+Depth buffer extensions refine or adapt depth based visibility, for example by handling precision, transparency, or multiple layers more carefully. Standard depth testing alone is not a complete solution for every visibility situation.
+
+Ray casting takes the opposite direction from rasterization, for each image sample, cast a ray into the scene and find the closest intersection. This naturally solves primary visibility but requires intersection work instead of raster coverage work.
+
+The study meaning is this. Rasterization pushes primitives to pixels, ray casting pulls visibility from pixels into the scene.
+
+A useful closed check is this question. Why is transparency harder than opaque nearest surface visibility?
+
+The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries.
+
+The term depth buffer means this. Per pixel storage of depth values used to keep the nearest visible fragment. It belongs here because it participates in the chain many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term z buffer algorithm means this. Image space visibility method comparing fragment depths at each pixel. It belongs here because it participates in the chain many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term Painters algorithm means this. Object order visibility method based on drawing farther objects before nearer objects. It belongs here because it participates in the chain many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term BSP tree means this. Space partitioning structure that can support visibility ordering. It belongs here because it participates in the chain many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term Warnock algorithm means this. Image space subdivision method for resolving visible surfaces in regions. It belongs here because it participates in the chain many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term ray casting means this. Finding visible surfaces by tracing rays from image samples into the scene. It belongs here because it participates in the chain many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The compact rule for this chapter is visible fragment equals candidate with passing depth or visibility test at the sample.
+
+Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later.
+
+This chapter connects most directly to the assignment Rasterization and integrated rendering tasks. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution.
+
+The main exam trap is this. Do not confuse generating a fragment with proving that it is visible. This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor.
+
+A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
+
+You are done with this chapter only when you can recognize a new question as belonging to Visibility Determination, rebuild the chain many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution, and choose the correct answer even when the wording changes.

@@ -1,0 +1,81 @@
+Lecture three is about Geometric Transformations.
+
+The central idea is this. Transformations change how points, vectors, normals, and coordinate frames are expressed across model, world, view, and clip related spaces. The useful mental chain is object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
+
+Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story.
+
+The first idea in this lecture is Mathematical Foundations.
+
+The lecture uses vectors and matrices to express geometric operations. A vector can represent a point position, a direction, an offset, or an attribute depending on context. A matrix expresses a linear map or, with homogeneous coordinates, an affine transformation.
+
+The central exam habit is to name the coordinate space. A point in model coordinates and a light direction in view coordinates cannot be mixed safely. Many visual bugs are coordinate space bugs.
+
+The study meaning is this. A numeric vector is incomplete until you know what coordinate system it belongs to.
+
+A useful closed check is this question. Why is a normal vector not transformed exactly like a point under all transformations?
+
+The second idea in this lecture is Affine Transformations.
+
+Affine transformations include translation, rotation, scaling, shearing, and combinations of these. Homogeneous coordinates allow translation to be represented in matrix form together with other transformations.
+
+Translation moves positions but not pure directions. Rotation changes orientation while preserving lengths if it is a proper rotation. Scaling can change lengths and can also affect normals. These distinctions matter later in lighting.
+
+The study meaning is this. Use D homogeneous coordinates so that a single matrix pipeline can move D points through the scene.
+
+A useful closed check is this question. What does the homogeneous w component let a transformation matrix express?
+
+The third idea in this lecture is Composition of Transformations.
+
+Composition means applying several transformations in sequence. The order matters because matrix multiplication is generally not commutative. Rotating an object around its own origin and then translating it is different from translating it and then rotating around the world origin.
+
+When you read a formula such as projection times view times model times position, read it from right to left for the point, first model, then view, then projection. The resulting matrix chain is compact, but the conceptual steps remain separate.
+
+The study meaning is this. Matrix chains are compressed stories of movement through coordinate spaces.
+
+A useful closed check is this question. Why can swapping model and view matrices destroy the intended camera or object relation?
+
+The fourth idea in this lecture is Coordinate System Change.
+
+A transformation can be read actively as moving an object, or passively as changing the coordinate frame used to describe it. Both interpretations are valid, but mixing them carelessly causes sign and order errors.
+
+The view matrix is a classic example, conceptually you position a camera, but the pipeline usually transforms the world by the inverse of the camera transform so that the camera becomes the origin of view space.
+
+The study meaning is this. Moving the camera one way is equivalent to moving the world the opposite way for rendering.
+
+A useful closed check is this question. Why is the view transform often related to the inverse camera transform?
+
+The fifth idea in this lecture is Transformations in OpenGL.
+
+Modern OpenGL does not automatically manage the old matrix stacks. You usually compute model, view, and projection matrices in application code and pass them to shaders as uniforms.
+
+The vertex shader is where the final clip space position is normally computed. That means a wrong matrix uniform, wrong multiplication order, or wrong convention can make geometry vanish even though buffers and draw calls are correct.
+
+The study meaning is this. The shader is the place where abstract transformation math becomes GPU execution.
+
+A useful closed check is this question. Which matrix would you inspect first if an object follows the camera instead of staying in the world?
+
+The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries.
+
+The term homogeneous coordinates means this. Coordinates with an additional component that make translation and projection expressible by matrices. It belongs here because it participates in the chain object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term translation means this. A transformation that moves points by an offset, direction vectors are not shifted the same way. It belongs here because it participates in the chain object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term rotation means this. A transformation that changes orientation while preserving distances. It belongs here because it participates in the chain object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term scaling means this. A transformation that changes size and can distort normals if handled incorrectly. It belongs here because it participates in the chain object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term matrix composition means this. Combining transformations by multiplication, where order matters. It belongs here because it participates in the chain object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term normal transformation means this. Transforming surface normals consistently, often requiring inverse transpose logic under non uniform scaling. It belongs here because it participates in the chain object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The compact rule for this chapter is p world equals M model times p model, p view equals V times p world.
+
+Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later.
+
+This chapter connects most directly to the assignment Geometric Transformations. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates.
+
+The main exam trap is this. Do not multiply matrices without naming source space, target space, and order. This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor.
+
+A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
+
+You are done with this chapter only when you can recognize a new question as belonging to Geometric Transformations, rebuild the chain object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates, and choose the correct answer even when the wording changes.

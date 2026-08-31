@@ -1,0 +1,81 @@
+Lecture six is about Rasterization.
+
+The central idea is this. Rasterization converts continuous projected geometry into discrete fragment candidates and interpolated per fragment attributes. The useful mental chain is projected primitive, then sample coverage, then fragment generation, then attribute interpolation, then fragment tests. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
+
+Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story.
+
+The first idea in this lecture is Line Rasterization.
+
+A mathematical line has infinitely many points, but a raster display has a finite grid. Line rasterization decides which grid cells or samples best approximate the ideal line. The algorithm must balance accuracy, speed, and consistency.
+
+Incremental algorithms avoid recomputing expensive formulas for every pixel. The important idea is to step along one axis and update an error term that decides when to step along the other axis.
+
+The study meaning is this. Rasterizing a line means approximating a continuous path by grid decisions.
+
+A useful closed check is this question. Why are incremental error updates useful in line rasterization?
+
+The second idea in this lecture is Triangle Edge Rasterization.
+
+Triangles are the core primitive in real time rendering. Edge functions or half space tests decide whether a sample lies inside the triangle. This allows the rasterizer to test coverage systematically.
+
+Coverage is not final visibility. A covered sample becomes a fragment candidate. Depth testing, stencil testing, blending, and other operations still decide whether the framebuffer changes.
+
+The study meaning is this. Triangle rasterization answers the question, which samples are inside this projected triangle?
+
+A useful closed check is this question. What later stage can reject a fragment after triangle coverage succeeds?
+
+The third idea in this lecture is Region Filling.
+
+Region filling generalizes the idea of determining interior samples. The algorithm must identify connected areas or spans that should receive color. This connects rasterization to scan conversion and image space reasoning.
+
+The practical issue is avoiding gaps, double fills, or inconsistent boundary handling. Small choices at edges can become visible artifacts when many primitives meet.
+
+The study meaning is this. Filling is about turning boundary descriptions into consistent interior samples.
+
+A useful closed check is this question. Why can inconsistent edge rules create cracks between adjacent primitives?
+
+The fourth idea in this lecture is Scanline Based Triangle Rasterization.
+
+Scanline rasterization processes horizontal rows of the image. For each row that crosses a triangle, the algorithm finds the covered interval and fills the span. Attribute interpolation can be updated along edges and across each span.
+
+The method is intuitive because it follows the memory layout of many images. It also demonstrates why interpolation is tied to rasterization, once you know a sample location inside the primitive, you can interpolate depth, color, normals, or texture coordinates.
+
+The study meaning is this. Each scanline asks, where does this triangle enter and leave this row?
+
+A useful closed check is this question. Which attributes might be interpolated while filling triangle spans?
+
+The fifth idea in this lecture is Tile Based Triangle Rasterization.
+
+Tile or block based approaches group pixels into small regions. This can improve locality and parallel work distribution. Modern GPUs often reason in blocks or tiles internally because rendering is massively parallel.
+
+For the exam, connect this to efficiency. The mathematical goal is still coverage, but the implementation is organized to use hardware resources well.
+
+The study meaning is this. Block based rasterization keeps the same coverage problem but changes the work organization.
+
+A useful closed check is this question. Why is block organization attractive for parallel graphics hardware?
+
+The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries.
+
+The term scan conversion means this. Determining which discrete samples are covered by an ideal geometric primitive. It belongs here because it participates in the chain projected primitive, then sample coverage, then fragment generation, then attribute interpolation, then fragment tests. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term triangle coverage means this. Testing which pixel or sample positions lie inside a triangle. It belongs here because it participates in the chain projected primitive, then sample coverage, then fragment generation, then attribute interpolation, then fragment tests. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term barycentric coordinates means this. Weights relative to triangle vertices used for inside tests and interpolation. It belongs here because it participates in the chain projected primitive, then sample coverage, then fragment generation, then attribute interpolation, then fragment tests. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term interpolation means this. Computing per fragment values from vertex attributes. It belongs here because it participates in the chain projected primitive, then sample coverage, then fragment generation, then attribute interpolation, then fragment tests. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term aliasing means this. Artifacts caused when continuous signals are sampled too coarsely. It belongs here because it participates in the chain projected primitive, then sample coverage, then fragment generation, then attribute interpolation, then fragment tests. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term fragment candidate means this. A potential contribution to the framebuffer, not yet a guaranteed visible pixel. It belongs here because it participates in the chain projected primitive, then sample coverage, then fragment generation, then attribute interpolation, then fragment tests. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The compact rule for this chapter is attribute equals alpha times a plus beta times a plus gamma times a, with alpha plus beta plus gamma equals.
+
+Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later.
+
+This chapter connects most directly to the assignment Rasterization. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, projected primitive, then sample coverage, then fragment generation, then attribute interpolation, then fragment tests.
+
+The main exam trap is this. Do not call every generated fragment a final pixel. This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor.
+
+A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
+
+You are done with this chapter only when you can recognize a new question as belonging to Rasterization, rebuild the chain projected primitive, then sample coverage, then fragment generation, then attribute interpolation, then fragment tests, and choose the correct answer even when the wording changes.

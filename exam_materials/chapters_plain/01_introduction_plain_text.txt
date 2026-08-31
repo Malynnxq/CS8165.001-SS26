@@ -1,0 +1,81 @@
+Lecture one is about Introduction.
+
+The central idea is this. Computer graphics generates images from descriptions, interactive graphics adds a strict time budget and a feedback loop with the user. The useful mental chain is scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
+
+Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story.
+
+The first idea in this lecture is Course Organization.
+
+The organizational slides matter because they explain how the theory and programming parts fit together. The exercises are not separate from the lecture, they are the practical version of the same pipeline ideas. When the course says that slides are generally not self explanatory, that is a warning, the bullet points are anchors, not a textbook.
+
+Treat every exercise sheet as an applied checkpoint. Rendering pipeline, primitive types, shaders, transformations, projection, clipping, and rasterization are introduced in the lectures and then turned into OpenGL tasks. If a topic appears both in a lecture and an exercise, it is more likely to be exam relevant.
+
+The study meaning is this. Lecture slides give the vocabulary, exercises force you to connect that vocabulary to code and visible output.
+
+A useful closed check is this question. Can you list the five exercise themes and connect each one to a later lecture chapter?
+
+The second idea in this lecture is Computer Graphics Overview.
+
+Computer graphics is about generating images from descriptions. The description can be pixel based, object based, physically motivated, artistic, or algorithmic. The common thread is that the computer must decide what color belongs at image samples.
+
+Interactive graphics adds a time constraint. The image is not computed once and admired, it must respond to camera motion, user input, animation, and changing state. That is why real time rendering often uses approximations and specialized GPU stages.
+
+The study meaning is this. Graphics is controlled image generation. Interactive graphics is controlled image generation under a strict time budget.
+
+A useful closed check is this question. What changes when a renderer must be interactive rather than offline?
+
+The third idea in this lecture is Pixel Based Representations.
+
+A pixel based representation stores an image directly as samples on a grid. It is easy to display and edit locally, but it does not know the underlying D scene. If you zoom into a raster image, you reveal the sampling grid, not more geometry.
+
+This is the first place where sampling becomes important. Resolution, color depth, aliasing, and frame time are not cosmetic details. They decide what information can be represented and how much data must be processed per second.
+
+The study meaning is this. A raster image is already the answer. It contains color samples, not the geometric reasons behind them.
+
+A useful closed check is this question. Why can a pixel image be easy to display but hard to reinterpret as a D scene?
+
+The fourth idea in this lecture is D Models.
+
+A D model is a structured description of objects before they become pixels. It may contain vertices, primitives, topology, normals, materials, textures, and transformations. Unlike a pixel image, it can be viewed from different camera positions.
+
+The course mostly follows object based rendering, start from model data, transform it, project it, rasterize it, shade it, test visibility, and finally update pixels. Later chapters explain these steps one by one.
+
+The study meaning is this. A model is not an image. It is a cause from which many possible images can be generated.
+
+A useful closed check is this question. Which model attributes can influence final color besides vertex positions?
+
+The fifth idea in this lecture is Algorithmic Paradigms.
+
+The lecture contrasts ways to generate images. Rasterization works from objects toward pixels and is the dominant real time pipeline. Ray based methods work from image samples into the scene and are powerful for visibility and lighting but can be more expensive.
+
+Do not memorize these paradigms as names only. Ask what direction information flows. Does the algorithm start from geometry and find covered pixels, or from pixels or rays and find visible geometry? That direction explains the strengths and weaknesses.
+
+The study meaning is this. Rasterization asks, Which samples does this primitive cover? Ray casting asks, What does this sample see?
+
+A useful closed check is this question. Which paradigm fits OpenGLs standard real time pipeline most directly?
+
+The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries.
+
+The term raster image means this. A grid of stored pixel samples, it is already an image, not a D scene. It belongs here because it participates in the chain scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term pixel means this. A discrete image sample containing color or channel values. It belongs here because it participates in the chain scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term color depth means this. The number of bits used to represent color values, controlling precision and memory size. It belongs here because it participates in the chain scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term D model means this. A structured description of geometry and attributes that can generate many possible images. It belongs here because it participates in the chain scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term primitive means this. A basic geometric object such as a point, line, or triangle used by the rendering pipeline. It belongs here because it participates in the chain scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term interactive graphics means this. Rendering where images must update quickly enough to respond to input or animation. It belongs here because it participates in the chain scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The compact rule for this chapter is image memory equals width x height x bits per pixel, then divide by for bytes.
+
+Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later.
+
+This chapter connects most directly to the assignment Introduction to C plus plus. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis.
+
+The main exam trap is this. Do not confuse an image representation with the geometric cause of the image. This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor.
+
+A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
+
+You are done with this chapter only when you can recognize a new question as belonging to Introduction, rebuild the chain scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis, and choose the correct answer even when the wording changes.

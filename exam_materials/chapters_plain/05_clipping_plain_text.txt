@@ -1,0 +1,71 @@
+Lecture five is about Clipping.
+
+The central idea is this. Clipping classifies geometry against boundaries and keeps, rejects, or cuts primitives before rasterization. The useful mental chain is primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
+
+Before the details, keep the full rendering story in mind. Scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. This chapter is one focused part of that larger story.
+
+The first idea in this lecture is Cohen Sutherland Line Clipping.
+
+Cohen Sutherland assigns outcodes to line endpoints based on which side of the clipping window they lie on. These codes allow quick accept, quick reject, or partial clipping. The algorithm is efficient because many cases are decided before computing intersections.
+
+The exam friendly idea is the logic of region codes, if both endpoints are inside, keep the segment. If the bitwise AND of the outcodes is nonzero, both endpoints share an outside region and the segment can be rejected. Otherwise, compute an intersection and continue.
+
+The study meaning is this. Outcodes are a cheap classification before doing intersection math.
+
+A useful closed check is this question. What does a nonzero bitwise AND of two endpoint outcodes imply?
+
+The second idea in this lecture is Cyrus Beck Line Clipping.
+
+Cyrus Beck treats the line parametrically and clips against convex boundaries. Instead of repeatedly using region codes, it finds entering and leaving parameter values along the line.
+
+The key is to reason about the line parameter t. A clipped line segment is not a new unrelated line, it is a restricted interval of the original parametric line. Boundary tests shrink that interval.
+
+The study meaning is this. Clipping a parametric line means narrowing the valid t interval.
+
+A useful closed check is this question. Why does Cyrus Beck naturally require convex clipping regions?
+
+The third idea in this lecture is Sutherland Hodgman Polygon Clipping.
+
+Sutherland Hodgman clips a polygon against one boundary at a time. For each edge of the polygon, it decides whether vertices are inside or outside and emits zero, one, or two vertices depending on transitions across the boundary.
+
+This algorithm is easiest to understand as a stream processor. Feed in a polygon, clip it against the left boundary, feed the result into the right boundary, and so on. Each boundary can add intersection vertices.
+
+The study meaning is this. Polygon clipping is repeated edge by edge filtering plus intersection insertion.
+
+A useful closed check is this question. When can polygon clipping increase the number of vertices?
+
+The fourth idea in this lecture is Weiler Atherton and Greiner Hormann.
+
+These algorithms address more complex polygon clipping scenarios, especially when polygon relationships are not as simple as convex window clipping. They organize intersections and traversal rules to produce correct output boundaries.
+
+For preparation, focus on why simpler algorithms are not enough. Complex polygon intersection can require following alternating boundaries of subject and clipping polygons. That is a topology problem, not only a line intersection problem.
+
+The study meaning is this. Complex polygon clipping is about traversing boundary networks after intersections are known.
+
+A useful closed check is this question. Why are intersection ordering and traversal rules important for polygon clipping?
+
+The most important vocabulary should be learned as connected roles in the system, not as isolated dictionary entries.
+
+The term clipping means this. Removing or cutting geometry outside a valid window, plane, or volume. It belongs here because it participates in the chain primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term Cohen Sutherland means this. Line clipping method using region or outcodes to reject, accept, or clip line segments. It belongs here because it participates in the chain primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term Sutherland Hodgman means this. Polygon clipping method that processes polygon vertices against clipping boundaries. It belongs here because it participates in the chain primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term Cyrus Beck means this. Parametric line clipping method using entering and leaving parameter intervals. It belongs here because it participates in the chain primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term outcode means this. A compact code describing where a point lies relative to clipping boundaries. It belongs here because it participates in the chain primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The term intersection point means this. New boundary point created when a primitive crosses a clipping edge or plane. It belongs here because it participates in the chain primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive. In an exam question, connect the term to the data it receives, the operation it supports, the output it influences, and the later step that depends on it.
+
+The compact rule for this chapter is line point p, t, equals p plus t times, p p,, then restrict t to the visible interval.
+
+Do not treat the compact rule as a slogan. A formula or algorithm is useful only when you can name the input, the decision or computation, the output, and the reason that output is needed later.
+
+This chapter connects most directly to the assignment Projections and Clipping. The assignment matters because it turns lecture vocabulary into a visible or code level task. When you inspect the assignment, ask which part of the chain is being practiced, primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive.
+
+The main exam trap is this. Do not describe clipping as only deletion, crossing primitives can create new vertices. This trap is dangerous because it sounds close to the truth. Test every tempting answer against the full chain, input, operation, output, and next use. If one of those pieces is missing, the answer is probably a distractor.
+
+A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
+
+You are done with this chapter only when you can recognize a new question as belonging to Clipping, rebuild the chain primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive, and choose the correct answer even when the wording changes.
