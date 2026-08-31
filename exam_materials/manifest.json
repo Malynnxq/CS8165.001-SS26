@@ -5,6 +5,17 @@
   "assignment_count": 7,
   "files": [
     "README.md",
+    "chapters/CS8165_all_exam_chapters.md",
+    "chapters/01_introduction_exam_chapter.md",
+    "chapters/02_rendering-pipeline_exam_chapter.md",
+    "chapters/03_geometric-transformations_exam_chapter.md",
+    "chapters/04_geometric-projection_exam_chapter.md",
+    "chapters/05_clipping_exam_chapter.md",
+    "chapters/06_rasterization_exam_chapter.md",
+    "chapters/07_visibility-determination_exam_chapter.md",
+    "chapters/08_local-illumination_exam_chapter.md",
+    "chapters/09_texturing_exam_chapter.md",
+    "chapters/10_shadows_exam_chapter.md",
     "00_reading_route.md",
     "01_mastery_checklists.md",
     "02_cloze_generator_inputs.md",
@@ -20,5 +31,6 @@
     "11_ai_prompt_bank.md"
   ],
   "source_reader_manifest": "lecture_readers/lecture_reader_manifest.json",
-  "lecture_pages": 701
+  "lecture_pages": 701,
+  "generated_chapter_count": 10
 }

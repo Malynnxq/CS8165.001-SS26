@@ -237,6 +237,147 @@ def chain_cloze(chain: str, seed: int) -> tuple[str, str]:
     return " -> ".join(steps), answer
 
 
+def lecture_for(topic: dict) -> dict:
+    for lecture in lecture_readers.LECTURES:
+        if lecture["id"] == topic["id"]:
+            return lecture
+    raise KeyError(topic["id"])
+
+
+def source_page_count(lecture: dict) -> int:
+    return lecture_readers.source_stats(lecture["source"])["pages"]
+
+
+def chapter_filename(topic: dict) -> str:
+    return f"chapters/{topic['id']}_{slug(topic['title'])}_exam_chapter.md"
+
+
+def chapter_text(topic: dict) -> str:
+    lecture = lecture_for(topic)
+    terms = topic["terms"]
+    first_term, first_definition = terms[0]
+    lines = [
+        f"# Lecture {topic['id']} - {topic['title']} Exam Chapter",
+        "",
+        f"Source lecture chunk: `{lecture['source']}`",
+        f"Extracted source pages: {source_page_count(lecture)}",
+        f"Primary assignment connection: {topic['assignment']}",
+        "",
+        "This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.",
+        "",
+        "## 1. What Problem This Chapter Solves",
+        "",
+        f"{topic['core']} The chapter exists because this part of computer graphics answers a specific missing question in the full rendering story. The compact chain is `{topic['chain']}`. If you can recite the chain but cannot explain why each arrow exists, you have memorized the wording rather than understood the topic.",
+        "",
+        f"The first anchor term is `{first_term}`: {first_definition} This term is not isolated vocabulary. It is part of the data flow of the chapter, and its meaning becomes useful only when you can say what information it consumes, what it produces, and which later rendering step depends on it.",
+        "",
+        "## 2. Required Background",
+        "",
+        "Before reading this chapter, make sure you can already explain the basic rendering pipeline in one sentence: scene data is prepared, transformed, projected, converted to fragments, tested, shaded or combined, and finally written into a framebuffer. Every chapter in this course is one piece of that larger story.",
+        "",
+        f"For this lecture, the required background is the ability to follow this relation: `{topic['chain']}`. Each arrow means that the representation changes. The exam can test the name of a concept, but stronger questions usually test whether you know what changed and why that change was necessary.",
+        "",
+        "## 3. The Chapter Explained",
+        "",
+    ]
+    for section_index, section in enumerate(lecture["sections"], start=1):
+        lines.extend(
+            [
+                f"### {topic['id']}.{section_index} {section['title']}",
+                "",
+                f"Source location: {section['slides']}",
+                "",
+            ]
+        )
+        for paragraph in section["commentary"]:
+            lines.extend([paragraph, ""])
+        lines.extend(
+            [
+                f"Study meaning: {section['mental_model']}",
+                "",
+                f"Closed check: {section['check']}",
+                "",
+            ]
+        )
+    lines.extend(
+        [
+            "## 4. Key Terms In Plain Language",
+            "",
+            "Learn these terms as roles in a system, not as dictionary entries.",
+            "",
+        ]
+    )
+    for term, definition in terms:
+        lines.extend(
+            [
+                f"### {term}",
+                "",
+                f"{definition} In an exam answer, connect `{term}` to the chapter chain: `{topic['chain']}`. Say where it appears, what it affects, and what would break if you misunderstood it.",
+                "",
+            ]
+        )
+    lines.extend(
+        [
+            "## 5. Formula, Algorithm, Or Compact Rule",
+            "",
+            f"`{topic['formula']}`",
+            "",
+            "Do not treat this as a slogan. A compact rule is useful only if you can unpack every symbol or step. For formulas, name the units and the coordinate space. For algorithms, name the input, the decision rule, and the output. For OpenGL-related concepts, name the object, state, binding, shader stage, or framebuffer effect involved.",
+            "",
+            "## 6. Assignment Connection",
+            "",
+            f"This chapter connects most directly to `{topic['assignment']}`. The assignment is important because it turns lecture vocabulary into a visible or code-level task. When you inspect the assignment text or extracted source files, ask which part of the chain is being practiced: `{topic['chain']}`.",
+            "",
+            "Use the assignment as a diagnostic. If you can read the chapter but cannot predict what the assignment code is supposed to do, then the concept is still passive knowledge. Repair that by writing the exact missing step into `overprep_pack/mistake_log.md`.",
+            "",
+            "## 7. Typical Exam Traps",
+            "",
+            f"Main trap: {topic['trap']}",
+            "",
+            "The trap is dangerous because it usually sounds close to the truth. High exam performance depends on catching these near-misses quickly. When a multiple-choice option looks plausible, test it against the full chain: input, operation, output, next use. If one of those links is missing or wrong, the option is probably a distractor.",
+            "",
+            "## 8. What A Strong Answer Must Contain",
+            "",
+            "- The problem this chapter solves.",
+            "- The important data or object representation.",
+            "- The operation, algorithm, formula, or API mechanism.",
+            "- The output representation.",
+            "- The next pipeline stage or later use.",
+            "- One assignment or OpenGL/software connection.",
+            "- One typical mistake and the corrected distinction.",
+            "",
+            "## 9. Closed-Format Self-Test",
+            "",
+            f"1. Complete the chain: `{chain_cloze(topic['chain'], int(topic['id']))[0]}`",
+            f"2. Match `{terms[1][0]}` to its role: {terms[1][1]}",
+            f"3. Select the dangerous misconception: {topic['trap']}",
+            f"4. Explain in one sentence why `{terms[2][0]}` belongs in this chapter.",
+            "",
+            "## 10. End Condition",
+            "",
+            f"You are done with Lecture {topic['id']} only when you can read a new question, recognize that it belongs to `{topic['title']}`, and reconstruct the relevant part of `{topic['chain']}` without looking. Then verify with the drills in `exam_materials/` and the corresponding source chunk.",
+            "",
+        ]
+    )
+    return "\n".join(lines)
+
+
+def combined_chapters() -> str:
+    lines = [
+        "# CS8165 Complete Exam Chapters",
+        "",
+        "This file combines the ten generated exam chapters. Use the individual files in `exam_materials/chapters/` when you want a cleaner one-chapter reading session.",
+        "",
+    ]
+    for topic in TOPICS:
+        lines.append(f"- Lecture {topic['id']} - {topic['title']}: `{chapter_filename(topic)}`")
+    lines.append("")
+    for topic in TOPICS:
+        lines.append(chapter_text(topic))
+        lines.append("")
+    return "\n".join(lines)
+
+
 def reading_route() -> str:
     lines = [
         "# 00 - Reading Route",
@@ -758,6 +899,8 @@ def manifest() -> str:
         "assignment_count": len(ASSIGNMENTS),
         "files": [
             "README.md",
+            "chapters/CS8165_all_exam_chapters.md",
+            *[chapter_filename(topic) for topic in TOPICS],
             "00_reading_route.md",
             "01_mastery_checklists.md",
             "02_cloze_generator_inputs.md",
@@ -774,6 +917,7 @@ def manifest() -> str:
         ],
         "source_reader_manifest": "lecture_readers/lecture_reader_manifest.json",
         "lecture_pages": sum(item["source_pages"] for item in json.loads((ROOT / "lecture_readers" / "lecture_reader_manifest.json").read_text(encoding="utf-8"))["lectures"]),
+        "generated_chapter_count": len(TOPICS),
     }
     return json.dumps(data, indent=2)
 
@@ -787,26 +931,30 @@ Use it when you want prepared material rather than only a roadmap.
 
 Recommended order:
 
-1. `00_reading_route.md`
-2. `01_mastery_checklists.md`
-3. `08_assignment_workbook.md`
-4. `02_cloze_generator_inputs.md`
-5. `03_matching_pairs.tsv` and `03_matching_tasks.md`
-6. `05_sequencing_and_pipeline_tasks.md`
-7. `04_closed_format_drills.md`
-8. `06_diagram_label_tasks.md`
-9. `07_opengl_debugging_drills.md`
-10. `09_final_mixed_closed_exam.md`
-11. `10_mistake_log_repair_drills.md`
-12. `11_ai_prompt_bank.md`
+1. `chapters/CS8165_all_exam_chapters.md` or one file from `chapters/`
+2. `00_reading_route.md`
+3. `01_mastery_checklists.md`
+4. `08_assignment_workbook.md`
+5. `02_cloze_generator_inputs.md`
+6. `03_matching_pairs.tsv` and `03_matching_tasks.md`
+7. `05_sequencing_and_pipeline_tasks.md`
+8. `04_closed_format_drills.md`
+9. `06_diagram_label_tasks.md`
+10. `07_opengl_debugging_drills.md`
+11. `09_final_mixed_closed_exam.md`
+12. `10_mistake_log_repair_drills.md`
+13. `11_ai_prompt_bank.md`
 
-The pack assumes the readable lecture explanations in `lecture_readers/` are your main textbook-like source.
+The files in `chapters/` are the actual generated exam chapters. The readable slide-by-slide explanations in `lecture_readers/` remain the deeper source for per-slide commentary.
 """
 
 
 def main() -> None:
     ensure_out()
     write("README.md", readme())
+    for topic in TOPICS:
+        write(chapter_filename(topic), chapter_text(topic))
+    write("chapters/CS8165_all_exam_chapters.md", combined_chapters())
     write("00_reading_route.md", reading_route())
     write("01_mastery_checklists.md", mastery_checklists())
     write("02_cloze_generator_inputs.md", cloze_inputs())
