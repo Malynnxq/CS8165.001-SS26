@@ -1,0 +1,24 @@
+{
+  "pack": "exam_materials",
+  "purpose": "reading-first exam preparation materials optimized for closed-format practice",
+  "lecture_count": 10,
+  "assignment_count": 7,
+  "files": [
+    "README.md",
+    "00_reading_route.md",
+    "01_mastery_checklists.md",
+    "02_cloze_generator_inputs.md",
+    "03_matching_pairs.tsv",
+    "03_matching_tasks.md",
+    "04_closed_format_drills.md",
+    "05_sequencing_and_pipeline_tasks.md",
+    "06_diagram_label_tasks.md",
+    "07_opengl_debugging_drills.md",
+    "08_assignment_workbook.md",
+    "09_final_mixed_closed_exam.md",
+    "10_mistake_log_repair_drills.md",
+    "11_ai_prompt_bank.md"
+  ],
+  "source_reader_manifest": "lecture_readers/lecture_reader_manifest.json",
+  "lecture_pages": 701
+}

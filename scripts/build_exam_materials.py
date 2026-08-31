@@ -1,0 +1,828 @@
+from __future__ import annotations
+
+import json
+import re
+import sys
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+OUT = ROOT / "exam_materials"
+
+sys.path.insert(0, str(ROOT / "scripts"))
+import build_lecture_readers as lecture_readers  # noqa: E402
+
+
+TOPICS = [
+    {
+        "id": "01",
+        "title": "Introduction",
+        "core": "Computer graphics generates images from descriptions; interactive graphics adds a strict time budget and a feedback loop with the user.",
+        "chain": "scene or image description -> representation choice -> sampling or rendering process -> visible image -> interaction or analysis",
+        "assignment": "00 Introduction to C++",
+        "terms": [
+            ("raster image", "A grid of stored pixel samples; it is already an image, not a 3D scene."),
+            ("pixel", "A discrete image sample containing color or channel values."),
+            ("color depth", "The number of bits used to represent color values, controlling precision and memory size."),
+            ("3D model", "A structured description of geometry and attributes that can generate many possible images."),
+            ("primitive", "A basic geometric object such as a point, line, or triangle used by the rendering pipeline."),
+            ("interactive graphics", "Rendering where images must update quickly enough to respond to input or animation."),
+        ],
+        "trap": "Do not confuse an image representation with the geometric cause of the image.",
+        "formula": "image memory = width x height x bits per pixel, then divide by 8 for bytes",
+    },
+    {
+        "id": "02",
+        "title": "Rendering Pipeline",
+        "core": "Rendering is a sequence of representation changes: models become vertices, primitives, fragments, tested fragments, and finally framebuffer updates.",
+        "chain": "application data -> geometry stage -> primitive assembly -> rasterization -> fragment operations -> framebuffer",
+        "assignment": "01 Rendering Pipeline",
+        "terms": [
+            ("application stage", "CPU-side preparation of models, scene data, interaction, animation, and rendering state."),
+            ("geometry stage", "Pipeline stage that transforms vertices and prepares primitives."),
+            ("rasterization", "Conversion of projected primitives into fragment candidates on a sample grid."),
+            ("fragment", "A candidate pixel contribution produced by rasterization before final tests and blending."),
+            ("framebuffer", "Memory target that stores color, depth, stencil, or related per-pixel results."),
+            ("double buffering", "Using front and back buffers so drawing can happen off-screen before display swap."),
+        ],
+        "trap": "Do not collapse the whole pipeline into 'the GPU draws it'; name the intermediate representations.",
+        "formula": "vertices -> primitives -> fragments -> tests -> pixels",
+    },
+    {
+        "id": "03",
+        "title": "Geometric Transformations",
+        "core": "Transformations change how points, vectors, normals, and coordinate frames are expressed across model, world, view, and clip-related spaces.",
+        "chain": "object/model coordinates -> model matrix -> world coordinates -> view matrix -> camera/view coordinates",
+        "assignment": "03 Geometric Transformations",
+        "terms": [
+            ("homogeneous coordinates", "Coordinates with an additional component that make translation and projection expressible by matrices."),
+            ("translation", "A transformation that moves points by an offset; direction vectors are not shifted the same way."),
+            ("rotation", "A transformation that changes orientation while preserving distances."),
+            ("scaling", "A transformation that changes size and can distort normals if handled incorrectly."),
+            ("matrix composition", "Combining transformations by multiplication, where order matters."),
+            ("normal transformation", "Transforming surface normals consistently, often requiring inverse-transpose logic under non-uniform scaling."),
+        ],
+        "trap": "Do not multiply matrices without naming source space, target space, and order.",
+        "formula": "p_world = M_model * p_model; p_view = V * p_world",
+    },
+    {
+        "id": "04",
+        "title": "Geometric Projection",
+        "core": "Projection maps camera-space geometry into clip coordinates and then normalized device coordinates before viewport mapping.",
+        "chain": "view-space position -> projection matrix -> clip coordinates -> perspective divide -> NDC -> viewport coordinates",
+        "assignment": "04 Projections and Clipping",
+        "terms": [
+            ("view volume", "The 3D region visible to the camera before mapping to the screen."),
+            ("orthographic projection", "Projection without perspective foreshortening; parallel lines stay parallel."),
+            ("perspective projection", "Projection where farther objects appear smaller after division by the homogeneous component."),
+            ("clip coordinates", "Coordinates produced before clipping and perspective divide."),
+            ("perspective divide", "Division by w that produces normalized device coordinates."),
+            ("viewport transformation", "Mapping normalized device coordinates to window or screen coordinates."),
+        ],
+        "trap": "Do not confuse projection with viewport mapping; the perspective divide sits between them.",
+        "formula": "p_clip = P * p_view; p_ndc = p_clip.xyz / p_clip.w",
+    },
+    {
+        "id": "05",
+        "title": "Clipping",
+        "core": "Clipping classifies geometry against boundaries and keeps, rejects, or cuts primitives before rasterization.",
+        "chain": "primitive -> boundary tests -> inside/outside classification -> intersections -> clipped primitive",
+        "assignment": "04 Projections and Clipping",
+        "terms": [
+            ("clipping", "Removing or cutting geometry outside a valid window, plane, or volume."),
+            ("Cohen-Sutherland", "Line clipping method using region/outcodes to reject, accept, or clip line segments."),
+            ("Sutherland-Hodgman", "Polygon clipping method that processes polygon vertices against clipping boundaries."),
+            ("Cyrus-Beck", "Parametric line clipping method using entering and leaving parameter intervals."),
+            ("outcode", "A compact code describing where a point lies relative to clipping boundaries."),
+            ("intersection point", "New boundary point created when a primitive crosses a clipping edge or plane."),
+        ],
+        "trap": "Do not describe clipping as only deletion; crossing primitives can create new vertices.",
+        "formula": "line point p(t) = p0 + t * (p1 - p0), then restrict t to the visible interval",
+    },
+    {
+        "id": "06",
+        "title": "Rasterization",
+        "core": "Rasterization converts continuous projected geometry into discrete fragment candidates and interpolated per-fragment attributes.",
+        "chain": "projected primitive -> sample coverage -> fragment generation -> attribute interpolation -> fragment tests",
+        "assignment": "05 Rasterization",
+        "terms": [
+            ("scan conversion", "Determining which discrete samples are covered by an ideal geometric primitive."),
+            ("triangle coverage", "Testing which pixel/sample positions lie inside a triangle."),
+            ("barycentric coordinates", "Weights relative to triangle vertices used for inside tests and interpolation."),
+            ("interpolation", "Computing per-fragment values from vertex attributes."),
+            ("aliasing", "Artifacts caused when continuous signals are sampled too coarsely."),
+            ("fragment candidate", "A potential contribution to the framebuffer, not yet a guaranteed visible pixel."),
+        ],
+        "trap": "Do not call every generated fragment a final pixel.",
+        "formula": "attribute = alpha * a0 + beta * a1 + gamma * a2, with alpha + beta + gamma = 1",
+    },
+    {
+        "id": "07",
+        "title": "Visibility Determination",
+        "core": "Visibility algorithms decide which candidate surface is actually seen from the current viewpoint.",
+        "chain": "many projected or intersected candidates -> comparison rule -> visible surface or fragment -> final image contribution",
+        "assignment": "Rasterization and integrated rendering tasks",
+        "terms": [
+            ("depth buffer", "Per-pixel storage of depth values used to keep the nearest visible fragment."),
+            ("z-buffer algorithm", "Image-space visibility method comparing fragment depths at each pixel."),
+            ("Painter's algorithm", "Object-order visibility method based on drawing farther objects before nearer objects."),
+            ("BSP tree", "Space-partitioning structure that can support visibility ordering."),
+            ("Warnock algorithm", "Image-space subdivision method for resolving visible surfaces in regions."),
+            ("ray casting", "Finding visible surfaces by tracing rays from image samples into the scene."),
+        ],
+        "trap": "Do not confuse generating a fragment with proving that it is visible.",
+        "formula": "visible fragment = candidate with passing depth/visibility test at the sample",
+    },
+    {
+        "id": "08",
+        "title": "Local Illumination",
+        "core": "Local illumination computes color from surface orientation, light direction, view direction, and material response.",
+        "chain": "surface point + normal + light + view + material -> lighting equation -> shaded color",
+        "assignment": "Rendering contest and shader-related tasks",
+        "terms": [
+            ("surface normal", "Vector describing surface orientation and controlling diffuse/specular response."),
+            ("ambient term", "Approximate base illumination independent of direct light direction."),
+            ("diffuse reflection", "View-independent light response based on the angle between normal and light direction."),
+            ("specular reflection", "View-dependent highlight term based on reflection or half-vector alignment."),
+            ("Phong model", "Local illumination model combining ambient, diffuse, and specular components."),
+            ("material coefficient", "Parameter controlling how strongly a surface responds to lighting terms."),
+        ],
+        "trap": "Do not mix up normal, light direction, and view direction; each changes a different lighting term.",
+        "formula": "color = ambient + diffuse + specular",
+    },
+    {
+        "id": "09",
+        "title": "Texturing",
+        "core": "Texturing uses coordinates and sampler state to fetch stored data and interpret it in a shader.",
+        "chain": "fragment coordinates -> texture coordinates -> sampler/filter/wrap state -> texel fetch -> shader meaning",
+        "assignment": "Rendering contest and texture/shader tasks",
+        "terms": [
+            ("texture", "Sampled data array used for color, normals, material data, depth, or other shader inputs."),
+            ("texel", "A stored sample in texture memory."),
+            ("UV coordinates", "Coordinates that map surface locations to texture space."),
+            ("filtering", "Rule for reconstructing values between texels, such as nearest or linear filtering."),
+            ("mipmap", "Precomputed lower-resolution texture levels used to reduce aliasing and improve sampling."),
+            ("environment mapping", "Using texture lookup to approximate surrounding reflections or distant lighting."),
+        ],
+        "trap": "Do not reduce texturing to pasting an image onto geometry.",
+        "formula": "sampled value = texture(sampler, uv), then shader interprets the value",
+    },
+    {
+        "id": "10",
+        "title": "Shadows",
+        "core": "Shadows are visibility tests from the light source, not only dark shapes seen by the camera.",
+        "chain": "light -> possible blocker -> receiver point -> light-space visibility test -> lit or shadowed result",
+        "assignment": "Rendering contest and integrated lighting tasks",
+        "terms": [
+            ("shadow", "Reduced direct illumination where an object blocks light from reaching a receiver."),
+            ("occluder", "Object that blocks light."),
+            ("receiver", "Surface where the shadow appears."),
+            ("shadow map", "Depth image rendered from the light's point of view for later visibility comparison."),
+            ("shadow volume", "Volume of space hidden from a light by an occluder."),
+            ("projective shadow", "Shadow construction based on projecting geometry onto a receiver."),
+        ],
+        "trap": "Do not explain a shadow only from the camera view; the key test is light-space visibility.",
+        "formula": "point is shadowed if something is closer to the light along the same light ray",
+    },
+]
+
+
+ASSIGNMENTS = [
+    ("00", "Introduction to C++", "course_text_parts/04_assignments/00_introduction-to-cpp.txt", "01, 02", "C++ basics, build workflow, OpenGL preparation"),
+    ("01", "Rendering Pipeline", "course_text_parts/04_assignments/01_rendering-pipeline.txt", "02", "pipeline stages, draw loop, framebuffer result"),
+    ("02", "Primitive Types / Shaders", "course_text_parts/04_assignments/02_primitive-types-shaders.txt", "02, 06", "primitives, vertex shader, fragment shader, fragment output"),
+    ("03", "Geometric Transformations", "course_text_parts/04_assignments/03_geometric-transformations.txt", "03", "matrix transforms, model placement, coordinate spaces"),
+    ("04", "Projections and Clipping", "course_text_parts/04_assignments/04_projections-and-clipping.txt", "04, 05", "projection, view volume, clipping"),
+    ("05", "Rasterization", "course_text_parts/04_assignments/05_rasterization.txt", "06, 07", "coverage, interpolation, fragment generation, visibility relation"),
+    ("Bonus", "Rendering Contest", "course_text_parts/04_assignments/Bonus_rendering-contest.txt", "02, 03, 04, 06, 08, 09, 10", "integrated rendering, lighting, texturing, shadows, visual quality"),
+]
+
+
+def ensure_out() -> None:
+    if OUT.exists():
+        for path in OUT.rglob("*"):
+            if path.is_file():
+                path.unlink()
+    OUT.mkdir(exist_ok=True)
+
+
+def write(path: str, text: str) -> None:
+    target = OUT / path
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(text.rstrip() + "\n", encoding="utf-8")
+
+
+def slug(text: str) -> str:
+    text = text.lower()
+    text = re.sub(r"[^a-z0-9]+", "-", text)
+    return text.strip("-")
+
+
+def mc_block(correct: str, distractors: list[str], seed: int) -> tuple[list[str], str]:
+    options = [correct] + distractors[:3]
+    offset = seed % len(options)
+    rotated = options[offset:] + options[:offset]
+    lines = [f"{letter}. {option}" for letter, option in zip("ABCD", rotated)]
+    answer = "ABCD"[rotated.index(correct)]
+    return lines, answer
+
+
+def chain_cloze(chain: str, seed: int) -> tuple[str, str]:
+    steps = chain.split(" -> ")
+    if len(steps) < 3:
+        return chain.replace(steps[-1], "____"), steps[-1]
+    hide_index = 1 + (seed % (len(steps) - 2))
+    answer = steps[hide_index]
+    steps[hide_index] = "____"
+    return " -> ".join(steps), answer
+
+
+def reading_route() -> str:
+    lines = [
+        "# 00 - Reading Route",
+        "",
+        "Use this route when you want a strict, reading-first path from raw course files to exam-level performance.",
+        "",
+        "## The Order",
+        "",
+        "1. Read one lecture in `lecture_readers/markdown/` or the combined PDF.",
+        "2. Open the matching raw source chunk in `course_text_parts/03_lectures/`.",
+        "3. Check every slide cue against the Professor-style explanation.",
+        "4. Open the matching assignment text and extracted source package.",
+        "5. Do closed-format practice: cloze, matching, sequencing, MC, diagram labels, OpenGL debugging.",
+        "6. Log every wrong answer in the mistake log.",
+        "7. Repeat with changed wording from the repetition variants.",
+        "",
+        "## Completion Rule",
+        "",
+        "A topic is not finished when it feels familiar. It is finished when you can identify it under new wording, connect it to the pipeline, solve a closed-format task, and explain the common trap.",
+        "",
+    ]
+    for topic in TOPICS:
+        lines.extend(
+            [
+                f"## Lecture {topic['id']} - {topic['title']}",
+                "",
+                f"Core idea: {topic['core']}",
+                "",
+                f"Concept chain: `{topic['chain']}`",
+                "",
+                f"Assignment connection: {topic['assignment']}",
+                "",
+                f"Formula or compact rule: `{topic['formula']}`",
+                "",
+                f"High-risk trap: {topic['trap']}",
+                "",
+                "Before moving on, you must be able to match each term to its role:",
+                "",
+            ]
+        )
+        for term, definition in topic["terms"]:
+            lines.append(f"- `{term}` - {definition}")
+        lines.append("")
+    return "\n".join(lines)
+
+
+def mastery_checklists() -> str:
+    lines = [
+        "# 01 - Mastery Checklists By Lecture",
+        "",
+        "Use these checklists after reading a chapter and before doing mixed exam simulation.",
+        "",
+    ]
+    for topic in TOPICS:
+        lines.extend(
+            [
+                f"## Lecture {topic['id']} - {topic['title']}",
+                "",
+                "- [ ] I can state the core problem this lecture solves.",
+                "- [ ] I can explain the data entering the topic.",
+                "- [ ] I can explain the operation, algorithm, or transformation.",
+                "- [ ] I can name the output representation.",
+                "- [ ] I can place the topic in the rendering pipeline.",
+                "- [ ] I can connect it to the listed assignment.",
+                "- [ ] I can solve a closed-format question about it.",
+                "- [ ] I can identify the common trap.",
+                "",
+                f"Core chain to recite: `{topic['chain']}`",
+                "",
+                f"Trap to avoid: {topic['trap']}",
+                "",
+                "Terms to know:",
+                "",
+            ]
+        )
+        for term, definition in topic["terms"]:
+            lines.append(f"- [ ] `{term}` - {definition}")
+        lines.append("")
+    return "\n".join(lines)
+
+
+def cloze_inputs() -> str:
+    lines = [
+        "# 02 - Cloze Generator Inputs",
+        "",
+        "Copy one block at a time into a cloze generator. These texts are coherent by design: they include cause, data, operation, output, and common trap.",
+        "",
+    ]
+    for topic in TOPICS:
+        term_sentence = " ".join(f"{term} means {definition}" for term, definition in topic["terms"])
+        lines.extend(
+            [
+                f"## Lecture {topic['id']} - {topic['title']}",
+                "",
+                f"{topic['core']} The concept chain is {topic['chain']}. {term_sentence} A compact rule for this lecture is: {topic['formula']}. The assignment connection is {topic['assignment']}. The main trap is: {topic['trap']}",
+                "",
+                "Suggested blanks: " + ", ".join(term for term, _ in topic["terms"]) + f", {topic['formula']}",
+                "",
+            ]
+        )
+    return "\n".join(lines)
+
+
+def matching_pairs() -> str:
+    rows = ["lecture_id\tlecture_title\tterm\tdefinition\tmatch_reason\tcommon_distractor"]
+    for topic in TOPICS:
+        for term, definition in topic["terms"]:
+            rows.append(
+                "\t".join(
+                    [
+                        topic["id"],
+                        topic["title"],
+                        term,
+                        definition,
+                        f"Belongs to the chain: {topic['chain']}",
+                        topic["trap"],
+                    ]
+                )
+            )
+    return "\n".join(rows)
+
+
+def matching_tasks() -> str:
+    lines = [
+        "# 03 - Matching Tasks",
+        "",
+        "Match each term to the correct role. Use the TSV file for import into tools; use this Markdown file for manual practice.",
+        "",
+    ]
+    for topic in TOPICS:
+        lines.extend([f"## Lecture {topic['id']} - {topic['title']}", "", "Terms:", ""])
+        for index, (term, _) in enumerate(topic["terms"], start=1):
+            lines.append(f"{index}. {term}")
+        lines.extend(["", "Definitions:", ""])
+        for letter, (_, definition) in zip("ABCDEF", topic["terms"]):
+            lines.append(f"{letter}. {definition}")
+        lines.extend(["", f"Trap check: {topic['trap']}", ""])
+    return "\n".join(lines)
+
+
+def closed_format_drills() -> str:
+    lines = [
+        "# 04 - Closed-Format Drills",
+        "",
+        "These are designed for selection, matching, completion, and quick decision practice. Answers are at the end.",
+        "",
+    ]
+    answers: list[str] = []
+    q = 1
+    for topic_index, topic in enumerate(TOPICS, start=1):
+        options, answer = mc_block(
+            topic["core"],
+            [
+                "The lecture is mainly a list of unrelated definitions.",
+                "The lecture is only relevant for historical context.",
+                "The lecture can be ignored if the final image looks correct.",
+            ],
+            topic_index,
+        )
+        first_term, first_def = topic["terms"][0]
+        second_term, _ = topic["terms"][1]
+        lines.extend(
+            [
+                f"## Lecture {topic['id']} - {topic['title']}",
+                "",
+                f"Q{q}. Which statement best describes the core idea?",
+                "",
+                *options,
+                "",
+            ]
+        )
+        answers.append(f"Q{q}: {answer}")
+        q += 1
+        cloze, missing = chain_cloze(topic["chain"], topic_index)
+        lines.extend(
+            [
+                f"Q{q}. Complete the chain:",
+                "",
+                f"`{cloze}`",
+                "",
+            ]
+        )
+        answers.append(f"Q{q}: {missing}. Full chain: `{topic['chain']}`")
+        q += 1
+        options, answer = mc_block(
+            first_def,
+            [
+                f"Same meaning as `{second_term}`.",
+                "A final exam score calculation.",
+                "A file organization convention only.",
+            ],
+            topic_index + 1,
+        )
+        lines.extend(
+            [
+                f"Q{q}. Match the term `{first_term}`.",
+                "",
+                *options,
+                "",
+            ]
+        )
+        answers.append(f"Q{q}: {answer}")
+        q += 1
+        options, answer = mc_block(
+            topic["trap"],
+            [
+                "The concept has an input, operation, output, and later use.",
+                f"It connects to {topic['assignment']}.",
+                "It can be practiced with matching and sequencing tasks.",
+            ],
+            topic_index + 2,
+        )
+        lines.extend(
+            [
+                f"Q{q}. Select the dangerous misconception.",
+                "",
+                *options,
+                "",
+            ]
+        )
+        answers.append(f"Q{q}: {answer}")
+        q += 1
+    lines.extend(["# Answer Key", ""])
+    lines.extend(answers)
+    return "\n".join(lines)
+
+
+def sequencing_tasks() -> str:
+    lines = [
+        "# 05 - Sequencing And Pipeline Tasks",
+        "",
+        "Put the listed items in the correct conceptual order. Answers are at the end.",
+        "",
+    ]
+    answers = []
+    for index, topic in enumerate(TOPICS, start=1):
+        steps = topic["chain"].split(" -> ")
+        scrambled = steps[1::2] + steps[0::2]
+        lines.extend(
+            [
+                f"## S{index} - Lecture {topic['id']} {topic['title']}",
+                "",
+                "Scrambled steps:",
+                "",
+            ]
+        )
+        for step in scrambled:
+            lines.append(f"- {step}")
+        lines.extend(["", "Correct order:", "", "- [ ] Fill this in without notes.", ""])
+        answers.append(f"S{index}: " + " -> ".join(steps))
+    lines.extend(["# Answer Key", ""])
+    lines.extend(answers)
+    return "\n".join(lines)
+
+
+def diagram_tasks() -> str:
+    lines = [
+        "# 06 - Diagram Label Tasks",
+        "",
+        "Use these as drawing or labeling tasks. They avoid vague essays: label the objects and arrows.",
+        "",
+    ]
+    for topic in TOPICS:
+        steps = topic["chain"].split(" -> ")
+        lines.extend(
+            [
+                f"## Lecture {topic['id']} - {topic['title']}",
+                "",
+                "Draw boxes for:",
+                "",
+            ]
+        )
+        for step in steps:
+            lines.append(f"- {step}")
+        lines.extend(
+            [
+                "",
+                "Label arrows with:",
+                "",
+                "- what changes",
+                "- what data is preserved",
+                "- what can go wrong",
+                "",
+                f"Trap label that must appear somewhere: {topic['trap']}",
+                "",
+            ]
+        )
+    return "\n".join(lines)
+
+
+def opengl_debugging() -> str:
+    cases = [
+        ("Black screen after draw call", "OpenGL state/binding", "Check context, bound VAO/VBO, shader program, viewport, clear color, framebuffer target."),
+        ("Object appears but does not move", "Transformations", "Check model/view/projection matrix update and multiplication order."),
+        ("Triangle has wrong colors", "Rasterization/shader interpolation", "Check vertex attributes, layout locations, interpolation, and fragment shader output."),
+        ("Texture looks blocky or wrong", "Texturing", "Check UV coordinates, texture binding, sampler filtering, wrapping, mipmap completeness, and shader sampler uniform."),
+        ("Near object is hidden behind far object", "Visibility", "Check depth buffer creation, depth test enable, depth clear, and depth function."),
+        ("Lighting changes when camera moves incorrectly", "Local illumination", "Check normal transformation, coordinate space consistency, light vector, and view vector."),
+        ("Shadow appears detached or inverted", "Shadows", "Check light-space transform, depth comparison, bias, and which object acts as occluder or receiver."),
+    ]
+    lines = [
+        "# 07 - OpenGL And Software Debugging Drills",
+        "",
+        "Closed-format debugging practice. Choose the most likely conceptual area and the first checks.",
+        "",
+    ]
+    answers = []
+    for index, (symptom, area, check) in enumerate(cases, start=1):
+        lines.extend(
+            [
+                f"## D{index}. {symptom}",
+                "",
+                "Choose the best diagnosis:",
+                "",
+                "A. The issue is most likely only historical background.",
+                f"B. The issue belongs to {area}.",
+                "C. The issue can be solved by memorizing the slide title.",
+                "D. The issue proves rasterization is not involved in rendering.",
+                "",
+                "First checks:",
+                "",
+                "- [ ] Write the checks here before looking at the answer.",
+                "",
+            ]
+        )
+        answers.append(f"D{index}: B. {check}")
+    lines.extend(["# Answer Key", ""])
+    lines.extend(answers)
+    return "\n".join(lines)
+
+
+def assignment_workbook() -> str:
+    lines = [
+        "# 08 - Assignment Workbook",
+        "",
+        "Use this file to turn assignments into exam preparation. Each assignment must be connected back to lecture concepts.",
+        "",
+    ]
+    for ident, title, source, chapters, concepts in ASSIGNMENTS:
+        exists = (ROOT / source).exists()
+        lines.extend(
+            [
+                f"## Assignment {ident} - {title}",
+                "",
+                f"Source text: `{source}`",
+                f"Source exists: `{exists}`",
+                f"Related lectures: {chapters}",
+                f"Core concepts: {concepts}",
+                "",
+                "Before attempting:",
+                "",
+                "- [ ] I can name the lecture concepts required.",
+                "- [ ] I can explain the relevant pipeline stage.",
+                "- [ ] I can identify the likely OpenGL/code object involved.",
+                "- [ ] I can predict the expected visible result.",
+                "",
+                "After attempting:",
+                "",
+                "- [ ] I can state which concept was tested.",
+                "- [ ] I can state what failed when I got stuck.",
+                "- [ ] I added the exact gap to `overprep_pack/mistake_log.md`.",
+                "",
+                "Closed-format self-test:",
+                "",
+                f"1. This assignment mainly tests: A. {concepts} B. unrelated Moodle navigation C. only memorized dates D. only file naming",
+                "2. The best repair action after a mistake is: A. log the exact missing concept B. reread everything randomly C. skip the exercise D. memorize the filename",
+                "",
+            ]
+        )
+    return "\n".join(lines)
+
+
+def final_exam() -> str:
+    lines = [
+        "# 09 - Final Mixed Closed-Format Exam",
+        "",
+        "Mixed topics, no chapter hints in the question text. Answers are at the end.",
+        "",
+    ]
+    answers = []
+    q = 1
+    for topic_index, topic in enumerate(TOPICS, start=1):
+        options, answer = mc_block(
+            topic["chain"],
+            [
+                "final image -> arbitrary labels -> unrelated definitions -> memory cleanup",
+                "exam score -> lecture title -> Moodle page -> no technical relation",
+                "pixels -> source code comments -> no pipeline stages -> final answer",
+            ],
+            topic_index,
+        )
+        lines.extend(
+            [
+                f"Q{q}. Choose the correct chain:",
+                "",
+                *options,
+                "",
+            ]
+        )
+        answers.append(f"Q{q}: {answer} ({topic['title']})")
+        q += 1
+        term, definition = topic["terms"][2]
+        options, answer = mc_block(
+            definition,
+            [
+                topic["trap"],
+                "A GitHub repository organization detail.",
+                "A non-technical lecture transition.",
+            ],
+            topic_index + 1,
+        )
+        lines.extend(
+            [
+                f"Q{q}. Which definition matches `{term}`?",
+                "",
+                *options,
+                "",
+            ]
+        )
+        answers.append(f"Q{q}: {answer} ({topic['title']})")
+        q += 1
+    lines.extend(["# Answer Key", ""])
+    lines.extend(answers)
+    return "\n".join(lines)
+
+
+def mistake_drills() -> str:
+    return """# 10 - Mistake Log Repair Drills
+
+Use this after every wrong answer. Do not write vague entries.
+
+## Repair Template
+
+Topic:
+Wrong answer:
+Correct answer:
+The exact confusion was:
+The correct distinction is:
+Source file to reread:
+Closed-format repair task:
+Review date 1:
+Review date 2:
+Review date 3:
+
+## Convert Mistakes Into Closed-Format Tasks
+
+If the mistake is a confused definition:
+
+- Make a matching pair.
+- Add one distractor that is close but wrong.
+- Add one sentence explaining the distinction.
+
+If the mistake is a wrong order:
+
+- Make a sequencing task.
+- Add the correct pipeline chain.
+- Add one trap order that looks plausible but is wrong.
+
+If the mistake is a formula issue:
+
+- Make a fill-in task for variables.
+- Make a units task, especially bits vs bytes or coordinate spaces.
+- Make one numerical example.
+
+If the mistake is OpenGL/software:
+
+- Write the symptom.
+- Choose the likely state, buffer, shader, texture, framebuffer, or depth issue.
+- Write the first three checks.
+
+## Minimum Standard
+
+A repaired mistake must become at least one new closed-format question.
+"""
+
+
+def ai_prompt_bank() -> str:
+    return """# 11 - AI Prompt Bank For This Course
+
+Use these prompts with the files in this repository.
+
+## Lecture To Exam Chapter
+
+```text
+Use only the attached course text unless you clearly mark outside knowledge.
+Transform this lecture into a complete exam-oriented chapter for someone who missed the lecture.
+Keep every course term.
+Explain the missing links between slide bullets.
+For every concept, include: problem, data/object, operation, output, next pipeline stage, typical trap, and assignment connection.
+Prefer closed-format checks over vague open essay questions.
+```
+
+## Assignment To Concept Checklist
+
+```text
+Use this assignment text and the matching lecture chapter.
+Identify the exact lecture concepts required.
+Create a checklist of prerequisite knowledge.
+Create MC, matching, sequencing, diagram-label, and code-reading questions that test those concepts.
+Do not ask broad open questions unless they have a precise answer key.
+```
+
+## Mistake Log Repair
+
+```text
+Here is my mistake log.
+Group the mistakes by concept.
+For each concept, generate closed-format repair drills: MC, matching, cloze, sequencing, and one near-miss distractor.
+Tell me exactly which lecture reader and assignment source I must revisit.
+```
+"""
+
+
+def manifest() -> str:
+    data = {
+        "pack": "exam_materials",
+        "purpose": "reading-first exam preparation materials optimized for closed-format practice",
+        "lecture_count": len(TOPICS),
+        "assignment_count": len(ASSIGNMENTS),
+        "files": [
+            "README.md",
+            "00_reading_route.md",
+            "01_mastery_checklists.md",
+            "02_cloze_generator_inputs.md",
+            "03_matching_pairs.tsv",
+            "03_matching_tasks.md",
+            "04_closed_format_drills.md",
+            "05_sequencing_and_pipeline_tasks.md",
+            "06_diagram_label_tasks.md",
+            "07_opengl_debugging_drills.md",
+            "08_assignment_workbook.md",
+            "09_final_mixed_closed_exam.md",
+            "10_mistake_log_repair_drills.md",
+            "11_ai_prompt_bank.md",
+        ],
+        "source_reader_manifest": "lecture_readers/lecture_reader_manifest.json",
+        "lecture_pages": sum(item["source_pages"] for item in json.loads((ROOT / "lecture_readers" / "lecture_reader_manifest.json").read_text(encoding="utf-8"))["lectures"]),
+    }
+    return json.dumps(data, indent=2)
+
+
+def readme() -> str:
+    return """# Exam Materials
+
+This pack is the practical study system built from the course repository.
+
+Use it when you want prepared material rather than only a roadmap.
+
+Recommended order:
+
+1. `00_reading_route.md`
+2. `01_mastery_checklists.md`
+3. `08_assignment_workbook.md`
+4. `02_cloze_generator_inputs.md`
+5. `03_matching_pairs.tsv` and `03_matching_tasks.md`
+6. `05_sequencing_and_pipeline_tasks.md`
+7. `04_closed_format_drills.md`
+8. `06_diagram_label_tasks.md`
+9. `07_opengl_debugging_drills.md`
+10. `09_final_mixed_closed_exam.md`
+11. `10_mistake_log_repair_drills.md`
+12. `11_ai_prompt_bank.md`
+
+The pack assumes the readable lecture explanations in `lecture_readers/` are your main textbook-like source.
+"""
+
+
+def main() -> None:
+    ensure_out()
+    write("README.md", readme())
+    write("00_reading_route.md", reading_route())
+    write("01_mastery_checklists.md", mastery_checklists())
+    write("02_cloze_generator_inputs.md", cloze_inputs())
+    write("03_matching_pairs.tsv", matching_pairs())
+    write("03_matching_tasks.md", matching_tasks())
+    write("04_closed_format_drills.md", closed_format_drills())
+    write("05_sequencing_and_pipeline_tasks.md", sequencing_tasks())
+    write("06_diagram_label_tasks.md", diagram_tasks())
+    write("07_opengl_debugging_drills.md", opengl_debugging())
+    write("08_assignment_workbook.md", assignment_workbook())
+    write("09_final_mixed_closed_exam.md", final_exam())
+    write("10_mistake_log_repair_drills.md", mistake_drills())
+    write("11_ai_prompt_bank.md", ai_prompt_bank())
+    write("manifest.json", manifest())
+    print(f"wrote {OUT}")
+
+
+if __name__ == "__main__":
+    main()
