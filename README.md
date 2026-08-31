@@ -4,6 +4,7 @@ Private backup of the Moodle course export `CS8165.001-SS26_1787682614.zip`.
 
 ## Structure
 
+- `START_HERE_100_PERCENT.md` - central reading-first route from raw Moodle material to exam-ready practice
 - `index.html` - course overview from Moodle
 - `lectures/` - lecture pages and renamed slide PDFs
 - `assignments/` - exercise pages
