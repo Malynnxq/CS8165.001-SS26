@@ -30,6 +30,7 @@ Private backup of the Moodle course export `CS8165.001-SS26_1787682614.zip`.
 - `scripts/build_overprep_pack.py` - reproducible generator for rebuilding `overprep_pack/`
 - `scripts/build_reader_pack.py` - reproducible generator for rebuilding `reader_pack/`
 - `scripts/build_lecture_readers.py` - reproducible generator for rebuilding `lecture_readers/`
+- `scripts/build_exam_materials.py` - reproducible generator for rebuilding `exam_materials/`
 
 ## Language Policy
 
@@ -56,6 +57,10 @@ Coverage checks are stored in `course_build_audit.json`.
 
 Start here:
 
+- `exam_materials/README.md`
+- `exam_materials/chapters_bridge/CS8165_all_b1_bridge_chapters.md`
+- `exam_materials/chapters_plain/CS8165_all_plain_text_chapters.txt`
+- `exam_materials/chapters/CS8165_all_exam_chapters.md`
 - `reader_pack/README.md`
 - `reader_pack/narrative_reader.md`
 - `reader_pack/original_language_ai_bundle.txt`
@@ -93,21 +98,26 @@ Use these for active learning and copy-paste generators:
 
 ## Roadmap From 0 To Exam-Ready
 
-1. **Setup:** Open `course_build_audit.json` and confirm all checks are `true`.
-2. **Readable Start:** Read `lecture_readers/pdf/CS8165_complete_lecture_readers.pdf` or the individual lecture PDFs.
-3. **Chapter Companion:** Use `reader_pack/narrative_reader.md` as the shorter overview and `reader_pack/interactive_workbook.html` for clickable checks.
-4. **Orientation:** Read `course_text_parts/00_START_HERE.txt`, then `study_pack/README.md`.
-5. **Core Understanding:** Work through `lecture_readers/markdown/` and `study_pack/chapter_guides/` from chapter 01 to 10.
-6. **Raw Source Check:** For each lecture, load the matching file from `course_text_parts/03_lectures/`.
-7. **Active Recall:** Use `practice_pack/cloze_source_texts.md`, `practice_pack/matching_pairs.tsv`, and `study_pack/flashcards_anki.tsv`.
-8. **Non-Boring Repetition:** Use `practice_pack/repetition_variants/round_01`, then `round_02`, then `round_03`. These repeat the same concepts with changed wording and task surfaces.
-9. **Math/Algorithms:** Work through `study_pack/formulas_and_derivations.md` and `practice_pack/math_algorithm_drills.md`.
-10. **Visuals:** Use `study_pack/visual_review_guide.md` and `practice_pack/diagram_graphics_prompts.md`; open the original PDF pages for diagrams.
-11. **OpenGL/Software:** Use `practice_pack/opengl_software_drills.md`, inspect `course_text_parts/05_opengl_starter_project.txt`, and use the software labs in `reader_pack/interactive_workbook.html`.
-12. **Exam Simulation:** Use `study_pack/exam_drill.md`, `practice_pack/multiple_choice.md`, and `practice_pack/sequencing_tasks.md`.
-13. **Closed-Format Overprep:** Use `overprep_pack/mock_exams/`, `overprep_pack/concept_confusion_pairs.md`, and `overprep_pack/closed_format_oral_exam_mode.md`. Prefer selecting, matching, filling, ordering, and labeling over vague open answers.
-14. **Mistake Repair:** Log every wrong answer in `overprep_pack/mistake_log.md` and reset it into the spaced-repetition schedule.
-15. **Final Pass:** Use `overprep_pack/final_readiness_checklist.md`. Revisit every weak spot until you can explain it with definition, pipeline role, diagram, algorithm/formula, OpenGL relation, and typical pitfall.
+Use this order if English terminology is a barrier and you want a path from basic understanding to closed-format exam performance.
+
+1. **Repository Check:** Open `course_build_audit.json` and confirm the extracted course coverage checks are `true`.
+2. **B1 Bridge First:** Read `exam_materials/chapters_bridge/CS8165_all_b1_bridge_chapters.md`, or read the matching single file in `exam_materials/chapters_bridge/` before each lecture. This connects everyday knowledge to graphics concepts and explains important verbs, collocations, and technical terms.
+3. **Plain Reading:** Read `exam_materials/chapters_plain/CS8165_all_plain_text_chapters.txt`, or the matching single file in `exam_materials/chapters_plain/`. This gives you smooth English prose without Markdown, formulas, arrows, or code-like notation.
+4. **Structured Exam Chapter:** Read the matching file in `exam_materials/chapters/`. This is the precision layer with problem, chain, terminology, compact rules, assignment connection, exam traps, answer criteria, and closed self-tests.
+5. **Slide-Level Detail:** Use `lecture_readers/pdf/CS8165_complete_lecture_readers.pdf` or the individual files in `lecture_readers/markdown/` when you need professor-style slide-by-slide explanation.
+6. **Raw Source Check:** For each lecture, compare your understanding with the original text chunk in `course_text_parts/03_lectures/`.
+7. **Assignment Connection:** Open the matching assignment in `course_text_parts/04_assignments/`, then inspect `assignment_sources/` and `assignment_zips/` where available.
+8. **Checklist Gate:** Use `exam_materials/01_mastery_checklists.md`. Do not move on from a lecture until you can identify the topic, its pipeline role, its main terms, and its common trap.
+9. **Cloze Practice:** Copy passages from `exam_materials/02_cloze_generator_inputs.md` or `practice_pack/cloze_source_texts.md` into a cloze generator.
+10. **Matching Practice:** Use `exam_materials/03_matching_pairs.tsv`, `exam_materials/03_matching_tasks.md`, and `practice_pack/matching_pairs.tsv` to drill terms, definitions, chapters, and roles.
+11. **Ordering Practice:** Use `exam_materials/05_sequencing_and_pipeline_tasks.md` and `practice_pack/sequencing_tasks.md` to learn process order, especially for pipeline, projection, clipping, rasterization, and visibility.
+12. **Closed-Format Drills:** Use `exam_materials/04_closed_format_drills.md`, `practice_pack/multiple_choice.md`, and `overprep_pack/mock_exams/`. Prefer multiple choice, matching, completion, ordering, labeling, and debugging tasks over broad open essays.
+13. **Math, Algorithms, And Diagrams:** Use `study_pack/formulas_and_derivations.md`, `practice_pack/math_algorithm_drills.md`, `exam_materials/06_diagram_label_tasks.md`, and `practice_pack/diagram_graphics_prompts.md`.
+14. **OpenGL And Software:** Use `exam_materials/07_opengl_debugging_drills.md`, `practice_pack/opengl_software_drills.md`, `course_text_parts/05_opengl_starter_project.txt`, and the software labs in `reader_pack/interactive_workbook.html`.
+15. **Non-Boring Repetition:** Use `practice_pack/repetition_variants/round_01`, then `round_02`, then `round_03`. These repeat the same concepts with changed wording and different task forms.
+16. **Mistake Repair:** Log every wrong answer in `overprep_pack/mistake_log.md`, then turn it into repair work with `exam_materials/10_mistake_log_repair_drills.md`.
+17. **Final Simulation:** Use `exam_materials/09_final_mixed_closed_exam.md`, `study_pack/exam_drill.md`, and the mock exams in `overprep_pack/mock_exams/`.
+18. **Final Pass:** Use `overprep_pack/final_readiness_checklist.md`. Revisit every weak spot until you can recognize the concept under new wording, choose the correct closed-format answer, and explain the corrected distinction in simple English.
 
 ## Closed-Format Overprep
 
