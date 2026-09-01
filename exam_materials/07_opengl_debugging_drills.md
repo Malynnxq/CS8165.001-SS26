@@ -93,7 +93,7 @@ First checks:
 
 - [ ] Write the checks here before looking at the answer.
 
-# Answer Key
+# Answers
 
 D1: B. Check context, bound VAO/VBO, shader program, viewport, clear color, framebuffer target.
 D2: B. Check model/view/projection matrix update and multiplication order.

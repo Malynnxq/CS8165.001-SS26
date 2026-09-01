@@ -429,48 +429,56 @@ def plain_chapter_text(topic: dict) -> str:
     return "\n".join(lines)
 
 
-def bridge_phrase_bank(topic: dict) -> list[tuple[str, str, str]]:
+def bridge_phrase_bank(topic: dict) -> list[tuple[str, str, str, str]]:
     chain_words = chain_as_words(topic)
     return [
         (
             "to represent something",
             "to show something in a certain form.",
             "In graphics, the same object can be represented as pixels, vertices, fragments, texture values, or depth values.",
+            "subject, verb, object, result.",
         ),
         (
             "to convert A into B",
             "to change information from one form into another form.",
             f"The course often says that one stage converts data into the next stage of this process: {chain_words}.",
+            "input, conversion, output.",
         ),
         (
             "to map A to B",
             "to connect one space, value, or position to another space, value, or position.",
             "If a lecture says that coordinates are mapped, it means that the same thing is described in a new place or scale.",
+            "source space, mapping rule, target space.",
         ),
         (
             "to determine whether",
             "to decide if something is true or false.",
             "Graphics algorithms often determine whether a point is inside, visible, covered, lit, or shadowed.",
+            "object, test, true or false result.",
         ),
         (
             "to pass a test",
             "to satisfy a rule and continue to the next step.",
             "A fragment can pass a depth test or fail it, so it may or may not become visible.",
+            "candidate, test rule, accepted or rejected result.",
         ),
         (
             "to depend on",
             "to need something else before it can work correctly.",
             f"The later part of the chapter depends on the earlier part of this chain: {chain_words}.",
+            "later step, required earlier step.",
         ),
         (
             "to store a value",
             "to keep a value in memory so that it can be used later.",
             "Buffers, textures, and framebuffers store values for rendering.",
+            "storage object, stored value, later access.",
         ),
         (
             "at draw time",
             "at the exact moment when the GPU receives the draw command.",
             "In OpenGL, the current state at draw time is very important.",
+            "current state, draw command, GPU result.",
         ),
     ]
 
@@ -487,8 +495,6 @@ def bridge_chapter_text(topic: dict) -> str:
     chain_words = chain_as_words(topic)
     lines = [
         f"# Lecture {topic['id']} - {topic['title']} B1 Bridge",
-        "",
-        "Read this before the normal exam chapter if the English feels too dense. This version does not replace the main chapter. It prepares you for it.",
         "",
         "## 1. Starting Point",
         "",
@@ -515,15 +521,11 @@ def bridge_chapter_text(topic: dict) -> str:
         )
     lines.extend(
         [
-            "When you read the main chapter, do not try to memorize the whole sentence first. Ask three smaller questions. What goes in? What changes? What comes out?",
-            "",
-            "## 3. English Bridge",
-            "",
-            "These phrases appear often in computer graphics texts. Learn them as small sentence patterns.",
-            "",
+        "## 3. English Bridge",
+        "",
         ]
     )
-    for phrase, meaning, example in bridge_phrase_bank(topic):
+    for phrase, meaning, example, pattern in bridge_phrase_bank(topic):
         lines.extend(
             [
                 f"### {phrase}",
@@ -532,7 +534,7 @@ def bridge_chapter_text(topic: dict) -> str:
                 "",
                 f"Course example: {example}",
                 "",
-                f"How to read it: if you see `{phrase}`, look for the thing before the verb and the thing after the verb. The first thing usually gives the input or object. The second thing usually gives the result, rule, or dependency.",
+                f"Pattern: {pattern}",
                 "",
             ]
         )
@@ -561,8 +563,6 @@ def bridge_chapter_text(topic: dict) -> str:
         [
             "## 5. Step By Step Bridge",
             "",
-            "Each part below connects a lecture section to easier English. Read the easy sentence first. Then read the explanation. Then read the same part in the normal chapter.",
-            "",
         ]
     )
     for section_index, section in enumerate(lecture["sections"], start=1):
@@ -570,11 +570,11 @@ def bridge_chapter_text(topic: dict) -> str:
             [
                 f"### {topic['id']}.{section_index} {section['title']}",
                 "",
-                f"Easy sentence: this section explains one part of {topic['title'].lower()}.",
+                f"Core sentence: this section explains one part of {topic['title'].lower()}.",
                 "",
                 f"Main connection: {section['mental_model']}",
                 "",
-                "What this means in slower English:",
+                "Slower English:",
                 "",
             ]
         )
@@ -582,15 +582,13 @@ def bridge_chapter_text(topic: dict) -> str:
             lines.extend([f"{plain_text(paragraph)}", ""])
         lines.extend(
             [
-                "Language help: in this section, look for verbs such as prepares, handles, creates, applies, computes, decides, stores, maps, tests, or converts. The verb tells you what is happening. The object after the verb is usually the data, stage, value, or result that the course wants you to understand.",
+                "Verb pattern: prepares, handles, creates, applies, computes, decides, stores, maps, tests, and converts connect the action to the data, stage, value, or result.",
                 "",
             ]
         )
         lines.extend(
             [
-                f"Check question in simple form: {section['check']}",
-                "",
-                "If you cannot answer it yet, go back to the process and ask what goes in, what changes, and what comes out.",
+                f"Check: {section['check']}",
                 "",
             ]
         )
@@ -598,13 +596,9 @@ def bridge_chapter_text(topic: dict) -> str:
         [
             "## 6. Reading The Main Chapter After This",
             "",
-            "Now read the normal chapter for this lecture. When a sentence feels hard, do not translate every word first. First mark the verb. Then mark the technical noun. Then ask how the noun moves through the process.",
-            "",
             f"The most dangerous misunderstanding in this lecture is: {topic['trap']}",
             "",
             f"The compact rule is: {topic['formula']}",
-            "",
-            "You are ready for the main version when you can explain the process with simple English, recognize the important course words, and understand the verbs that connect the words.",
             "",
         ]
     )
@@ -621,8 +615,6 @@ def chapter_text(topic: dict) -> str:
         f"Source lecture chunk: `{lecture['source']}`",
         f"Extracted source pages: {source_page_count(lecture)}",
         f"Primary assignment connection: {topic['assignment']}",
-        "",
-        "This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.",
         "",
         "## 1. What Problem This Chapter Solves",
         "",
@@ -738,12 +730,7 @@ def combined_chapters() -> str:
 
 
 def combined_plain_chapters() -> str:
-    lines = [
-        sentence("This file contains all ten plain English exam chapters."),
-        "",
-        sentence("It is designed for uninterrupted reading and for copying into tools that work better with normal prose than with Markdown, tables, bullets, code marks, arrows, or symbolic notation."),
-        "",
-    ]
+    lines = []
     for topic in TOPICS:
         lines.append(plain_chapter_text(topic))
         lines.append("")
@@ -753,8 +740,6 @@ def combined_plain_chapters() -> str:
 def combined_bridge_chapters() -> str:
     lines = [
         "# CS8165 B1 Bridge Chapters",
-        "",
-        "This file combines the ten B1 bridge chapters. Use it before the normal exam chapters when the terminology, verbs, and collocations are the main barrier.",
         "",
     ]
     for topic in TOPICS:
@@ -769,8 +754,6 @@ def combined_bridge_chapters() -> str:
 def reading_route() -> str:
     lines = [
         "# 00 - Reading Route",
-        "",
-        "Use this route when you want a strict, reading-first path from raw course files to exam-level performance.",
         "",
         "## The Order",
         "",
@@ -910,7 +893,7 @@ def closed_format_drills() -> str:
     lines = [
         "# 04 - Closed-Format Drills",
         "",
-        "These are designed for selection, matching, completion, and quick decision practice. Answers are at the end.",
+        "Answers are at the end.",
         "",
     ]
     answers: list[str] = []
@@ -1101,8 +1084,6 @@ def assignment_workbook() -> str:
     lines = [
         "# 08 - Assignment Workbook",
         "",
-        "Use this file to turn assignments into exam preparation. Each assignment must be connected back to lecture concepts.",
-        "",
     ]
     for ident, title, source, chapters, concepts in ASSIGNMENTS:
         exists = (ROOT / source).exists()
@@ -1195,8 +1176,6 @@ def final_exam() -> str:
 def mistake_drills() -> str:
     return """# 10 - Mistake Log Repair Drills
 
-Use this after every wrong answer. Do not write vague entries.
-
 ## Repair Template
 
 Topic:
@@ -1261,7 +1240,7 @@ Prefer closed-format checks over vague open essay questions.
 ## Assignment To Concept Checklist
 
 ```text
-Use this assignment text and the matching lecture chapter.
+Attached assignment text and matching lecture chapter.
 Identify the exact lecture concepts required.
 Create a checklist of prerequisite knowledge.
 Create MC, matching, sequencing, diagram-label, and code-reading questions that test those concepts.
@@ -1317,11 +1296,7 @@ def manifest() -> str:
 def readme() -> str:
     return """# Exam Materials
 
-This pack is the practical study system built from the course repository.
-
-Use it when you want prepared material rather than only a roadmap.
-
-Recommended order:
+Reading order:
 
 1. `chapters_bridge/CS8165_all_b1_bridge_chapters.md` or one file from `chapters_bridge/`
 2. `chapters_plain/CS8165_all_plain_text_chapters.txt` or one file from `chapters_plain/`
@@ -1338,8 +1313,6 @@ Recommended order:
 13. `09_final_mixed_closed_exam.md`
 14. `10_mistake_log_repair_drills.md`
 15. `11_ai_prompt_bank.md`
-
-The files in `chapters_bridge/` are B1 bridge chapters. They explain terminology, verbs, collocations, and concept links before you read the main version. The files in `chapters_plain/` are prose-only reading chapters. They avoid Markdown, bullets, code marks, arrows, tables, and symbolic notation inside the text. The files in `chapters/` keep the structured exam chapter layout. The readable slide-by-slide explanations in `lecture_readers/` remain the deeper source for per-slide commentary.
 """
 
 

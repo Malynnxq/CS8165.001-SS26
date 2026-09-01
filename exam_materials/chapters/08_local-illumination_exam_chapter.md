@@ -4,8 +4,6 @@ Source lecture chunk: `course_text_parts/03_lectures/08_local-illumination.txt`
 Extracted source pages: 62
 Primary assignment connection: Rendering contest and shader-related tasks
 
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
-
 ## 1. What Problem This Chapter Solves
 
 Local illumination computes color from surface orientation, light direction, view direction, and material response. The chapter exists because this part of computer graphics answers a specific missing question in the full rendering story. The compact chain is `surface point + normal + light + view + material -> lighting equation -> shaded color`. If you can recite the chain but cannot explain why each arrow exists, you have memorized the wording rather than understood the topic.

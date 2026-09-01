@@ -1,7 +1,5 @@
 # 08 - Assignment Workbook
 
-Use this file to turn assignments into exam preparation. Each assignment must be connected back to lecture concepts.
-
 ## Assignment 00 - Introduction to C++
 
 Source text: `course_text_parts/04_assignments/00_introduction-to-cpp.txt`

@@ -4,8 +4,6 @@ Source lecture chunk: `course_text_parts/03_lectures/06_rasterization.txt`
 Extracted source pages: 61
 Primary assignment connection: 05 Rasterization
 
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
-
 ## 1. What Problem This Chapter Solves
 
 Rasterization converts continuous projected geometry into discrete fragment candidates and interpolated per-fragment attributes. The chapter exists because this part of computer graphics answers a specific missing question in the full rendering story. The compact chain is `projected primitive -> sample coverage -> fragment generation -> attribute interpolation -> fragment tests`. If you can recite the chain but cannot explain why each arrow exists, you have memorized the wording rather than understood the topic.

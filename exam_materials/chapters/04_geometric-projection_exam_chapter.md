@@ -4,8 +4,6 @@ Source lecture chunk: `course_text_parts/03_lectures/04_geometric-projection.txt
 Extracted source pages: 61
 Primary assignment connection: 04 Projections and Clipping
 
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
-
 ## 1. What Problem This Chapter Solves
 
 Projection maps camera-space geometry into clip coordinates and then normalized device coordinates before viewport mapping. The chapter exists because this part of computer graphics answers a specific missing question in the full rendering story. The compact chain is `view-space position -> projection matrix -> clip coordinates -> perspective divide -> NDC -> viewport coordinates`. If you can recite the chain but cannot explain why each arrow exists, you have memorized the wording rather than understood the topic.

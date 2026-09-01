@@ -197,8 +197,6 @@ def mistake_log() -> str:
     return """Mistake Log
 ===========
 
-Use this after every practice session. Keep entries short and concrete.
-
 Template
 --------
 Date:
@@ -232,8 +230,6 @@ Review date 3:
 def oral_mode() -> str:
     return """Oral Exam Mode Without Open Essays
 =================================
-
-Use this with an AI examiner.
 
 Prompt
 ------
@@ -307,8 +303,6 @@ def spaced_repetition() -> str:
     return """Spaced Repetition Schedule
 ==========================
 
-Use this with flashcards, matching, and cloze.
-
 Cycle
 -----
 Day 0: Learn chapter.
@@ -348,10 +342,8 @@ def readme() -> str:
     return """Overprep Pack
 =============
 
-This pack is for overpreparation using closed formats only. It avoids vague open-answer mock exams.
-
-Use Order
----------
+Reading Order
+-------------
 1. `one_pager_cheat_sheets.md`
 2. `concept_confusion_pairs.md`
 3. `closed_format_oral_exam_mode.md`

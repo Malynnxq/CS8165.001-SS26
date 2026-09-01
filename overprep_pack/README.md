@@ -1,9 +1,7 @@
 Overprep Pack
 =============
 
-This pack is for overpreparation using closed formats only. It avoids vague open-answer mock exams.
-
-Use Order
+Reading Order
 ---------
 1. `one_pager_cheat_sheets.md`
 2. `concept_confusion_pairs.md`
@@ -15,6 +13,6 @@ Use Order
 8. `spaced_repetition_schedule.md`
 9. `final_readiness_checklist.md`
 
-Exam Style
+Task Types
 ----------
 Use selecting, matching, filling blanks, ordering, labeling, and short correction. Avoid broad essay answers.

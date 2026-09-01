@@ -4,8 +4,6 @@ Source lecture chunk: `course_text_parts/03_lectures/10_shadows.txt`
 Extracted source pages: 60
 Primary assignment connection: Rendering contest and integrated lighting tasks
 
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
-
 ## 1. What Problem This Chapter Solves
 
 Shadows are visibility tests from the light source, not only dark shapes seen by the camera. The chapter exists because this part of computer graphics answers a specific missing question in the full rendering story. The compact chain is `light -> possible blocker -> receiver point -> light-space visibility test -> lit or shadowed result`. If you can recite the chain but cannot explain why each arrow exists, you have memorized the wording rather than understood the topic.

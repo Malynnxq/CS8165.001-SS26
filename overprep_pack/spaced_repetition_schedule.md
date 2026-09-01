@@ -1,8 +1,6 @@
 Spaced Repetition Schedule
 ==========================
 
-Use this with flashcards, matching, and cloze.
-
 Cycle
 -----
 Day 0: Learn chapter.

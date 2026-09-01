@@ -4,8 +4,6 @@ Source lecture chunk: `course_text_parts/03_lectures/09_texturing.txt`
 Extracted source pages: 133
 Primary assignment connection: Rendering contest and texture/shader tasks
 
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
-
 ## 1. What Problem This Chapter Solves
 
 Texturing uses coordinates and sampler state to fetch stored data and interpret it in a shader. The chapter exists because this part of computer graphics answers a specific missing question in the full rendering story. The compact chain is `fragment coordinates -> texture coordinates -> sampler/filter/wrap state -> texel fetch -> shader meaning`. If you can recite the chain but cannot explain why each arrow exists, you have memorized the wording rather than understood the topic.

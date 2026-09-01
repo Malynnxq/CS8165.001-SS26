@@ -4,8 +4,6 @@ Source lecture chunk: `course_text_parts/03_lectures/03_geometric-transformation
 Extracted source pages: 54
 Primary assignment connection: 03 Geometric Transformations
 
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
-
 ## 1. What Problem This Chapter Solves
 
 Transformations change how points, vectors, normals, and coordinate frames are expressed across model, world, view, and clip-related spaces. The chapter exists because this part of computer graphics answers a specific missing question in the full rendering story. The compact chain is `object/model coordinates -> model matrix -> world coordinates -> view matrix -> camera/view coordinates`. If you can recite the chain but cannot explain why each arrow exists, you have memorized the wording rather than understood the topic.

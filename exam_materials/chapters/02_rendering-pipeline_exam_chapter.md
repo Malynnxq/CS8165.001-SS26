@@ -4,8 +4,6 @@ Source lecture chunk: `course_text_parts/03_lectures/02_rendering-pipeline.txt`
 Extracted source pages: 94
 Primary assignment connection: 01 Rendering Pipeline
 
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
-
 ## 1. What Problem This Chapter Solves
 
 Rendering is a sequence of representation changes: models become vertices, primitives, fragments, tested fragments, and finally framebuffer updates. The chapter exists because this part of computer graphics answers a specific missing question in the full rendering story. The compact chain is `application data -> geometry stage -> primitive assembly -> rasterization -> fragment operations -> framebuffer`. If you can recite the chain but cannot explain why each arrow exists, you have memorized the wording rather than understood the topic.

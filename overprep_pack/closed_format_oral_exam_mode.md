@@ -1,8 +1,6 @@
 Oral Exam Mode Without Open Essays
 =================================
 
-Use this with an AI examiner.
-
 Prompt
 ------
 Ask me one closed-format question at a time from CS8165. Use only:

@@ -1,8 +1,6 @@
 Mistake Log
 ===========
 
-Use this after every practice session. Keep entries short and concrete.
-
 Template
 --------
 Date:

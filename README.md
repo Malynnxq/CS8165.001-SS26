@@ -34,7 +34,7 @@ Private backup of the Moodle course export `CS8165.001-SS26_1787682614.zip`.
 
 ## AI Study Files
 
-Use these files depending on the context window:
+Reading files by context size:
 
 - `course_text_parts/00_START_HERE.txt` - loading guide and source manifest
 - `course_text_parts/03_lectures/` - one text file per lecture chapter
@@ -45,7 +45,7 @@ Use these files depending on the context window:
 
 ## Exam Study Pack
 
-Start here:
+Reading order:
 
 - `exam_materials/README.md`
 - `exam_materials/chapters_bridge/CS8165_all_b1_bridge_chapters.md`
@@ -67,11 +67,9 @@ Start here:
 - `study_pack/flashcards_anki.tsv`
 - `study_pack/visual_review_guide.md`
 
-The study pack is derived from the course chunks and does not invent missing old exams, recordings, or official solutions.
-
 ## Interactive Practice Pack
 
-Use these for active learning and copy-paste generators:
+Active learning and copy-paste generators:
 
 - `practice_pack/cloze_source_texts.md` - coherent source texts for cloze generators
 - `practice_pack/premade_cloze_texts.md` - same topics with blanks already inserted
@@ -87,8 +85,6 @@ Use these for active learning and copy-paste generators:
 - `practice_pack/roadmap_0_to_100.md` - full route from zero to exam-ready
 
 ## Roadmap From 0 To Exam-Ready
-
-Use this order if English terminology is a barrier and you want a path from basic understanding to closed-format exam performance.
 
 1. **B1 Bridge First:** Read `exam_materials/chapters_bridge/CS8165_all_b1_bridge_chapters.md`, or read the matching single file in `exam_materials/chapters_bridge/` before each lecture. This connects everyday knowledge to graphics concepts and explains important verbs, collocations, and technical terms.
 2. **Plain Reading:** Read `exam_materials/chapters_plain/CS8165_all_plain_text_chapters.txt`, or the matching single file in `exam_materials/chapters_plain/`. This gives you smooth English prose without Markdown, formulas, arrows, or code-like notation.
@@ -109,8 +105,6 @@ Use this order if English terminology is a barrier and you want a path from basi
 17. **Final Pass:** Use `overprep_pack/final_readiness_checklist.md`. Revisit every weak spot until you can recognize the concept under new wording, choose the correct closed-format answer, and explain the corrected distinction in simple English.
 
 ## Closed-Format Overprep
-
-Use this if you dislike open mock-exam essays:
 
 - `overprep_pack/mock_exams/` - 3 closed-format mock exams
 - `overprep_pack/mistake_log.md` - structured error tracking

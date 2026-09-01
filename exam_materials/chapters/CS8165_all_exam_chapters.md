@@ -1,7 +1,5 @@
 # CS8165 Complete Exam Chapters
 
-This file combines the ten generated exam chapters. Use the individual files in `exam_materials/chapters/` when you want a cleaner one-chapter reading session.
-
 - Lecture 01 - Introduction: `chapters/01_introduction_exam_chapter.md`
 - Lecture 02 - Rendering Pipeline: `chapters/02_rendering-pipeline_exam_chapter.md`
 - Lecture 03 - Geometric Transformations: `chapters/03_geometric-transformations_exam_chapter.md`
@@ -18,8 +16,6 @@ This file combines the ten generated exam chapters. Use the individual files in 
 Source lecture chunk: `course_text_parts/03_lectures/01_introduction.txt`
 Extracted source pages: 51
 Primary assignment connection: 00 Introduction to C++
-
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
 
 ## 1. What Problem This Chapter Solves
 
@@ -162,14 +158,11 @@ The trap is dangerous because it usually sounds close to the truth. High exam pe
 
 You are done with Lecture 01 only when you can read a new question, recognize that it belongs to `Introduction`, and reconstruct the relevant part of `scene or image description -> representation choice -> sampling or rendering process -> visible image -> interaction or analysis` without looking. Then verify with the drills in `exam_materials/` and the corresponding source chunk.
 
-
 # Lecture 02 - Rendering Pipeline Exam Chapter
 
 Source lecture chunk: `course_text_parts/03_lectures/02_rendering-pipeline.txt`
 Extracted source pages: 94
 Primary assignment connection: 01 Rendering Pipeline
-
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
 
 ## 1. What Problem This Chapter Solves
 
@@ -312,14 +305,11 @@ The trap is dangerous because it usually sounds close to the truth. High exam pe
 
 You are done with Lecture 02 only when you can read a new question, recognize that it belongs to `Rendering Pipeline`, and reconstruct the relevant part of `application data -> geometry stage -> primitive assembly -> rasterization -> fragment operations -> framebuffer` without looking. Then verify with the drills in `exam_materials/` and the corresponding source chunk.
 
-
 # Lecture 03 - Geometric Transformations Exam Chapter
 
 Source lecture chunk: `course_text_parts/03_lectures/03_geometric-transformations.txt`
 Extracted source pages: 54
 Primary assignment connection: 03 Geometric Transformations
-
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
 
 ## 1. What Problem This Chapter Solves
 
@@ -462,14 +452,11 @@ The trap is dangerous because it usually sounds close to the truth. High exam pe
 
 You are done with Lecture 03 only when you can read a new question, recognize that it belongs to `Geometric Transformations`, and reconstruct the relevant part of `object/model coordinates -> model matrix -> world coordinates -> view matrix -> camera/view coordinates` without looking. Then verify with the drills in `exam_materials/` and the corresponding source chunk.
 
-
 # Lecture 04 - Geometric Projection Exam Chapter
 
 Source lecture chunk: `course_text_parts/03_lectures/04_geometric-projection.txt`
 Extracted source pages: 61
 Primary assignment connection: 04 Projections and Clipping
-
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
 
 ## 1. What Problem This Chapter Solves
 
@@ -612,14 +599,11 @@ The trap is dangerous because it usually sounds close to the truth. High exam pe
 
 You are done with Lecture 04 only when you can read a new question, recognize that it belongs to `Geometric Projection`, and reconstruct the relevant part of `view-space position -> projection matrix -> clip coordinates -> perspective divide -> NDC -> viewport coordinates` without looking. Then verify with the drills in `exam_materials/` and the corresponding source chunk.
 
-
 # Lecture 05 - Clipping Exam Chapter
 
 Source lecture chunk: `course_text_parts/03_lectures/05_clipping.txt`
 Extracted source pages: 56
 Primary assignment connection: 04 Projections and Clipping
-
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
 
 ## 1. What Problem This Chapter Solves
 
@@ -750,14 +734,11 @@ The trap is dangerous because it usually sounds close to the truth. High exam pe
 
 You are done with Lecture 05 only when you can read a new question, recognize that it belongs to `Clipping`, and reconstruct the relevant part of `primitive -> boundary tests -> inside/outside classification -> intersections -> clipped primitive` without looking. Then verify with the drills in `exam_materials/` and the corresponding source chunk.
 
-
 # Lecture 06 - Rasterization Exam Chapter
 
 Source lecture chunk: `course_text_parts/03_lectures/06_rasterization.txt`
 Extracted source pages: 61
 Primary assignment connection: 05 Rasterization
-
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
 
 ## 1. What Problem This Chapter Solves
 
@@ -900,14 +881,11 @@ The trap is dangerous because it usually sounds close to the truth. High exam pe
 
 You are done with Lecture 06 only when you can read a new question, recognize that it belongs to `Rasterization`, and reconstruct the relevant part of `projected primitive -> sample coverage -> fragment generation -> attribute interpolation -> fragment tests` without looking. Then verify with the drills in `exam_materials/` and the corresponding source chunk.
 
-
 # Lecture 07 - Visibility Determination Exam Chapter
 
 Source lecture chunk: `course_text_parts/03_lectures/07_visibility-determination.txt`
 Extracted source pages: 69
 Primary assignment connection: Rasterization and integrated rendering tasks
-
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
 
 ## 1. What Problem This Chapter Solves
 
@@ -1050,14 +1028,11 @@ The trap is dangerous because it usually sounds close to the truth. High exam pe
 
 You are done with Lecture 07 only when you can read a new question, recognize that it belongs to `Visibility Determination`, and reconstruct the relevant part of `many projected or intersected candidates -> comparison rule -> visible surface or fragment -> final image contribution` without looking. Then verify with the drills in `exam_materials/` and the corresponding source chunk.
 
-
 # Lecture 08 - Local Illumination Exam Chapter
 
 Source lecture chunk: `course_text_parts/03_lectures/08_local-illumination.txt`
 Extracted source pages: 62
 Primary assignment connection: Rendering contest and shader-related tasks
-
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
 
 ## 1. What Problem This Chapter Solves
 
@@ -1200,14 +1175,11 @@ The trap is dangerous because it usually sounds close to the truth. High exam pe
 
 You are done with Lecture 08 only when you can read a new question, recognize that it belongs to `Local Illumination`, and reconstruct the relevant part of `surface point + normal + light + view + material -> lighting equation -> shaded color` without looking. Then verify with the drills in `exam_materials/` and the corresponding source chunk.
 
-
 # Lecture 09 - Texturing Exam Chapter
 
 Source lecture chunk: `course_text_parts/03_lectures/09_texturing.txt`
 Extracted source pages: 133
 Primary assignment connection: Rendering contest and texture/shader tasks
-
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
 
 ## 1. What Problem This Chapter Solves
 
@@ -1362,14 +1334,11 @@ The trap is dangerous because it usually sounds close to the truth. High exam pe
 
 You are done with Lecture 09 only when you can read a new question, recognize that it belongs to `Texturing`, and reconstruct the relevant part of `fragment coordinates -> texture coordinates -> sampler/filter/wrap state -> texel fetch -> shader meaning` without looking. Then verify with the drills in `exam_materials/` and the corresponding source chunk.
 
-
 # Lecture 10 - Shadows Exam Chapter
 
 Source lecture chunk: `course_text_parts/03_lectures/10_shadows.txt`
 Extracted source pages: 60
 Primary assignment connection: Rendering contest and integrated lighting tasks
-
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
 
 ## 1. What Problem This Chapter Solves
 

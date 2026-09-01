@@ -18,11 +18,6 @@ LECTURE_02 = {
         "course_text_parts/01_course_overview.txt",
         "course_text_parts/05_opengl_starter_project.txt",
     ],
-    "purpose": (
-        "A beginner-friendly textbook chapter for a student who missed the lecture. "
-        "It teaches the dependency chain first, defines vocabulary before relying on it, "
-        "and uses concrete OpenGL examples only after the underlying idea is clear."
-    ),
     "source_anchors": [
         "Lecture 2 slides 2 and 5-9: object-based rendering, geometry stage, rasterization stage, fragments, framebuffer.",
         "Lecture 2 slides 12-17: OpenGL as a stateful graphics API, context creation, geometry upload, rendering.",
@@ -319,14 +314,6 @@ def render_markdown(lecture: dict) -> str:
     lines.extend(f"- `{source}`" for source in lecture["supporting_sources"])
     lines.extend(
         [
-            "",
-            lecture["purpose"],
-            "",
-            "## How to use this chapter",
-            "",
-            "Read it in order. The chapter intentionally defines the terms needed later - coordinate system, clip space, shader, interpolation, fragment, framebuffer, attachment, and depth buffer - before using them as if they were obvious.",
-            "",
-            "This is still grounded in the lecture material rather than replacing it. The goal is to make the slides studyable: the slides provide the official vocabulary and diagrams, while this reader explains the causal chain between them.",
             "",
             "## Source anchors",
             "",

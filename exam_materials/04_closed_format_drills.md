@@ -1,7 +1,5 @@
 # 04 - Closed-Format Drills
 
-These are designed for selection, matching, completion, and quick decision practice. Answers are at the end.
-
 ## Lecture 01 - Introduction
 
 Q1. Which statement best describes the core idea?
@@ -272,7 +270,7 @@ B. The concept has an input, operation, output, and later use.
 C. It connects to Rendering contest and integrated lighting tasks.
 D. It can be practiced with matching and sequencing tasks.
 
-# Answer Key
+# Answers
 
 Q1: D
 Q2: sampling or rendering process. Full chain: `scene or image description -> representation choice -> sampling or rendering process -> visible image -> interaction or analysis`

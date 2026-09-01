@@ -296,8 +296,6 @@ def make_interactive_menu() -> str:
     return """Interactive Practice Menu
 =========================
 
-Use this as a rotation. Do not only read.
-
 Daily 45-Minute Loop
 --------------------
 1. 10 minutes: cloze text from `cloze_source_texts.md`.
@@ -384,8 +382,6 @@ You are ready when you can:
 def make_readme() -> str:
     return """Practice Pack
 =============
-
-This folder is for active practice, not passive reading.
 
 Files
 -----

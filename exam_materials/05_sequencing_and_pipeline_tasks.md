@@ -141,7 +141,7 @@ Correct order:
 
 - [ ] Fill this in without notes.
 
-# Answer Key
+# Answers
 
 S1: scene or image description -> representation choice -> sampling or rendering process -> visible image -> interaction or analysis
 S2: application data -> geometry stage -> primitive assembly -> rasterization -> fragment operations -> framebuffer

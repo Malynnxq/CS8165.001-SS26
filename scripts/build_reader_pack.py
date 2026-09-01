@@ -312,10 +312,6 @@ def write_markdown() -> None:
     lines: list[str] = []
     lines.append(heading("CS8165.001 Narrative Reader"))
     lines.append("")
-    lines.append("Language policy: this reader is written in English because the course lecture material is primarily in English. Original German Moodle notices remain German only when they are source material. Generated explanations, checks, and lab instructions in this pack are English.")
-    lines.append("")
-    lines.append("How to use this file: read one chapter, open the referenced source chunk, do the active task, then answer the closed checks without looking. This reader is a guided companion to the complete raw export, not a replacement for `course_full_text.txt`.")
-    lines.append("")
     lines.append(heading("Pipeline Overview", 2))
     lines.append("")
     lines.append("The central route is: application data -> vertex processing -> primitive assembly -> clipping/culling decisions -> rasterization -> fragment shading -> per-fragment tests -> framebuffer. The same route explains most conceptual questions and most OpenGL debugging questions.")
@@ -386,15 +382,13 @@ def write_readme() -> None:
     lines = [
         heading("Reader Pack"),
         "",
-        "This pack is the readable, original-language layer for the course. It does not replace the complete raw export; it gives you a structured route through it.",
-        "",
         "- `narrative_reader.md` - chapter-by-chapter commented reader in English",
         "- `original_language_ai_bundle.txt` - AI-ready bundle with the English reader plus source chunks in their exported language",
         "- `icg_narrative_reader.pdf` - printable/browsable PDF version of the reader",
         "- `interactive_workbook.html` - self-contained clickable practice workbook",
         "- `language_audit.md` - source-language policy and what to feed into AI tools",
         "",
-        heading("Recommended Use", 2),
+        heading("Reading Order", 2),
         "",
         "1. Read one chapter in `narrative_reader.md` or the PDF.",
         "2. Open the source chunk listed at the top of the chapter.",
@@ -412,9 +406,6 @@ def write_ai_bundle() -> None:
     lines = [
         "CS8165.001 ORIGINAL-LANGUAGE AI BUNDLE",
         "",
-        "Purpose: feed this file to an AI when you want the course material in its source language plus a readable English guide.",
-        "Policy: generated explanations in this bundle are English because the lecture material is primarily English. Exported source text remains in the language found in Moodle/course files.",
-        "Excluded on purpose: older German study helper prompts and generated exam-preparation addenda.",
         "",
         "=" * 80,
         "PART 1 - NARRATIVE READER",

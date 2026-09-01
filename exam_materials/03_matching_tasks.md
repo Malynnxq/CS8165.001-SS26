@@ -1,6 +1,6 @@
 # 03 - Matching Tasks
 
-Match each term to the correct role. Use the TSV file for import into tools; use this Markdown file for manual practice.
+Match each term to the correct role.
 
 ## Lecture 01 - Introduction
 

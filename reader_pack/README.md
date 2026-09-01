@@ -1,7 +1,5 @@
 # Reader Pack
 
-This pack is the readable, original-language layer for the course. It does not replace the complete raw export; it gives you a structured route through it.
-
 - `narrative_reader.md` - chapter-by-chapter commented reader in English
 - `original_language_ai_bundle.txt` - AI-ready bundle with the English reader plus source chunks in their exported language
 - `icg_narrative_reader.pdf` - printable/browsable PDF version of the reader

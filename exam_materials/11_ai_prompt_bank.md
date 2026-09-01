@@ -1,7 +1,5 @@
 # 11 - AI Prompt Bank For This Course
 
-Use these prompts with the files in this repository.
-
 ## Lecture To Exam Chapter
 
 ```text
@@ -16,7 +14,7 @@ Prefer closed-format checks over vague open essay questions.
 ## Assignment To Concept Checklist
 
 ```text
-Use this assignment text and the matching lecture chapter.
+Attached assignment text and matching lecture chapter.
 Identify the exact lecture concepts required.
 Create a checklist of prerequisite knowledge.
 Create MC, matching, sequencing, diagram-label, and code-reading questions that test those concepts.

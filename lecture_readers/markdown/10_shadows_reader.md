@@ -3,22 +3,13 @@
 Source chunk: `course_text_parts/03_lectures/10_shadows.txt`
 Extracted slide pages in source chunk: 60
 
-This file is an explanatory reading version of the lecture. It keeps the course language in English and adds the missing commentary that the slide deck assumes was spoken in class. It is not a replacement for the original slides; use it next to the source chunk.
 
 ## Big Picture
 
 This lecture explains shadows as a visibility problem from the light source. A point is lit if the light can see it; it is shadowed if another object blocks that visibility.
 
-## How To Read This Lecture
-
-- First read the big picture and the mental models.
-- Then open the source chunk and compare the slide bullets to the commentary.
-- After each section, answer the check question without notes.
-- If the check feels vague, revisit the source pages listed for that section.
-
 ## Per-Slide Commentary
 
-Every extracted slide page gets its own reading note. This is the part to use when the original PDF is too terse or visually dense.
 
 ### Page 1 - Visual or title slide
 
@@ -32,7 +23,6 @@ Why it matters: Even a sparse slide usually names a relation you must be able to
 
 Exam-grade answer: A strong answer links this visual or title page to the closest surrounding concept slide and names the topic transition it introduces.
 
-Common trap: Do not invent details that are not visible in the extracted text; use this page as a boundary marker and rely on adjacent slides for technical content.
 
 Check yourself: Can you turn 'Visual or title slide' into a causal sentence instead of repeating the slide title?
 
@@ -736,7 +726,6 @@ Why it matters: Even a sparse slide usually names a relation you must be able to
 
 Exam-grade answer: A strong answer links this visual or title page to the closest surrounding concept slide and names the topic transition it introduces.
 
-Common trap: Do not invent details that are not visible in the extracted text; use this page as a boundary marker and rely on adjacent slides for technical content.
 
 Check yourself: Can you turn 'Visual or title slide' into a causal sentence instead of repeating the slide title?
 
@@ -896,7 +885,6 @@ Why it matters: Even a sparse slide usually names a relation you must be able to
 
 Exam-grade answer: A strong answer links this visual or title page to the closest surrounding concept slide and names the topic transition it introduces.
 
-Common trap: Do not invent details that are not visible in the extracted text; use this page as a boundary marker and rely on adjacent slides for technical content.
 
 Check yourself: Can you turn 'Visual or title slide' into a causal sentence instead of repeating the slide title?
 
@@ -928,7 +916,6 @@ Why it matters: Even a sparse slide usually names a relation you must be able to
 
 Exam-grade answer: A strong answer links this visual or title page to the closest surrounding concept slide and names the topic transition it introduces.
 
-Common trap: Do not invent details that are not visible in the extracted text; use this page as a boundary marker and rely on adjacent slides for technical content.
 
 Check yourself: Can you turn 'Visual or title slide' into a causal sentence instead of repeating the slide title?
 

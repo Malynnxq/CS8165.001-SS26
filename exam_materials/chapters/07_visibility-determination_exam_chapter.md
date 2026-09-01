@@ -4,8 +4,6 @@ Source lecture chunk: `course_text_parts/03_lectures/07_visibility-determination
 Extracted source pages: 69
 Primary assignment connection: Rasterization and integrated rendering tasks
 
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
-
 ## 1. What Problem This Chapter Solves
 
 Visibility algorithms decide which candidate surface is actually seen from the current viewpoint. The chapter exists because this part of computer graphics answers a specific missing question in the full rendering story. The compact chain is `many projected or intersected candidates -> comparison rule -> visible surface or fragment -> final image contribution`. If you can recite the chain but cannot explain why each arrow exists, you have memorized the wording rather than understood the topic.

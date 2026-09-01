@@ -508,8 +508,6 @@ def build_readme(audit: dict[str, object]) -> str:
     return f"""Study Pack
 ==========
 
-This folder contains exam-preparation material derived from the course export.
-
 Coverage
 --------
 - Source files: {summary['source_file_count']}
@@ -518,8 +516,8 @@ Coverage
 - Extracted PDF pages: {summary['pdf_page_count']}
 - Full text words: {summary['full_text_words']}
 
-Recommended Order
------------------
+Reading Order
+-------------
 1. `ai_prompts.md`
 2. `chapter_guides/`
 3. `formulas_and_derivations.md`
@@ -528,9 +526,6 @@ Recommended Order
 6. `flashcards_anki.tsv`
 7. `study_plan.md`
 
-Limitations
------------
-This pack does not invent missing old exams, recordings, or official solutions. Visual slide interpretation still requires opening the original PDF pages listed in `visual_review_guide.md`.
 """
 
 

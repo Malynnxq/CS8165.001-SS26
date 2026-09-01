@@ -1,9 +1,5 @@
 # CS8165.001 Narrative Reader
 
-Language policy: this reader is written in English because the course lecture material is primarily in English. Original German Moodle notices remain German only when they are source material. Generated explanations, checks, and lab instructions in this pack are English.
-
-How to use this file: read one chapter, open the referenced source chunk, do the active task, then answer the closed checks without looking. This reader is a guided companion to the complete raw export, not a replacement for `course_full_text.txt`.
-
 ## Pipeline Overview
 
 The central route is: application data -> vertex processing -> primitive assembly -> clipping/culling decisions -> rasterization -> fragment shading -> per-fragment tests -> framebuffer. The same route explains most conceptual questions and most OpenGL debugging questions.

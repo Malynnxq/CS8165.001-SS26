@@ -1,7 +1,3 @@
-This file contains all ten plain English exam chapters.
-
-It is designed for uninterrupted reading and for copying into tools that work better with normal prose than with Markdown, tables, bullets, code marks, arrows, or symbolic notation.
-
 Lecture one is about Introduction.
 
 The central idea is this. Computer graphics generates images from descriptions, interactive graphics adds a strict time budget and a feedback loop with the user. The useful mental chain is scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
@@ -83,7 +79,6 @@ The main exam trap is this. Do not confuse an image representation with the geom
 A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
 
 You are done with this chapter only when you can recognize a new question as belonging to Introduction, rebuild the chain scene or image description, then representation choice, then sampling or rendering process, then visible image, then interaction or analysis, and choose the correct answer even when the wording changes.
-
 
 Lecture two is about Rendering Pipeline.
 
@@ -167,7 +162,6 @@ A strong answer names the problem this chapter solves, the important representat
 
 You are done with this chapter only when you can recognize a new question as belonging to Rendering Pipeline, rebuild the chain application data, then geometry stage, then primitive assembly, then rasterization, then fragment operations, then framebuffer, and choose the correct answer even when the wording changes.
 
-
 Lecture three is about Geometric Transformations.
 
 The central idea is this. Transformations change how points, vectors, normals, and coordinate frames are expressed across model, world, view, and clip related spaces. The useful mental chain is object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
@@ -249,7 +243,6 @@ The main exam trap is this. Do not multiply matrices without naming source space
 A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
 
 You are done with this chapter only when you can recognize a new question as belonging to Geometric Transformations, rebuild the chain object or model coordinates, then model matrix, then world coordinates, then view matrix, then camera or view coordinates, and choose the correct answer even when the wording changes.
-
 
 Lecture four is about Geometric Projection.
 
@@ -333,7 +326,6 @@ A strong answer names the problem this chapter solves, the important representat
 
 You are done with this chapter only when you can recognize a new question as belonging to Geometric Projection, rebuild the chain view space position, then projection matrix, then clip coordinates, then perspective divide, then NDC, then viewport coordinates, and choose the correct answer even when the wording changes.
 
-
 Lecture five is about Clipping.
 
 The central idea is this. Clipping classifies geometry against boundaries and keeps, rejects, or cuts primitives before rasterization. The useful mental chain is primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
@@ -405,7 +397,6 @@ The main exam trap is this. Do not describe clipping as only deletion, crossing 
 A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
 
 You are done with this chapter only when you can recognize a new question as belonging to Clipping, rebuild the chain primitive, then boundary tests, then inside or outside classification, then intersections, then clipped primitive, and choose the correct answer even when the wording changes.
-
 
 Lecture six is about Rasterization.
 
@@ -489,7 +480,6 @@ A strong answer names the problem this chapter solves, the important representat
 
 You are done with this chapter only when you can recognize a new question as belonging to Rasterization, rebuild the chain projected primitive, then sample coverage, then fragment generation, then attribute interpolation, then fragment tests, and choose the correct answer even when the wording changes.
 
-
 Lecture seven is about Visibility Determination.
 
 The central idea is this. Visibility algorithms decide which candidate surface is actually seen from the current viewpoint. The useful mental chain is many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
@@ -572,7 +562,6 @@ A strong answer names the problem this chapter solves, the important representat
 
 You are done with this chapter only when you can recognize a new question as belonging to Visibility Determination, rebuild the chain many projected or intersected candidates, then comparison rule, then visible surface or fragment, then final image contribution, and choose the correct answer even when the wording changes.
 
-
 Lecture eight is about Local Illumination.
 
 The central idea is this. Local illumination computes color from surface orientation, light direction, view direction, and material response. The useful mental chain is surface point plus normal plus light plus view plus material, then lighting equation, then shaded color. This chain matters because every later question in the chapter becomes easier when you know what enters a step, what changes inside the step, and what leaves the step.
@@ -654,7 +643,6 @@ The main exam trap is this. Do not mix up normal, light direction, and view dire
 A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
 
 You are done with this chapter only when you can recognize a new question as belonging to Local Illumination, rebuild the chain surface point plus normal plus light plus view plus material, then lighting equation, then shaded color, and choose the correct answer even when the wording changes.
-
 
 Lecture nine is about Texturing.
 
@@ -747,7 +735,6 @@ The main exam trap is this. Do not reduce texturing to pasting an image onto geo
 A strong answer names the problem this chapter solves, the important representation, the operation or rule, the output representation, the next rendering stage, one assignment or software connection, and one typical mistake with the corrected distinction.
 
 You are done with this chapter only when you can recognize a new question as belonging to Texturing, rebuild the chain fragment coordinates, then texture coordinates, then sampler or filter or wrap state, then texel fetch, then shader meaning, and choose the correct answer even when the wording changes.
-
 
 Lecture ten is about Shadows.
 

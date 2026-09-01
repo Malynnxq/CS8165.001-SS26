@@ -1,7 +1,5 @@
 # 00 - Reading Route
 
-Use this route when you want a strict, reading-first path from raw course files to exam-level performance.
-
 ## The Order
 
 1. Read one lecture in `lecture_readers/markdown/` or the combined PDF.

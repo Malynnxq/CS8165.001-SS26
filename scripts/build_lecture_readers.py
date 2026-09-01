@@ -1068,8 +1068,6 @@ def lecture_markdown(lecture: dict) -> str:
         f"Source chunk: `{lecture['source']}`",
         f"Extracted slide pages in source chunk: {stats['pages']}",
         "",
-        "This file is an explanatory reading version of the lecture. It keeps the course language in English and adds the missing commentary that the slide deck assumes was spoken in class. It is not a replacement for the original slides; use it next to the source chunk.",
-        "",
         "## Big Picture",
         "",
         lecture["opening"],
@@ -1239,7 +1237,6 @@ def lecture_story(lecture: dict, styles, include_title: bool):
         story.append(paragraph(f"- {item}", styles["BodyText"]))
     story.append(Spacer(1, 8))
     story.append(paragraph("Per-slide commentary", styles["Heading1"]))
-    story.append(paragraph("Each extracted slide page gets its own note. Use this section as the spoken commentary that the terse slide deck is missing.", styles["BodyText"]))
     for slide in slides:
         slide_table = Table(
             [
@@ -1341,8 +1338,6 @@ def write_readme() -> None:
     lines = [
         "# Lecture Readers",
         "",
-        "This folder contains a readable version of every lecture. The raw slide extraction is still the source of truth, but these files add the missing explanatory commentary that makes the material usable for human study. Every extracted slide page has its own commentary block with a source cue, professor-style explanation, technical commentary, relevance note, and check question.",
-        "",
         "Language: English. The lecture material is primarily English, so the generated commentary stays in English.",
         "",
         "## Files",
@@ -1351,7 +1346,7 @@ def write_readme() -> None:
         "- `pdf/` - one PDF per lecture plus `CS8165_complete_lecture_readers.pdf`, with per-slide commentary",
         "- `lecture_reader_manifest.json` - generated coverage manifest",
         "",
-        "## Recommended Reading Route",
+        "## Reading Route",
         "",
         "1. Read one lecture reader PDF or Markdown file.",
         "2. Open the referenced source chunk in `course_text_parts/03_lectures/`.",

@@ -1,8 +1,6 @@
 Interactive Practice Menu
 =========================
 
-Use this as a rotation. Do not only read.
-
 Daily 45-Minute Loop
 --------------------
 1. 10 minutes: cloze text from `cloze_source_texts.md`.

@@ -4,8 +4,6 @@ Source lecture chunk: `course_text_parts/03_lectures/01_introduction.txt`
 Extracted source pages: 51
 Primary assignment connection: 00 Introduction to C++
 
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
-
 ## 1. What Problem This Chapter Solves
 
 Computer graphics generates images from descriptions; interactive graphics adds a strict time budget and a feedback loop with the user. The chapter exists because this part of computer graphics answers a specific missing question in the full rendering story. The compact chain is `scene or image description -> representation choice -> sampling or rendering process -> visible image -> interaction or analysis`. If you can recite the chain but cannot explain why each arrow exists, you have memorized the wording rather than understood the topic.

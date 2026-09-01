@@ -142,7 +142,7 @@ B. Surface where the shadow appears.
 C. Do not explain a shadow only from the camera view; the key test is light-space visibility.
 D. A GitHub repository organization detail.
 
-# Answer Key
+# Answers
 
 Q1: D (Introduction)
 Q2: C (Introduction)

@@ -1,7 +1,5 @@
 # 10 - Mistake Log Repair Drills
 
-Use this after every wrong answer. Do not write vague entries.
-
 ## Repair Template
 
 Topic:

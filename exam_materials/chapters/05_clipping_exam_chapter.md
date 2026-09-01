@@ -4,8 +4,6 @@ Source lecture chunk: `course_text_parts/03_lectures/05_clipping.txt`
 Extracted source pages: 56
 Primary assignment connection: 04 Projections and Clipping
 
-This is the chapter itself: a readable explanation for studying before you drill the material. Read it before using cloze, matching, MC, sequencing, or assignment practice.
-
 ## 1. What Problem This Chapter Solves
 
 Clipping classifies geometry against boundaries and keeps, rejects, or cuts primitives before rasterization. The chapter exists because this part of computer graphics answers a specific missing question in the full rendering story. The compact chain is `primitive -> boundary tests -> inside/outside classification -> intersections -> clipped primitive`. If you can recite the chain but cannot explain why each arrow exists, you have memorized the wording rather than understood the topic.

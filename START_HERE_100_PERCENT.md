@@ -1,8 +1,4 @@
-# Start Here - Reading-First 100 Percent Exam System
-
-This is the central route through the repository if you were not in the lectures, like reading, and want to prepare as close to 100 percent as possible.
-
-No method can guarantee 100 percent. The system below is designed to remove known gaps: missing lecture commentary, weak links between topics, ignored exercises, passive reading, and practice that is too easy.
+# Reading-First 100 Percent Exam System
 
 ## What This Repository Already Gives You
 
@@ -40,8 +36,6 @@ Open these first:
 4. `assignment_zips/README.md`
 5. `assignment_sources/README.md`
 
-Goal of this phase:
-
 - Confirm that the repository has lectures, assignments, extracted text, practice files, and original exercise packages.
 - Notice the only known assignment ZIP gap: `Exercise5.zip` was not found in Downloads during the previous local search. The exercise text for rasterization still exists in `course_text_parts/04_assignments/05_rasterization.txt`.
 
@@ -68,13 +62,11 @@ Do not skip the per-slide sections. They replace the missing spoken lecture comm
 
 After reading a lecture chapter, open the matching raw extracted lecture text in `course_text_parts/03_lectures/`.
 
-Your task is to verify:
-
 - Every important word from the slide appears in your understanding.
 - The readable chapter did not make you forget the original wording.
 - You can explain why the slide items are grouped together.
 
-Use this test:
+Check:
 
 `Can I explain the slide without reading the slide aloud?`
 
@@ -82,7 +74,7 @@ If the answer is no, reread the slide's Professor-style explanation and Common t
 
 ## Phase 3 - Attach Every Lecture To Exercises
 
-Use `study_pack/exercise_concept_map.md` as the bridge between theory and assignments.
+`study_pack/exercise_concept_map.md` connects theory and assignments.
 
 Then inspect:
 
@@ -107,9 +99,7 @@ The important question is:
 
 ## Phase 4 - Feed Your Text Tools In The Right Order
 
-Use your cloze generator only after you have read the explanatory chapters.
-
-Best source files for copy-paste tools:
+After the explanatory chapters, use these copy-paste sources:
 
 - Cloze generator: `practice_pack/cloze_source_texts.md`
 - Premade blanks: `practice_pack/premade_cloze_texts.md`
@@ -120,7 +110,7 @@ Best source files for copy-paste tools:
 - Diagram prompts: `practice_pack/diagram_graphics_prompts.md`
 - OpenGL/software checks: `practice_pack/opengl_software_drills.md`
 
-Recommended order:
+Reading order:
 
 1. Cloze for vocabulary and formulas.
 2. Matching for definition-to-concept recognition.
@@ -133,7 +123,7 @@ Do not use cloze as your main proof of competence. Cloze checks recognition. Exa
 
 ## Phase 5 - Repeat Without Getting Bored
 
-Use the repetition variants:
+Repetition variants:
 
 1. `practice_pack/repetition_variants/round_01`
 2. `practice_pack/repetition_variants/round_02`
@@ -194,7 +184,7 @@ The first one can be repaired. The second one is too vague.
 
 ## Phase 8 - Final Readiness Test
 
-Use `overprep_pack/final_readiness_checklist.md`.
+`overprep_pack/final_readiness_checklist.md`.
 
 A topic is exam-ready only if you can do all of this without notes:
 
@@ -209,8 +199,6 @@ A topic is exam-ready only if you can do all of this without notes:
 - Recognize the concept under different wording.
 
 ## Daily Study Loop
-
-Use this loop for one lecture or topic block:
 
 1. Read the relevant `lecture_readers` chapter.
 2. Verify with the raw source chunk.
@@ -244,7 +232,7 @@ Use this loop for one lecture or topic block:
 
 ## What To Ask AI With This Repository
 
-Use prompts like these:
+Prompts:
 
 ```text
 Use only the attached course text and assignment text unless you clearly mark outside knowledge.
