@@ -50,9 +50,24 @@
     "08_assignment_workbook.md",
     "09_final_mixed_closed_exam.md",
     "10_mistake_log_repair_drills.md",
-    "11_ai_prompt_bank.md"
+    "11_ai_prompt_bank.md",
+    "copy_paste_prompts/README.md",
+    "copy_paste_prompts/01_introduction_copy_paste_prompts.md",
+    "copy_paste_prompts/02_rendering-pipeline_copy_paste_prompts.md",
+    "copy_paste_prompts/03_geometric-transformations_copy_paste_prompts.md",
+    "copy_paste_prompts/04_geometric-projection_copy_paste_prompts.md",
+    "copy_paste_prompts/05_clipping_copy_paste_prompts.md",
+    "copy_paste_prompts/06_rasterization_copy_paste_prompts.md",
+    "copy_paste_prompts/07_visibility-determination_copy_paste_prompts.md",
+    "copy_paste_prompts/08_local-illumination_copy_paste_prompts.md",
+    "copy_paste_prompts/09_texturing_copy_paste_prompts.md",
+    "copy_paste_prompts/10_shadows_copy_paste_prompts.md",
+    "copy_paste_prompts/11_assignment_copy_paste_prompts.md",
+    "copy_paste_prompts/12_final_coverage_prompts.md",
+    "copy_paste_prompts/manifest.json"
   ],
   "source_reader_manifest": "lecture_readers/lecture_reader_manifest.json",
   "lecture_pages": 701,
-  "generated_chapter_count": 10
+  "generated_chapter_count": 10,
+  "copy_paste_prompt_count": 179
 }

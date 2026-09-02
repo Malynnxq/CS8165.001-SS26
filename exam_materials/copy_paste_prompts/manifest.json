@@ -1,0 +1,35 @@
+{
+  "pack": "copy_paste_prompts",
+  "lecture_count": 10,
+  "assignment_prompt_count": 7,
+  "final_prompt_count": 2,
+  "lecture_prompt_counts": {
+    "01": 17,
+    "02": 17,
+    "03": 17,
+    "04": 17,
+    "05": 16,
+    "06": 17,
+    "07": 17,
+    "08": 17,
+    "09": 18,
+    "10": 17
+  },
+  "total_prompt_count": 179,
+  "files": [
+    "README.md",
+    "01_introduction_copy_paste_prompts.md",
+    "02_rendering-pipeline_copy_paste_prompts.md",
+    "03_geometric-transformations_copy_paste_prompts.md",
+    "04_geometric-projection_copy_paste_prompts.md",
+    "05_clipping_copy_paste_prompts.md",
+    "06_rasterization_copy_paste_prompts.md",
+    "07_visibility-determination_copy_paste_prompts.md",
+    "08_local-illumination_copy_paste_prompts.md",
+    "09_texturing_copy_paste_prompts.md",
+    "10_shadows_copy_paste_prompts.md",
+    "11_assignment_copy_paste_prompts.md",
+    "12_final_coverage_prompts.md",
+    "manifest.json"
+  ]
+}

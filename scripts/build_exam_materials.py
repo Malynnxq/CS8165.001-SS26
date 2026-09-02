@@ -202,6 +202,9 @@ def ensure_out() -> None:
     if OUT.exists():
         for path in OUT.rglob("*"):
             if path.is_file():
+                relative = path.relative_to(OUT)
+                if relative.parts and relative.parts[0] == "copy_paste_prompts":
+                    continue
                 path.unlink()
     OUT.mkdir(exist_ok=True)
 
@@ -717,8 +720,6 @@ def combined_chapters() -> str:
     lines = [
         "# CS8165 Complete Exam Chapters",
         "",
-        "This file combines the ten generated exam chapters. Use the individual files in `exam_materials/chapters/` when you want a cleaner one-chapter reading session.",
-        "",
     ]
     for topic in TOPICS:
         lines.append(f"- Lecture {topic['id']} - {topic['title']}: `{chapter_filename(topic)}`")
@@ -1223,8 +1224,6 @@ A repaired mistake must become at least one new closed-format question.
 
 def ai_prompt_bank() -> str:
     return """# 11 - AI Prompt Bank For This Course
-
-Use these prompts with the files in this repository.
 
 ## Lecture To Exam Chapter
 
